@@ -27,11 +27,14 @@ const baleLogo = existsSync(logoFile) ? 'data:image/png;base64,' + readFileSync(
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: timeline.width, height: timeline.height }, deviceScaleFactor: 1 });
-await page.addInitScript(({ timeline, icons, baleLogo }) => {
+// --market renders the marketplace cut (no competitor names in the price scene).
+const marketCut = process.argv.includes('--market');
+await page.addInitScript(({ timeline, icons, baleLogo, marketCut }) => {
   window.TIMELINE = timeline;
   window.ICONS = icons;
   window.BALE_LOGO = baleLogo;
-}, { timeline, icons, baleLogo });
+  window.MARKET_CUT = marketCut;
+}, { timeline, icons, baleLogo, marketCut });
 await page.goto('file://' + resolve(scenePath));
 await page.waitForLoadState('load');
 await page.evaluate(() => document.fonts.ready);

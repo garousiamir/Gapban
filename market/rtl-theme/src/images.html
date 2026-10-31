@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Gapban market images</title>
+<style>
+@font-face { font-family: 'Estedad'; src: url('../../../gapban/assets/fonts/Estedad-VariableFont_wght.woff2') format('woff2'); font-weight: 100 900; }
+:root { --red: #ef4b4b; --red-d: #d33c3c; --teal: #0aca9b; --ink: #070b17; --muted: #9aa3bd; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow: hidden; background: var(--ink); font-family: 'Estedad', Tahoma, sans-serif; color: #f5f7ff; }
+body { position: relative; }
+.bg { position: absolute; inset: 0; background:
+  radial-gradient(60% 70% at 85% 0%, rgba(239,75,75,.40), transparent 70%),
+  radial-gradient(55% 60% at 0% 100%, rgba(10,202,155,.26), transparent 70%),
+  radial-gradient(50% 60% at 100% 100%, rgba(124,92,255,.24), transparent 70%),
+  radial-gradient(120% 90% at 50% 0%, #121a3a 0%, var(--ink) 60%); }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000 20%, transparent 75%); }
+.abs { position: absolute; }
+.grad { background: linear-gradient(90deg, #ff7a59, var(--red) 45%, #ff4f9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-teal { background: linear-gradient(90deg, #6ef0c8, var(--teal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mark { border-radius: 28%; background: linear-gradient(145deg, #ff6b5e, var(--red-d)); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 24px 60px rgba(239,75,75,.45), inset 0 2px 0 rgba(255,255,255,.3); }
+.icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
+.browser { border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 50px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.12); }
+.browser .bar { height: 40px; background: #eef0f4; display: flex; align-items: center; gap: 8px; padding: 0 16px; direction: ltr; }
+.browser .bar i { width: 12px; height: 12px; border-radius: 50%; background: #d4d8e0; }
+.browser .bar i:nth-child(1) { background: #ff5f57; } .browser .bar i:nth-child(2) { background: #febc2e; } .browser .bar i:nth-child(3) { background: #28c840; }
+.browser img { display: block; width: 100%; }
+.card { border-radius: 26px; overflow: hidden; background: #fff; box-shadow: 0 50px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.12); }
+.phone { border-radius: 54px; background: #10131c; padding: 13px; box-shadow: 0 50px 120px rgba(0,0,0,.6), inset 0 0 0 3px #2b3246; }
+.phone img { display: block; width: 100%; border-radius: 42px; }
+.pill { display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); font-weight: 800; font-size: 26px; white-space: nowrap; }
+.pill b { display: inline-flex; width: 38px; height: 38px; border-radius: 50%; align-items: center; justify-content: center; font-size: 22px; color: #fff; }
+.title { font-weight: 900; line-height: 1.45; }
+.sub { color: var(--muted); font-weight: 600; line-height: 1.8; }
+.note { font-size: 17px; color: #6c7593; }
+.feat { border-radius: 26px; padding: 30px 32px; background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.12); }
+.feat .ic { width: 70px; height: 70px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: #fff; }
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="grid"></div>
+<div id="root"></div>
+<script>
+// Rendered by tools/market-images.mjs: window.SLIDE = {id, w, h}; window.ICONS / window.BALE_LOGO injected.
+const S = window.SLIDE, I = window.ICONS;
+document.documentElement.style.width = document.body.style.width = S.w + 'px';
+document.documentElement.style.height = document.body.style.height = S.h + 'px';
+const ic = (n, s) => `<span class="icon" style="display:inline-block;width:${s}px;height:${s}px"><svg viewBox="${I[n][0]}"><path d="${I[n][1]}"/></svg></span>`;
+const shot = (n) => `../../../marketing/assets/shots/${n}.png`;
+const bale = (s) => `<img src="${window.BALE_LOGO}" style="width:${s}px;height:${s}px;object-fit:contain;filter:drop-shadow(0 16px 36px rgba(10,202,155,.45))">`;
+const mark = (s) => `<div class="mark" style="width:${s}px;height:${s}px">${ic('comments', s * 0.53)}</div>`;
+const legal = `<div class="abs note" style="left:0;right:0;bottom:22px;text-align:center">«بله» نام تجاری متعلق به صاحب آن است؛ گپ‌بان افزونه‌ای مستقل و سازگار با پیام‌رسان بله است.</div>`;
+// Gallery frame: heading on top, visual below.
+const frame = (n, color, pill, title, sub, visual) => `
+  <div class="abs" style="left:0;right:0;top:56px;text-align:center">
+    <span class="pill"><b style="background:${color}">${n}</b> ${pill}</span>
+    <div class="title" style="font-size:58px;margin-top:18px">${title}</div>
+    <div class="sub" style="font-size:26px">${sub}</div>
+  </div>${visual}`;
+
+const SLIDES = {
+  // Main product image.
+  cover: () => `
+    <div class="abs" style="right:90px;top:0;bottom:0;width:690px;display:flex;flex-direction:column;justify-content:center">
+      <div style="display:flex;align-items:center;gap:26px;direction:ltr;justify-content:flex-end">${bale(118)}<span style="font-size:60px;color:var(--muted);font-weight:300">+</span>${mark(118)}</div>
+      <div class="title" style="font-size:150px;margin-top:10px;line-height:1.3">گپ‌بان</div>
+      <div class="title" style="font-size:46px">چت آنلاین سایت؛ <span class="grad-teal">جواب از داخل بله</span></div>
+      <div class="sub" style="font-size:28px;margin-top:18px">مشتری روی سایت پیام می‌دهد، شما در گروه بله فقط ریپلای می‌کنید.</div>
+      <div style="display:flex;gap:14px;margin-top:30px;justify-content:flex-start;flex-wrap:wrap">
+        <span class="pill" style="font-size:22px">${ic('shield', 22)} داده‌ها روی سایت خودتان</span>
+        <span class="pill" style="font-size:22px">${ic('calendar', 22)} کاملاً فارسی</span>
+        <span class="pill" style="font-size:22px">${ic('download', 22)} خرید یک‌باره</span>
+      </div>
+    </div>
+    <div class="abs card" style="left:120px;top:150px;width:380px;transform:rotate(-4deg)"><img src="${shot('panel-06-reply')}" style="display:block;width:100%"></div>
+    <div class="abs" style="left:420px;top:110px;width:330px;transform:rotate(3deg)"><img src="bale-phone.png" style="display:block;width:100%;border-radius:56px;box-shadow:0 50px 120px rgba(0,0,0,.6)"></div>
+    ${legal}`,
+
+  // Square variant (social / thumbnails).
+  square: () => `
+    <div class="abs" style="left:0;right:0;top:120px;display:flex;align-items:center;justify-content:center;gap:30px;direction:ltr">${bale(150)}<span style="font-size:70px;color:var(--muted);font-weight:300">+</span>${mark(150)}</div>
+    <div class="abs title" style="left:0;right:0;top:330px;text-align:center;font-size:190px;line-height:1.3">گپ‌بان</div>
+    <div class="abs title" style="left:60px;right:60px;top:610px;text-align:center;font-size:56px">چت آنلاین سایت؛<br><span class="grad-teal">جواب از داخل بله</span></div>
+    <div class="abs sub" style="left:60px;right:60px;top:830px;text-align:center;font-size:30px">افزونهٔ وردپرس · فارسی و راست‌به‌چپ · خرید یک‌باره</div>
+    ${legal}`,
+
+  // Product icon: Gapban mark only (no Bale logo in the icon).
+  icon: () => `<div class="abs" style="inset:0;display:flex;align-items:center;justify-content:center">${mark(S.w * 0.78)}</div>`,
+
+  'g1-site': () => frame('۱', 'var(--red)', 'روی سایت شما', 'ابزارک چت زیبا و <span class="grad">فارسی</span>', 'مشتری بدون نیاز به حساب بله، از همان صفحهٔ سایت پیام می‌دهد', `
+    <div class="abs browser" style="left:150px;right:150px;top:300px"><div class="bar"><i></i><i></i><i></i></div><img src="${shot('web-05-sent')}"></div>`),
+
+  'g2-bale': () => frame('۲', '#21b496', 'داخل بله', 'پیام مشتری <span class="grad-teal">مستقیم در گروه بله</span>', 'روی پیام «ریپلای» کنید؛ پاسخ دقیقاً به همان مشتری روی سایت می‌رسد', `
+    <div class="abs" style="left:50%;top:285px;width:330px;margin-left:-165px"><img src="bale-phone.png" style="display:block;width:100%;border-radius:56px;box-shadow:0 50px 120px rgba(0,0,0,.6)"></div>
+    <div class="abs" style="right:150px;top:470px;width:330px;text-align:right">${bale(110)}<div class="title" style="font-size:40px;margin-top:20px">فقط «ریپلای» کنید</div><div class="sub" style="font-size:24px">بدون نصب برنامهٔ اضافه برای اپراتورها</div></div>
+    <div class="abs" style="left:150px;top:470px;width:330px;text-align:left;direction:rtl"><div style="text-align:left">${mark(110)}</div><div class="title" style="font-size:40px;margin-top:20px;text-align:left">یا از پیشخوان وردپرس</div><div class="sub" style="font-size:24px;text-align:left">هر دو مسیر هم‌زمان کار می‌کنند</div></div>
+    <div class="abs note" style="left:0;right:0;bottom:22px;text-align:center">تصویر نمایشی از گروه بله با پیام واقعی ربات گپ‌بان · «بله» نام تجاری متعلق به صاحب آن است.</div>`),
+
+  'g3-reply': () => frame('۳', '#7c5cff', 'همان لحظه', 'پاسخ روی سایت، <span class="grad">دسکتاپ و موبایل</span>', 'بازدیدکننده پاسخ را بدون رفرش صفحه می‌بیند', `
+    <div class="abs card" style="left:420px;top:300px;width:400px"><img src="${shot('panel-06-reply')}" style="display:block;width:100%"></div>
+    <div class="abs phone" style="left:880px;top:290px;width:330px;transform:rotate(2deg)"><img src="${shot('mobile-02-reply')}" style="height:660px;object-fit:cover;object-position:top"></div>`),
+
+  'g4-inbox': () => frame('۴', 'var(--red)', 'پیشخوان وردپرس', 'صندوق گفتگوی <span class="grad">کامل</span>', 'برداشتن، انتقال، یادداشت داخلی، پاسخ آماده، برچسب و فایل', `
+    <div class="abs browser" style="left:150px;right:150px;top:300px"><div class="bar"><i></i><i></i><i></i></div><img src="${shot('admin-inbox')}"></div>`),
+
+  'g5-setup': () => frame('۵', '#21b496', 'راه‌اندازی ساده', 'اتصال به بله <span class="grad-teal">قدم‌به‌قدم</span>', 'ساخت ربات، اتصال گروه، پیام آزمایشی و بررسی وضعیت؛ همه فارسی', `
+    <div class="abs browser" style="left:150px;right:150px;top:300px"><div class="bar"><i></i><i></i><i></i></div><img src="${shot('admin-setup')}"></div>`),
+
+  'g6-look': () => frame('۶', '#f5a524', 'ظاهر دلخواه', 'رنگ، جایگاه و متن‌ها <span class="grad">با پیش‌نمایش زنده</span>', 'ابزارک با هویت بصری سایت شما هماهنگ می‌شود', `
+    <div class="abs browser" style="left:150px;right:150px;top:300px"><div class="bar"><i></i><i></i><i></i></div><img src="${shot('admin-appearance')}"></div>`),
+
+  'g7-reports': () => frame('۷', '#3b82f6', 'گزارش‌ها', 'زمان پاسخ و <span class="grad-teal">رضایت مشتری</span>', 'عملکرد تیم پشتیبانی را با عدد ببینید', `
+    <div class="abs browser" style="left:150px;right:150px;top:300px"><div class="bar"><i></i><i></i><i></i></div><img src="${shot('admin-reports')}"></div>`),
+
+  'g8-features': () => {
+    const F = [
+      ['comments', 'var(--red)', 'صندوق گفتگو', 'برداشتن، انتقال و یادداشت داخلی'],
+      ['wand', '#7c5cff', 'پیام خودکار هوشمند', 'در صفحهٔ درست، در زمان درست'],
+      ['list', 'var(--teal)', 'ارسال مطمئن', 'ذخیره پیش از ارسال، تلاش دوباره'],
+      ['chart', '#f5a524', 'گزارش و رضایت', 'زمان پاسخ و امتیاز مشتری'],
+      ['calendar', '#3b82f6', 'کاملاً فارسی', 'راست‌به‌چپ و تقویم شمسی'],
+      ['shield', '#ec4899', 'امن و خصوصی', 'گفتگوها روی سایت خودتان'],
+    ];
+    return frame('۸', 'var(--red)', 'امکانات', 'هر چیزی که <span class="grad">پشتیبانی</span> لازم دارد', 'بدون اشتراک ماهانه و بدون سرور واسطه', `
+      <div class="abs" style="left:150px;right:150px;top:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px">${F.map(([n, c, a, b]) => `<div class="feat"><div class="ic" style="background:${c}">${ic(n, 34)}</div><div class="title" style="font-size:34px;margin-top:20px">${a}</div><div class="sub" style="font-size:22px">${b}</div></div>`).join('')}</div>`);
+  },
+};
+document.getElementById('root').innerHTML = SLIDES[S.id]();
+if (S.id === 'icon') { document.querySelectorAll('.bg,.grid').forEach((e) => (e.style.display = 'none')); document.documentElement.style.background = document.body.style.background = 'transparent'; }
+</script>
+</body>
+</html>

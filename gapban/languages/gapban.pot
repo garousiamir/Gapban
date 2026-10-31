@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Domain: gapban\n"
 
-#: gapban.php:40
+#: gapban.php:39
 #, php-format
 msgid "Gapban requires PHP %s or newer. The plugin is inactive."
 msgstr ""

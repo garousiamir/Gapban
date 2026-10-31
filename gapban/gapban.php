@@ -1,12 +1,11 @@
 <?php
 /**
  * Plugin Name:       Gapban | گپ‌بان
- * Plugin URI:        https://github.com/garousiamir/Gapban
  * Description:       افزونه چت آنلاین وردپرس متصل به بله — visitors chat on your site, operators answer in Bale or the WordPress inbox.
  * Version:           1.0.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
- * Author:            Gapban
+ * Author:            گپ‌بان
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       gapban
