@@ -1,0 +1,8 @@
+node_modules/
+/build-tmp/
+/dist-tmp/
+gapban/assets/dist/
+*.log
+.DS_Store
+/test-results/
+/playwright-report/
