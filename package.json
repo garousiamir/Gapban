@@ -1,0 +1,25 @@
+{
+  "name": "gapban",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gapban — WordPress live chat connected to Bale (build tooling)",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "watch": "node tools/build.mjs --watch",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test:js": "node --test tests/js/",
+    "test:php": "php tests/php/run.php",
+    "test:e2e": "node tests/e2e/run.mjs",
+    "i18n": "node tools/i18n.mjs",
+    "package": "node tools/package.mjs"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "esbuild": "^0.25.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.6.3"
+  }
+}

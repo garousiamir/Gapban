@@ -65,6 +65,17 @@ final class VisitorController {
 	 */
 	private static function guard( string $method, bool $auth ): callable {
 		return static function ( \WP_REST_Request $request ) use ( $method, $auth ) {
+			// Visitor-facing errors use the widget language, not the site/admin language.
+			$locale = 'fa' === \Gapban\Widget\Frontend::language() ? 'fa_IR' : 'en_US';
+			return \Gapban\Core\Strings::in_locale( $locale, static fn() => self::handle( $request, $method, $auth ) );
+		};
+	}
+
+	/**
+	 * @return \WP_REST_Response
+	 */
+	private static function handle( \WP_REST_Request $request, string $method, bool $auth ) {
+		{
 			$session = VisitorSessions::from_request( $request );
 			if ( $auth || null !== $session ) {
 				if ( ! $session ) {
@@ -88,7 +99,7 @@ final class VisitorController {
 				$result = $e->to_wp_error();
 			}
 			return self::no_store( $result );
-		};
+		}
 	}
 
 	/**
@@ -147,6 +158,7 @@ final class VisitorController {
 			'unread'       => 0,
 			'session'      => null !== $session,
 		);
+		$out['cart'] = self::cart();
 		if ( $session && $user && empty( $session['wp_user_id'] ) ) {
 			// Guest session while logged in: the widget should start an account session.
 			$out['session_upgrade'] = true;
@@ -168,6 +180,33 @@ final class VisitorController {
 			);
 		}
 		return $out;
+	}
+
+	/**
+	 * WooCommerce cart summary from canonical store values, when WooCommerce is active.
+	 *
+	 * @return array{count:int, value:float, currency:string}|null
+	 */
+	private static function cart(): ?array {
+		if ( ! function_exists( 'WC' ) || ! function_exists( 'wc_load_cart' ) ) {
+			return null;
+		}
+		try {
+			if ( null === WC()->cart ) {
+				wc_load_cart();
+			}
+			$cart = WC()->cart;
+			if ( ! $cart ) {
+				return null;
+			}
+			return array(
+				'count'    => (int) $cart->get_cart_contents_count(),
+				'value'    => (float) $cart->get_cart_contents_total(),
+				'currency' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '',
+			);
+		} catch ( \Throwable $e ) {
+			return null;
+		}
 	}
 
 	public static function get_conversation( \WP_REST_Request $request, array $session ) {
@@ -237,8 +276,17 @@ final class VisitorController {
 		if ( '' !== $greeting ) {
 			ConversationService::post_automated( (int) $conv['id'], $greeting, ConversationService::AUTHOR_AUTOMATION, array( 'type' => 'greeting' ) );
 		}
-		if ( $request->get_param( 'campaign_rule_id' ) ) {
-			RuleEvents::record( (int) $request->get_param( 'campaign_rule_id' ), $visitor_id, 'converted' );
+		$rule_id = (int) $request->get_param( 'campaign_rule_id' );
+		if ( $rule_id ) {
+			RuleEvents::record( $rule_id, $visitor_id, 'converted' );
+			// The automated campaign message the visitor saw becomes part of the transcript (labelled automated).
+			$def = json_decode( (string) Db::value( 'SELECT definition FROM ' . Db::t( 'rules' ) . ' WHERE id = %d', $rule_id ), true );
+			foreach ( (array) ( $def['actions'] ?? array() ) as $action ) {
+				if ( 'automated_message' === ( $action['type'] ?? '' ) && '' !== (string) ( $action['text'] ?? '' ) ) {
+					ConversationService::post_automated( (int) $conv['id'], (string) $action['text'], ConversationService::AUTHOR_AUTOMATION, array( 'type' => 'campaign', 'rule_id' => $rule_id ) );
+					break;
+				}
+			}
 		}
 		return array( 'conversation' => Serializer::conversation_for_visitor( ConversationService::get( (int) $conv['id'] ) ) );
 	}
