@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Gapban promo</title>
+<style>
+@font-face { font-family: 'Estedad'; src: url('../../gapban/assets/fonts/Estedad-VariableFont_wght.woff2') format('woff2'); font-weight: 100 900; }
+:root {
+  --brand: #ef4b4b; --brand-dark: #d33c3c;
+  --g950: oklch(13% 0.028 261.692); --g900: oklch(21% 0.034 264.665); --g700: oklch(37.3% 0.034 259.733);
+  --g600: oklch(44.6% 0.03 256.802); --g500: oklch(55.1% 0.027 264.364); --g400: oklch(70.7% 0.022 261.325);
+  --g200: oklch(92.8% 0.006 264.531); --g100: oklch(96.7% 0.003 264.542); --g50: oklch(98.5% 0.002 247.839);
+  --emerald: oklch(76.5% 0.177 163.223);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f7f7f8; font-family: 'Estedad', Tahoma, sans-serif; color: var(--g900); }
+.abs { position: absolute; }
+.scene { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
+.dots { position: absolute; inset: -60px; background-image: radial-gradient(rgba(15,23,42,.08) 1.5px, transparent 1.5px); background-size: 26px 26px; }
+.glow { position: absolute; border-radius: 50%; filter: blur(10px); }
+.glow.brand { width: 900px; height: 900px; background: radial-gradient(circle, color-mix(in oklab, var(--brand) 32%, transparent), transparent 66%); }
+.glow.violet { width: 800px; height: 800px; background: radial-gradient(circle, rgba(124,92,255,.22), transparent 66%); }
+.icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
+.h1 { font-weight: 900; color: var(--g950); line-height: 1.5; }
+.eyebrow { display: inline-flex; gap: 12px; align-items: center; color: var(--brand); font-weight: 800; font-size: 30px; }
+.card { background: #fff; border: 1px solid var(--g100); border-radius: 28px; box-shadow: 0 15px 45px rgba(15,23,42,.06); }
+.panel-shadow { box-shadow: 0 30px 70px rgba(15,23,42,.18); }
+.pill { display: inline-flex; align-items: center; gap: 14px; height: 76px; padding: 0 34px; border-radius: 24px; background: var(--g950); color: #fff; font-weight: 800; font-size: 26px; box-shadow: 0 18px 40px rgba(15,23,42,.25); }
+.pill .icon { width: 28px; height: 28px; }
+.bubble { padding: 18px 26px; border-radius: 30px; font-size: 27px; line-height: 1.9; }
+.bubble.visitor { background: var(--g950); color: #fff; border-start-end-radius: 10px; }
+.bubble.op { background: var(--g50); border: 1px solid var(--g100); color: var(--g900); border-start-start-radius: 10px; }
+.wipe { position: absolute; left: 0; top: -10%; height: 120%; width: 1300px; background: var(--brand); z-index: 50; display: none; }
+.wipe.two { background: var(--g950); }
+</style>
+</head>
+<body>
+<div id="bg" class="abs" style="inset:0">
+  <div class="dots" id="dots"></div>
+  <div class="glow brand" id="glowA"></div>
+  <div class="glow violet" id="glowB"></div>
+</div>
+
+<!-- S1 logo -->
+<div class="scene" id="s-logo">
+  <div class="abs" id="logoMark" style="left:50%;top:330px;width:200px;height:200px;margin-left:-100px;border-radius:56px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 40px 90px color-mix(in oklab,var(--brand) 45%,transparent)">
+    <span class="icon" style="width:104px;height:104px" data-icon="comments"></span>
+  </div>
+  <div class="abs" id="logoRing" style="left:50%;top:330px;width:200px;height:200px;margin-left:-100px;border-radius:56px;border:6px solid var(--brand)"></div>
+  <div class="abs h1" id="logoWord" style="left:0;right:0;top:560px;text-align:center;font-size:150px;letter-spacing:-2px">گپ‌بان</div>
+  <div class="abs" id="logoLatin" style="left:0;right:0;top:760px;text-align:center;font-size:30px;font-weight:800;letter-spacing:22px;color:var(--g400)" dir="ltr">GAPBAN</div>
+  <div class="abs" id="logoTag" style="left:0;right:0;top:830px;text-align:center;font-size:44px;font-weight:700;color:var(--g700)">چت آنلاین وردپرس، متصل به بله</div>
+</div>
+
+<!-- S2 problem -->
+<div class="scene" id="s-problem">
+  <div class="abs" style="right:180px;top:300px;width:900px">
+    <div class="eyebrow" id="pEye"><span class="icon" style="width:30px;height:30px" data-icon="bolt"></span> هر روز، روی سایت شما</div>
+    <div class="h1" id="pTitle" style="font-size:96px;margin-top:24px">مشتری‌ها همین حالا<br>سؤال دارند…</div>
+    <div id="pSub" style="font-size:42px;color:var(--g500);margin-top:24px;font-weight:600">و اگر جواب نگیرند، می‌روند.</div>
+  </div>
+  <div class="abs bubble op panel-shadow" id="q1" style="left:170px;top:250px;background:#fff;font-size:34px">این محصول موجوده؟ 🤔</div>
+  <div class="abs bubble op panel-shadow" id="q2" style="left:300px;top:470px;background:#fff;font-size:34px">ارسال به شیراز چند روزه؟</div>
+  <div class="abs bubble op panel-shadow" id="q3" style="left:140px;top:690px;background:#fff;font-size:34px">کدوم پلن برای من مناسبه؟</div>
+</div>
+
+<!-- S3 website -->
+<div class="scene" id="s-web">
+  <div class="abs" id="webCap" style="left:120px;top:330px;width:560px">
+    <div class="eyebrow"><span class="icon" style="width:28px;height:28px" data-icon="globe"></span> روی سایت شما</div>
+    <div class="h1" style="font-size:74px;margin-top:18px">ابزارک گفتگوی<br>زیبا و فارسی</div>
+    <div style="font-size:34px;color:var(--g500);margin-top:18px;line-height:1.8;font-weight:500">بازدیدکننده بدون نصب هیچ برنامه‌ای، همان‌جا پیام می‌دهد.</div>
+  </div>
+  <div class="abs card panel-shadow" id="browser" style="right:110px;top:110px;width:1060px;height:860px;overflow:hidden;border-radius:34px">
+    <div style="height:70px;border-bottom:1px solid var(--g100);display:flex;align-items:center;gap:14px;padding:0 28px;background:#fff">
+      <span style="width:16px;height:16px;border-radius:50%;background:#fca5a5"></span><span style="width:16px;height:16px;border-radius:50%;background:#fde68a"></span><span style="width:16px;height:16px;border-radius:50%;background:#a7f3d0"></span>
+      <div style="flex:1;margin:0 30px;height:40px;border-radius:14px;background:var(--g50);border:1px solid var(--g100);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--g500)" dir="ltr">shop.example.ir/pricing</div>
+    </div>
+    <div style="padding:46px 56px">
+      <div class="h1" style="font-size:44px">پلن‌های اشتراک</div>
+      <div style="height:16px;width:420px;border-radius:9px;background:var(--g100);margin-top:22px"></div>
+      <div style="display:flex;gap:26px;margin-top:44px">
+        <div class="card" style="flex:1;height:390px;padding:30px"><div style="font-weight:800;font-size:28px">پایه</div><div style="height:14px;width:70%;background:var(--g100);border-radius:8px;margin-top:26px"></div><div style="height:14px;width:55%;background:var(--g100);border-radius:8px;margin-top:16px"></div></div>
+        <div class="card" style="flex:1;height:390px;padding:30px;border-color:color-mix(in oklab,var(--brand) 40%,transparent)"><div style="font-weight:800;font-size:28px;color:var(--brand)">حرفه‌ای</div><div style="height:14px;width:70%;background:var(--g100);border-radius:8px;margin-top:26px"></div><div style="height:14px;width:60%;background:var(--g100);border-radius:8px;margin-top:16px"></div></div>
+        <div class="card" style="flex:1;height:390px;padding:30px"><div style="font-weight:800;font-size:28px">سازمانی</div><div style="height:14px;width:70%;background:var(--g100);border-radius:8px;margin-top:26px"></div><div style="height:14px;width:40%;background:var(--g100);border-radius:8px;margin-top:16px"></div></div>
+      </div>
+    </div>
+    <!-- chat panel -->
+    <div class="abs card panel-shadow" id="chat" style="left:36px;bottom:140px;width:470px;height:560px;border-radius:30px;overflow:hidden;transform-origin:bottom left">
+      <div style="display:flex;align-items:center;gap:16px;padding:20px;border-bottom:1px solid var(--g100)">
+        <div style="position:relative;width:56px;height:56px;border-radius:18px;background:color-mix(in oklab,var(--brand) 10%,#fff);color:var(--brand);display:flex;align-items:center;justify-content:center"><span class="icon" style="width:26px;height:26px" data-icon="headset"></span><span style="position:absolute;left:-4px;bottom:-4px;width:16px;height:16px;border-radius:50%;background:var(--emerald);border:3px solid #fff"></span></div>
+        <div><div style="font-weight:900;font-size:22px;color:var(--g950)">گپ‌بان</div><div style="font-size:16px;color:var(--g500)">آنلاین — معمولاً ظرف چند دقیقه پاسخ می‌دهیم</div></div>
+      </div>
+      <div style="padding:22px;height:380px;display:flex;flex-direction:column;gap:12px">
+        <div style="align-self:center;font-size:15px;color:var(--g500);background:var(--g50);border:1px solid var(--g100);border-radius:99px;padding:3px 14px">امروز</div>
+        <div class="bubble visitor" id="sentBubble" style="align-self:flex-end;font-size:22px;padding:14px 20px;max-width:88%">سلام! برای فروشگاه کوچک کدوم پلن بهتره؟</div>
+        <div id="sentMeta" style="align-self:flex-end;font-size:14px;color:var(--g500)">۱۰:۲۴ ✓</div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:16px;border-top:1px solid var(--g100);display:flex;gap:12px;align-items:center">
+        <div id="composer" style="flex:1;height:56px;border-radius:20px;border:1px solid var(--g200);padding:0 18px;display:flex;align-items:center;font-size:20px;color:var(--g500);white-space:nowrap;overflow:hidden">پیامتان را بنویسید…</div>
+        <div id="sendBtn" style="width:56px;height:56px;border-radius:18px;background:var(--brand-dark);color:#fff;display:flex;align-items:center;justify-content:center"><span class="icon" style="width:24px;height:24px;transform:scaleX(-1)" data-icon="paper-plane"></span></div>
+      </div>
+    </div>
+    <div class="abs" id="teaser" style="left:36px;bottom:140px;width:430px;background:#fff;border:1px solid var(--g100);border-radius:28px;padding:20px 24px;box-shadow:0 30px 70px rgba(15,23,42,.18);transform-origin:bottom left">
+      <div style="font-size:16px;font-weight:800;color:var(--g500)">🤖 پیام خودکار</div>
+      <div style="font-size:23px;line-height:1.9;color:var(--g700);font-weight:500">برای انتخاب پلن مناسب راهنمایی‌تان کنیم؟</div>
+    </div>
+    <div class="abs pill" id="launcher" style="left:36px;bottom:36px;height:72px;font-size:24px">
+      <span class="icon" id="launcherIcon" data-icon="comments"></span><span id="launcherLabel">گفتگو با ما</span>
+      <span style="position:absolute;left:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:var(--emerald);border:4px solid #fff"></span>
+    </div>
+    <div class="abs" id="cursor" style="width:44px;height:44px;z-index:5"><svg viewBox="0 0 24 24" width="44" height="44"><path d="M4 2l14 9-6 1.5 3.6 7-2.8 1.4-3.6-7L4 18z" fill="#111827" stroke="#fff" stroke-width="1.2"/></svg></div>
+  </div>
+</div>
+
+<!-- S4 phone -->
+<div class="scene" id="s-phone">
+  <div class="abs" style="left:120px;top:300px;width:720px">
+    <div class="eyebrow"><span class="icon" style="width:28px;height:28px" data-icon="users"></span> تیم پشتیبانی</div>
+    <div class="h1" style="font-size:74px;margin-top:18px">پاسخ از داخل<br>پیام‌رسان بله</div>
+    <div style="font-size:34px;color:var(--g500);margin-top:18px;line-height:1.8;font-weight:500">فقط روی پیام «ریپلای» کنید؛ پاسخ دقیقاً به همان بازدیدکننده می‌رسد.</div>
+  </div>
+  <div class="abs" id="flyer" style="width:90px;height:90px;border-radius:28px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 50px color-mix(in oklab,var(--brand) 40%,transparent);z-index:6"><span class="icon" style="width:44px;height:44px;transform:scaleX(-1)" data-icon="paper-plane"></span></div>
+  <div class="abs" id="phone" style="right:260px;top:70px;width:520px;height:940px;border-radius:70px;background:var(--g950);padding:18px;box-shadow:0 50px 120px rgba(15,23,42,.35)">
+    <div style="width:100%;height:100%;border-radius:54px;background:#eef1f6;overflow:hidden;position:relative">
+      <div style="height:120px;background:#fff;display:flex;align-items:flex-end;gap:16px;padding:0 26px 18px;border-bottom:1px solid var(--g100)">
+        <div style="width:58px;height:58px;border-radius:50%;background:var(--g900);color:#fff;display:flex;align-items:center;justify-content:center"><span class="icon" style="width:28px;height:28px" data-icon="users"></span></div>
+        <div><div style="font-weight:900;font-size:24px">گروه پشتیبانی</div><div style="font-size:16px;color:var(--g500)">۴ عضو · ربات گپ‌بان</div></div>
+      </div>
+      <div id="botMsg" class="abs" style="right:22px;top:150px;width:400px;background:#fff;border-radius:24px;border-start-end-radius:8px;padding:18px 22px;font-size:20px;line-height:1.9;box-shadow:0 6px 18px rgba(15,23,42,.06)">
+        <div style="font-weight:800;color:#2563eb;font-size:17px">ربات گپ‌بان</div>
+        <div>🟢 گفتگوی تازه <span dir="ltr">GB-7K2QX9</span></div>
+        <div>📄 صفحه: <span dir="ltr">/pricing</span></div>
+        <div style="color:var(--g400)">———</div>
+        <div style="font-weight:600">سلام! برای فروشگاه کوچک کدوم پلن بهتره؟</div>
+      </div>
+      <div id="opMsg" class="abs" style="left:22px;top:500px;width:370px;background:#dcfce7;border-radius:24px;border-start-start-radius:8px;padding:16px 20px;font-size:21px;line-height:1.9">
+        <div style="border-inline-start:4px solid #16a34a;padding-inline-start:10px;font-size:16px;color:#166534;margin-bottom:6px">پاسخ به <span dir="ltr">GB-7K2QX9</span></div>
+        <div>پلن «حرفه‌ای» دقیقاً برای شماست 🌟</div>
+        <div style="font-size:14px;color:#15803d;text-align:left">۱۰:۲۵ ✓✓</div>
+      </div>
+      <div class="abs" style="left:0;right:0;bottom:0;background:#fff;padding:14px 18px;border-top:1px solid var(--g100)">
+        <div id="replyBar" style="font-size:16px;color:#2563eb;border-inline-start:4px solid #2563eb;padding-inline-start:10px;margin-bottom:10px">↩ پاسخ به: 🟢 گفتگوی تازه <span dir="ltr">GB-7K2QX9</span></div>
+        <div style="display:flex;gap:10px;align-items:center"><div id="opComposer" style="flex:1;height:54px;border-radius:27px;background:var(--g50);border:1px solid var(--g100);padding:0 18px;display:flex;align-items:center;font-size:19px;color:var(--g500);white-space:nowrap;overflow:hidden">پیام</div><div style="width:54px;height:54px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center"><span class="icon" style="width:22px;height:22px;transform:scaleX(-1)" data-icon="paper-plane"></span></div></div>
+      </div>
+      <div id="tapRing" class="abs" style="width:120px;height:120px;border-radius:50%;border:5px solid #2563eb;right:160px;top:240px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 features -->
+<div class="scene" id="s-features">
+  <div class="abs card panel-shadow" id="landing" style="left:50%;top:330px;width:760px;margin-left:-380px;padding:36px 40px">
+    <div style="display:flex;align-items:center;gap:14px;font-size:20px;font-weight:800;color:var(--g500)"><span style="width:14px;height:14px;border-radius:50%;background:var(--emerald)"></span> مریم · تیم پشتیبانی</div>
+    <div class="bubble op" style="font-size:38px;margin-top:16px">پلن «حرفه‌ای» دقیقاً برای شماست 🌟</div>
+    <div style="font-size:26px;color:var(--g500);margin-top:18px;font-weight:600">✅ پاسخ در کمتر از یک دقیقه روی سایت رسید</div>
+  </div>
+  <div class="abs" id="fTitle" style="left:0;right:0;top:110px;text-align:center">
+    <div class="eyebrow" style="justify-content:center"><span class="icon" style="width:28px;height:28px" data-icon="bolt"></span> همه‌چیز در یک افزونه</div>
+    <div class="h1" style="font-size:72px;margin-top:10px">هر چیزی که تیم پشتیبانی لازم دارد</div>
+  </div>
+  <div class="abs" id="grid" style="left:160px;right:160px;top:400px;display:grid;grid-template-columns:repeat(3,1fr);gap:34px"></div>
+</div>
+
+<!-- S6 trust -->
+<div class="scene" id="s-trust">
+  <div class="abs" style="left:0;right:0;top:170px;text-align:center">
+    <div class="h1" style="font-size:80px">ساخته‌شده برای سایت‌های ایرانی</div>
+    <div style="font-size:36px;color:var(--g500);margin-top:12px;font-weight:600">بدون سرویس واسط خارجی · داده‌ها روی سایت خودتان</div>
+  </div>
+  <div class="abs" id="badges" style="left:180px;right:180px;top:500px;display:flex;gap:40px;justify-content:center"></div>
+</div>
+
+<!-- S7 CTA -->
+<div class="scene" id="s-cta">
+  <div class="abs" id="ctaMark" style="left:50%;top:190px;width:170px;height:170px;margin-left:-85px;border-radius:48px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 40px 90px color-mix(in oklab,var(--brand) 45%,transparent)"><span class="icon" style="width:88px;height:88px" data-icon="comments"></span></div>
+  <div class="abs h1" id="ctaWord" style="left:0;right:0;top:390px;text-align:center;font-size:130px">گپ‌بان</div>
+  <div class="abs" id="ctaTag" style="left:0;right:0;top:580px;text-align:center;font-size:44px;font-weight:700;color:var(--g700)">افزونه چت آنلاین وردپرس متصل به بله</div>
+  <div class="abs" id="ctaBtn" style="left:50%;top:700px;transform:translateX(-50%)">
+    <div style="display:inline-flex;align-items:center;gap:18px;height:104px;padding:0 64px;border-radius:30px;background:var(--brand-dark);color:#fff;font-size:44px;font-weight:900;box-shadow:0 24px 50px color-mix(in oklab,var(--brand) 40%,transparent);white-space:nowrap"><span class="icon" style="width:40px;height:40px" data-icon="download"></span> همین حالا نصب کنید</div>
+  </div>
+  <div class="abs" id="ctaSmall" style="left:0;right:0;top:860px;text-align:center;font-size:28px;color:var(--g500);font-weight:600">نصب مستقیم در وردپرس · فارسی و راست‌به‌چپ · گزارش و رضایت مشتری</div>
+</div>
+
+<div class="wipe" id="wipeA"></div>
+<div class="wipe two" id="wipeB"></div>
+<div class="abs" id="flash" style="inset:0;background:#fff;z-index:60;opacity:0"></div>
+
+<script>
+const T = window.TIMELINE;
+const W = 1920, H = 1080;
+const BEAT = 60 / T.bpm;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = (x) => 1 - Math.pow(1 - x, 3);
+const eInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const eBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+function set(el, { o, x = 0, y = 0, s = 1, r = 0, extra = '' }) {
+  if (o !== undefined) el.style.opacity = o;
+  el.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg) ${extra}`;
+}
+const pop = (t, at, dur = 0.45) => { const p = prog(t, at, at + dur); return { o: clamp(p * 3), s: p === 0 ? 0.6 : eBack(p) }; };
+const scene = (id) => T.scenes.find((s) => s.id === id);
+
+// Icons injected by the renderer.
+document.querySelectorAll('[data-icon]').forEach((el) => {
+  const i = window.ICONS[el.dataset.icon];
+  if (i) el.innerHTML = `<svg viewBox="${i[0]}"><path d="${i[1]}"/></svg>`;
+});
+const iconHtml = (n, size) => { const i = window.ICONS[n]; return `<span class="icon" style="width:${size}px;height:${size}px;display:inline-block"><svg viewBox="${i[0]}"><path d="${i[1]}"/></svg></span>`; };
+
+const FEATURES = [
+  ['inbox', 'صندوق گفتگوی وردپرس', 'برداشتن، انتقال، یادداشت داخلی و برچسب'],
+  ['wand', 'پیام خودکار هوشمند', 'نمایش در صفحهٔ درست، در زمان درست'],
+  ['list', 'ارسال مطمئن', 'ذخیره پیش از ارسال و تلاش دوبارهٔ خودکار'],
+  ['chart', 'گزارش و رضایت مشتری', 'زمان پاسخ، نرخ بی‌پاسخ و امتیاز'],
+  ['calendar', 'کاملاً فارسی', 'راست‌به‌چپ، رقم فارسی و تقویم شمسی'],
+  ['shield', 'امن و خصوصی', 'رمزنگاری توکن و محافظت از فایل‌ها'],
+];
+$('grid').innerHTML = FEATURES.map(([ic, t1, t2], i) => `<div class="card feat" id="f${i}" style="padding:34px 36px;height:220px"><div style="width:72px;height:72px;border-radius:22px;background:color-mix(in oklab,var(--brand) 10%,#fff);color:var(--brand);display:flex;align-items:center;justify-content:center">${iconHtml(ic, 34)}</div><div style="font-size:34px;font-weight:900;margin-top:20px;color:var(--g950)">${t1}</div><div style="font-size:23px;color:var(--g500);margin-top:4px;font-weight:500">${t2}</div></div>`).join('');
+const BADGES = [['globe', 'بدون CDN و سرویس خارجی'], ['lock', 'داده‌ها در سایت خودتان'], ['bolt', 'نصب و راه‌اندازی سریع']];
+$('badges').innerHTML = BADGES.map(([ic, txt], i) => `<div class="card" id="b${i}" style="flex:1;padding:44px 30px;text-align:center"><div style="margin:0 auto;width:110px;height:110px;border-radius:34px;background:var(--g950);color:#fff;display:flex;align-items:center;justify-content:center">${iconHtml(ic, 50)}</div><div style="font-size:36px;font-weight:900;margin-top:26px;color:var(--g950)">${txt}</div></div>`).join('');
+
+const typed = (full, t, a, b) => { const n = Math.round(full.length * prog(t, a, b)); return full.slice(0, n); };
+
+function sceneEnvelope(id, t) {
+  const s = scene(id);
+  const inP = eOut(prog(t, s.start, s.start + 0.45));
+  const outP = s.end >= T.duration ? 0 : prog(t, s.end - 0.3, s.end); // the last scene holds
+  const visible = t >= s.start - 0.01 && t < s.end + 0.01;
+  return { visible, o: visible ? Math.min(inP, 1 - outP) : 0, s: lerp(1.06, 1, inP) * lerp(1, 0.96, outP), local: t - s.start };
+}
+
+window.render = function (t) {
+  // Background drift + beat pulse.
+  const beatPhase = (t % BEAT) / BEAT;
+  const pulse = Math.exp(-beatPhase * 7);
+  set($('dots'), { x: -(t * 18) % 26, y: -(t * 10) % 26 });
+  set($('glowA'), { x: 1100 + Math.sin(t * 0.5) * 160, y: -260 + Math.cos(t * 0.4) * 120, s: 1 + pulse * 0.04 });
+  set($('glowB'), { x: -200 + Math.cos(t * 0.35) * 140, y: 520 + Math.sin(t * 0.45) * 110 });
+
+  for (const s of T.scenes) {
+    const env = sceneEnvelope(s.id, t);
+    const el = $('s-' + (s.id === 'website' ? 'web' : s.id));
+    el.style.display = env.visible ? 'block' : 'none';
+    set(el, { o: env.o, s: env.s });
+  }
+
+  // Transition wipes at scene boundaries (brand + dark bands sweeping right→left, RTL feel).
+  let wA = -2000, wB = -2000;
+  for (const s of T.scenes.slice(1)) {
+    const p = prog(t, s.start - 0.42, s.start + 0.42);
+    if (p > 0 && p < 1) {
+      wA = lerp(W + 200, -1600, eInOut(p));
+      wB = lerp(W + 500, -1300, eInOut(clamp(p * 1.08 - 0.08)));
+    }
+  }
+  for (const [id, x] of [['wipeA', wA], ['wipeB', wB]]) {
+    const el = $(id);
+    const on = x > -1500 && x < W + 100;
+    el.style.display = on ? 'block' : 'none';
+    if (on) el.style.transform = `translateX(${x}px) skewX(-12deg)`;
+  }
+
+  // Flash on impacts.
+  const flash = Math.max(Math.exp(-Math.max(0, t - 1.1) * 9) * (t >= 1.1 ? 0.55 : 0), Math.exp(-Math.max(0, t - 35.625) * 9) * (t >= 35.625 ? 0.6 : 0));
+  $('flash').style.opacity = flash;
+
+  // S1 logo
+  {
+    const m = pop(t, 0.85, 0.6);
+    set($('logoMark'), { o: m.o, s: m.s * (1 + pulse * 0.03 * (t > 1.4 ? 1 : 0)), r: lerp(-25, 0, eOut(prog(t, 0.85, 1.4))) });
+    const ring = prog(t, 1.1, 2.0);
+    set($('logoRing'), { o: (1 - ring) * (t > 1.1 ? 0.8 : 0), s: 1 + ring * 1.2 });
+    const w = eOut(prog(t, 1.2, 1.9));
+    $('logoWord').style.clipPath = `inset(0 0 0 ${(1 - w) * 100}%)`;
+    set($('logoWord'), { o: w > 0 ? 1 : 0, y: lerp(30, 0, w) });
+    set($('logoLatin'), { o: eOut(prog(t, 1.6, 2.1)), extra: '' });
+    $('logoLatin').style.letterSpacing = lerp(40, 22, eOut(prog(t, 1.6, 2.4))) + 'px';
+    const tg = eOut(prog(t, 1.9, 2.5));
+    set($('logoTag'), { o: tg, y: lerp(40, 0, tg) });
+  }
+  // S2 problem
+  {
+    const a = eOut(prog(t, 3.9, 4.4)), b = eOut(prog(t, 4.2, 4.8)), c = eOut(prog(t, 5.0, 5.5));
+    set($('pEye'), { o: a, x: lerp(-60, 0, a) });
+    set($('pTitle'), { o: b, y: lerp(50, 0, b) });
+    set($('pSub'), { o: c, y: lerp(30, 0, c) });
+    [['q1', 4.2], ['q2', 4.7], ['q3', 5.2]].forEach(([id, at], i) => {
+      const p = pop(t, at);
+      set($(id), { o: p.o, s: p.s, y: Math.sin(t * 2 + i) * 8, r: [-3, 2, -2][i] });
+    });
+  }
+  // S3 website
+  {
+    const L = t;
+    const br = eOut(prog(L, 7.6, 8.2));
+    set($('browser'), { o: br, x: lerp(120, 0, br) });
+    const cap = eOut(prog(L, 7.9, 8.5));
+    set($('webCap'), { o: cap, y: lerp(40, 0, cap) });
+    const lp = pop(L, 8.6, 0.5);
+    set($('launcher'), { o: lp.o, s: lp.s * (L > 9.55 && L < 9.7 ? 0.94 : 1) });
+    const open = L >= 9.6;
+    $('launcher').style.background = open ? 'var(--g950)' : 'var(--g950)';
+    $('launcherIcon').innerHTML = open ? `<svg viewBox="${ICONS.xmark[0]}"><path d="${ICONS.xmark[1]}"/></svg>` : `<svg viewBox="${ICONS.comments[0]}"><path d="${ICONS.comments[1]}"/></svg>`;
+    $('launcherLabel').textContent = 'گفتگو با ما';
+    const tz = pop(L, 8.9, 0.5);
+    set($('teaser'), { o: L < 9.6 ? tz.o : clamp(1 - (L - 9.6) * 6), s: tz.s });
+    // Cursor travel to launcher and click.
+    const cp = eInOut(prog(L, 8.9, 9.55));
+    const cx = lerp(820, 120, cp), cy = lerp(520, 790, cp);
+    set($('cursor'), { o: L > 8.8 && L < 10.6 ? 1 : 0, x: cx, y: cy, s: L > 9.55 && L < 9.7 ? 0.85 : 1 });
+    $('cursor').style.left = '0px'; $('cursor').style.top = '0px';
+    const ch = eBack(prog(L, 9.75, 10.2));
+    set($('chat'), { o: clamp(prog(L, 9.75, 9.95)), s: L < 9.75 ? 0.7 : lerp(0.7, 1, ch), y: lerp(30, 0, ch) });
+    const msg = 'سلام! برای فروشگاه کوچک کدوم پلن بهتره؟';
+    const txt = L < 13.55 ? typed(msg, L, 10.9, 13.1) : '';
+    $('composer').textContent = txt || 'پیامتان را بنویسید…';
+    $('composer').style.color = txt ? 'var(--g900)' : 'var(--g500)';
+    $('composer').style.borderColor = L > 10.8 && L < 13.6 ? 'color-mix(in oklab,var(--brand) 40%,transparent)' : 'var(--g200)';
+    $('composer').style.boxShadow = L > 10.8 && L < 13.6 ? '0 0 0 5px color-mix(in oklab,var(--brand) 10%,transparent)' : 'none';
+    const sb = pop(L, 13.55, 0.45);
+    set($('sentBubble'), { o: sb.o, s: sb.s, y: lerp(20, 0, clamp(prog(L, 13.55, 13.9))) });
+    set($('sentMeta'), { o: clamp(prog(L, 13.9, 14.2)) });
+    set($('sendBtn'), { s: L > 13.5 && L < 13.65 ? 0.88 : 1 });
+  }
+  // S4 phone
+  {
+    const L = t;
+    const ph = eOut(prog(L, 15.0, 15.6));
+    set($('phone'), { o: ph, y: lerp(160, 0, ph) });
+    // Flyer arcs from the left caption area into the phone.
+    const fp = eInOut(prog(L, 14.95, 15.7));
+    const fx = lerp(560, 1250, fp), fy = lerp(760, 300, fp) - Math.sin(fp * Math.PI) * 220;
+    set($('flyer'), { o: L > 14.95 && L < 15.75 ? 1 : 0, x: fx, y: fy, s: lerp(0.6, 1.1, Math.sin(fp * Math.PI)), r: lerp(-30, 20, fp) });
+    $('flyer').style.left = '0px'; $('flyer').style.top = '0px';
+    const bm = pop(L, 15.7, 0.5);
+    set($('botMsg'), { o: bm.o, s: bm.s });
+    const tap = prog(L, 16.8, 17.4);
+    set($('tapRing'), { o: tap > 0 && tap < 1 ? 1 - tap : 0, s: 0.4 + tap * 1.2 });
+    $('botMsg').style.boxShadow = L > 16.9 && L < 19.7 ? '0 0 0 4px rgba(37,99,235,.35)' : '0 6px 18px rgba(15,23,42,.06)';
+    set($('replyBar'), { o: clamp(prog(L, 17.0, 17.3)) * (L < 19.6 ? 1 : 0) });
+    const reply = 'پلن «حرفه‌ای» دقیقاً برای شماست 🌟';
+    const rt = L < 19.6 ? typed(reply, L, 17.3, 19.2) : '';
+    $('opComposer').textContent = rt || 'پیام';
+    $('opComposer').style.color = rt ? 'var(--g900)' : 'var(--g500)';
+    const om = pop(L, 19.6, 0.5);
+    set($('opMsg'), { o: om.o, s: om.s });
+  }
+  // S5 features
+  {
+    const L = t;
+    const ld = pop(L, 22.75, 0.55);
+    const ldOut = eInOut(prog(L, 24.3, 24.9));
+    set($('landing'), { o: ld.o * (1 - ldOut), s: ld.s * lerp(1, 0.85, ldOut), y: lerp(0, -80, ldOut) });
+    const ft = eOut(prog(L, 24.6, 25.2));
+    set($('fTitle'), { o: ft, y: lerp(-40, 0, ft) });
+    FEATURES.forEach((_, i) => {
+      const p = pop(L, 25.0 + i * 0.35, 0.5);
+      set($('f' + i), { o: p.o, s: p.s, y: Math.sin(L * 1.6 + i) * 4 });
+    });
+  }
+  // S6 trust
+  {
+    const L = t;
+    BADGES.forEach((_, i) => {
+      const p = pop(L, 30.4 + i * 0.5, 0.55);
+      set($('b' + i), { o: p.o, s: p.s * (1 + (L > 31.6 ? pulse * 0.015 : 0)) });
+    });
+  }
+  // S7 CTA
+  {
+    const L = t;
+    const m = pop(L, 35.62, 0.6);
+    set($('ctaMark'), { o: m.o, s: m.s * (1 + pulse * 0.04 * (L > 36.2 ? 1 : 0)), r: lerp(25, 0, eOut(prog(L, 35.62, 36.2))) });
+    const w = eOut(prog(L, 35.9, 36.5));
+    $('ctaWord').style.clipPath = `inset(0 0 0 ${(1 - w) * 100}%)`;
+    set($('ctaWord'), { o: w > 0 ? 1 : 0 });
+    const tg = eOut(prog(L, 36.3, 36.9));
+    set($('ctaTag'), { o: tg, y: lerp(30, 0, tg) });
+    const b = pop(L, 36.9, 0.6);
+    set($('ctaBtn'), { o: b.o, s: b.s * (1 + (L > 37.5 ? pulse * 0.035 : 0)), extra: '' });
+    $('ctaBtn').style.transform = `translateX(-50%) scale(${b.s * (1 + (L > 37.5 ? pulse * 0.035 : 0))})`;
+    set($('ctaSmall'), { o: eOut(prog(L, 37.4, 38.0)) });
+    // Hold the call to action on screen until the last frame (the audio fades out).
+  }
+};
+window.render(0);
+</script>
+</body>
+</html>
