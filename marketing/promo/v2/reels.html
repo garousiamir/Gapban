@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Gapban promo v2 reels</title>
+<style>
+@font-face { font-family: 'Estedad'; src: url('../../../gapban/assets/fonts/Estedad-VariableFont_wght.woff2') format('woff2'); font-weight: 100 900; }
+:root {
+  --red: #ef4b4b; --red-d: #d33c3c; --teal: #0aca9b; --bale: #21b496; --violet: #7c5cff; --amber: #f5a524; --blue: #3b82f6; --pink: #ec4899;
+  --ink: #070b17; --ink2: #0f1630; --line: rgba(255,255,255,.08); --txt: #f5f7ff; --muted: #9aa3bd;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); font-family: 'Estedad', Tahoma, sans-serif; color: var(--txt); }
+.abs { position: absolute; }
+.center-x { left: 50%; transform: translateX(-50%); }
+.scene { position: absolute; inset: 0; display: none; }
+.icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
+.grad { background: linear-gradient(90deg, #ff7a59, var(--red) 45%, #ff4f9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-teal { background: linear-gradient(90deg, #6ef0c8, var(--teal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pill { display: inline-flex; align-items: center; gap: 14px; padding: 14px 30px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font-weight: 800; font-size: 32px; color: #fff; white-space: nowrap; }
+.pill b { display: inline-flex; width: 46px; height: 46px; border-radius: 50%; align-items: center; justify-content: center; font-size: 26px; color: #fff; }
+.glass { background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.12); border-radius: 30px; box-shadow: 0 40px 100px rgba(0,0,0,.45); }
+.mark { width: 150px; height: 150px; border-radius: 42px; background: linear-gradient(145deg, #ff6b5e, var(--red-d)); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 30px 80px rgba(239,75,75,.45), inset 0 2px 0 rgba(255,255,255,.3); }
+/* Laptop */
+.laptop { position: absolute; }
+.laptop .lid { position: relative; border-radius: 26px; background: #1a1f2e; padding: 18px 18px 22px; box-shadow: 0 60px 140px rgba(0,0,0,.6), inset 0 0 0 2px #2b3246; }
+.laptop .screen { position: relative; overflow: hidden; border-radius: 10px; background: #fff; }
+.laptop .screen img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 12% 56%; }
+.laptop .base { height: 26px; margin: 0 -70px; border-radius: 0 0 26px 26px; background: linear-gradient(180deg, #c9cfdb, #8a93a6); }
+.laptop .base::after { content: ''; display: block; width: 200px; height: 9px; margin: 0 auto; border-radius: 0 0 10px 10px; background: #6f788b; }
+/* Phones */
+.phone { position: absolute; border-radius: 64px; background: #10131c; padding: 16px; box-shadow: 0 60px 140px rgba(0,0,0,.6), inset 0 0 0 3px #2b3246; }
+.phone .scr { position: relative; width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
+.phone .notch { position: absolute; top: 14px; left: 50%; width: 120px; height: 32px; margin-left: -60px; border-radius: 20px; background: #10131c; z-index: 5; }
+/* Bale-style chat (recreated; fictional demo content) */
+.bale-head { height: 150px; background: var(--bale); color: #fff; display: flex; align-items: flex-end; gap: 16px; padding: 0 26px 22px; direction: rtl; }
+.bale-head .av { width: 62px; height: 62px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.bale-bg { position: absolute; top: 150px; bottom: 96px; left: 0; right: 0; background: linear-gradient(180deg, #eef3d6, #d9ecd2); overflow: hidden; }
+.bale-bg::before { content: ''; position: absolute; inset: 0; opacity: .5; background-image: radial-gradient(circle at 20px 20px, rgba(80,140,90,.18) 6px, transparent 7px), radial-gradient(circle at 60px 70px, transparent 9px, rgba(80,140,90,.16) 10px, transparent 12px), radial-gradient(circle at 95px 25px, rgba(80,140,90,.12) 3px, transparent 4px); background-size: 120px 110px; }
+.bb { position: absolute; max-width: 360px; padding: 14px 18px 10px; border-radius: 22px; font-size: 21px; line-height: 1.85; color: #1b2433; box-shadow: 0 2px 4px rgba(0,0,0,.06); direction: rtl; text-align: right; }
+.bb.in { left: 18px; background: #fff; border-bottom-left-radius: 6px; }
+.bb.out { right: 18px; background: #d9f7ea; border-bottom-right-radius: 6px; }
+.bb .who { font-size: 17px; font-weight: 800; color: #2a7de1; }
+.bb .tm { font-size: 15px; color: #7b8794; display: flex; gap: 6px; align-items: center; justify-content: flex-start; direction: ltr; margin-top: 2px; }
+.bb .tm .ok { color: #22a35a; font-weight: 900; letter-spacing: -6px; }
+.bb .quote { border-right: 4px solid var(--bale); padding: 2px 10px; margin-bottom: 6px; background: rgba(33,180,150,.08); border-radius: 8px; font-size: 16px; color: #3b5163; }
+.bale-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #fff; display: flex; align-items: center; gap: 14px; padding: 0 22px; direction: rtl; color: #6b7685; }
+.bale-bar .in { flex: 1; font-size: 21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #8b95a3; }
+.bale-reply { position: absolute; left: 0; right: 0; bottom: 96px; height: 70px; background: #f6f8fa; border-top: 1px solid #e6eaee; display: flex; align-items: center; gap: 12px; padding: 0 22px; direction: rtl; font-size: 17px; color: #2a7de1; }
+/* Pricing table */
+.ptable { display: grid; grid-template-columns: 300px 1fr 1fr 1fr; border-radius: 30px; overflow: hidden; }
+.ptable > div { padding: 22px 26px; font-size: 27px; font-weight: 700; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: center; text-align: center; min-height: 96px; }
+.ptable .lab { justify-content: flex-start; color: var(--muted); font-weight: 700; font-size: 25px; }
+.ptable .hd { font-size: 32px; font-weight: 900; min-height: 110px; }
+.ptable .gb { background: rgba(239,75,75,.14); color: #fff; }
+.ptable .gb.hd { background: linear-gradient(180deg, #ff6b5e, var(--red-d)); }
+.ptable .other { color: #d7dbea; }
+.streak { position: absolute; width: 420px; height: 2400px; top: -660px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); z-index: 40; display: none; }
+body { position: relative; }
+.ptable { grid-template-columns: 210px 1fr 1fr 1fr; }
+.ptable > div { padding: 18px 12px; font-size: 24px; min-height: 124px; line-height: 1.6; }
+.ptable .lab { font-size: 22px; padding-right: 22px; }
+.ptable .hd { font-size: 28px; min-height: 104px; }
+.particle { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.5); }
+</style>
+</head>
+<body>
+<div class="abs" id="bg" style="inset:0;background:radial-gradient(120% 90% at 50% 0%, #121a3a 0%, var(--ink) 60%)"></div>
+<div class="abs" id="aurA" style="width:1300px;height:1300px;border-radius:50%;background:radial-gradient(circle, rgba(239,75,75,.38), transparent 62%)"></div>
+<div class="abs" id="aurB" style="width:1200px;height:1200px;border-radius:50%;background:radial-gradient(circle, rgba(31,195,160,.28), transparent 62%)"></div>
+<div class="abs" id="aurC" style="width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle, rgba(124,92,255,.30), transparent 62%)"></div>
+<div class="abs" id="grid" style="inset:0;background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(70% 70% at 50% 50%, #000 30%, transparent 75%);mask-image:radial-gradient(70% 70% at 50% 50%, #000 30%, transparent 75%)"></div>
+<div class="abs" id="particles" style="inset:0"></div>
+
+<!-- 1 HOOK -->
+<div class="scene" id="s-hook">
+  <div class="abs" id="h1" style="left:60px;right:60px;top:520px;text-align:center;font-size:120px;font-weight:900;line-height:1.4">
+    <span id="hw1">مشتری</span> <span id="hw2">روی سایت</span> <span id="hw3" class="grad">شماست</span>
+  </div>
+  <div class="abs" id="h2" style="left:60px;right:60px;top:920px;text-align:center;font-size:120px;font-weight:900;line-height:1.4">
+    <span id="hw4">سؤال دارد…</span> <span id="hw5" class="grad-teal">شما کجایید؟</span>
+  </div>
+</div>
+
+<!-- 2 LOGO -->
+<div class="scene" id="s-logo">
+  <div class="abs" id="logoRow" style="left:0;right:0;top:470px;display:flex;align-items:center;justify-content:center;gap:56px;direction:ltr">
+    <div id="lgBale" style="width:160px;height:160px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 24px 50px rgba(10,202,155,.45))"><img id="baleImg" alt="" style="width:160px;height:160px;object-fit:contain"></div>
+    <div id="lgPlus" style="font-size:90px;font-weight:300;color:var(--muted)">+</div>
+    <div class="mark" id="lgMark"><span class="icon" style="width:80px;height:80px" data-icon="comments"></span></div>
+  </div>
+  <div class="abs" id="lgWord" style="left:0;right:0;top:680px;text-align:center;font-size:190px;font-weight:900;line-height:1.3">گپ‌بان</div>
+  <div class="abs" id="lgTag" style="left:50px;right:50px;top:970px;text-align:center;font-size:50px;line-height:1.6;font-weight:800">چت آنلاین سایت؛ <span class="grad-teal">جواب از داخل بله</span></div>
+  <div class="abs" id="lgSub" style="left:90px;right:90px;top:1080px;text-align:center;line-height:1.8;font-size:32px;font-weight:600;color:var(--muted)">افزونهٔ وردپرس · فارسی و راست‌به‌چپ · بدون اشتراک ماهانه</div>
+</div>
+
+<!-- 3 VISITOR -->
+<div class="scene" id="s-visitor">
+  <div class="abs center-x" id="vLabel" style="top:250px"><span class="pill"><b style="background:var(--red)">۱</b> مشتری در سایت شما پیام می‌دهد</span></div>
+  <div class="laptop" id="laptopV" style="left:110px;top:370px;width:860px">
+    <div class="lid"><div class="screen" style="height:515px">
+      <img id="v1" src="../../assets/shots/web-01-launcher.png">
+      <img id="v5" src="../../assets/shots/web-05-sent.png">
+      <div class="abs" id="ripple" style="width:60px;height:60px;border-radius:50%;border:5px solid var(--red);left:10px;top:466px"></div>
+    </div></div>
+    <div class="base"></div>
+  </div>
+  <div class="abs" id="beamV" style="display:none;left:0;top:0;width:260px;height:6px;border-radius:6px;background:linear-gradient(90deg,rgba(239,75,75,0),var(--red));transform-origin:left center"></div>
+  <div class="abs" id="popV" style="left:540px;top:740px;width:450px;height:758px;border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 60px 140px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.15)">
+    <img id="pv2" class="abs" style="inset:0;width:100%;height:100%" src="../../assets/shots/panel-02-open.png">
+    <img id="pv3" class="abs" style="inset:0;width:100%;height:100%" src="../../assets/shots/panel-03-prechat.png">
+    <img id="pv4" class="abs" style="inset:0;width:100%;height:100%" src="../../assets/shots/panel-04-typing.png">
+    <img id="pv5" class="abs" style="inset:0;width:100%;height:100%" src="../../assets/shots/panel-05-sent.png">
+  </div>
+</div>
+
+<!-- 4 BALE -->
+<div class="scene" id="s-bale">
+  <div class="abs" id="bRight" style="left:0;right:0;top:230px;text-align:center">
+    <span class="pill"><b style="background:var(--bale)">۲</b> شما در بله جواب می‌دهید</span>
+    <div style="font-size:60px;font-weight:900;line-height:1.45;margin-top:22px">پیام مشتری <span class="grad-teal">مستقیم در گروه بله</span></div>
+  </div>
+  <div class="abs" id="bLeft" style="left:0;right:0;top:1475px;display:flex;justify-content:center;align-items:center;gap:26px;direction:ltr">
+    <div style="display:flex;justify-content:flex-start;gap:18px;align-items:center;direction:ltr">
+      <div style="width:100px;height:100px;filter:drop-shadow(0 18px 40px rgba(10,202,155,.45))"><img id="baleImg2" alt="" style="width:100px;height:100px;object-fit:contain"></div>
+    </div>
+    <div style="direction:rtl;text-align:right"><div style="font-size:44px;font-weight:900;line-height:1.5">فقط «ریپلای» کنید</div>
+    <div style="font-size:28px;color:var(--muted);line-height:1.6;font-weight:600">پاسخ دقیقاً به همان مشتری روی سایت می‌رسد.</div></div>
+  </div>
+  <div class="phone" id="phoneB" style="left:50%;top:445px;width:500px;height:1000px;margin-left:-250px">
+    <div class="scr">
+      <div class="notch"></div>
+      <div class="bale-head">
+        <div class="av" style="background:linear-gradient(145deg,#ff6b5e,#d33c3c);color:#fff"><span class="icon" style="width:30px;height:30px" data-icon="comments"></span></div>
+        <div style="text-align:right"><div style="font-size:26px;font-weight:800">پشتیبانی فروشگاه</div><div style="font-size:17px;opacity:.9">ربات گپ‌بان و ۳ عضو</div></div>
+        <span class="icon" style="width:30px;height:30px;margin-right:auto" data-icon="arrow-left"></span>
+      </div>
+      <div class="bale-bg">
+        <div class="abs" style="left:50%;top:22px;transform:translateX(-50%);background:rgba(0,0,0,.18);color:#fff;font-size:16px;padding:4px 16px;border-radius:99px">امروز</div>
+        <div class="bb in" id="botMsg" style="top:70px">
+          <div class="who">ربات گپ‌بان</div>
+          <div>🟢 گفتگوی تازه <span dir="ltr">GB-PZFR9P</span></div>
+          <div>👤 سارا</div>
+          <div>📄 صفحه: <span dir="ltr">/demo/</span></div>
+          <div style="color:#9aa4ae">———</div>
+          <div style="font-weight:700">سلام! سفارش ۱۲۸۴ کِی ارسال می‌شه؟</div>
+          <div style="color:#9aa4ae">———</div>
+          <div style="font-size:17px;color:#5b6775">برای پاسخ، روی همین پیام ریپلای کنید.</div>
+          <div class="tm">۱۰:۲۴</div>
+        </div>
+        <div class="bb out" id="opMsg" style="top:500px">
+          <div class="quote"><div style="font-weight:800;color:var(--bale)">ربات گپ‌بان</div>🟢 گفتگوی تازه <span dir="ltr">GB-PZFR9P</span></div>
+          <div>سلام سارا جان 🌸 سفارش ۱۲۸۴ امروز ساعت ۱۶ تحویل پست می‌شه و کد رهگیری براتون پیامک می‌شه.</div>
+          <div class="tm">۱۰:۲۵ <span class="ok">✓✓</span></div>
+        </div>
+        <div class="abs" id="hl" style="left:0;right:0;top:60px;height:420px;background:rgba(33,180,150,.16)"></div>
+        <div class="abs" id="ctx" style="left:120px;top:250px;background:#fff;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.18);padding:10px 8px;width:210px;color:#1b2433;font-size:20px;direction:rtl">
+          <div id="ctxReply" style="padding:10px 14px;border-radius:10px;display:flex;gap:10px;align-items:center"><span class="icon" style="width:20px;height:20px;transform:scaleX(-1)" data-icon="reply"></span> پاسخ</div>
+          <div style="padding:10px 14px;color:#6b7685">کپی</div>
+          <div style="padding:10px 14px;color:#6b7685">هدایت</div>
+        </div>
+      </div>
+      <div class="bale-reply" id="replyBar"><span class="icon" style="width:22px;height:22px;transform:scaleX(-1)" data-icon="reply"></span><div style="border-right:3px solid #2a7de1;padding-right:10px"><div style="font-weight:800">ربات گپ‌بان</div><div style="color:#5b6775">🟢 گفتگوی تازه <span dir="ltr">GB-PZFR9P</span></div></div></div>
+      <div class="bale-bar"><span class="icon" style="width:28px;height:28px" data-icon="microphone"></span><div class="in" id="baleInput">پیام خود را بنویسید…</div><span class="icon" style="width:28px;height:28px" data-icon="smile"></span><span class="icon" style="width:28px;height:28px" data-icon="plus"></span></div>
+      <div class="abs" id="tap" style="width:110px;height:110px;border-radius:50%;background:rgba(42,125,225,.25);left:200px;top:430px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 REPLY -->
+<div class="scene" id="s-reply">
+  <div class="abs center-x" id="rLabel" style="top:250px"><span class="pill"><b style="background:var(--violet)">۳</b> پاسخ همان لحظه روی سایت</span></div>
+  <div class="abs" id="popR" style="left:50px;top:400px;width:470px;height:792px;border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 60px 140px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.15)"><img style="width:100%;height:100%" src="../../assets/shots/panel-06-reply.png"></div>
+  <div class="phone" id="phoneR" style="left:590px;top:385px;width:400px;height:821px">
+    <div class="scr"><div class="notch"></div><img src="../../assets/shots/mobile-02-reply.png" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+  </div>
+  <div class="abs" id="rTagA" style="left:50px;width:470px;top:1235px;text-align:center;font-size:24px;color:var(--muted);font-weight:700">دسکتاپ</div>
+  <div class="abs" id="rTagB" style="left:590px;width:400px;top:1235px;text-align:center;font-size:24px;color:var(--muted);font-weight:700">موبایل</div>
+</div>
+
+<!-- 6 PANEL -->
+<div class="scene" id="s-panel">
+  <div class="abs" style="left:40px;right:40px;top:250px;text-align:center">
+    <div style="font-size:66px;font-weight:900">پیشخوان کامل <span class="grad">داخل وردپرس</span></div>
+    <div style="font-size:28px;color:var(--muted);font-weight:600;margin-top:4px">صندوق گفتگو · ظاهر ابزارک · گزارش و رضایت مشتری</div>
+  </div>
+  <div class="abs glass" id="pL" style="left:30px;top:1180px;width:520px;height:325px;overflow:hidden;padding:0"><img src="../../assets/shots/admin-reports.png" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+  <div class="abs glass" id="pR" style="left:530px;top:1180px;width:520px;height:325px;overflow:hidden;padding:0"><img src="../../assets/shots/admin-appearance.png" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+  <div class="abs glass" id="pC" style="left:40px;top:510px;width:1000px;height:625px;overflow:hidden;padding:0;z-index:2"><img src="../../assets/shots/admin-inbox.png" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+</div>
+
+<!-- 7 FEATURES -->
+<div class="scene" id="s-features">
+  <div class="abs" style="left:40px;right:40px;top:250px;text-align:center;font-size:64px;font-weight:900">هر چیزی که <span class="grad">پشتیبانی</span> لازم دارد</div>
+  <div class="abs" id="fgrid" style="left:60px;right:60px;top:440px;display:grid;grid-template-columns:repeat(2,1fr);gap:30px"></div>
+</div>
+
+<!-- 8 PRICING -->
+<div class="scene" id="s-pricing">
+  <div class="abs" style="left:0;right:0;top:250px;text-align:center">
+    <div style="font-size:70px;font-weight:900">یک‌بار بخرید، <span class="grad-teal">نه هر ماه</span></div>
+  </div>
+  <div class="abs glass ptable" id="ptable" style="left:36px;right:36px;top:430px"></div>
+  <div class="abs" id="pNote" style="left:80px;right:80px;top:1140px;text-align:center;line-height:1.8;font-size:22px;color:var(--muted)">قیمت رقبا بر اساس اطلاعات منتشرشده تا آبان ۱۴۰۵ است و ممکن است تغییر کرده باشد. نام‌های تجاری متعلق به صاحبانشان است.</div>
+</div>
+
+<!-- 9 CTA -->
+<div class="scene" id="s-cta">
+  <div class="abs" style="left:0;right:0;top:400px;display:flex;justify-content:center"><div class="mark" id="ctaMark" style="width:180px;height:180px;border-radius:52px"><span class="icon" style="width:96px;height:96px" data-icon="comments"></span></div></div>
+  <div class="abs" id="ctaWord" style="left:0;right:0;top:600px;text-align:center;font-size:170px;font-weight:900;line-height:1.3">گپ‌بان</div>
+  <div class="abs" id="ctaTag" style="left:40px;right:40px;top:860px;text-align:center;font-size:52px;font-weight:800">چت سایت با <span class="grad-teal">جواب از داخل بله</span></div>
+  <div class="abs" id="ctaBtn" style="left:50%;top:990px">
+    <div style="display:inline-flex;align-items:center;gap:20px;height:116px;padding:0 70px;border-radius:34px;background:linear-gradient(145deg,#ff6b5e,var(--red-d));color:#fff;font-size:48px;font-weight:900;white-space:nowrap;box-shadow:0 30px 80px rgba(239,75,75,.5)"><span class="icon" style="width:44px;height:44px" data-icon="download"></span> همین حالا تهیه کنید</div>
+  </div>
+  <div class="abs" id="ctaSmall" style="left:90px;right:90px;top:1160px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;text-align:center;line-height:1.7;font-size:30px;color:var(--muted);font-weight:600"><img id="baleImg3" alt="" style="width:46px;height:46px;object-fit:contain"> سازگار با پیام‌رسان بله · خرید یک‌باره · بدون اشتراک ماهانه</div>
+  <div class="abs" id="ctaLegal" style="left:100px;right:100px;top:1430px;text-align:center;line-height:1.8;font-size:20px;color:#5d6683">«بله» نام تجاری متعلق به صاحب آن است؛ گپ‌بان افزونه‌ای مستقل و سازگار با پیام‌رسان بله است.</div>
+</div>
+
+<div id="flash" style="position:fixed;left:0;top:0;width:1080px;height:1920px;background:#fff;z-index:60;opacity:0;pointer-events:none"></div>
+
+<script>
+const T = window.TIMELINE;
+const W = 1080, H = 1920, BEAT = 60 / T.bpm;
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const eOut = (x) => 1 - Math.pow(1 - x, 3);
+const eOut5 = (x) => 1 - Math.pow(1 - x, 5);
+const eInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+const eBack = (x) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+const tf = (el, s) => { el.style.transform = s; };
+const op = (el, o) => { el.style.opacity = o; };
+const pop = (t, at, dur = 0.42) => { const p = prog(t, at, at + dur); return { o: clamp(p * 3), s: p === 0 ? 0.5 : eBack(p), p }; };
+const slam = (t, at, dur = 0.32) => { const p = eOut5(prog(t, at, at + dur)); return { o: clamp(prog(t, at, at + 0.08)), s: lerp(1.9, 1, p), b: lerp(14, 0, p) }; };
+
+document.querySelectorAll('[data-icon]').forEach((el) => { const i = ICONS[el.dataset.icon]; if (i) el.innerHTML = `<svg viewBox="${i[0]}"><path d="${i[1]}"/></svg>`; });
+const ic = (n, s) => { const i = ICONS[n]; return `<span class="icon" style="width:${s}px;height:${s}px;display:inline-block"><svg viewBox="${i[0]}"><path d="${i[1]}"/></svg></span>`; };
+
+// Bale logo: user-supplied file when present, otherwise a neutral text badge (never a redrawn logo).
+for (const id of ['baleImg', 'baleImg2', 'baleImg3']) {
+  const img = $(id);
+  if (window.BALE_LOGO) img.src = window.BALE_LOGO;
+  else { const span = document.createElement('div'); span.textContent = 'بله'; span.style.cssText = `font-weight:900;color:#21b496;font-size:${id === 'baleImg' ? 54 : 34}px`; img.replaceWith(span); }
+}
+
+// Particles.
+const P = [];
+for (let i = 0; i < 46; i++) { const d = document.createElement('div'); d.className = 'particle'; $('particles').appendChild(d); P.push({ el: d, x: (i * 397) % W, y: (i * 613) % H, sp: 18 + (i % 7) * 9, sz: 2 + (i % 4) }); }
+
+const FEAT = [
+  ['comments', 'var(--red)', 'صندوق گفتگو', 'برداشتن، انتقال و یادداشت داخلی'],
+  ['wand', 'var(--violet)', 'پیام خودکار هوشمند', 'در صفحهٔ درست، در زمان درست'],
+  ['list', 'var(--teal)', 'ارسال مطمئن', 'ذخیره پیش از ارسال، تلاش دوباره'],
+  ['chart', 'var(--amber)', 'گزارش و رضایت', 'زمان پاسخ و امتیاز مشتری'],
+  ['calendar', 'var(--blue)', 'کاملاً فارسی', 'راست‌به‌چپ و تقویم شمسی'],
+  ['shield', 'var(--pink)', 'امن و خصوصی', 'داده‌ها روی سایت خودتان'],
+];
+$('fgrid').innerHTML = FEAT.map(([n, c, a, b], i) => `<div class="glass" id="f${i}" style="padding:32px 32px;height:300px"><div style="width:80px;height:80px;border-radius:24px;background:${c};display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 16px 40px rgba(0,0,0,.35)">${ic(n, 38)}</div><div style="font-size:38px;font-weight:900;margin-top:22px">${a}</div><div style="font-size:24px;color:var(--muted);margin-top:4px;font-weight:600">${b}</div></div>`).join('');
+
+const ROWS = [
+  ['', '<span style="display:inline-flex;gap:12px;align-items:center">' + ic('comments', 30) + ' گپ‌بان</span>', 'رایچت', 'گفتینو'],
+  ['مدل پرداخت', 'یک‌بار، برای همیشه', 'اشتراک ماهانه', 'رایگانِ محدود + اشتراک ماهانه'],
+  ['ارزان‌ترین پلن پولی', 'خرید یک‌باره', '۱٬۲۷۵٬۰۰۰ تومان / ماه', '۲۹۹٬۰۰۰ تومان / ماه'],
+  ['هزینهٔ اشتراک یک سال', '<span style="color:#6ef0c8">۰ تومان</span>', '۱۵٬۳۰۰٬۰۰۰ تومان', '۳٬۵۸۸٬۰۰۰ تومان'],
+  ['محل نگهداری گفتگوها', 'سایت خودتان', 'سرور سرویس‌دهنده', 'سرور سرویس‌دهنده'],
+];
+$('ptable').innerHTML = ROWS.map((r, ri) => r.map((cell, ci) => `<div data-row="${ri}" class="${ri === 0 ? 'hd' : ''} ${ci === 0 ? 'lab' : ci === 1 ? 'gb' : 'other'}">${cell}</div>`).join('')).join('');
+
+function env(id, t) {
+  const s = T.scenes.find((x) => x.id === id);
+  const visible = t >= s.start && t < s.end;
+  const inP = eOut(prog(t, s.start, s.start + 0.4));
+  const outP = s.end >= T.duration ? 0 : prog(t, s.end - 0.25, s.end);
+  return { visible, inP, outP, o: Math.min(clamp(inP * 1.4), 1 - outP), s: lerp(0.92, 1, inP) * lerp(1, 1.12, eInOut(outP)) };
+}
+
+window.render = function (t) {
+  const ph = (t % BEAT) / BEAT;
+  const kick = Math.exp(-ph * 6);
+  const loud = t >= 3.75 ? 1 : 0.4;
+
+  // Background life.
+  tf($('aurA'), `translate(${-500 + Math.sin(t * 0.45) * 220}px, ${-300 + Math.cos(t * 0.35) * 160}px) scale(${1 + kick * 0.05 * loud})`);
+  tf($('aurB'), `translate(${200 + Math.cos(t * 0.4) * 200}px, ${1000 + Math.sin(t * 0.3) * 180}px)`);
+  tf($('aurC'), `translate(${-300 + Math.sin(t * 0.3 + 1) * 200}px, ${500 + Math.cos(t * 0.5) * 160}px)`);
+  tf($('grid'), `translate(0, ${(t * 24) % 80}px)`);
+  for (const p of P) { const y = (p.y - t * p.sp) % H; p.el.style.transform = `translate(${p.x + Math.sin(t + p.x) * 12}px, ${y < 0 ? y + H : y}px)`; p.el.style.width = p.el.style.height = p.sz + 'px'; p.el.style.opacity = 0.25 + 0.35 * kick * loud; }
+
+  for (const s of T.scenes) {
+    const e = env(s.id, t);
+    const el = $('s-' + s.id);
+    el.style.display = e.visible ? 'block' : 'none';
+    if (e.visible) { op(el, e.o); tf(el, `scale(${e.s})`); el.style.filter = e.outP > 0 ? `blur(${e.outP * 8}px)` : ''; }
+  }
+
+  // Flash at cuts (the zoom-blur exit above does the motion).
+  let fl = 0;
+  for (const s of T.scenes.slice(1)) if (t >= s.start) fl = Math.max(fl, Math.exp(-(t - s.start) * 14) * 0.35);
+  for (const at of [3.75, 41.25]) if (t >= at) fl = Math.max(fl, Math.exp(-(t - at) * 9) * 0.7);
+  op($('flash'), fl < 0.002 ? 0 : fl);
+
+  // 1 HOOK — words slam in on the beat.
+  [['hw1', 0.47], ['hw2', 0.94], ['hw3', 1.41], ['hw4', 2.34], ['hw5', 2.81]].forEach(([id, at]) => {
+    const s = slam(t, at); const el = $(id);
+    op(el, s.o); el.style.display = 'inline-block'; tf(el, `scale(${s.s})`); el.style.filter = s.b > 0.3 ? `blur(${s.b}px)` : '';
+  });
+  tf($('h1'), `translateY(${lerp(110, 0, eOut(prog(t, 2.2, 2.6)))}px) scale(${1 + kick * 0.02})`);
+
+  // 2 LOGO
+  { const m = pop(t, 3.85, 0.55), b = pop(t, 4.05, 0.55), pl = pop(t, 4.2, 0.4);
+    op($('lgMark'), m.o); tf($('lgMark'), `scale(${m.s * (1 + kick * 0.04)}) rotate(${lerp(-20, 0, eOut(m.p))}deg)`);
+    op($('lgBale'), b.o); tf($('lgBale'), `scale(${b.s * (1 + kick * 0.04)}) rotate(${lerp(20, 0, eOut(b.p))}deg)`);
+    op($('lgPlus'), pl.o); tf($('lgPlus'), `scale(${pl.s})`);
+    const w = eOut5(prog(t, 4.4, 5.0)); op($('lgWord'), w); $('lgWord').style.display = w > 0.001 ? '' : 'none'; tf($('lgWord'), `scale(${lerp(1.25, 1, w)})`);
+    const g = eOut(prog(t, 5.0, 5.5)); op($('lgTag'), g); tf($('lgTag'), `translateY(${lerp(40, 0, g)}px)`);
+    const u = eOut(prog(t, 5.5, 6.0)); op($('lgSub'), u); tf($('lgSub'), `translateY(${lerp(30, 0, u)}px)`); }
+
+  // 3 VISITOR — real page on the laptop, the real chat window lifted out beside it.
+  { const L = eOut(prog(t, 7.5, 8.1));
+    tf($('laptopV'), `translateY(${lerp(120, 0, L)}px)`); op($('laptopV'), L);
+    const lb = pop(t, 7.8, 0.45); op($('vLabel'), lb.o); tf($('vLabel'), `translateX(-50%) scale(${lb.s})`);
+    op($('v5'), t >= 13.13 ? 1 : 0);
+    const rp = prog(t, 9.15, 9.6); op($('ripple'), rp > 0 && rp < 1 ? 1 - rp : 0); tf($('ripple'), `scale(${0.3 + rp * 1.4})`);
+    const bm = eOut(prog(t, 9.4, 9.75)); op($('beamV'), t > 9.4 ? 0.9 : 0); tf($('beamV'), `scaleX(${bm})`);
+    const pv = pop(t, 9.5, 0.55); op($('popV'), pv.o); tf($('popV'), `translateX(${lerp(-120, 0, eOut(pv.p))}px) scale(${pv.s * (t > 13.13 ? 1 + kick * 0.008 : 1)}) rotate(${lerp(-6, 0, eOut(pv.p))}deg)`);
+    const shows = [['pv2', 9.5], ['pv3', 10.3], ['pv4', 11.25], ['pv5', 13.13]];
+    shows.forEach(([id, at], i) => { const nx = shows[i + 1]; op($(id), t >= at && (!nx || t < nx[1] + 0.1) ? clamp(prog(t, at, at + 0.1)) : 0); }); }
+
+  // 4 BALE — recreated Bale chat with the real message format Gapban sends.
+  { const L = eOut(prog(t, 15.0, 15.55)); tf($('phoneB'), `translateY(${lerp(200, 0, L)}px)`);
+    const r = eOut(prog(t, 15.4, 15.9)); op($('bRight'), r); tf($('bRight'), `translateX(${lerp(-60, 0, r)}px)`);
+    const l = eOut(prog(t, 16.2, 16.7)); op($('bLeft'), l); tf($('bLeft'), `translateX(${lerp(60, 0, l)}px)`);
+    const bm = pop(t, 15.6, 0.45); op($('botMsg'), bm.o); tf($('botMsg'), `scale(${bm.s})`); $('botMsg').style.transformOrigin = 'left top';
+    const hl = t > 16.9 && t < 17.7; op($('hl'), hl ? 1 : 0);
+    const cx = pop(t, 17.0, 0.3); op($('ctx'), t < 17.65 ? cx.o : 0); tf($('ctx'), `scale(${cx.s})`); $('ctx').style.transformOrigin = 'left top';
+    $('ctxReply').style.background = t > 17.35 && t < 17.65 ? 'rgba(42,125,225,.14)' : 'transparent';
+    const tp = prog(t, 17.3, 17.75); op($('tap'), tp > 0 && tp < 1 ? 1 - tp : 0); tf($('tap'), `scale(${0.4 + tp})`);
+    const rb = t >= 17.65 && t < 20.65; op($('replyBar'), rb ? clamp(prog(t, 17.65, 17.85)) : 0);
+    const msg = 'سلام سارا جان 🌸 سفارش ۱۲۸۴ امروز ساعت ۱۶ تحویل پست می‌شه…';
+    const n = Math.round(msg.length * prog(t, 18.0, 20.2));
+    $('baleInput').textContent = t >= 18.0 && t < 20.65 && n > 0 ? msg.slice(0, n) : 'پیام خود را بنویسید…';
+    $('baleInput').style.color = t >= 18.0 && t < 20.65 && n > 0 ? '#1b2433' : '#8b95a3';
+    const om = pop(t, 20.65, 0.45); op($('opMsg'), om.o); tf($('opMsg'), `scale(${om.s})`); $('opMsg').style.transformOrigin = 'right bottom'; }
+
+  // 5 REPLY
+  { const a = pop(t, 22.6, 0.55), b = pop(t, 22.9, 0.55);
+    op($('popR'), a.o); tf($('popR'), `translateY(${lerp(80, 0, eOut(a.p))}px) scale(${a.s * (1 + kick * 0.006)})`);
+    op($('phoneR'), b.o); tf($('phoneR'), `translateY(${lerp(80, 0, eOut(b.p))}px) scale(${b.s}) rotate(${lerp(8, 2, eOut(b.p))}deg)`);
+    const lb = pop(t, 22.7, 0.45); op($('rLabel'), lb.o); tf($('rLabel'), `translateX(-50%) scale(${lb.s})`);
+    op($('rTagA'), eOut(prog(t, 23.4, 23.8))); op($('rTagB'), eOut(prog(t, 23.6, 24.0))); }
+
+  // 6 PANEL
+  { const c = pop(t, 26.5, 0.55), l = pop(t, 27.0, 0.55), r = pop(t, 27.5, 0.55);
+    op($('pC'), c.o); tf($('pC'), `translateY(${lerp(80, 0, eOut(c.p))}px) scale(${lerp(0.85, 1, eOut(c.p)) * (1 + Math.sin((t - 26.5) * 0.6) * 0.01)})`);
+    op($('pL'), l.o * 0.85); tf($('pL'), `translateX(${lerp(-80, 0, eOut(l.p))}px) rotate(-4deg) scale(0.92)`);
+    op($('pR'), r.o * 0.85); tf($('pR'), `translateX(${lerp(80, 0, eOut(r.p))}px) rotate(4deg) scale(0.92)`); }
+
+  // 7 FEATURES — one card per eighth note.
+  FEAT.forEach((_, i) => { const p = pop(t, 32.1 + i * BEAT, 0.4); op($('f' + i), p.o); tf($('f' + i), `scale(${p.s}) translateY(${Math.sin(t * 1.5 + i) * 5}px)`); });
+
+  // 8 PRICING — rows reveal on the beat; Gapban column pulses.
+  { op($('ptable'), eOut(prog(t, 35.7, 36.1))); tf($('ptable'), `translateY(${lerp(50, 0, eOut(prog(t, 35.7, 36.2)))}px)`);
+    document.querySelectorAll('#ptable [data-row]').forEach((c) => { const ri = +c.dataset.row; const p = ri === 0 ? 1 : eOut(prog(t, 35.95 + ri * 0.9, 36.35 + ri * 0.9)); op(c, p); });
+    document.querySelectorAll('#ptable .gb').forEach((c) => { c.style.boxShadow = t > 39.3 ? `inset 0 0 0 ${2 + kick * 3}px rgba(255,107,94,.8)` : 'none'; });
+    op($('pNote'), eOut(prog(t, 39.6, 40.0))); }
+
+  // 9 CTA
+  { const m = pop(t, 41.3, 0.55); op($('ctaMark'), m.o); tf($('ctaMark'), `scale(${m.s * (1 + kick * 0.05)}) rotate(${lerp(-25, 0, eOut(m.p))}deg)`);
+    const w = eOut5(prog(t, 41.5, 42.0)); op($('ctaWord'), w); $('ctaWord').style.display = w > 0.001 ? '' : 'none'; tf($('ctaWord'), `scale(${lerp(1.25, 1, w)})`);
+    const g = eOut(prog(t, 41.9, 42.4)); op($('ctaTag'), g); tf($('ctaTag'), `translateY(${lerp(30, 0, g)}px)`);
+    const b = pop(t, 42.3, 0.5); op($('ctaBtn'), b.o); tf($('ctaBtn'), `translateX(-50%) scale(${b.s * (1 + (t > 42.8 ? kick * 0.04 : 0))})`);
+    op($('ctaSmall'), eOut(prog(t, 42.8, 43.3))); op($('ctaLegal'), eOut(prog(t, 43.2, 43.7))); }
+};
+window.render(0);
+</script>
+</body>
+</html>

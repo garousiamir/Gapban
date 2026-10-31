@@ -31,6 +31,14 @@ ffmpeg -framerate 30 -i /tmp/frames/f%05d.jpg -i /tmp/promo.wav -c:v libx264 -pr
 ```
 `render.mjs` also accepts `--from=a --to=b` to render a time range in parallel, and `--times=a,b` to render spot-check stills.
 
+### Instagram Reels / Stories version (9:16)
+
+`out/gapban-promo-v2-reels-1080x1920.mp4` is the same 45 s story, timing and soundtrack, laid out for 1080×1920. Key content stays between y≈250 and y≈1590, clear of Instagram's top bar and caption area. Use `out/gapban-promo-v2-reels-cover.jpg` as the cover.
+```
+NODE_PATH=<global node_modules> node marketing/promo/render.mjs /tmp/framesR --scene=marketing/promo/v2/reels.html --timeline=marketing/promo/v2/reels-timeline.json
+```
+Then run the same ffmpeg command with `/tmp/framesR` as input.
+
 ## v1 (superseded)
 
 `out/gapban-promo-1080p.mp4` was built from `promo/scene.html` and `promo/timeline.json`, using the same commands without `--scene` / `--timeline`.
