@@ -17,7 +17,8 @@ import numpy as np
 from scipy.signal import butter, sosfilt, sosfiltfilt
 
 SR = 44100
-TL = json.load(open('marketing/promo/timeline.json'))
+TL = json.load(open(sys.argv[2] if len(sys.argv) > 2 else 'marketing/promo/timeline.json'))
+MUSIC = TL.get('music', {'hook_end': 1.1, 'intro_end': 3.75, 'build': [34.1, 35.625], 'drop': 35.625, 'fade': 1.2})
 DUR = TL['duration']
 BPM = TL['bpm']
 BEAT = 60 / BPM
@@ -152,14 +153,17 @@ def bass_note(m, dur):
 
 
 def section_level(t):
-    """Arrangement: intro (sparse) → main → build → drop → outro."""
-    if t < 1.1:
-        return 'riser'
-    if t < 3.75:
+    """Arrangement from timeline['music']: hook/riser → intro → main → build → drop."""
+    hook_end = MUSIC.get('hook_end', 1.1)
+    intro_end = MUSIC.get('intro_end', hook_end)
+    b0, b1 = MUSIC['build']
+    if t < hook_end:
+        return 'hook' if 'intro_end' not in MUSIC else 'riser'
+    if t < intro_end:
         return 'intro'
-    if t < 34.1:
+    if t < b0:
         return 'main'
-    if t < 35.625:
+    if t < b1:
         return 'build'
     return 'drop'
 
@@ -180,10 +184,10 @@ for b in range(bars):
         s = section_level(t + 0.001)
         if t >= DUR:
             break
-        if s in ('main', 'drop') or (s == 'intro' and t >= 1.1 and beat == 0):
+        if s in ('main', 'drop', 'hook') or (s == 'intro' and t >= 1.1 and beat == 0):
             add(music, t, kick(), 0.95)
             kick_env[int(t * SR): int((t + 0.25) * SR)] = np.maximum(kick_env[int(t * SR): int((t + 0.25) * SR)], np.exp(-np.arange(min(int(0.25 * SR), N - int(t * SR))) / SR * 14)[: len(kick_env[int(t * SR): int((t + 0.25) * SR)])])
-        if s in ('main', 'drop'):
+        if s in ('main', 'drop', 'hook'):
             if beat in (1, 3):
                 add(music, t, clap(), 0.75)
             add(music, t + BEAT / 2, hat(True), 0.7, 0.25)
@@ -195,7 +199,7 @@ for b in range(bars):
         if s == 'intro':
             add(music, t + BEAT / 2, hat(), 0.6, 0.2)
         # Arpeggio 16ths (main and drop), up-down pattern over the chord.
-        if s in ('intro', 'main', 'drop'):
+        if s in ('intro', 'main', 'drop', 'hook'):
             arp = CHORDS[ci] + [CHORDS[ci][0] + 12]
             pattern = [0, 1, 2, 3, 2, 1, 3, 1]
             for k in range(4):
@@ -204,7 +208,8 @@ for b in range(bars):
                 add(music, t + k * BEAT / 4, pluck(arp[idx] + 12), gain, (-0.35 if k % 2 else 0.35))
 
 # Build: snare roll and filtered pads into the drop.
-snare_roll(34.1, 35.55)
+B0, B1 = MUSIC['build']
+snare_roll(B0, B1 - 0.075)
 
 # Sidechain pumping on everything but drums is approximated by ducking the whole
 # music bus slightly on each kick (drums dominate the transient anyway).
@@ -212,7 +217,7 @@ duck = 1 - 0.35 * kick_env[:N]
 music *= duck[:, None]
 
 # Lowpass sweep over the build (opens again at the drop).
-b0, b1 = int(34.1 * SR), int(35.625 * SR)
+b0, b1 = int(B0 * SR), int(B1 * SR)
 seg = music[b0:b1].copy()
 chunks = 12
 for c in range(chunks):
@@ -221,8 +226,19 @@ for c in range(chunks):
     seg[s0:s1] = sosfilt(butter(2, f / (SR / 2), 'low', output='sos'), seg[s0:s1], axis=0)
 music[b0:b1] = seg
 
+# Hook: the full groove plays through a low-pass filter that opens up to the first impact.
+if 'intro_end' not in MUSIC:
+    h1 = int(MUSIC['hook_end'] * SR)
+    seg = music[:h1].copy()
+    chunks = 16
+    for c in range(chunks):
+        s0, s1 = c * h1 // chunks, (c + 1) * h1 // chunks
+        f = 350 * (9000 / 350) ** (c / chunks)
+        seg[s0:s1] = sosfilt(butter(2, f / (SR / 2), 'low', output='sos'), seg[s0:s1], axis=0)
+    music[:h1] = seg * 0.8
+
 # Outro fade.
-fade0 = int((DUR - 1.2) * SR)
+fade0 = int((DUR - MUSIC.get('fade', 1.2)) * SR)
 music[fade0:] *= np.linspace(1, 0, N - fade0)[:, None] ** 1.5
 
 
@@ -333,6 +349,20 @@ def sparkle():
     return out
 
 
+def hit():
+    n = int(0.35 * SR)
+    t = t_(n)
+    tom = np.sin(2 * np.pi * np.cumsum(90 + 140 * np.exp(-t * 25)) / SR) * np.exp(-t * 9)
+    snap = bp(rng.standard_normal(n), 1500, 8000) * np.exp(-t * 30) * 0.6
+    return np.tanh((tom + snap) * 1.4) * 0.6
+
+
+def tap():
+    n = int(0.06 * SR)
+    t = t_(n)
+    return np.sin(2 * np.pi * 1400 * t) * np.exp(-t * 90) * 0.3 + lp(rng.standard_normal(n), 3000) * np.exp(-t * 200) * 0.15
+
+
 for ev in TL['sfx']:
     t, kind = ev['t'], ev['type']
     if kind == 'riser':
@@ -355,6 +385,10 @@ for ev in TL['sfx']:
         add(sfx, t, ding(), 1.0)
     elif kind == 'tick':
         add(sfx, t, tick(), 1.0, rng.uniform(-0.5, 0.5))
+    elif kind == 'hit':
+        add(sfx, t, hit(), 1.0)
+    elif kind == 'tap':
+        add(sfx, t, tap(), 1.0)
     elif kind == 'sparkle':
         add(sfx, t, sparkle(), 1.0, 0.2)
 
