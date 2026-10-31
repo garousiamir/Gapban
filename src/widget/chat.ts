@@ -382,7 +382,7 @@ export function mount(host: Host) {
   }
 
   /* ---------------------------------- chat ---------------------------------- */
-  const list = h('ol', { class: 'gb-list', 'aria-label': t('messages'), role: 'log', 'aria-live': 'off' });
+  const list = h('ol', { class: 'gb-list', 'aria-label': t('messages') });
   const typingEl = h('div', { class: 'gb-typing', 'aria-label': t('operator_typing'), hidden: true }, h('i'), h('i'), h('i'));
   const jumpBtn = h('button', { type: 'button', class: 'gb-jump', hidden: true }, t('new_messages'));
   jumpBtn.addEventListener('click', () => scrollToBottom(true));

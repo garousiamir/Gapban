@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: pricing acceptance example: matches on the page, blocked for 24h after showing, dismissed never again
+ok 1 - pricing acceptance example: matches on the page, blocked for 24h after showing, dismissed never again
+  ---
+  duration_ms: 3.648859
+  type: 'test'
+  ...
+# Subtest: exclusions always win and priority ordering is deterministic
+ok 2 - exclusions always win and priority ordering is deterministic
+  ---
+  duration_ms: 2.157517
+  type: 'test'
+  ...
+# Subtest: nested AND/OR groups and NOT
+ok 3 - nested AND/OR groups and NOT
+  ---
+  duration_ms: 0.843493
+  type: 'test'
+  ...
+# Subtest: url matching: wildcard, exact, contains; unknown condition never matches
+ok 4 - url matching: wildcard, exact, contains; unknown condition never matches
+  ---
+  duration_ms: 0.472963
+  type: 'test'
+  ...
+# Subtest: mobile skip and expiry block proactive rules
+ok 5 - mobile skip and expiry block proactive rules
+  ---
+  duration_ms: 1.18403
+  type: 'test'
+  ...
+# Subtest: woo cart conditions are false when WooCommerce data is absent
+ok 6 - woo cart conditions are false when WooCommerce data is absent
+  ---
+  duration_ms: 1.649665
+  type: 'test'
+  ...
+# Subtest: sensitive query keys are filtered
+ok 7 - sensitive query keys are filtered
+  ---
+  duration_ms: 0.526333
+  type: 'test'
+  ...
+# Subtest: digits, sprintf and Jalali display
+ok 8 - digits, sprintf and Jalali display
+  ---
+  duration_ms: 25.127826
+  type: 'test'
+  ...
+# Subtest: summary is readable
+ok 9 - summary is readable
+  ---
+  duration_ms: 0.934136
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 235.935299

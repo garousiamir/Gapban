@@ -122,8 +122,6 @@ final class Settings {
 			'delete_data_on_uninstall' => false,
 			'sensitive_query_keys'     => array( 'token', 'key', 'password', 'pass', 'pwd', 'secret', 'code', 'otp', 'email', 'phone', 'mobile', 'session', 'auth', 'order', 'nonce' ),
 
-			// WooCommerce display.
-			'currency_label'           => 'auto', // auto | rial | toman.
 		);
 	}
 
@@ -204,9 +202,6 @@ final class Settings {
 					break;
 				case 'captcha_provider':
 					$out[ $key ] = 'none';
-					break;
-				case 'currency_label':
-					$out[ $key ] = in_array( $value, array( 'auto', 'rial', 'toman' ), true ) ? $value : 'auto';
 					break;
 				case 'launcher_custom_svg':
 					$out[ $key ] = \Gapban\Security\SvgSanitizer::sanitize( (string) $value ) ?? '';

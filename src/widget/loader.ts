@@ -156,6 +156,9 @@ function boot(config: WidgetConfig): void {
       }
       host.state.open = open;
       launcher.setAttribute('aria-expanded', String(open));
+      if (!(config.launcher.variant === 'avatar' && config.brand.avatar) && !(config.launcher.icon === 'custom' && config.launcher.customSvg)) {
+        icon.innerHTML = iconSvg(open ? 'xmark' : config.launcher.icon === 'custom' ? 'comments' : config.launcher.icon);
+      }
       if (open) {
         storage.set('opened', true, 'session');
         hideTeaser(false);

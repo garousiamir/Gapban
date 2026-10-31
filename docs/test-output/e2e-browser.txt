@@ -1,0 +1,18 @@
+✔ proactive message after 15 visible seconds on pricing page, shown once, not reset by refresh/navigation
+✔ hidden-tab time does not count toward the 15 second trigger
+✔ dismissed proactive message never returns
+✔ visitor starts a conversation; hostile markup is rendered as text
+✔ multi-tab continuity: second tab shows the same conversation
+✔ operator replies from the WordPress inbox; visitor receives it; markup stays inert in admin
+✔ internal note never reaches the visitor
+✔ closing shows a satisfaction rating which can be submitted
+✔ page HTML (cacheable) never contains the session token
+    axe (widget open): no violations inside Gapban UI
+✔ accessibility: no serious/critical axe violations in the open widget
+    axe (admin inbox): no violations inside Gapban UI
+✔ accessibility: no serious/critical axe violations in the admin inbox
+✔ mobile: full-screen panel, safe tap target, Escape closes and returns focus
+✔ keyboard: launcher reachable with Tab and opens with Enter
+✔ English LTR widget renders left-to-right with English strings
+
+14 passed, 0 failed

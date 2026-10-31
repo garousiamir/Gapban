@@ -1,0 +1,43 @@
+{
+  "format": "gapban-settings",
+  "version": 1,
+  "note": "Sample without credentials. Import via Gapban → Import / export. Bot token, webhook and cron secrets are never part of an export.",
+  "settings": {
+    "routing_mode": "reply",
+    "transport": "webhook",
+    "widget_language": "fa",
+    "persian_digits": true,
+    "jalali_dates": true,
+    "brand_name": "گپ‌بان",
+    "welcome_title": "سلام! چطور می‌توانیم کمکتان کنیم؟",
+    "welcome_subtitle": "معمولاً در چند دقیقه پاسخ می‌دهیم.",
+    "launcher_variant": "pill",
+    "launcher_label": "گفتگو با ما",
+    "launcher_position": "end",
+    "brand_color": "#ef4b4b",
+    "brand_color_dark": "#d33c3c",
+    "prechat_enabled": true,
+    "prechat_fields": { "name": "optional", "email": "optional", "phone": "hidden", "department": "hidden" },
+    "consent_required": false,
+    "business_hours_enabled": true,
+    "timezone": "Asia/Tehran",
+    "business_hours": { "sat": [["09:00", "17:00"]], "sun": [["09:00", "17:00"]], "mon": [["09:00", "17:00"]], "tue": [["09:00", "17:00"]], "wed": [["09:00", "17:00"]], "thu": [], "fri": [] },
+    "holidays": [{ "date": "2027-03-21", "label": "نوروز" }],
+    "retention_days": 365,
+    "uncertain_send_policy": "retry"
+  },
+  "rules": [
+    {
+      "name": "پیشنهاد راهنمایی در صفحهٔ قیمت‌ها",
+      "enabled": true,
+      "priority": 10,
+      "conditions": { "op": "and", "items": [{ "type": "url", "match": "path_wildcard", "value": "/pricing*" }, { "type": "chat_opened", "value": false }] },
+      "exclusions": { "op": "or", "items": [] },
+      "trigger": { "type": "time_on_page", "seconds": 15, "percent": 50 },
+      "actions": [{ "type": "automated_message", "text": "برای انتخاب پلن مناسب راهنمایی‌تان کنیم؟" }],
+      "frequency": { "per_page": 1, "per_session": 1, "per_visitor": 0, "cooldown_hours": 24, "expires_at": "", "stop_after_dismiss": true },
+      "mobile": "allow"
+    }
+  ],
+  "knowledge": []
+}

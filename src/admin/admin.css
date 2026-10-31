@@ -70,8 +70,8 @@
 
 #gapban-admin .gb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; block-size: 44px; padding-inline: 20px; border-radius: 16px; border: 1px solid transparent; font-size: 13px; font-weight: 700; cursor: pointer; transition: background-color 150ms, color 150ms, border-color 150ms, box-shadow 150ms; text-decoration: none; white-space: nowrap; }
 #gapban-admin .gb-btn-sm { block-size: 34px; padding-inline: 12px; border-radius: 12px; font-size: 12px; }
-#gapban-admin .gb-btn-primary { background: var(--gb-brand); color: #fff; box-shadow: 0 10px 15px -3px color-mix(in oklab, var(--gb-brand) 25%, transparent); }
-#gapban-admin .gb-btn-primary:hover { background: var(--gb-brand-dark); }
+#gapban-admin .gb-btn-primary { background: var(--gb-brand-dark); color: #fff; box-shadow: 0 10px 15px -3px color-mix(in oklab, var(--gb-brand) 25%, transparent); }
+#gapban-admin .gb-btn-primary:hover { background: color-mix(in oklab, var(--gb-brand-dark) 85%, #000); }
 #gapban-admin .gb-btn-ghost { background: #fff; color: var(--gb-gray-700); border-color: var(--gb-gray-100); box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05); }
 #gapban-admin .gb-btn-ghost:hover { color: var(--gb-brand); border-color: color-mix(in oklab, var(--gb-brand) 30%, transparent); }
 #gapban-admin .gb-btn-dark { background: var(--gb-gray-950); color: #fff; }
@@ -115,7 +115,7 @@
 #gapban-admin .gb-tabs, #gapban-admin .gb-group-op, #gapban-admin .gb-composer-tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 14px; background: var(--gb-gray-50); border: 1px solid var(--gb-gray-100); margin-block-end: 12px; }
 #gapban-admin .gb-tab { display: inline-flex; align-items: center; gap: 6px; block-size: 32px; padding-inline: 12px; border-radius: 10px; border: 0; background: transparent; font-size: 11px; font-weight: 700; color: var(--gb-gray-600); cursor: pointer; }
 #gapban-admin .gb-tab[aria-pressed='true'] { background: #fff; color: var(--gb-gray-950); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08); }
-#gapban-admin .gb-tab-count { padding-inline: 6px; border-radius: 999px; background: var(--gb-brand); color: #fff; font-size: 10px; }
+#gapban-admin .gb-tab-count { padding-inline: 6px; border-radius: 999px; background: var(--gb-brand-dark); color: #fff; font-size: 10px; }
 
 #gapban-admin .gb-badge { display: inline-flex; align-items: center; gap: 4px; padding: 1px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; line-height: 1.9; white-space: nowrap; background: var(--gb-gray-100); color: var(--gb-gray-700); }
 #gapban-admin .gb-badge-brand { background: color-mix(in oklab, var(--gb-brand) 12%, #fff); color: var(--gb-brand-dark); }
