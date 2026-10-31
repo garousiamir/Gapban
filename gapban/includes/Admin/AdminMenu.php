@@ -123,7 +123,7 @@ final class AdminMenu {
 			'page'          => $page,
 			'pages'         => $pages,
 			'lang'          => $fa ? 'fa' : 'en',
-			'dir'           => is_rtl() ? 'rtl' : 'ltr',
+			'dir'           => ( $fa || is_rtl() ) ? 'rtl' : 'ltr',
 			'tz'            => \Gapban\Core\Locale::timezone()->getName(),
 			'persianDigits' => $fa && (bool) $settings['persian_digits'],
 			'jalali'        => $fa && (bool) $settings['jalali_dates'],

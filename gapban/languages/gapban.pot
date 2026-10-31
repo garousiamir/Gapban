@@ -13,6 +13,77 @@ msgstr ""
 msgid "Gapban requires PHP %s or newer. The plugin is inactive."
 msgstr ""
 
+#: includes/Admin/AdminMenu.php:25
+#: includes/Admin/AdminStrings.php:204
+msgid "Conversations inbox"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:26
+msgid "Setup & connection"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:27
+#: includes/Admin/AdminStrings.php:473
+msgid "Operators & departments"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:28
+msgid "Widget appearance"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:29
+msgid "Display rules & automation"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:30
+#: includes/Admin/AdminStrings.php:145
+msgid "Business hours & holidays"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:31
+#: includes/Admin/AdminStrings.php:155
+msgid "Canned responses & help"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:32
+msgid "Reports & satisfaction"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:33
+#: includes/Admin/AdminStrings.php:521
+msgid "Privacy & data retention"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:34
+#: includes/Admin/AdminStrings.php:236
+msgid "Delivery queue & diagnostics"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:35
+msgid "Import / export"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:56
+#: includes/Admin/AdminMenu.php:57
+#: includes/Admin/AdminMenu.php:79
+#: includes/Admin/AdminStrings.php:309
+msgid "Gapban"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:80
+#: includes/Admin/AdminStrings.php:377
+#: includes/Core/Strings.php:154
+msgid "Loading…"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:81
+msgid "The Gapban dashboard needs JavaScript."
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:166
+msgid "Setup"
+msgstr ""
+
 #: includes/Admin/AdminStrings.php:19
 msgid " or "
 msgstr ""
@@ -472,10 +543,6 @@ msgstr ""
 msgid "Browser/page language"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:145
-msgid "Business hours & holidays"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:146
 msgid "CSAT"
 msgstr ""
@@ -510,10 +577,6 @@ msgstr ""
 
 #: includes/Admin/AdminStrings.php:154
 msgid "Canned responses"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:155
-msgid "Canned responses & help"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:156
@@ -709,10 +772,6 @@ msgstr ""
 msgid "Conversations"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:204
-msgid "Conversations inbox"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:205
 msgid "Conversations per day"
 msgstr ""
@@ -832,10 +891,6 @@ msgstr ""
 
 #: includes/Admin/AdminStrings.php:235
 msgid "Delivered (last 7 days)"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:236
-msgid "Delivery queue & diagnostics"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:237
@@ -1114,2098 +1169,2109 @@ msgid "Frequency"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:305
-msgid "From"
+msgid "Friday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:306
-msgid "Front page"
+msgid "From"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:307
-msgid "GAPBAN_ENCRYPTION_KEY in wp-config.php"
+msgid "Front page"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:308
-msgid "Gapban"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:309
-msgid "Gapban checks the token with getMe before saving it."
+msgid "GAPBAN_ENCRYPTION_KEY in wp-config.php"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:310
-msgid "Gapban sections"
+msgid "Gapban checks the token with getMe before saving it."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:311
-msgid "Generate a new cron URL"
+msgid "Gapban sections"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:312
-msgid "Generate a one-time code below and send the command in that group. The group is detected automatically."
+msgid "Generate a new cron URL"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:313
-msgid "Generate cron URL"
+msgid "Generate a one-time code below and send the command in that group. The group is detected automatically."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:314
-msgid "Gentle floating effect on the launcher"
+msgid "Generate cron URL"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:315
-msgid "Get a binding code"
+msgid "Gentle floating effect on the launcher"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:316
-msgid "Greeting bubble text (optional)"
+msgid "Get a binding code"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:317
-msgid "Group IDs are usually negative numbers. Persian digits are accepted."
+msgid "Greeting bubble text (optional)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:318
-msgid "Has an open conversation"
+msgid "Group IDs are usually negative numbers. Persian digits are accepted."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:319
-msgid "Headset"
+msgid "Has an open conversation"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:320
+msgid "Headset"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:321
 #: includes/Core/Strings.php:101
 msgid "Help articles"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:321
+#: includes/Admin/AdminStrings.php:322
 msgid "Hidden spam trap field (honeypot)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:322
+#: includes/Admin/AdminStrings.php:323
 msgid "Hide on the checkout page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:323
+#: includes/Admin/AdminStrings.php:324
 msgid "Hide the launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:324
+#: includes/Admin/AdminStrings.php:325
 msgid "High"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:325
+#: includes/Admin/AdminStrings.php:326
 msgid "Higher numbers win."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:326
+#: includes/Admin/AdminStrings.php:327
 msgid "History"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:327
+#: includes/Admin/AdminStrings.php:328
 msgid "Hold for manual review (no duplicates, may need action)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:328
+#: includes/Admin/AdminStrings.php:329
 msgid "Holidays"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:329
+#: includes/Admin/AdminStrings.php:330
 msgid "How these numbers are calculated"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:330
+#: includes/Admin/AdminStrings.php:331
 msgid "Icon"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:331
+#: includes/Admin/AdminStrings.php:332
 msgid "If"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:332
+#: includes/Admin/AdminStrings.php:333
 msgid "If operators have replied in Bale but nothing appears here, receiving is not working (webhook or polling)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:333
+#: includes/Admin/AdminStrings.php:334
 msgid "Ignored"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:334
+#: includes/Admin/AdminStrings.php:335
 msgid "Immediately on page load"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:335
+#: includes/Admin/AdminStrings.php:336
 msgid "Import"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:336
+#: includes/Admin/AdminStrings.php:337
 msgid "Import & export settings"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:337
+#: includes/Admin/AdminStrings.php:338
 msgid "In Bale, open @BotFather and create a bot (/newbot)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:338
+#: includes/Admin/AdminStrings.php:339
 msgid "In Bale, reply to that message with any text. This page then shows that receiving works."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:339
+#: includes/Admin/AdminStrings.php:340
 msgid "In progress"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:340
+#: includes/Admin/AdminStrings.php:341
 msgid "In the store’s own currency and units, exactly as WooCommerce stores it (no Rial/Toman conversion)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:341
+#: includes/Admin/AdminStrings.php:342
 msgid "Inactive"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:342
+#: includes/Admin/AdminStrings.php:343
 msgid "Include Bale destination chat IDs and trusted proxies"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:343
+#: includes/Admin/AdminStrings.php:344
 msgid "Instant delivery. Requires HTTPS and a site Bale can reach. The webhook URL contains a long secret that you can rotate."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:344
+#: includes/Admin/AdminStrings.php:345
 msgid "Internal note"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:345
+#: includes/Admin/AdminStrings.php:346
 msgid "Internal note — visitors never see this"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:346
+#: includes/Admin/AdminStrings.php:347
 msgid "Items in cart"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:347
+#: includes/Admin/AdminStrings.php:348
 msgid "Job status"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:348
+#: includes/Admin/AdminStrings.php:349
 msgid "Jobs"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:349
+#: includes/Admin/AdminStrings.php:350
 msgid "Keep raw Bale update logs for (days)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:350
+#: includes/Admin/AdminStrings.php:351
 msgid "Keeps purchase buttons uncovered. Display rules can still show it."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:351
+#: includes/Admin/AdminStrings.php:352
 msgid "Key"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:352
+#: includes/Admin/AdminStrings.php:353
 msgid "Kind of page (front, blog, archive, search, 404…)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:353
+#: includes/Admin/AdminStrings.php:354
 msgid "Label"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:354
+#: includes/Admin/AdminStrings.php:355
 msgid "Label (optional)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:355
+#: includes/Admin/AdminStrings.php:356
 msgid "Language & formats"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:356
+#: includes/Admin/AdminStrings.php:357
 msgid "Language codes (comma separated)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:358
+#: includes/Admin/AdminStrings.php:359
 #, php-format
 msgid "Last 30 days: shown %s, clicked %s, dismissed %s, chats %s"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:359
+#: includes/Admin/AdminStrings.php:360
 msgid "Last conversation closed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:360
+#: includes/Admin/AdminStrings.php:361
 msgid "Last error"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:361
+#: includes/Admin/AdminStrings.php:362
 msgid "Last worker run"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:362
+#: includes/Admin/AdminStrings.php:363
 msgid "Launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:363
+#: includes/Admin/AdminStrings.php:364
 msgid "Least busy"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:364
+#: includes/Admin/AdminStrings.php:365
 msgid "Least busy available operator"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:365
+#: includes/Admin/AdminStrings.php:366
 msgid "Leave empty to use the default support group. Easier: use “Connect group” to bind with a code."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:366
+#: includes/Admin/AdminStrings.php:367
 msgid "Let visitors download a transcript"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:367
+#: includes/Admin/AdminStrings.php:368
 msgid "Limits:"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:368
+#: includes/Admin/AdminStrings.php:369
 msgid "Link"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:370
+#: includes/Admin/AdminStrings.php:371
 #, php-format
 msgid "Link %s to Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:371
+#: includes/Admin/AdminStrings.php:372
 msgid "Link Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:372
+#: includes/Admin/AdminStrings.php:373
 msgid "Linking a user lets them use the WordPress inbox for their assigned conversations."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:373
+#: includes/Admin/AdminStrings.php:374
 msgid "Live preview"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:374
+#: includes/Admin/AdminStrings.php:375
 #: includes/Core/Strings.php:117
 msgid "Load earlier messages"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:375
+#: includes/Admin/AdminStrings.php:376
 msgid "Load more"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:376
-#: includes/Core/Strings.php:154
-msgid "Loading…"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:377
+#: includes/Admin/AdminStrings.php:378
 msgid "Longer messages are split into numbered parts; every part can be replied to."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:378
+#: includes/Admin/AdminStrings.php:379
 msgid "Manual (claim)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:379
+#: includes/Admin/AdminStrings.php:380
 msgid "Manual — operators claim conversations"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:380
+#: includes/Admin/AdminStrings.php:381
 msgid "Mark as spam"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:381
+#: includes/Admin/AdminStrings.php:382
 msgid "Marked as spam."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:382
+#: includes/Admin/AdminStrings.php:383
 msgid "Match"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:383
+#: includes/Admin/AdminStrings.php:384
 msgid "Matches"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:385
+#: includes/Admin/AdminStrings.php:386
 #, php-format
 msgid "Matches, but %s"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:386
+#: includes/Admin/AdminStrings.php:387
 msgid "Max per page view"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:387
+#: includes/Admin/AdminStrings.php:388
 msgid "Max per visit (session)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:388
+#: includes/Admin/AdminStrings.php:389
 msgid "Max per visitor (ever)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:389
+#: includes/Admin/AdminStrings.php:390
 msgid "Maximum characters per Bale message"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:390
+#: includes/Admin/AdminStrings.php:391
 msgid "Maximum file size (MB)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:391
+#: includes/Admin/AdminStrings.php:392
 msgid "Maximum message length (characters)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:392
+#: includes/Admin/AdminStrings.php:393
 msgid "Maximum simultaneous conversations"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:393
+#: includes/Admin/AdminStrings.php:394
 msgid "Medium"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:394
+#: includes/Admin/AdminStrings.php:395
 msgid "Members of a Bale group see every conversation delivered to that group. For confidentiality between departments, give each department its own group."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:395
+#: includes/Admin/AdminStrings.php:396
 msgid "Message type"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:396
+#: includes/Admin/AdminStrings.php:397
 #: includes/Core/Strings.php:115
 msgid "Messages"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:397
+#: includes/Admin/AdminStrings.php:398
 msgid "Messages are saved first and then delivered by a queue. WordPress’s built-in cron only runs when someone visits the site, so production sites should run the worker from the server’s cron every minute."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:398
+#: includes/Admin/AdminStrings.php:399
 msgid "Messages per minute per visitor"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:399
+#: includes/Admin/AdminStrings.php:400
 msgid "Messages stay in “waiting to send”"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:400
+#: includes/Admin/AdminStrings.php:401
 msgid "Messages, files and notes of this conversation are deleted from WordPress. Copies already delivered to Bale are not affected."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:401
+#: includes/Admin/AdminStrings.php:402
 msgid "Mirror replies written in WordPress into the Bale group"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:402
+#: includes/Admin/AdminStrings.php:403
 msgid "Missing"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:403
+#: includes/Admin/AdminStrings.php:404
 msgid "Missing tables — deactivate and reactivate the plugin"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:404
+#: includes/Admin/AdminStrings.php:405
 msgid "Missing — Gregorian dates in exports"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:405
+#: includes/Admin/AdminStrings.php:406
 #: includes/Privacy/PrivacyTools.php:75
 msgid "Mobile"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:406
+#: includes/Admin/AdminStrings.php:407
 msgid "Mobile bottom offset (px)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:407
+#: includes/Admin/AdminStrings.php:408
 #: includes/Core/Strings.php:109
 msgid "Mobile number"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:408
+#: includes/Admin/AdminStrings.php:409
 msgid "Mobile numbers are normalised (09… / +98…) for display only; they are not verified."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:409
+#: includes/Admin/AdminStrings.php:410
 msgid "Mobile side offset (px)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:410
+#: includes/Admin/AdminStrings.php:411
 msgid "Mobile size (px)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:411
-msgid "More"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:412
-msgid "Motion & attention"
+msgid "Monday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:413
-msgid "Move your configuration between sites. Bot tokens and secrets are never included."
+msgid "More"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:414
-msgid "My account"
+msgid "Motion & attention"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:415
-msgid "My status"
+msgid "Move your configuration between sites. Bot tokens and secrets are never included."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:416
+msgid "My account"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:417
+msgid "My status"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:418
 #: includes/Privacy/PrivacyTools.php:73
 msgid "Name"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:417
+#: includes/Admin/AdminStrings.php:419
 msgid "Negate (NOT)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:418
+#: includes/Admin/AdminStrings.php:420
 msgid "Never chatted"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:419
+#: includes/Admin/AdminStrings.php:421
 msgid "Never show again after the visitor dismisses it"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:420
+#: includes/Admin/AdminStrings.php:422
 msgid "New chat sessions per hour per network address"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:421
+#: includes/Admin/AdminStrings.php:423
 msgid "New rule"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:422
+#: includes/Admin/AdminStrings.php:424
 msgid "New tag"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:423
+#: includes/Admin/AdminStrings.php:425
 msgid "New website conversations will appear here automatically."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:424
+#: includes/Admin/AdminStrings.php:426
 msgid "No"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:425
+#: includes/Admin/AdminStrings.php:427
 msgid "No bot is connected yet. Conversations still work in the WordPress inbox."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:426
+#: includes/Admin/AdminStrings.php:428
 msgid "No canned responses yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:427
+#: includes/Admin/AdminStrings.php:429
 msgid "No canned responses yet. Add them under “Canned responses & help”."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:428
+#: includes/Admin/AdminStrings.php:430
 msgid "No conditions."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:429
+#: includes/Admin/AdminStrings.php:431
 msgid "No conversations here yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:430
+#: includes/Admin/AdminStrings.php:432
 msgid "No data in this period."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:431
+#: includes/Admin/AdminStrings.php:433
 msgid "No help articles yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:432
+#: includes/Admin/AdminStrings.php:434
 msgid "No operators yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:433
+#: includes/Admin/AdminStrings.php:435
 msgid "No rules yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:434
+#: includes/Admin/AdminStrings.php:436
 msgid "No selection means the operator may answer every department."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:435
+#: includes/Admin/AdminStrings.php:437
 msgid "No updates received yet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:436
+#: includes/Admin/AdminStrings.php:438
 msgid "None"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:437
+#: includes/Admin/AdminStrings.php:439
 msgid "None — answers only from Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:438
+#: includes/Admin/AdminStrings.php:440
 msgid "Normal"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:439
+#: includes/Admin/AdminStrings.php:441
 msgid "Not available"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:440
+#: includes/Admin/AdminStrings.php:442
 msgid "Not delivered to Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:441
+#: includes/Admin/AdminStrings.php:443
 msgid "Not found (404)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:442
+#: includes/Admin/AdminStrings.php:444
 msgid "Not linked"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:443
+#: includes/Admin/AdminStrings.php:445
 msgid "Not publicly reachable"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:444
+#: includes/Admin/AdminStrings.php:446
 msgid "Not set"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:445
+#: includes/Admin/AdminStrings.php:447
 msgid "Not spam"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:446
+#: includes/Admin/AdminStrings.php:448
 msgid "Not tested"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:447
+#: includes/Admin/AdminStrings.php:449
 msgid "Not yet observed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:448
+#: includes/Admin/AdminStrings.php:450
 msgid "Notes"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:449
+#: includes/Admin/AdminStrings.php:451
 msgid "Nothing here"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:450
+#: includes/Admin/AdminStrings.php:452
 msgid "Number"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:451
+#: includes/Admin/AdminStrings.php:453
 msgid "OK"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:452
+#: includes/Admin/AdminStrings.php:454
 msgid "Observed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:453
+#: includes/Admin/AdminStrings.php:455
 msgid "Off by default because these identify your private groups."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:454
+#: includes/Admin/AdminStrings.php:456
 msgid "Off by default. Deactivating the plugin never deletes data."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:455
+#: includes/Admin/AdminStrings.php:457
 msgid "Offline"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:456
+#: includes/Admin/AdminStrings.php:458
 msgid "Offline / closed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:457
+#: includes/Admin/AdminStrings.php:459
 msgid "Offline message"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:458
+#: includes/Admin/AdminStrings.php:460
 msgid "Oldest waiting job"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:459
+#: includes/Admin/AdminStrings.php:461
 msgid "On phones"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:460
+#: includes/Admin/AdminStrings.php:462
 msgid "On these dates the widget is in offline mode all day. Dates are in the selected time zone."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:461
+#: includes/Admin/AdminStrings.php:463
 msgid "One question per line"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:462
+#: includes/Admin/AdminStrings.php:464
 msgid "Online"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:463
+#: includes/Admin/AdminStrings.php:465
 msgid "Only requests from these addresses may set X-Forwarded-For. Leave empty unless the site is behind a CDN or proxy you control."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:464
+#: includes/Admin/AdminStrings.php:466
 msgid "Only simple shapes are kept. Scripts, styles, links and external references are rejected."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:465
+#: includes/Admin/AdminStrings.php:467
 msgid "Open"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:466
+#: includes/Admin/AdminStrings.php:468
 msgid "Open conversation"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:467
+#: includes/Admin/AdminStrings.php:469
 msgid "Open the chat window"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:468
+#: includes/Admin/AdminStrings.php:470
 msgid "Opened the chat in this session"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:469
+#: includes/Admin/AdminStrings.php:471
 msgid "Operator"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:470
+#: includes/Admin/AdminStrings.php:472
 msgid "Operators"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:471
-msgid "Operators & departments"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:472
+#: includes/Admin/AdminStrings.php:474
 msgid "Operators answer from Bale or the WordPress inbox. Departments decide where conversations go and how they are assigned."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:473
+#: includes/Admin/AdminStrings.php:475
 msgid "Operators in Bale see the conversation reference and the message text. Choose what else is included with the first message."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:474
+#: includes/Admin/AdminStrings.php:476
 msgid "Operators must use Bale’s Reply on a message the bot sent for that conversation. Replies to other messages are rejected and the bot explains why. Check that receiving works (webhook or polling) and that the operator has linked their Bale account on the Operators page."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:475
+#: includes/Admin/AdminStrings.php:477
 msgid "Operators reply in Bale but the visitor gets nothing"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:476
+#: includes/Admin/AdminStrings.php:478
 msgid "Optional"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:477
+#: includes/Admin/AdminStrings.php:479
 msgid "Or enter IDs (comma separated)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:478
+#: includes/Admin/AdminStrings.php:480
 msgid "Order"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:479
+#: includes/Admin/AdminStrings.php:481
 msgid "Order: higher priority first (ties by creation). A matching exclusion always wins. Only one proactive message is shown per page view; launcher visibility, department and greeting come from the highest matching rule."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:480
+#: includes/Admin/AdminStrings.php:482
 msgid "Organize"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:481
+#: includes/Admin/AdminStrings.php:483
 msgid "Outside the web root"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:482
+#: includes/Admin/AdminStrings.php:484
 msgid "Outside these hours the widget invites visitors to leave a message, and nobody is shown as available."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:483
+#: includes/Admin/AdminStrings.php:485
 msgid "Page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:484
+#: includes/Admin/AdminStrings.php:486
 msgid "Page address"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:485
+#: includes/Admin/AdminStrings.php:487
 msgid "Page template"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:486
+#: includes/Admin/AdminStrings.php:488
 msgid "Page the chat started on (sensitive query values removed)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:487
+#: includes/Admin/AdminStrings.php:489
 msgid "Pages"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:488
+#: includes/Admin/AdminStrings.php:490
 msgid "Parameter name"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:489
+#: includes/Admin/AdminStrings.php:491
 msgid "Parameters with sensitive names (token, email, phone…) are removed before rules see them."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:490
+#: includes/Admin/AdminStrings.php:492
 msgid "Path with * wildcard"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:491
+#: includes/Admin/AdminStrings.php:493
 msgid "Pattern"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:492
+#: includes/Admin/AdminStrings.php:494
 msgid "Pending updates at Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:493
+#: includes/Admin/AdminStrings.php:495
 msgid "Percent of page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:495
+#: includes/Admin/AdminStrings.php:497
 #, php-format
 msgid "Period boundaries use the %s time zone."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:496
+#: includes/Admin/AdminStrings.php:498
 msgid "Persian"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:497
+#: includes/Admin/AdminStrings.php:499
 msgid "Persian (right-to-left)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:498
+#: includes/Admin/AdminStrings.php:500
 msgid "Persian calendar on the server (intl)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:499
+#: includes/Admin/AdminStrings.php:501
 msgid "Persistent object cache"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:500
+#: includes/Admin/AdminStrings.php:502
 msgid "Pick a conversation from the list to read and reply."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:501
+#: includes/Admin/AdminStrings.php:503
 msgid "Pill with label"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:503
+#: includes/Admin/AdminStrings.php:505
 #, php-format
 msgid "Points to another address: %s"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:504
+#: includes/Admin/AdminStrings.php:506
 msgid "Polling (getUpdates)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:505
+#: includes/Admin/AdminStrings.php:507
 msgid "Polling mode enabled. Set up the cron job below."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:506
+#: includes/Admin/AdminStrings.php:508
 msgid "Position"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:507
+#: includes/Admin/AdminStrings.php:509
 msgid "Possible duplicate in Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:508
+#: includes/Admin/AdminStrings.php:510
 msgid "Post"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:509
+#: includes/Admin/AdminStrings.php:511
 msgid "Posted at the start of each conversation and clearly labelled as automated. It does not count as a human reply."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:510
+#: includes/Admin/AdminStrings.php:512
 msgid "Pre-chat form"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:511
+#: includes/Admin/AdminStrings.php:513
 msgid "Pre-select a department"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:512
+#: includes/Admin/AdminStrings.php:514
 msgid "Preview options"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:513
+#: includes/Admin/AdminStrings.php:515
 msgid "Previous conversations"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:514
+#: includes/Admin/AdminStrings.php:516
 msgid "Pricing page help offer"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:515
+#: includes/Admin/AdminStrings.php:517
 msgid "Pricing page template"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:516
+#: includes/Admin/AdminStrings.php:518
 msgid "Priority"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:518
+#: includes/Admin/AdminStrings.php:520
 #, php-format
 msgid "Priority %s"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:519
-msgid "Privacy & data retention"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:520
+#: includes/Admin/AdminStrings.php:522
 msgid "Private file storage"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:521
+#: includes/Admin/AdminStrings.php:523
 msgid "Process Bale update"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:522
+#: includes/Admin/AdminStrings.php:524
 msgid "Processed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:523
+#: includes/Admin/AdminStrings.php:525
 msgid "Product"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:524
+#: includes/Admin/AdminStrings.php:526
 msgid "Product category"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:525
+#: includes/Admin/AdminStrings.php:527
 msgid "Publicly reachable! Add the nginx rule from the documentation or set GAPBAN_STORAGE_DIR."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:526
+#: includes/Admin/AdminStrings.php:528
 msgid "Query parameters containing any of these words are removed from page addresses before operators or rules see them."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:527
+#: includes/Admin/AdminStrings.php:529
 msgid "Queue"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:528
+#: includes/Admin/AdminStrings.php:530
 msgid "Queue message"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:529
+#: includes/Admin/AdminStrings.php:531
 msgid "Queue wait (median)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:530
+#: includes/Admin/AdminStrings.php:532
 msgid "Queue wait = time from start until an operator was assigned (claim, reply or automatic assignment)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:531
+#: includes/Admin/AdminStrings.php:533
 msgid "Queued for another attempt."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:533
+#: includes/Admin/AdminStrings.php:535
 #, php-format
 msgid "Rating: %s of 5"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:534
+#: includes/Admin/AdminStrings.php:536
 msgid "Re-link Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:535
+#: includes/Admin/AdminStrings.php:537
 msgid "Read-more link (optional)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:536
+#: includes/Admin/AdminStrings.php:538
 msgid "Ready"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:537
+#: includes/Admin/AdminStrings.php:539
 msgid "Received"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:538
+#: includes/Admin/AdminStrings.php:540
 msgid "Receiving"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:539
+#: includes/Admin/AdminStrings.php:541
 msgid "Receiving updates"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:540
+#: includes/Admin/AdminStrings.php:542
 msgid "Receiving updates from Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:541
+#: includes/Admin/AdminStrings.php:543
 msgid "Recent Bale updates"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:542
+#: includes/Admin/AdminStrings.php:544
 msgid "Recorded only after the visitor allows the microphone. Delivered to Bale as an audio file, not as a native Bale voice note."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:543
+#: includes/Admin/AdminStrings.php:545
 msgid "Register webhook"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:544
+#: includes/Admin/AdminStrings.php:546
 msgid "Reliability"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:545
+#: includes/Admin/AdminStrings.php:547
 msgid "Remove"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:546
+#: includes/Admin/AdminStrings.php:548
 msgid "Remove action"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:547
+#: includes/Admin/AdminStrings.php:549
 msgid "Remove condition"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:548
+#: includes/Admin/AdminStrings.php:550
 msgid "Remove group"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:549
+#: includes/Admin/AdminStrings.php:551
 msgid "Remove holiday"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:550
+#: includes/Admin/AdminStrings.php:552
 msgid "Remove time range"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:551
+#: includes/Admin/AdminStrings.php:553
 msgid "Remove webhook"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:552
+#: includes/Admin/AdminStrings.php:554
 msgid "Reopen"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:553
+#: includes/Admin/AdminStrings.php:555
 msgid "Replace another application’s webhook?"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:554
+#: includes/Admin/AdminStrings.php:556
 msgid "Replace token"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:555
+#: includes/Admin/AdminStrings.php:557
 msgid "Replace webhook"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:556
+#: includes/Admin/AdminStrings.php:558
 msgid "Replies"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:557
+#: includes/Admin/AdminStrings.php:559
 msgid "Reply"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:558
+#: includes/Admin/AdminStrings.php:560
 msgid "Reply to visitor"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:559
+#: includes/Admin/AdminStrings.php:561
 msgid "Reports & customer satisfaction"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:560
+#: includes/Admin/AdminStrings.php:562
 msgid "Require consent before chatting"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:561
+#: includes/Admin/AdminStrings.php:563
 msgid "Required"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:562
+#: includes/Admin/AdminStrings.php:564
 msgid "Resolution time (median)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:563
+#: includes/Admin/AdminStrings.php:565
 msgid "Resolution time = time from start to closing, for closed conversations."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:564
+#: includes/Admin/AdminStrings.php:566
 msgid "Resolved"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:565
+#: includes/Admin/AdminStrings.php:567
 msgid "Result"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:566
+#: includes/Admin/AdminStrings.php:568
 msgid "Retention"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:567
+#: includes/Admin/AdminStrings.php:569
 #: includes/Core/Strings.php:123
 msgid "Retry"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:568
+#: includes/Admin/AdminStrings.php:570
 msgid "Retry automatically (a message may appear twice in Bale)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:569
+#: includes/Admin/AdminStrings.php:571
 msgid "Retrying"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:570
+#: includes/Admin/AdminStrings.php:572
 msgid "Returning visitor"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:571
+#: includes/Admin/AdminStrings.php:573
 msgid "Rotate secret"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:572
+#: includes/Admin/AdminStrings.php:574
 msgid "Round-robin"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:573
+#: includes/Admin/AdminStrings.php:575
 msgid "Round-robin among available operators"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:574
+#: includes/Admin/AdminStrings.php:576
 msgid "Rule"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:575
+#: includes/Admin/AdminStrings.php:577
 msgid "Rule ID"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:576
+#: includes/Admin/AdminStrings.php:578
 msgid "Rule name"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:577
+#: includes/Admin/AdminStrings.php:579
 msgid "Rule saved."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:578
+#: includes/Admin/AdminStrings.php:580
 msgid "Run worker now"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:579
+#: includes/Admin/AdminStrings.php:581
 msgid "SVG, HTML and executable files are never accepted."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:580
+#: includes/Admin/AdminStrings.php:582
 msgid "Same as the site language"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:581
+#: includes/Admin/AdminStrings.php:583
 msgid "Satisfaction (CSAT)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:582
+#: includes/Admin/AdminStrings.php:584
 msgid "Satisfaction rating after a conversation"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:583
-msgid "Save"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:584
-msgid "Save changes"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:585
-msgid "Save note"
+msgid "Saturday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:586
-msgid "Save rule"
+msgid "Save"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:587
-msgid "Saved."
+msgid "Save changes"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:588
-msgid "Saw another campaign recently"
+msgid "Save note"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:589
-msgid "Screen width"
+msgid "Save rule"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:590
-msgid "Search"
+msgid "Saved."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:591
-msgid "Search conversations"
+msgid "Saw another campaign recently"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:592
-msgid "Search name, email, reference or text…"
+msgid "Screen width"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:593
-msgid "Search results"
+msgid "Search"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:594
-msgid "Seconds"
+msgid "Search conversations"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:595
-msgid "Seen by visitor"
+msgid "Search name, email, reference or text…"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:596
-msgid "Select a conversation"
+msgid "Search results"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:597
+msgid "Seconds"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:598
+msgid "Seen by visitor"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:599
+msgid "Select a conversation"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:600
 #: includes/Core/Strings.php:137
 msgid "Send"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:598
+#: includes/Admin/AdminStrings.php:601
 msgid "Send a test message to the support group."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:599
+#: includes/Admin/AdminStrings.php:602
 msgid "Send test message"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:600
+#: includes/Admin/AdminStrings.php:603
 msgid "Send this command in that group within 15 minutes."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:601
+#: includes/Admin/AdminStrings.php:604
 msgid "Send this command in the support group within 15 minutes:"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:602
+#: includes/Admin/AdminStrings.php:605
 msgid "Sending"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:603
+#: includes/Admin/AdminStrings.php:606
 msgid "Sensitive URL parameter names"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:605
+#: includes/Admin/AdminStrings.php:608
 #, php-format
 msgid "Settings imported: %d rules, %d help items."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:606
+#: includes/Admin/AdminStrings.php:609
 msgid "Settings saved."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:607
+#: includes/Admin/AdminStrings.php:610
 msgid "Setup & connection status"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:608
+#: includes/Admin/AdminStrings.php:611
 msgid "Setup progress"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:609
+#: includes/Admin/AdminStrings.php:612
 msgid "Shop"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:610
+#: includes/Admin/AdminStrings.php:613
 msgid "Shortcut"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:611
+#: includes/Admin/AdminStrings.php:614
 msgid "Show Persian digits"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:612
+#: includes/Admin/AdminStrings.php:615
 msgid "Show a bubble next to the launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:613
+#: includes/Admin/AdminStrings.php:616
 msgid "Show an automated message (labelled automated)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:614
+#: includes/Admin/AdminStrings.php:617
 msgid "Show dates in the Jalali (Solar Hijri) calendar"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:615
+#: includes/Admin/AdminStrings.php:618
 msgid "Show the launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:616
+#: includes/Admin/AdminStrings.php:619
 msgid "Show when"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:617
+#: includes/Admin/AdminStrings.php:620
 msgid "Shown"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:618
+#: includes/Admin/AdminStrings.php:621
 msgid "Shown once next to the launcher until the visitor dismisses it."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:619
+#: includes/Admin/AdminStrings.php:622
 msgid "Simulate a visit and see which rules match and why. Nothing is shown to real visitors."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:621
+#: includes/Admin/AdminStrings.php:624
 #, php-format
 msgid "Site time zone (%s)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:622
+#: includes/Admin/AdminStrings.php:625
 #: includes/Core/Strings.php:64
 #: includes/Core/Strings.php:153
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:623
+#: includes/Admin/AdminStrings.php:626
 msgid "Sound on new replies (default)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:624
+#: includes/Admin/AdminStrings.php:627
 msgid "Spam"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:625
+#: includes/Admin/AdminStrings.php:628
 msgid "Spam mark removed."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:626
+#: includes/Admin/AdminStrings.php:629
 msgid "Specific pages or posts"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:627
+#: includes/Admin/AdminStrings.php:630
 msgid "Speech bubble"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:628
+#: includes/Admin/AdminStrings.php:631
 msgid "Stacking order (z-index)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:629
+#: includes/Admin/AdminStrings.php:632
 msgid "Start side (right in Persian, left in English)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:630
+#: includes/Admin/AdminStrings.php:633
 #: includes/Chat/Transcript.php:26
 msgid "Started"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:631
+#: includes/Admin/AdminStrings.php:634
 msgid "Started on"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:632
+#: includes/Admin/AdminStrings.php:635
 msgid "Status"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:633
+#: includes/Admin/AdminStrings.php:636
 msgid "Status filter"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:634
+#: includes/Admin/AdminStrings.php:637
 msgid "Step 1"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:635
+#: includes/Admin/AdminStrings.php:638
 msgid "Step 2"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:636
+#: includes/Admin/AdminStrings.php:639
 msgid "Step 3"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:637
+#: includes/Admin/AdminStrings.php:640
 msgid "Step 4"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:638
+#: includes/Admin/AdminStrings.php:641
 msgid "Stop showing after"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:639
+#: includes/Admin/AdminStrings.php:642
 msgid "Style"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:640
+#: includes/Admin/AdminStrings.php:643
 msgid "Subtitle"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:641
+#: includes/Admin/AdminStrings.php:644
 msgid "Subtle (as in the design reference)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:642
+#: includes/Admin/AdminStrings.php:645
 msgid "Suggested questions"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:643
+#: includes/Admin/AdminStrings.php:646
 msgid "Summary"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:644
+#: includes/Admin/AdminStrings.php:647
+msgid "Sunday"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:648
 msgid "Support group"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:645
+#: includes/Admin/AdminStrings.php:649
 msgid "Support group connected."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:646
+#: includes/Admin/AdminStrings.php:650
 #: includes/Chat/Transcript.php:41
 msgid "System"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:647
+#: includes/Admin/AdminStrings.php:651
 msgid "System check"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:648
+#: includes/Admin/AdminStrings.php:652
 msgid "Tablet"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:649
+#: includes/Admin/AdminStrings.php:653
 msgid "Tag filter"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:650
+#: includes/Admin/AdminStrings.php:654
 msgid "Tags"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:651
+#: includes/Admin/AdminStrings.php:655
 msgid "Tags saved."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:652
+#: includes/Admin/AdminStrings.php:656
 msgid "Taxonomy"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:653
+#: includes/Admin/AdminStrings.php:657
 msgid "Team availability"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:654
+#: includes/Admin/AdminStrings.php:658
 msgid "Temporary away"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:655
+#: includes/Admin/AdminStrings.php:659
 msgid "Test message sent. Now reply to it in Bale."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:656
+#: includes/Admin/AdminStrings.php:660
 msgid "Test receiving"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:657
+#: includes/Admin/AdminStrings.php:661
 msgid "Test rules"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:658
+#: includes/Admin/AdminStrings.php:662
 msgid "Test sending"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:659
+#: includes/Admin/AdminStrings.php:663
 msgid "Test sending and receiving"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:660
+#: includes/Admin/AdminStrings.php:664
 msgid "Text"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:661
+#: includes/Admin/AdminStrings.php:665
 msgid "Text button"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:662
+#: includes/Admin/AdminStrings.php:666
 msgid "That Bale account is already linked to another operator."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:663
+#: includes/Admin/AdminStrings.php:667
 msgid "The background worker is not running. Set up the cron job above, or open “Delivery queue & diagnostics” and run the worker manually."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:664
+#: includes/Admin/AdminStrings.php:668
 msgid "The code could not be used."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:665
+#: includes/Admin/AdminStrings.php:669
 msgid "The code was used but binding failed."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:666
+#: includes/Admin/AdminStrings.php:670
 msgid "The conversation keeps its original Bale destination; the transfer changes who is responsible in WordPress."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:667
+#: includes/Admin/AdminStrings.php:671
 #: includes/Core/Strings.php:118
 msgid "The conversation was closed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:668
+#: includes/Admin/AdminStrings.php:672
 #: includes/Core/Strings.php:119
 msgid "The conversation was reopened"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:669
+#: includes/Admin/AdminStrings.php:673
 msgid "The date picker uses your browser’s calendar; the list above shows Jalali dates."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:670
+#: includes/Admin/AdminStrings.php:674
 #: includes/Security/UploadValidator.php:50
 msgid "The file is too large."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:671
+#: includes/Admin/AdminStrings.php:675
 msgid "The operator opens a private chat with the bot in Bale (search for its username)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:672
+#: includes/Admin/AdminStrings.php:676
 msgid "The preview does not create conversations. Click the launcher to see the chat window."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:674
+#: includes/Admin/AdminStrings.php:678
 #, php-format
 msgid "The server needs outbound HTTPS access to %s. Ask your host to allow it; some hosts block outgoing requests by default."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:675
+#: includes/Admin/AdminStrings.php:679
 msgid "The visitor will be able to chat again."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:676
+#: includes/Admin/AdminStrings.php:680
 msgid "They send this exact command within 15 minutes. The code works once."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:677
+#: includes/Admin/AdminStrings.php:681
 msgid "This URL is shown only once. Keep it private; anyone with it can trigger the worker (but cannot read data)."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:679
+#: includes/Admin/AdminStrings.php:683
 #, php-format
 msgid "This bot currently sends its updates to %s. Replacing it will stop that application from receiving messages from this bot."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:680
+#: includes/Admin/AdminStrings.php:684
 msgid "This is not a valid JSON file."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:681
+#: includes/Admin/AdminStrings.php:685
 msgid "This site does not use HTTPS, so a webhook cannot be registered."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:682
-msgid "Time zone"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:683
-msgid "Title"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:684
-msgid "To"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:685
-msgid "Token"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:686
-msgid "Transactions (InnoDB)"
+msgid "Thursday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:687
-msgid "Transfer"
+msgid "Time zone"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:688
-msgid "Transfer conversation"
+msgid "Title"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:689
-msgid "Trigger"
+msgid "To"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:690
-msgid "Troubleshooting"
+msgid "Token"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:691
-msgid "Trusted reverse proxies (IP or CIDR)"
+msgid "Transactions (InnoDB)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:692
-msgid "Type"
+msgid "Transfer"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:693
-msgid "Type / and the shortcut in the reply box to insert it."
+msgid "Transfer conversation"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:694
-msgid "URL query parameter"
+msgid "Trigger"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:695
-msgid "UTM key (e.g. utm_source)"
+msgid "Troubleshooting"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:696
-msgid "Unanswered"
+msgid "Trusted reverse proxies (IP or CIDR)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:697
-msgid "Unanswered rate = conversations without any operator message ÷ all conversations."
+msgid "Tuesday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:698
-msgid "Unassigned"
+msgid "Type"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:699
-msgid "Unassigned (back to the queue)"
+msgid "Type / and the shortcut in the reply box to insert it."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:700
-msgid "Unblock"
+msgid "URL query parameter"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:701
-msgid "Unblock visitor"
+msgid "UTM key (e.g. utm_source)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:702
-msgid "Uncertain"
+msgid "Unanswered"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:703
-msgid "Uncertain — may or may not have reached Bale"
+msgid "Unanswered rate = conversations without any operator message ÷ all conversations."
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:704
-msgid "Unknown"
+msgid "Unassigned"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:705
-msgid "Unlink Bale account"
+msgid "Unassigned (back to the queue)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:706
-msgid "Up to six one-tap questions shown on the widget’s home screen. Tapping one starts a chat with that text."
+msgid "Unblock"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:707
-msgid "Update"
+msgid "Unblock visitor"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:708
-msgid "Updated"
+msgid "Uncertain"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:709
-msgid "Upload failed"
+msgid "Uncertain — may or may not have reached Bale"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:710
+msgid "Unknown"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:711
+msgid "Unlink Bale account"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:712
+msgid "Up to six one-tap questions shown on the widget’s home screen. Tapping one starts a chat with that text."
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:713
+msgid "Update"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:714
+msgid "Updated"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:715
+msgid "Upload failed"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:716
 #: includes/Core/Strings.php:143
 msgid "Uploading"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:711
+#: includes/Admin/AdminStrings.php:717
 msgid "Urgent"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:712
+#: includes/Admin/AdminStrings.php:718
 msgid "Use a different greeting"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:713
+#: includes/Admin/AdminStrings.php:719
 msgid "Use business hours"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:714
+#: includes/Admin/AdminStrings.php:720
 msgid "Use polling"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:715
+#: includes/Admin/AdminStrings.php:721
 msgid "Use this for short breaks; the widget shows the away message until the time below."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:716
+#: includes/Admin/AdminStrings.php:722
 msgid "Uses the browser’s built-in Persian calendar. Exports keep UTC timestamps."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:717
+#: includes/Admin/AdminStrings.php:723
 msgid "Value"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:718
+#: includes/Admin/AdminStrings.php:724
 msgid "Verified on this site"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:719
+#: includes/Admin/AdminStrings.php:725
 msgid "Verify and save"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:720
+#: includes/Admin/AdminStrings.php:726
 msgid "Versions"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:721
+#: includes/Admin/AdminStrings.php:727
 msgid "Visible to visitors"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:722
+#: includes/Admin/AdminStrings.php:728
 #: includes/Routing/ReplyRouter.php:226
 msgid "Visitor"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:723
+#: includes/Admin/AdminStrings.php:729
 msgid "Visitor blocked."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:724
+#: includes/Admin/AdminStrings.php:730
 msgid "Visitor is logged in"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:725
+#: includes/Admin/AdminStrings.php:731
 msgid "Visitor is typing…"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:726
+#: includes/Admin/AdminStrings.php:732
 msgid "Visitor name"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:727
+#: includes/Admin/AdminStrings.php:733
 msgid "Visitor session lifetime (days)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:728
+#: includes/Admin/AdminStrings.php:734
 msgid "Visitor unblocked."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:729
+#: includes/Admin/AdminStrings.php:735
 msgid "Visitors can choose this department"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:730
+#: includes/Admin/AdminStrings.php:736
 msgid "Visitors can reopen a closed conversation by writing again"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:731
+#: includes/Admin/AdminStrings.php:737
 msgid "Visitors see this name next to the operator’s replies."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:732
+#: includes/Admin/AdminStrings.php:738
 msgid "Visitors who ask their system for reduced motion never see animation."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:733
+#: includes/Admin/AdminStrings.php:739
 msgid "Voice messages"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:734
+#: includes/Admin/AdminStrings.php:740
 msgid "WP-Cron"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:735
+#: includes/Admin/AdminStrings.php:741
 msgid "Waiting"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:736
+#: includes/Admin/AdminStrings.php:742
 msgid "Waiting for an operator"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:737
+#: includes/Admin/AdminStrings.php:743
 msgid "Waiting for the bot to receive it… (receiving must already work: webhook or polling)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:738
+#: includes/Admin/AdminStrings.php:744
 msgid "Waiting for the bot to receive the code…"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:739
+#: includes/Admin/AdminStrings.php:745
 msgid "Waiting for visitor"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:740
+#: includes/Admin/AdminStrings.php:746
 msgid "Waiting for your reply in Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:741
+#: includes/Admin/AdminStrings.php:747
 msgid "Waiting to send to Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:742
+#: includes/Admin/AdminStrings.php:748
 msgid "Webhook (recommended)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:743
+#: includes/Admin/AdminStrings.php:749
 msgid "Webhook registered."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:744
+#: includes/Admin/AdminStrings.php:750
 msgid "Webhook removed."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:745
+#: includes/Admin/AdminStrings.php:751
 msgid "Webhook secret rotated."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:746
-msgid "Weekly schedule"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:747
-msgid "Welcome subtitle"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:748
-msgid "Welcome title"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:749
-msgid "What is sent to Bale"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:750
-msgid "When"
-msgstr ""
-
-#: includes/Admin/AdminStrings.php:751
-msgid "When Bale’s answer is unclear (timeout)"
-msgstr ""
-
 #: includes/Admin/AdminStrings.php:752
-msgid "Widget appearance & preview"
+msgid "Wednesday"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:753
-msgid "Widget enabled"
+msgid "Weekly schedule"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:754
-msgid "Widget language"
+msgid "Welcome subtitle"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:755
-msgid "Widget preview"
+msgid "Welcome title"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:756
-msgid "With WP-CLI (preferred):"
+msgid "What is sent to Bale"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:757
-msgid "Within business hours"
+msgid "When"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:758
-msgid "Within hours"
+msgid "When Bale’s answer is unclear (timeout)"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:759
-msgid "Without WP-CLI (shared hosting): call the secret cron URL every minute:"
+msgid "Widget appearance & preview"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:760
-msgid "Without rules the launcher appears on every page and no proactive messages are shown."
+msgid "Widget enabled"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:761
-msgid "WooCommerce page"
+msgid "Widget language"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:762
-msgid "WordPress inbox only"
+msgid "Widget preview"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:763
-msgid "WordPress role"
+msgid "With WP-CLI (preferred):"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:764
-msgid "WordPress user"
+msgid "Within business hours"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:765
-msgid "WordPress user (optional)"
+msgid "Within hours"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:766
+msgid "Without WP-CLI (shared hosting): call the secret cron URL every minute:"
 msgstr ""
 
 #: includes/Admin/AdminStrings.php:767
+msgid "Without rules the launcher appears on every page and no proactive messages are shown."
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:768
+msgid "WooCommerce page"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:769
+msgid "WordPress inbox only"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:770
+msgid "WordPress role"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:771
+msgid "WordPress user"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:772
+msgid "WordPress user (optional)"
+msgstr ""
+
+#: includes/Admin/AdminStrings.php:774
 #, php-format
 msgid "Worker ran: %d done, %d failed."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:768
+#: includes/Admin/AdminStrings.php:775
 msgid "Works"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:769
+#: includes/Admin/AdminStrings.php:776
 msgid "Write a note for your team (never sent to the visitor)…"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:770
+#: includes/Admin/AdminStrings.php:777
 msgid "Write a reply… Type / for canned responses. Ctrl+Enter sends."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:771
+#: includes/Admin/AdminStrings.php:778
 msgid "Yes"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:772
+#: includes/Admin/AdminStrings.php:779
 msgid "You can read this conversation but not reply to it."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:773
+#: includes/Admin/AdminStrings.php:780
 msgid "You have unsaved changes."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:775
+#: includes/Admin/AdminStrings.php:782
 #, php-format
 msgid "after %s seconds of inactivity"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:777
+#: includes/Admin/AdminStrings.php:784
 #, php-format
 msgid "after %s seconds of viewing the page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:779
+#: includes/Admin/AdminStrings.php:786
 #, php-format
 msgid "after scrolling %s%% of the page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:780
+#: includes/Admin/AdminStrings.php:787
 msgid "and"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:781
+#: includes/Admin/AdminStrings.php:788
 msgid "another address"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:782
+#: includes/Admin/AdminStrings.php:789
 msgid "any page"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:783
+#: includes/Admin/AdminStrings.php:790
 msgid "available"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:785
+#: includes/Admin/AdminStrings.php:792
 #, php-format
 msgid "average %s"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:786
+#: includes/Admin/AdminStrings.php:793
 msgid "completed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:787
+#: includes/Admin/AdminStrings.php:794
 msgid "contains"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:788
+#: includes/Admin/AdminStrings.php:795
 msgid "database"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:789
+#: includes/Admin/AdminStrings.php:796
 msgid "derived from WordPress salts"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:790
+#: includes/Admin/AdminStrings.php:797
 msgid "direct visit"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:791
+#: includes/Admin/AdminStrings.php:798
 msgid "disabled (server cron expected)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:792
+#: includes/Admin/AdminStrings.php:799
 msgid "dismissed before"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:793
+#: includes/Admin/AdminStrings.php:800
 msgid "e.g. Nowruz"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:794
+#: includes/Admin/AdminStrings.php:801
 msgid "enabled (runs only on visits)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:795
+#: includes/Admin/AdminStrings.php:802
 msgid "except when"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:796
+#: includes/Admin/AdminStrings.php:803
 msgid "exists"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:797
+#: includes/Admin/AdminStrings.php:804
 msgid "expired"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:798
+#: includes/Admin/AdminStrings.php:805
 msgid "false"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:799
+#: includes/Admin/AdminStrings.php:806
 msgid "from Bale"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:800
+#: includes/Admin/AdminStrings.php:807
 msgid "from wp-config.php"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:801
+#: includes/Admin/AdminStrings.php:808
 msgid "hide the launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:802
+#: includes/Admin/AdminStrings.php:809
 msgid "immediately"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:803
+#: includes/Admin/AdminStrings.php:810
 msgid "in cooldown"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:804
+#: includes/Admin/AdminStrings.php:811
 msgid "inactive"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:805
+#: includes/Admin/AdminStrings.php:812
 msgid "is"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:806
+#: includes/Admin/AdminStrings.php:813
 msgid "key source"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:807
+#: includes/Admin/AdminStrings.php:814
 msgid "last worker run"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:808
+#: includes/Admin/AdminStrings.php:815
 msgid "matches"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:809
+#: includes/Admin/AdminStrings.php:816
 msgid "never"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:810
+#: includes/Admin/AdminStrings.php:817
 msgid "never again after dismissal"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:811
+#: includes/Admin/AdminStrings.php:818
 msgid "no"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:812
+#: includes/Admin/AdminStrings.php:819
 msgid "not"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:814
+#: includes/Admin/AdminStrings.php:821
 #, php-format
 msgid "not again within %s hours"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:815
+#: includes/Admin/AdminStrings.php:822
 msgid "not completed"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:816
+#: includes/Admin/AdminStrings.php:823
 msgid "open the chat window"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:817
+#: includes/Admin/AdminStrings.php:824
 msgid "or"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:818
+#: includes/Admin/AdminStrings.php:825
 msgid "page limit reached"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:820
+#: includes/Admin/AdminStrings.php:827
 #, php-format
 msgid "rule #%s within %s hours"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:821
+#: includes/Admin/AdminStrings.php:828
 msgid "schema"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:822
+#: includes/Admin/AdminStrings.php:829
 msgid "select department"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:823
+#: includes/Admin/AdminStrings.php:830
 msgid "show the automated message"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:824
+#: includes/Admin/AdminStrings.php:831
 msgid "show the bubble"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:825
+#: includes/Admin/AdminStrings.php:832
 msgid "show the launcher"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:826
+#: includes/Admin/AdminStrings.php:833
 msgid "skipped on phones"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:827
+#: includes/Admin/AdminStrings.php:834
 msgid "support group"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:828
+#: includes/Admin/AdminStrings.php:835
 msgid "true"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:829
+#: includes/Admin/AdminStrings.php:836
 msgid "until an operator was assigned"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:830
+#: includes/Admin/AdminStrings.php:837
 msgid "use the greeting"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:831
+#: includes/Admin/AdminStrings.php:838
 msgid "visit limit reached"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:832
+#: includes/Admin/AdminStrings.php:839
 msgid "visitor limit reached"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:833
+#: includes/Admin/AdminStrings.php:840
 msgid "when the mouse leaves the page (desktop only)"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:834
+#: includes/Admin/AdminStrings.php:841
 msgid "yes"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:835
+#: includes/Admin/AdminStrings.php:842
 msgid "“Could not reach Bale”"
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:836
+#: includes/Admin/AdminStrings.php:843
 msgid "“Observed” means this site actually performed the operation successfully. Features Bale’s bot API does not offer are disabled instead of imitated."
 msgstr ""
 
-#: includes/Admin/AdminStrings.php:837
+#: includes/Admin/AdminStrings.php:844
 msgid "“Uncertain” means Bale may already have the message (for example after a timeout). Check the Bale group before retrying to avoid a duplicate."
 msgstr ""
 

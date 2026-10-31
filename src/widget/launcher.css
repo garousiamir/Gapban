@@ -39,7 +39,6 @@
   z-index: var(--gb-z);
   inset-block-end: calc(var(--gb-offset-y) + var(--gb-lift) + env(safe-area-inset-bottom, 0px));
   font-family: var(--gb-font);
-  direction: inherit;
 }
 :host([data-side='end']) { inset-inline-end: calc(var(--gb-offset-x) + env(safe-area-inset-right, 0px)); }
 :host([data-side='start']) { inset-inline-start: calc(var(--gb-offset-x) + env(safe-area-inset-left, 0px)); }
@@ -48,6 +47,7 @@
 :host([hidden]) { display: none !important; }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 .gb-stack {
   display: flex;

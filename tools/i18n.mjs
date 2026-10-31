@@ -161,7 +161,7 @@ function compileMo(entriesList) {
   header.writeUInt32LE(keysOffset, 12);
   header.writeUInt32LE(valsOffset, 16);
   header.writeUInt32LE(0, 20);
-  header.writeUInt32LE(dataOffset, 24);
+  header.writeUInt32LE(valsOffset + n * 8, 24); // hash table (empty) follows the translation table, as msgfmt does
   return Buffer.concat([header, keyTable, valTable, ...chunks]);
 }
 for (const f of readdirSync('gapban/languages').filter((f) => f.endsWith('.po'))) {

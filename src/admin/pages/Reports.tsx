@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { api, errorText, num, prefs, t } from '../lib';
+import { api, cfg, errorText, num, prefs, t } from '../lib';
 import { Card, Field, Notice, PageHeader, Spinner, StatTile, useAsync } from '../ui';
 import { formatDuration } from '../../shared/format';
 
@@ -20,7 +20,7 @@ type Report = {
   local_range: { from: string; to: string; timezone: string };
 };
 
-const pct = (x: number | null) => (x === null ? '—' : num((x * 100).toFixed(1)) + '٪');
+const pct = (x: number | null) => (x === null ? '—' : num((x * 100).toFixed(1)) + (cfg().lang === 'fa' ? '٪' : '%'));
 
 export default function Reports() {
   const today = new Date();
@@ -148,7 +148,8 @@ export default function Reports() {
 function BarChart({ data }: { data: Report['daily'] }) {
   if (!data.length) return <p className="gb-hint">{t('No data in this period.')}</p>;
   const max = Math.max(1, ...data.map((x) => x.conversations));
-  const w = 100 / data.length;
+  const w = Math.min(100 / data.length, 6);
+  const offset = (100 - w * data.length) / 2;
   return (
     <figure className="gb-chart">
       <svg viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label={t('Conversations per day')}>
@@ -157,8 +158,8 @@ function BarChart({ data }: { data: Report['daily'] }) {
           const hu = (x.unanswered / max) * 38;
           return (
             <g key={x.day}>
-              <rect x={i * w + w * 0.15} y={40 - h} width={w * 0.7} height={h} rx="0.6" className="gb-bar" />
-              <rect x={i * w + w * 0.15} y={40 - hu} width={w * 0.7} height={hu} rx="0.6" className="gb-bar-un" />
+              <rect x={offset + i * w + w * 0.15} y={40 - h} width={w * 0.7} height={h} rx="0.6" className="gb-bar" />
+              <rect x={offset + i * w + w * 0.15} y={40 - hu} width={w * 0.7} height={hu} rx="0.6" className="gb-bar-un" />
               <title>{`${x.day}: ${x.conversations} / ${x.unanswered}`}</title>
             </g>
           );

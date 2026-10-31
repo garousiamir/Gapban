@@ -42,6 +42,7 @@
   line-height: 1.9;
 }
 #gapban-admin * { box-sizing: border-box; }
+#gapban-admin [hidden] { display: none !important; }
 #gapban-admin :where(h1, h2, h3, p) { margin: 0; }
 #gapban-admin :where(button, input, select, textarea) { font-family: inherit; }
 #gapban-admin a { color: var(--gb-brand); }

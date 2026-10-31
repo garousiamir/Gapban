@@ -155,7 +155,8 @@ export function randomKey(len = 24): string {
 /** Interpolate %s / %d / %1$s placeholders. */
 export function sprintf(template: string, ...args: Array<string | number>): string {
   let i = 0;
-  return template.replace(/%(\d+\$)?[sd]/g, (_m, pos: string | undefined) => {
+  return template.replace(/%%|%(\d+\$)?[sd]/g, (m, pos: string | undefined) => {
+    if (m === '%%') return '%';
     const idx = pos ? parseInt(pos, 10) - 1 : i++;
     return String(args[idx] ?? '');
   });

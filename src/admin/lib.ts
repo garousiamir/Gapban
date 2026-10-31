@@ -57,6 +57,8 @@ export async function api<T = any>(method: string, path: string, body?: unknown,
   const c = cfg();
   const root = path.startsWith('wp/v2/') ? c.restRoot : c.rest;
   let url = root.replace(/\/+$/, '') + '/' + path.replace(/^\//, '');
+  // Like wp.apiFetch: answer in the admin user's language, not the site language.
+  query = { ...(query || {}), _locale: 'user' };
   if (query) {
     const qs = Object.entries(query)
       .filter(([, v]) => v !== undefined && v !== null && v !== '')

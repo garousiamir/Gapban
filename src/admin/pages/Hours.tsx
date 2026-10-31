@@ -5,14 +5,14 @@ import { SaveBar, useSettings } from '../settings';
 import { formatDay, normalizeDigits } from '../../shared/format';
 import { prefs } from '../lib';
 
-const DAYS: Array<[string, string]> = [
-  ['sat', 'Saturday'],
-  ['sun', 'Sunday'],
-  ['mon', 'Monday'],
-  ['tue', 'Tuesday'],
-  ['wed', 'Wednesday'],
-  ['thu', 'Thursday'],
-  ['fri', 'Friday'],
+const DAYS = (): Array<[string, string]> => [
+  ['sat', t('Saturday')],
+  ['sun', t('Sunday')],
+  ['mon', t('Monday')],
+  ['tue', t('Tuesday')],
+  ['wed', t('Wednesday')],
+  ['thu', t('Thursday')],
+  ['fri', t('Friday')],
 ];
 
 export default function Hours() {
@@ -32,20 +32,20 @@ export default function Hours() {
       <Card title={t('Weekly schedule')}>
         <Toggle label={t('Use business hours')} checked={!!draft.business_hours_enabled} onChange={(v) => set('business_hours_enabled', v)} />
         <div className="gb-hours" aria-disabled={!draft.business_hours_enabled}>
-          {DAYS.map(([key, name]) => (
+          {DAYS().map(([key, name]) => (
             <div key={key} className="gb-hours-row">
-              <strong className="gb-hours-day">{t(name)}</strong>
+              <strong className="gb-hours-day">{name}</strong>
               <div className="gb-hours-ranges">
                 {(hours[key] || []).length === 0 && <span className="gb-hint">{t('Closed')}</span>}
                 {(hours[key] || []).map((r, i) => (
                   <span key={i} className="gb-range">
                     <label className="gb-sr" htmlFor={`gb-h-${key}-${i}-a`}>
-                      {t('%s opens at', t(name))}
+                      {t('%s opens at', name)}
                     </label>
                     <input id={`gb-h-${key}-${i}-a`} className="gb-input gb-time" type="time" value={r[0]} onChange={(e) => setDay(key, hours[key].map((x, j) => (j === i ? [normalizeDigits(e.target.value), x[1]] : x)))} />
                     <span aria-hidden="true">–</span>
                     <label className="gb-sr" htmlFor={`gb-h-${key}-${i}-b`}>
-                      {t('%s closes at', t(name))}
+                      {t('%s closes at', name)}
                     </label>
                     <input id={`gb-h-${key}-${i}-b`} className="gb-input gb-time" type="time" value={r[1]} onChange={(e) => setDay(key, hours[key].map((x, j) => (j === i ? [x[0], normalizeDigits(e.target.value)] : x)))} />
                     <IconButton icon="xmark" label={t('Remove time range')} onClick={() => setDay(key, hours[key].filter((_, j) => j !== i))} />

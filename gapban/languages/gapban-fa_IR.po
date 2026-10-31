@@ -1,0 +1,3011 @@
+# Persian translation for Gapban.
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Gapban 1.0.0\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: gapban\n"
+
+msgid "Gapban requires PHP %s or newer. The plugin is inactive."
+msgstr "گپ‌بان به PHP نسخهٔ %s یا جدیدتر نیاز دارد. افزونه غیرفعال است."
+
+msgid "Conversations inbox"
+msgstr "صندوق گفتگوها"
+
+msgid "Setup & connection"
+msgstr "راه‌اندازی و اتصال"
+
+msgid "Operators & departments"
+msgstr "اپراتورها و بخش‌ها"
+
+msgid "Widget appearance"
+msgstr "ظاهر ابزارک"
+
+msgid "Display rules & automation"
+msgstr "قوانین نمایش و پیام خودکار"
+
+msgid "Business hours & holidays"
+msgstr "ساعات کاری و تعطیلات"
+
+msgid "Canned responses & help"
+msgstr "پاسخ‌های آماده و راهنما"
+
+msgid "Reports & satisfaction"
+msgstr "گزارش‌ها و رضایت"
+
+msgid "Privacy & data retention"
+msgstr "حریم خصوصی و نگهداری داده"
+
+msgid "Delivery queue & diagnostics"
+msgstr "صف ارسال و عیب‌یابی"
+
+msgid "Import / export"
+msgstr "ورود و خروج تنظیمات"
+
+msgid "Gapban"
+msgstr "گپ‌بان"
+
+msgid "Loading…"
+msgstr "در حال بارگذاری…"
+
+msgid "The Gapban dashboard needs JavaScript."
+msgstr "پیشخوان گپ‌بان به جاوااسکریپت نیاز دارد."
+
+msgid "Setup"
+msgstr "راه‌اندازی"
+
+msgid " or "
+msgstr " یا "
+
+msgid "%d new"
+msgstr "%d جدید"
+
+msgid "%d pending, %d failed"
+msgstr "%d در انتظار، %d ناموفق"
+
+msgid "%d ratings, average %s / 5"
+msgstr "%d امتیاز، میانگین %s از ۵"
+
+msgid "%d rules imported (disabled for review)."
+msgstr "%d قانون وارد شد (برای بازبینی غیرفعال است)."
+
+msgid "%d s"
+msgstr "%d ثانیه"
+
+msgid "%d spam"
+msgstr "%d هرزنامه"
+
+msgid "%d without a human reply"
+msgstr "%d بدون پاسخ انسانی"
+
+msgid "%s closes at"
+msgstr "ساعت پایان %s"
+
+msgid "%s opens at"
+msgstr "ساعت شروع %s"
+
+msgid "%s time(s) per page"
+msgstr "%s بار در هر صفحه"
+
+msgid "%s time(s) per visit"
+msgstr "%s بار در هر بازدید"
+
+msgid "%s time(s) per visitor"
+msgstr "%s بار برای هر بازدیدکننده"
+
+msgid "(none)"
+msgstr "(هیچ)"
+
+msgid "(untitled)"
+msgstr "(بی‌نام)"
+
+msgid "0 = no limit"
+msgstr "۰ یعنی بدون محدودیت"
+
+msgid "0 keeps conversations until you delete them."
+msgstr "با ۰، گفتگوها تا زمانی که خودتان حذفشان کنید نگه داشته می‌شوند."
+
+msgid "0 keeps files as long as their conversation."
+msgstr "با ۰، فایل‌ها تا وقتی گفتگویشان هست نگه داشته می‌شوند."
+
+msgid "90%% within %s"
+msgstr "۹۰٪ در کمتر از %s"
+
+msgid "A CAPTCHA service is not built in, to avoid sending visitor data to third parties."
+msgstr "سرویس کپچا عمداً گنجانده نشده تا اطلاعات بازدیدکنندگان به شخص ثالث ارسال نشود."
+
+msgid "A bot has only one webhook. Use a separate bot for Gapban, or replace the other webhook only if you are sure it is no longer needed."
+msgstr "هر ربات فقط یک وب‌هوک دارد. برای گپ‌بان ربات جداگانه بسازید، یا فقط وقتی وب‌هوک دیگر را جایگزین کنید که مطمئنید دیگر لازم نیست."
+
+msgid "Abuse protection & limits"
+msgstr "محافظت در برابر سوءاستفاده و محدودیت‌ها"
+
+msgid "Accepted by Bale"
+msgstr "توسط بله پذیرفته شد"
+
+msgid "Action %s"
+msgstr "کنش %s"
+
+msgid "Actions"
+msgstr "کنش‌ها"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Active for this site"
+msgstr "برای همین سایت فعال است"
+
+msgid "Activity log"
+msgstr "گزارش رویدادها"
+
+msgid "Add"
+msgstr "افزودن"
+
+msgid "Add action"
+msgstr "افزودن کنش"
+
+msgid "Add an operator, then send them the one-time link code so their Bale account is recognised."
+msgstr "یک اپراتور اضافه کنید و کد اتصال یک‌بارمصرف را برایش بفرستید تا حساب بله‌اش شناخته شود."
+
+msgid "Add canned response"
+msgstr "افزودن پاسخ آماده"
+
+msgid "Add condition"
+msgstr "افزودن شرط"
+
+msgid "Add department"
+msgstr "افزودن بخش"
+
+msgid "Add field"
+msgstr "افزودن فیلد"
+
+msgid "Add help article"
+msgstr "افزودن مطلب راهنما"
+
+msgid "Add holiday"
+msgstr "افزودن تعطیلی"
+
+msgid "Add hours"
+msgstr "افزودن بازهٔ ساعت"
+
+msgid "Add nested group"
+msgstr "افزودن گروه تودرتو"
+
+msgid "Add operator"
+msgstr "افزودن اپراتور"
+
+msgid "Add the bot to the department’s Bale group and allow it to send messages."
+msgstr "ربات را به گروه بلهٔ این بخش اضافه کنید و اجازهٔ ارسال پیام به آن بدهید."
+
+msgid "Address (URL)"
+msgstr "نشانی (URL)"
+
+msgid "Address contains"
+msgstr "نشانی شامل این باشد"
+
+msgid "After inactivity"
+msgstr "پس از بی‌فعالیتی"
+
+msgid "After scrolling"
+msgstr "پس از اسکرول"
+
+msgid "After time on page (visible tab only)"
+msgstr "پس از مدتی ماندن در صفحه (فقط وقتی زبانه دیده می‌شود)"
+
+msgid "All assignees"
+msgstr "همهٔ اپراتورها"
+
+msgid "All changes saved."
+msgstr "همهٔ تغییرات ذخیره شده است."
+
+msgid "All chat sessions of this visitor are revoked and new messages are refused. A determined visitor can start over from another browser."
+msgstr "همهٔ نشست‌های گفتگوی این بازدیدکننده باطل و پیام‌های تازه‌اش رد می‌شود. بازدیدکنندهٔ مصر می‌تواند از مرورگر دیگری دوباره شروع کند."
+
+msgid "All departments"
+msgstr "همهٔ بخش‌ها"
+
+msgid "All of"
+msgstr "همهٔ شرط‌ها"
+
+msgid "All of (AND)"
+msgstr "همهٔ شرط‌ها (و)"
+
+msgid "All tags"
+msgstr "همهٔ برچسب‌ها"
+
+msgid "Allow file attachments"
+msgstr "اجازهٔ ارسال فایل"
+
+msgid "Allow the bot to send messages in the group."
+msgstr "به ربات اجازهٔ ارسال پیام در گروه بدهید."
+
+msgid "Allowed"
+msgstr "مجاز"
+
+msgid "Allowed file types"
+msgstr "نوع فایل‌های مجاز"
+
+msgid "Always left"
+msgstr "همیشه سمت چپ"
+
+msgid "Always right"
+msgstr "همیشه سمت راست"
+
+msgid "Animation"
+msgstr "پویانمایی"
+
+msgid "Another app already uses this bot’s webhook"
+msgstr "برنامهٔ دیگری از وب‌هوک این ربات استفاده می‌کند"
+
+msgid "Any of"
+msgstr "یکی از شرط‌ها"
+
+msgid "Any of (OR)"
+msgstr "یکی از شرط‌ها (یا)"
+
+msgid "Any single item"
+msgstr "هر صفحهٔ تکی"
+
+msgid "Archive"
+msgstr "بایگانی"
+
+msgid "Asia/Tehran follows Iran’s official time; no fixed offset is assumed."
+msgstr "منطقهٔ Asia/Tehran از ساعت رسمی ایران پیروی می‌کند؛ هیچ اختلاف زمانی ثابتی فرض نمی‌شود."
+
+msgid "Ask for details before the chat starts"
+msgstr "پیش از شروع گفتگو اطلاعات بپرس"
+
+msgid "Assigned"
+msgstr "واگذارشده"
+
+msgid "Assigned to %s"
+msgstr "واگذارشده به %s"
+
+msgid "Assigned to me"
+msgstr "واگذارشده به من"
+
+msgid "Assignment"
+msgstr "واگذاری"
+
+msgid "Assignment filter"
+msgstr "فیلتر واگذاری"
+
+msgid "At least 44px for comfortable tapping."
+msgstr "دست‌کم ۴۴ پیکسل تا لمس آن راحت باشد."
+
+msgid "Attach a file"
+msgstr "پیوست فایل"
+
+msgid "Attempts"
+msgstr "تلاش‌ها"
+
+msgid "Automated greeting (optional)"
+msgstr "خوشامد خودکار (اختیاری)"
+
+msgid "Automated message"
+msgstr "پیام خودکار"
+
+msgid "Automatic"
+msgstr "خودکار"
+
+msgid "Automatic (online while the inbox is open)"
+msgstr "خودکار (تا وقتی صندوق گفتگوها باز است آنلاین)"
+
+msgid "Automatic (online while this page is open)"
+msgstr "خودکار (تا وقتی این صفحه باز است آنلاین)"
+
+msgid "Availability"
+msgstr "در دسترس بودن"
+
+msgid "Availability is set by the operator (in WordPress, or with /online, /away, /offline sent to the bot) or comes from an open inbox tab. Gapban never shows an operator as online otherwise."
+msgstr "وضعیت در دسترس بودن را خود اپراتور تعیین می‌کند (در وردپرس، یا با فرستادن ‎/online، ‎/away و ‎/offline به ربات) یا از باز بودن صندوق گفتگوها می‌آید. گپ‌بان در غیر این صورت هیچ اپراتوری را آنلاین نشان نمی‌دهد."
+
+msgid "Available"
+msgstr "در دسترس"
+
+msgid "Avatar image"
+msgstr "تصویر نمایه"
+
+msgid "Avatar image URL"
+msgstr "نشانی تصویر نمایه"
+
+msgid "Avg. first response"
+msgstr "میانگین اولین پاسخ"
+
+msgid "Away"
+msgstr "غایب"
+
+msgid "Away message"
+msgstr "پیام غیبت"
+
+msgid "Away until"
+msgstr "غایب تا"
+
+msgid "Background processing (cron)"
+msgstr "پردازش پس‌زمینه (کرون)"
+
+msgid "Bale account"
+msgstr "حساب بله"
+
+msgid "Bale bot"
+msgstr "ربات بله"
+
+msgid "Bale capabilities"
+msgstr "قابلیت‌های بله"
+
+msgid "Bale destination"
+msgstr "مقصد در بله"
+
+msgid "Bale destination chat ID (optional)"
+msgstr "شناسهٔ گفتگوی مقصد در بله (اختیاری)"
+
+msgid "Bale does not offer idempotent sending, so after a timeout Gapban cannot know whether a message arrived."
+msgstr "بله ارسال تکرارناپذیر (idempotent) ندارد؛ بنابراین پس از قطع شدن به‌علت مهلت، گپ‌بان نمی‌تواند بداند پیام رسیده است یا نه."
+
+msgid "Bale rejected the token recently. Save a new token."
+msgstr "بله به‌تازگی توکن را رد کرده است. توکن تازه‌ای ذخیره کنید."
+
+msgid "Bale: %s"
+msgstr "بله: %s"
+
+msgid "Block"
+msgstr "مسدود کن"
+
+msgid "Block visitor"
+msgstr "مسدود کردن بازدیدکننده"
+
+msgid "Blog page"
+msgstr "صفحهٔ وبلاگ"
+
+msgid "Bot"
+msgstr "ربات"
+
+msgid "Bot connected."
+msgstr "ربات متصل شد."
+
+msgid "Bot disconnected."
+msgstr "اتصال ربات قطع شد."
+
+msgid "Bot notice to operator"
+msgstr "اعلان ربات به اپراتور"
+
+msgid "Bot token"
+msgstr "توکن ربات"
+
+msgid "Brand color"
+msgstr "رنگ برند"
+
+msgid "Brand color (hover)"
+msgstr "رنگ برند (هنگام اشاره)"
+
+msgid "Brand name"
+msgstr "نام برند"
+
+msgid "Browser/page language"
+msgstr "زبان مرورگر/صفحه"
+
+msgid "CSAT"
+msgstr "رضایت"
+
+msgid "CSAT = ratings of 4 or 5 ÷ all ratings."
+msgstr "رضایت مشتری = تعداد امتیازهای ۴ و ۵ ÷ همهٔ امتیازها."
+
+msgid "Came from (referrer)"
+msgstr "مبدأ ورود (ارجاع‌دهنده)"
+
+msgid "Campaign (UTM) parameter"
+msgstr "پارامتر کمپین (UTM)"
+
+msgid "Campaign conversion = chats started from the campaign ÷ times it was shown. Shows are counted in visitors’ browsers and may be blocked by privacy tools."
+msgstr "نرخ تبدیل کمپین = گفتگوهای شروع‌شده از کمپین ÷ دفعات نمایش. نمایش‌ها در مرورگر بازدیدکننده شمرده می‌شوند و ممکن است ابزارهای حریم خصوصی جلویشان را بگیرند."
+
+msgid "Campaign last shown (hours ago, empty = never)"
+msgstr "آخرین نمایش کمپین (چند ساعت پیش؛ خالی یعنی هرگز)"
+
+msgid "Campaigns (display rules)"
+msgstr "کمپین‌ها (قوانین نمایش)"
+
+msgid "Cancel"
+msgstr "انصراف"
+
+msgid "Canned responses"
+msgstr "پاسخ‌های آماده"
+
+msgid "Canned responses speed up replies in the inbox. Help articles and suggested questions appear in the widget before the visitor starts a chat."
+msgstr "پاسخ‌های آماده پاسخ‌گویی در صندوق گفتگوها را سریع‌تر می‌کنند. مطالب راهنما و پرسش‌های پیشنهادی پیش از شروع گفتگو در ابزارک نمایش داده می‌شوند."
+
+msgid "Capability"
+msgstr "قابلیت"
+
+msgid "Cart"
+msgstr "سبد خرید"
+
+msgid "Cart value (store currency)"
+msgstr "مبلغ سبد خرید (واحد پول فروشگاه)"
+
+msgid "Category / tag / term"
+msgstr "دسته / برچسب / واژه"
+
+msgid "Changing the destination affects new conversations only. Existing conversations stay in the group they started in."
+msgstr "تغییر مقصد فقط روی گفتگوهای جدید اثر دارد. گفتگوهای موجود در همان گروهی که شروع شده‌اند می‌مانند."
+
+msgid "Chat ID"
+msgstr "شناسهٔ گفتگو"
+
+msgid "Chat already opened in this visit"
+msgstr "گفتگو در همین بازدید باز شده است"
+
+msgid "Chat features"
+msgstr "امکانات گفتگو"
+
+msgid "Chats started"
+msgstr "گفتگوهای شروع‌شده"
+
+msgid "Check again"
+msgstr "بررسی دوباره"
+
+msgid "Checkout"
+msgstr "تسویه‌حساب"
+
+msgid "Choose a Gapban JSON file"
+msgstr "یک فایل JSON گپ‌بان انتخاب کنید"
+
+msgid "Choose how Bale delivers operator replies to this site."
+msgstr "تعیین کنید بله پاسخ اپراتورها را چگونه به این سایت برساند."
+
+msgid "Choose…"
+msgstr "انتخاب کنید…"
+
+msgid "Circle icon"
+msgstr "نماد دایره‌ای"
+
+msgid "Claim"
+msgstr "برداشتن"
+
+msgid "Cleanup runs hourly in the background. Visitors can ask for their data through WordPress’s Tools → Export/Erase Personal Data, which includes Gapban conversations."
+msgstr "پاک‌سازی هر ساعت در پس‌زمینه اجرا می‌شود. درخواست برون‌بری یا حذف داده‌های شخصی از مسیر «ابزارها» در وردپرس انجام می‌شود و گفتگوهای گپ‌بان را هم در بر می‌گیرد."
+
+msgid "Clear"
+msgstr "پاک کردن"
+
+msgid "Clicked"
+msgstr "کلیک‌شده"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Closed"
+msgstr "بسته‌شده"
+
+msgid "Colors & texts"
+msgstr "رنگ‌ها و متن‌ها"
+
+msgid "Combine conditions with"
+msgstr "ترکیب شرط‌ها با"
+
+msgid "Comparison"
+msgstr "مقایسه"
+
+msgid "Condition"
+msgstr "شرط"
+
+msgid "Condition group"
+msgstr "گروه شرط"
+
+msgid "Connect a Bale bot, choose the support group, verify sending and receiving, and pick how updates reach this site."
+msgstr "ربات بله را وصل کنید، گروه پشتیبانی را انتخاب کنید، ارسال و دریافت را بیازمایید و روش رسیدن به‌روزرسانی‌ها به سایت را برگزینید."
+
+msgid "Connect a different group"
+msgstr "اتصال گروه دیگر"
+
+msgid "Connect a group to “%s”"
+msgstr "اتصال گروه به «%s»"
+
+msgid "Connect group"
+msgstr "اتصال گروه"
+
+msgid "Connected group"
+msgstr "گروه متصل"
+
+msgid "Connected successfully."
+msgstr "با موفقیت متصل شد."
+
+msgid "Consent text"
+msgstr "متن رضایت"
+
+msgid "Contact details are provided by the visitor and are not verified."
+msgstr "اطلاعات تماس را خود بازدیدکننده وارد کرده و تأیید نشده است."
+
+msgid "Contains"
+msgstr "شامل"
+
+msgid "Content type"
+msgstr "نوع محتوا"
+
+msgid "Conversation assigned to you."
+msgstr "گفتگو به شما واگذار شد."
+
+msgid "Conversation bubbles"
+msgstr "حباب‌های گفتگو"
+
+msgid "Conversation closed."
+msgstr "گفتگو بسته شد."
+
+msgid "Conversation deleted."
+msgstr "گفتگو حذف شد."
+
+msgid "Conversation list"
+msgstr "فهرست گفتگوها"
+
+msgid "Conversation reopened."
+msgstr "گفتگو دوباره باز شد."
+
+msgid "Conversation state"
+msgstr "وضعیت گفتگو"
+
+msgid "Conversation text and files that are routed to Bale are transmitted to Bale’s servers and processed under Bale’s terms. Deleting a conversation here does not delete copies already delivered to Bale. Gapban sends no telemetry and shares no visitor data with anyone else."
+msgstr "متن و فایل‌های گفتگوهایی که به بله فرستاده می‌شوند به سرورهای بله منتقل و طبق شرایط بله پردازش می‌شوند. حذف گفتگو در اینجا نسخه‌های تحویل‌شده به بله را حذف نمی‌کند. گپ‌بان هیچ دادهٔ آماری نمی‌فرستد و اطلاعات بازدیدکنندگان را با هیچ کس دیگری به اشتراک نمی‌گذارد."
+
+msgid "Conversation transferred."
+msgstr "گفتگو منتقل شد."
+
+msgid "Conversations"
+msgstr "گفتگوها"
+
+msgid "Conversations per day"
+msgstr "گفتگوها در هر روز"
+
+msgid "Conversion"
+msgstr "نرخ تبدیل"
+
+msgid "Cooldown (hours)"
+msgstr "فاصلهٔ تکرار (ساعت)"
+
+msgid "Copied."
+msgstr "کپی شد."
+
+msgid "Copy"
+msgstr "کپی"
+
+msgid "Copy the token it gives you and paste it below. The token is encrypted and never shown again."
+msgstr "توکنی را که می‌دهد کپی کنید و پایین بچسبانید. توکن رمزنگاری می‌شود و دیگر نمایش داده نمی‌شود."
+
+msgid "Counts across tabs, refreshes and pages."
+msgstr "در همهٔ زبانه‌ها، بارگذاری‌های دوباره و صفحه‌ها شمرده می‌شود."
+
+msgid "Create a Bale group for your support team and add the bot to it."
+msgstr "برای تیم پشتیبانی یک گروه در بله بسازید و ربات را به آن اضافه کنید."
+
+msgid "Custom SVG"
+msgstr "SVG دلخواه"
+
+msgid "Custom SVG icon"
+msgstr "نماد SVG دلخواه"
+
+msgid "Custom fields"
+msgstr "فیلدهای سفارشی"
+
+msgid "Daily volume"
+msgstr "حجم روزانه"
+
+msgid "Database tables"
+msgstr "جدول‌های پایگاه داده"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Decide what visitors are asked, what is shared with Bale, and how long conversations are kept."
+msgstr "تعیین کنید از بازدیدکنندگان چه پرسیده شود، چه چیزی با بله به اشتراک گذاشته شود و گفتگوها چه مدت نگه داشته شوند."
+
+msgid "Decide where the launcher appears and when to offer help. Rules run in the visitor’s browser using only first-party data; they never change who may read a conversation."
+msgstr "تعیین کنید دکمهٔ گفتگو کجا ظاهر شود و چه زمانی پیشنهاد کمک داده شود. قوانین فقط با داده‌های خود سایت در مرورگر بازدیدکننده اجرا می‌شوند و هرگز تعیین نمی‌کنند چه کسی اجازهٔ خواندن گفتگو را دارد."
+
+msgid "Default support group"
+msgstr "گروه پشتیبانی پیش‌فرض"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete %s"
+msgstr "حذف %s"
+
+msgid "Delete all Gapban data when the plugin is uninstalled"
+msgstr "حذف همهٔ داده‌های گپ‌بان هنگام پاک کردن افزونه"
+
+msgid "Delete attachments after (days)"
+msgstr "حذف پیوست‌ها پس از (روز)"
+
+msgid "Delete closed conversations after (days)"
+msgstr "حذف گفتگوهای بسته‌شده پس از (روز)"
+
+msgid "Delete conversation"
+msgstr "حذف گفتگو"
+
+msgid "Delete conversation?"
+msgstr "گفتگو حذف شود؟"
+
+msgid "Delete permanently"
+msgstr "حذف همیشگی"
+
+msgid "Delete this department? Existing conversations keep their history and routing."
+msgstr "این بخش حذف شود؟ گفتگوهای موجود تاریخچه و مسیر خود را حفظ می‌کنند."
+
+msgid "Delete this item?"
+msgstr "این مورد حذف شود؟"
+
+msgid "Delete this rule and its statistics?"
+msgstr "این قانون و آمارش حذف شود؟"
+
+msgid "Deliver message to Bale"
+msgstr "تحویل پیام به بله"
+
+msgid "Delivered (last 7 days)"
+msgstr "تحویل‌شده (۷ روز اخیر)"
+
+msgid "Delivery reliability"
+msgstr "اطمینان از تحویل"
+
+msgid "Department"
+msgstr "بخش"
+
+msgid "Department filter"
+msgstr "فیلتر بخش"
+
+msgid "Departments"
+msgstr "بخش‌ها"
+
+msgid "Description"
+msgstr "توضیح"
+
+msgid "Design the launcher and chat window. The preview uses the real widget with your unsaved settings."
+msgstr "دکمهٔ گفتگو و پنجرهٔ چت را طراحی کنید. پیش‌نمایش، همان ابزارک واقعی با تنظیمات ذخیره‌نشدهٔ شماست."
+
+msgid "Desktop"
+msgstr "دسکتاپ"
+
+msgid "Desktop bottom offset (px)"
+msgstr "فاصله از پایین در دسکتاپ (پیکسل)"
+
+msgid "Desktop side offset (px)"
+msgstr "فاصله از کنار در دسکتاپ (پیکسل)"
+
+msgid "Desktop size (px)"
+msgstr "اندازه در دسکتاپ (پیکسل)"
+
+msgid "Device"
+msgstr "دستگاه"
+
+msgid "Device type"
+msgstr "نوع دستگاه"
+
+msgid "Direct visit (no referrer)"
+msgstr "ورود مستقیم (بدون ارجاع‌دهنده)"
+
+msgid "Disable"
+msgstr "غیرفعال کن"
+
+msgid "Disable this operator? Their conversations return to the queue and their Bale link is removed."
+msgstr "این اپراتور غیرفعال شود؟ گفتگوهایش به صف برمی‌گردد و اتصال بله‌اش حذف می‌شود."
+
+msgid "Disabled"
+msgstr "غیرفعال"
+
+msgid "Discard"
+msgstr "کنار گذاشتن"
+
+msgid "Discarded."
+msgstr "کنار گذاشته شد."
+
+msgid "Disconnect"
+msgstr "قطع اتصال"
+
+msgid "Disconnect the bot? Its webhook is removed only if it belongs to this site."
+msgstr "اتصال ربات قطع شود؟ وب‌هوک آن فقط در صورتی حذف می‌شود که متعلق به همین سایت باشد."
+
+msgid "Dismissed"
+msgstr "ردشده"
+
+msgid "Display name"
+msgstr "نام نمایشی"
+
+msgid "Display only; stored values always use standard digits."
+msgstr "فقط برای نمایش؛ مقادیر ذخیره‌شده همیشه با رقم‌های استاندارد هستند."
+
+msgid "Display rules & automated messages"
+msgstr "قوانین نمایش و پیام‌های خودکار"
+
+msgid "Do not ask"
+msgstr "نپرس"
+
+msgid "Do not show proactive messages"
+msgstr "پیام پیشگیرانه نشان نده"
+
+msgid "Does not match"
+msgstr "منطبق نیست"
+
+msgid "Domain is"
+msgstr "دامنه برابر است با"
+
+msgid "Done"
+msgstr "تمام"
+
+msgid "Download display rules only"
+msgstr "دریافت فقط قوانین نمایش"
+
+msgid "Download settings"
+msgstr "دریافت تنظیمات"
+
+msgid "E.g. #cookie-notice, .sticky-add-to-cart. The launcher also detects fixed bars at the bottom automatically and moves up."
+msgstr "مثلاً ‎#cookie-notice یا ‎.sticky-add-to-cart. دکمهٔ گفتگو نوارهای ثابت پایین صفحه را هم خودکار تشخیص می‌دهد و بالاتر می‌رود."
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Edit department"
+msgstr "ویرایش بخش"
+
+msgid "Edit operator"
+msgstr "ویرایش اپراتور"
+
+msgid "Edit rule"
+msgstr "ویرایش قانون"
+
+msgid "Edit tags"
+msgstr "ویرایش برچسب‌ها"
+
+msgid "Elements to avoid (CSS selectors)"
+msgstr "عناصری که نباید پوشانده شوند (انتخابگر CSS)"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Enable"
+msgstr "فعال کن"
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Encryption (libsodium)"
+msgstr "رمزنگاری (libsodium)"
+
+msgid "End side (left in Persian, right in English)"
+msgstr "سمت انتهایی (در فارسی چپ، در انگلیسی راست)"
+
+msgid "English"
+msgstr "انگلیسی"
+
+msgid "English (left-to-right)"
+msgstr "انگلیسی (چپ‌به‌راست)"
+
+msgid "Enter the chat ID manually"
+msgstr "وارد کردن دستی شناسهٔ گفتگو"
+
+msgid "Entire site"
+msgstr "کل سایت"
+
+msgid "Equals"
+msgstr "برابر با"
+
+msgid "Every conversation is stored in WordPress. Replies sent here are also shown in the Bale group so the team stays in sync."
+msgstr "همهٔ گفتگوها در وردپرس ذخیره می‌شوند. پاسخ‌هایی که از اینجا فرستاده می‌شوند در گروه بله هم نمایش داده می‌شوند تا تیم هماهنگ بماند."
+
+msgid "Every message is saved before delivery. Failed deliveries wait here until you retry or discard them."
+msgstr "هر پیام پیش از ارسال ذخیره می‌شود. ارسال‌های ناموفق اینجا می‌مانند تا دوباره تلاش یا کنارشان بگذارید."
+
+msgid "Every value is validated again on import; unknown or unsafe values are dropped. Topics Mode is never enabled by an import."
+msgstr "همهٔ مقادیر هنگام ورود دوباره اعتبارسنجی می‌شوند و مقادیر ناشناخته یا ناامن کنار گذاشته می‌شوند. ورود تنظیمات هرگز حالت موضوع‌بندی را فعال نمی‌کند."
+
+msgid "Everyone in a Bale group can read every conversation sent there. If some operators must not see some conversations, use separate groups per department or answer from the WordPress inbox."
+msgstr "همهٔ اعضای یک گروه بله تمام گفتگوهای ارسال‌شده به آن را می‌بینند. اگر برخی اپراتورها نباید برخی گفتگوها را ببینند، برای هر بخش گروه جداگانه بسازید یا از صندوق گفتگوهای وردپرس پاسخ دهید."
+
+msgid "Exact address or path"
+msgstr "نشانی یا مسیر دقیق"
+
+msgid "Except when (exclusions)"
+msgstr "به‌جز وقتی که (استثناها)"
+
+msgid "Excluded"
+msgstr "مستثنا"
+
+msgid "Exclusions:"
+msgstr "استثناها:"
+
+msgid "Exists"
+msgstr "وجود داشته باشد"
+
+msgid "Exit intent (desktop only)"
+msgstr "قصد خروج (فقط دسکتاپ)"
+
+msgid "Exit intent cannot be detected reliably on phones and tablets, so this rule never fires there."
+msgstr "قصد خروج در گوشی و تبلت به‌درستی قابل تشخیص نیست؛ بنابراین این قانون آنجا هرگز اجرا نمی‌شود."
+
+msgid "Export"
+msgstr "برون‌بری"
+
+msgid "Export transcript"
+msgstr "برون‌بری متن گفتگو"
+
+msgid "Failed"
+msgstr "ناموفق"
+
+msgid "Failed (dead letters)"
+msgstr "ناموفق (صف خطا)"
+
+msgid "Figures cover conversations started in the selected period (spam excluded). Automated greetings never count as human replies."
+msgstr "آمار مربوط به گفتگوهایی است که در بازهٔ انتخابی شروع شده‌اند (بدون هرزنامه). خوشامدهای خودکار هرگز پاسخ انسانی شمرده نمی‌شوند."
+
+msgid "First human response (median)"
+msgstr "اولین پاسخ انسانی (میانه)"
+
+msgid "First human response = time from conversation start to the first operator message (from Bale or WordPress). Automated and system messages are ignored."
+msgstr "اولین پاسخ انسانی = فاصلهٔ شروع گفتگو تا نخستین پیام اپراتور (از بله یا وردپرس). پیام‌های خودکار و سیستمی در نظر گرفته نمی‌شوند."
+
+msgid "For sites Bale cannot reach. Needs a real server cron job; replies arrive within the cron interval (about 1 minute). Cannot be used while a webhook is set."
+msgstr "برای سایت‌هایی که بله به آن‌ها دسترسی ندارد. به کرون واقعی سرور نیاز دارد و پاسخ‌ها در فاصلهٔ اجرای کرون (حدود یک دقیقه) می‌رسند. هم‌زمان با وب‌هوک قابل استفاده نیست."
+
+msgid "Frequency"
+msgstr "تکرار"
+
+msgid "Friday"
+msgstr "جمعه"
+
+msgid "From"
+msgstr "از"
+
+msgid "Front page"
+msgstr "صفحهٔ نخست"
+
+msgid "GAPBAN_ENCRYPTION_KEY in wp-config.php"
+msgstr "GAPBAN_ENCRYPTION_KEY در wp-config.php"
+
+msgid "Gapban checks the token with getMe before saving it."
+msgstr "گپ‌بان پیش از ذخیره، توکن را با getMe بررسی می‌کند."
+
+msgid "Gapban sections"
+msgstr "بخش‌های گپ‌بان"
+
+msgid "Generate a new cron URL"
+msgstr "ساخت نشانی کرون جدید"
+
+msgid "Generate a one-time code below and send the command in that group. The group is detected automatically."
+msgstr "در پایین یک کد یک‌بارمصرف بسازید و فرمان را در همان گروه بفرستید. گروه خودکار شناسایی می‌شود."
+
+msgid "Generate cron URL"
+msgstr "ساخت نشانی کرون"
+
+msgid "Gentle floating effect on the launcher"
+msgstr "حرکت شناور ملایم دکمهٔ گفتگو"
+
+msgid "Get a binding code"
+msgstr "دریافت کد اتصال"
+
+msgid "Greeting bubble text (optional)"
+msgstr "متن حباب خوشامد (اختیاری)"
+
+msgid "Group IDs are usually negative numbers. Persian digits are accepted."
+msgstr "شناسهٔ گروه‌ها معمولاً عددی منفی است. رقم فارسی هم پذیرفته می‌شود."
+
+msgid "Has an open conversation"
+msgstr "گفتگوی باز دارد"
+
+msgid "Headset"
+msgstr "هدست"
+
+msgid "Help articles"
+msgstr "مطالب راهنما"
+
+msgid "Hidden spam trap field (honeypot)"
+msgstr "فیلد پنهان دام هرزنامه (هانی‌پات)"
+
+msgid "Hide on the checkout page"
+msgstr "پنهان در صفحهٔ تسویه‌حساب"
+
+msgid "Hide the launcher"
+msgstr "پنهان کردن دکمهٔ گفتگو"
+
+msgid "High"
+msgstr "زیاد"
+
+msgid "Higher numbers win."
+msgstr "عدد بزرگ‌تر اولویت دارد."
+
+msgid "History"
+msgstr "سابقه"
+
+msgid "Hold for manual review (no duplicates, may need action)"
+msgstr "نگه‌داشتن برای بررسی دستی (بدون تکرار؛ شاید اقدام لازم شود)"
+
+msgid "Holidays"
+msgstr "تعطیلات"
+
+msgid "How these numbers are calculated"
+msgstr "این اعداد چگونه محاسبه می‌شوند"
+
+msgid "Icon"
+msgstr "نماد"
+
+msgid "If"
+msgstr "اگر"
+
+msgid "If operators have replied in Bale but nothing appears here, receiving is not working (webhook or polling)."
+msgstr "اگر اپراتورها در بله پاسخ داده‌اند ولی چیزی اینجا نیست، دریافت کار نمی‌کند (وب‌هوک یا دریافت دوره‌ای)."
+
+msgid "Ignored"
+msgstr "نادیده گرفته شد"
+
+msgid "Immediately on page load"
+msgstr "بلافاصله پس از بارگذاری صفحه"
+
+msgid "Import"
+msgstr "درون‌ریزی"
+
+msgid "Import & export settings"
+msgstr "ورود و خروج تنظیمات"
+
+msgid "In Bale, open @BotFather and create a bot (/newbot)."
+msgstr "در بله، ‎@BotFather را باز کنید و یک ربات بسازید (‎/newbot)."
+
+msgid "In Bale, reply to that message with any text. This page then shows that receiving works."
+msgstr "در بله روی همان پیام با هر متنی ریپلای کنید. سپس این صفحه نشان می‌دهد که دریافت کار می‌کند."
+
+msgid "In progress"
+msgstr "در حال انجام"
+
+msgid "In the store’s own currency and units, exactly as WooCommerce stores it (no Rial/Toman conversion)."
+msgstr "با همان واحد پولی که ووکامرس ذخیره می‌کند (بدون تبدیل ریال و تومان)."
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Include Bale destination chat IDs and trusted proxies"
+msgstr "شامل شناسهٔ گروه‌های مقصد بله و پراکسی‌های مورد اعتماد"
+
+msgid "Instant delivery. Requires HTTPS and a site Bale can reach. The webhook URL contains a long secret that you can rotate."
+msgstr "تحویل فوری. به HTTPS و سایتی نیاز دارد که بله به آن دسترسی داشته باشد. نشانی وب‌هوک یک رمز طولانی دارد که می‌توانید عوضش کنید."
+
+msgid "Internal note"
+msgstr "یادداشت داخلی"
+
+msgid "Internal note — visitors never see this"
+msgstr "یادداشت داخلی — بازدیدکننده هرگز آن را نمی‌بیند"
+
+msgid "Items in cart"
+msgstr "تعداد اقلام سبد"
+
+msgid "Job status"
+msgstr "وضعیت کار"
+
+msgid "Jobs"
+msgstr "کارها"
+
+msgid "Keep raw Bale update logs for (days)"
+msgstr "نگهداری گزارش خام به‌روزرسانی‌های بله (روز)"
+
+msgid "Keeps purchase buttons uncovered. Display rules can still show it."
+msgstr "تا دکمه‌های خرید پوشانده نشوند. قوانین نمایش همچنان می‌توانند آن را نشان دهند."
+
+msgid "Key"
+msgstr "کلید"
+
+msgid "Kind of page (front, blog, archive, search, 404…)"
+msgstr "نوع صفحه (نخست، وبلاگ، بایگانی، جستجو، ۴۰۴…)"
+
+msgid "Label"
+msgstr "برچسب"
+
+msgid "Label (optional)"
+msgstr "عنوان (اختیاری)"
+
+msgid "Language & formats"
+msgstr "زبان و قالب‌ها"
+
+msgid "Language codes (comma separated)"
+msgstr "کد زبان‌ها (جداشده با ویرگول)"
+
+msgid "Last 30 days: shown %s, clicked %s, dismissed %s, chats %s"
+msgstr "۳۰ روز اخیر: نمایش %s، کلیک %s، رد %s، گفتگو %s"
+
+msgid "Last conversation closed"
+msgstr "آخرین گفتگو بسته شده"
+
+msgid "Last error"
+msgstr "آخرین خطا"
+
+msgid "Last worker run"
+msgstr "آخرین اجرای پردازشگر"
+
+msgid "Launcher"
+msgstr "دکمهٔ گفتگو"
+
+msgid "Least busy"
+msgstr "کم‌کارترین"
+
+msgid "Least busy available operator"
+msgstr "کم‌کارترین اپراتور در دسترس"
+
+msgid "Leave empty to use the default support group. Easier: use “Connect group” to bind with a code."
+msgstr "برای استفاده از گروه پشتیبانی پیش‌فرض خالی بگذارید. راه ساده‌تر: «اتصال گروه» را بزنید و با کد وصل کنید."
+
+msgid "Let visitors download a transcript"
+msgstr "امکان دریافت متن گفتگو برای بازدیدکننده"
+
+msgid "Limits:"
+msgstr "محدودیت‌ها:"
+
+msgid "Link"
+msgstr "پیوند"
+
+msgid "Link %s to Bale"
+msgstr "اتصال %s به بله"
+
+msgid "Link Bale"
+msgstr "اتصال بله"
+
+msgid "Linking a user lets them use the WordPress inbox for their assigned conversations."
+msgstr "با اتصال کاربر، او می‌تواند گفتگوهای واگذارشده به خودش را در صندوق گفتگوهای وردپرس ببیند."
+
+msgid "Live preview"
+msgstr "پیش‌نمایش زنده"
+
+msgid "Load earlier messages"
+msgstr "نمایش پیام‌های قبلی"
+
+msgid "Load more"
+msgstr "بیشتر"
+
+msgid "Longer messages are split into numbered parts; every part can be replied to."
+msgstr "پیام‌های طولانی به چند بخش شماره‌دار تقسیم می‌شوند و روی هر بخش می‌توان ریپلای کرد."
+
+msgid "Manual (claim)"
+msgstr "دستی (برداشتن)"
+
+msgid "Manual — operators claim conversations"
+msgstr "دستی — اپراتورها خودشان گفتگو را برمی‌دارند"
+
+msgid "Mark as spam"
+msgstr "علامت هرزنامه"
+
+msgid "Marked as spam."
+msgstr "به‌عنوان هرزنامه علامت خورد."
+
+msgid "Match"
+msgstr "نوع تطبیق"
+
+msgid "Matches"
+msgstr "منطبق است"
+
+msgid "Matches, but %s"
+msgstr "منطبق است، اما %s"
+
+msgid "Max per page view"
+msgstr "حداکثر در هر بار دیدن صفحه"
+
+msgid "Max per visit (session)"
+msgstr "حداکثر در هر بازدید (نشست)"
+
+msgid "Max per visitor (ever)"
+msgstr "حداکثر برای هر بازدیدکننده (کل)"
+
+msgid "Maximum characters per Bale message"
+msgstr "حداکثر نویسه در هر پیام بله"
+
+msgid "Maximum file size (MB)"
+msgstr "حداکثر حجم فایل (مگابایت)"
+
+msgid "Maximum message length (characters)"
+msgstr "حداکثر طول پیام (نویسه)"
+
+msgid "Maximum simultaneous conversations"
+msgstr "حداکثر گفتگوی هم‌زمان"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Members of a Bale group see every conversation delivered to that group. For confidentiality between departments, give each department its own group."
+msgstr "اعضای یک گروه بله همهٔ گفتگوهای تحویل‌شده به آن گروه را می‌بینند. برای محرمانه ماندن بین بخش‌ها، به هر بخش گروه جداگانه بدهید."
+
+msgid "Message type"
+msgstr "نوع پیام"
+
+msgid "Messages"
+msgstr "پیام‌ها"
+
+msgid "Messages are saved first and then delivered by a queue. WordPress’s built-in cron only runs when someone visits the site, so production sites should run the worker from the server’s cron every minute."
+msgstr "پیام‌ها ابتدا ذخیره و سپس از طریق صف ارسال می‌شوند. کرون داخلی وردپرس فقط وقتی کسی از سایت بازدید کند اجرا می‌شود؛ پس در سایت‌های واقعی پردازشگر را هر دقیقه با کرون سرور اجرا کنید."
+
+msgid "Messages per minute per visitor"
+msgstr "تعداد پیام در دقیقه برای هر بازدیدکننده"
+
+msgid "Messages stay in “waiting to send”"
+msgstr "پیام‌ها در حالت «در انتظار ارسال» می‌مانند"
+
+msgid "Messages, files and notes of this conversation are deleted from WordPress. Copies already delivered to Bale are not affected."
+msgstr "پیام‌ها، فایل‌ها و یادداشت‌های این گفتگو از وردپرس حذف می‌شوند. نسخه‌هایی که به بله تحویل شده‌اند تغییری نمی‌کنند."
+
+msgid "Mirror replies written in WordPress into the Bale group"
+msgstr "بازتاب پاسخ‌های نوشته‌شده در وردپرس در گروه بله"
+
+msgid "Missing"
+msgstr "موجود نیست"
+
+msgid "Missing tables — deactivate and reactivate the plugin"
+msgstr "جدول‌ها کامل نیست — افزونه را غیرفعال و دوباره فعال کنید"
+
+msgid "Missing — Gregorian dates in exports"
+msgstr "موجود نیست — تاریخ‌های خروجی میلادی خواهند بود"
+
+msgid "Mobile"
+msgstr "موبایل"
+
+msgid "Mobile bottom offset (px)"
+msgstr "فاصله از پایین در موبایل (پیکسل)"
+
+msgid "Mobile number"
+msgstr "شمارهٔ موبایل"
+
+msgid "Mobile numbers are normalised (09… / +98…) for display only; they are not verified."
+msgstr "شماره‌های موبایل فقط برای نمایش یکدست می‌شوند (‎09… / ‎+98…) و تأیید نمی‌شوند."
+
+msgid "Mobile side offset (px)"
+msgstr "فاصله از کنار در موبایل (پیکسل)"
+
+msgid "Mobile size (px)"
+msgstr "اندازه در موبایل (پیکسل)"
+
+msgid "Monday"
+msgstr "دوشنبه"
+
+msgid "More"
+msgstr "بیشتر"
+
+msgid "Motion & attention"
+msgstr "حرکت و جلب توجه"
+
+msgid "Move your configuration between sites. Bot tokens and secrets are never included."
+msgstr "پیکربندی را بین سایت‌ها جابه‌جا کنید. توکن ربات و رمزها هرگز همراه آن نیستند."
+
+msgid "My account"
+msgstr "حساب کاربری من"
+
+msgid "My status"
+msgstr "وضعیت من"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Negate (NOT)"
+msgstr "برعکس (نه)"
+
+msgid "Never chatted"
+msgstr "هرگز گفتگو نکرده"
+
+msgid "Never show again after the visitor dismisses it"
+msgstr "پس از بستن توسط بازدیدکننده دیگر نشان نده"
+
+msgid "New chat sessions per hour per network address"
+msgstr "نشست جدید گفتگو در ساعت برای هر نشانی شبکه"
+
+msgid "New rule"
+msgstr "قانون جدید"
+
+msgid "New tag"
+msgstr "برچسب جدید"
+
+msgid "New website conversations will appear here automatically."
+msgstr "گفتگوهای تازهٔ سایت خودکار اینجا نمایش داده می‌شوند."
+
+msgid "No"
+msgstr "خیر"
+
+msgid "No bot is connected yet. Conversations still work in the WordPress inbox."
+msgstr "هنوز رباتی متصل نشده است. گفتگوها همچنان در صندوق گفتگوهای وردپرس کار می‌کنند."
+
+msgid "No canned responses yet"
+msgstr "هنوز پاسخ آماده‌ای ندارید"
+
+msgid "No canned responses yet. Add them under “Canned responses & help”."
+msgstr "هنوز پاسخ آماده‌ای ندارید. از بخش «پاسخ‌های آماده و راهنما» اضافه کنید."
+
+msgid "No conditions."
+msgstr "شرطی وجود ندارد."
+
+msgid "No conversations here yet"
+msgstr "هنوز گفتگویی اینجا نیست"
+
+msgid "No data in this period."
+msgstr "در این بازه داده‌ای نیست."
+
+msgid "No help articles yet"
+msgstr "هنوز مطلب راهنمایی ندارید"
+
+msgid "No operators yet"
+msgstr "هنوز اپراتوری ندارید"
+
+msgid "No rules yet"
+msgstr "هنوز قانونی ندارید"
+
+msgid "No selection means the operator may answer every department."
+msgstr "اگر چیزی انتخاب نشود، اپراتور می‌تواند به همهٔ بخش‌ها پاسخ دهد."
+
+msgid "No updates received yet"
+msgstr "هنوز به‌روزرسانی‌ای دریافت نشده"
+
+msgid "None"
+msgstr "هیچ"
+
+msgid "None — answers only from Bale"
+msgstr "هیچ — فقط از بله پاسخ می‌دهد"
+
+msgid "Normal"
+msgstr "عادی"
+
+msgid "Not available"
+msgstr "در دسترس نیست"
+
+msgid "Not delivered to Bale"
+msgstr "به بله تحویل نشد"
+
+msgid "Not found (404)"
+msgstr "یافت نشد (۴۰۴)"
+
+msgid "Not linked"
+msgstr "متصل نیست"
+
+msgid "Not publicly reachable"
+msgstr "از بیرون قابل دسترسی نیست"
+
+msgid "Not set"
+msgstr "تنظیم نشده"
+
+msgid "Not spam"
+msgstr "هرزنامه نیست"
+
+msgid "Not tested"
+msgstr "آزمایش نشده"
+
+msgid "Not yet observed"
+msgstr "هنوز مشاهده نشده"
+
+msgid "Notes"
+msgstr "توضیحات"
+
+msgid "Nothing here"
+msgstr "چیزی اینجا نیست"
+
+msgid "Number"
+msgstr "عدد"
+
+msgid "OK"
+msgstr "درست"
+
+msgid "Observed"
+msgstr "مشاهده‌شده"
+
+msgid "Off by default because these identify your private groups."
+msgstr "به‌طور پیش‌فرض خاموش است، چون این‌ها گروه‌های خصوصی شما را مشخص می‌کنند."
+
+msgid "Off by default. Deactivating the plugin never deletes data."
+msgstr "به‌طور پیش‌فرض خاموش است. غیرفعال کردن افزونه هرگز داده‌ای را حذف نمی‌کند."
+
+msgid "Offline"
+msgstr "آفلاین"
+
+msgid "Offline / closed"
+msgstr "آفلاین / تعطیل"
+
+msgid "Offline message"
+msgstr "پیام آفلاین"
+
+msgid "Oldest waiting job"
+msgstr "قدیمی‌ترین کار در انتظار"
+
+msgid "On phones"
+msgstr "در گوشی"
+
+msgid "On these dates the widget is in offline mode all day. Dates are in the selected time zone."
+msgstr "در این تاریخ‌ها ابزارک تمام روز در حالت آفلاین است. تاریخ‌ها بر اساس منطقهٔ زمانی انتخاب‌شده‌اند."
+
+msgid "One question per line"
+msgstr "هر پرسش در یک خط"
+
+msgid "Online"
+msgstr "آنلاین"
+
+msgid "Only requests from these addresses may set X-Forwarded-For. Leave empty unless the site is behind a CDN or proxy you control."
+msgstr "فقط درخواست‌های این نشانی‌ها می‌توانند X-Forwarded-For را تعیین کنند. مگر اینکه سایت پشت CDN یا پراکسی تحت کنترل شما باشد، خالی بگذارید."
+
+msgid "Only simple shapes are kept. Scripts, styles, links and external references are rejected."
+msgstr "فقط شکل‌های ساده نگه داشته می‌شوند. اسکریپت، استایل، پیوند و ارجاع بیرونی رد می‌شود."
+
+msgid "Open"
+msgstr "باز"
+
+msgid "Open conversation"
+msgstr "باز کردن گفتگو"
+
+msgid "Open the chat window"
+msgstr "باز کردن پنجرهٔ گفتگو"
+
+msgid "Opened the chat in this session"
+msgstr "در این نشست گفتگو را باز کرده"
+
+msgid "Operator"
+msgstr "اپراتور"
+
+msgid "Operators"
+msgstr "اپراتورها"
+
+msgid "Operators answer from Bale or the WordPress inbox. Departments decide where conversations go and how they are assigned."
+msgstr "اپراتورها از بله یا صندوق گفتگوهای وردپرس پاسخ می‌دهند. بخش‌ها تعیین می‌کنند گفتگوها به کجا بروند و چگونه واگذار شوند."
+
+msgid "Operators in Bale see the conversation reference and the message text. Choose what else is included with the first message."
+msgstr "اپراتورها در بله کد پیگیری گفتگو و متن پیام را می‌بینند. انتخاب کنید چه اطلاعات دیگری همراه نخستین پیام فرستاده شود."
+
+msgid "Operators must use Bale’s Reply on a message the bot sent for that conversation. Replies to other messages are rejected and the bot explains why. Check that receiving works (webhook or polling) and that the operator has linked their Bale account on the Operators page."
+msgstr "اپراتور باید روی پیامی که ربات برای همان گفتگو فرستاده «ریپلای» کند. ریپلای روی پیام‌های دیگر رد می‌شود و ربات علتش را توضیح می‌دهد. بررسی کنید دریافت (وب‌هوک یا دریافت دوره‌ای) کار کند و اپراتور در صفحهٔ اپراتورها حساب بله‌اش را متصل کرده باشد."
+
+msgid "Operators reply in Bale but the visitor gets nothing"
+msgstr "اپراتورها در بله پاسخ می‌دهند اما چیزی به بازدیدکننده نمی‌رسد"
+
+msgid "Optional"
+msgstr "اختیاری"
+
+msgid "Or enter IDs (comma separated)"
+msgstr "یا شناسه‌ها را وارد کنید (جداشده با ویرگول)"
+
+msgid "Order"
+msgstr "ترتیب"
+
+msgid "Order: higher priority first (ties by creation). A matching exclusion always wins. Only one proactive message is shown per page view; launcher visibility, department and greeting come from the highest matching rule."
+msgstr "ترتیب: اولویت بالاتر اول (در تساوی، قدیمی‌تر اول). استثنای منطبق همیشه برنده است. در هر بار دیدن صفحه فقط یک پیام پیشگیرانه نشان داده می‌شود؛ نمایش دکمه، بخش و متن خوشامد از بالاترین قانون منطبق گرفته می‌شود."
+
+msgid "Organize"
+msgstr "سازمان‌دهی"
+
+msgid "Outside the web root"
+msgstr "بیرون از ریشهٔ وب"
+
+msgid "Outside these hours the widget invites visitors to leave a message, and nobody is shown as available."
+msgstr "بیرون از این ساعت‌ها ابزارک از بازدیدکننده می‌خواهد پیام بگذارد و هیچ کس در دسترس نشان داده نمی‌شود."
+
+msgid "Page"
+msgstr "صفحه"
+
+msgid "Page address"
+msgstr "نشانی صفحه"
+
+msgid "Page template"
+msgstr "قالب صفحه"
+
+msgid "Page the chat started on (sensitive query values removed)"
+msgstr "صفحهٔ شروع گفتگو (بدون پارامترهای حساس)"
+
+msgid "Pages"
+msgstr "صفحه‌ها"
+
+msgid "Parameter name"
+msgstr "نام پارامتر"
+
+msgid "Parameters with sensitive names (token, email, phone…) are removed before rules see them."
+msgstr "پارامترهایی با نام حساس (token، email، phone و…) پیش از بررسی قوانین حذف می‌شوند."
+
+msgid "Path with * wildcard"
+msgstr "مسیر با نویسهٔ جایگزین *"
+
+msgid "Pattern"
+msgstr "الگو"
+
+msgid "Pending updates at Bale"
+msgstr "به‌روزرسانی‌های در انتظار در بله"
+
+msgid "Percent of page"
+msgstr "درصد صفحه"
+
+msgid "Period boundaries use the %s time zone."
+msgstr "مرز بازه‌ها بر اساس منطقهٔ زمانی %s است."
+
+msgid "Persian"
+msgstr "فارسی"
+
+msgid "Persian (right-to-left)"
+msgstr "فارسی (راست‌به‌چپ)"
+
+msgid "Persian calendar on the server (intl)"
+msgstr "تقویم شمسی روی سرور (intl)"
+
+msgid "Persistent object cache"
+msgstr "کش پایدار اشیا"
+
+msgid "Pick a conversation from the list to read and reply."
+msgstr "برای خواندن و پاسخ دادن، گفتگویی را از فهرست انتخاب کنید."
+
+msgid "Pill with label"
+msgstr "دکمهٔ کپسولی با متن"
+
+msgid "Points to another address: %s"
+msgstr "به نشانی دیگری اشاره می‌کند: %s"
+
+msgid "Polling (getUpdates)"
+msgstr "دریافت دوره‌ای (getUpdates)"
+
+msgid "Polling mode enabled. Set up the cron job below."
+msgstr "حالت دریافت دوره‌ای فعال شد. کرون پایین را راه‌اندازی کنید."
+
+msgid "Position"
+msgstr "جایگاه"
+
+msgid "Possible duplicate in Bale"
+msgstr "احتمال تکرار در بله"
+
+msgid "Post"
+msgstr "نوشته"
+
+msgid "Posted at the start of each conversation and clearly labelled as automated. It does not count as a human reply."
+msgstr "در آغاز هر گفتگو فرستاده می‌شود و به‌روشنی «خودکار» نشانه‌گذاری می‌شود. پاسخ انسانی شمرده نمی‌شود."
+
+msgid "Pre-chat form"
+msgstr "فرم پیش از گفتگو"
+
+msgid "Pre-select a department"
+msgstr "انتخاب پیش‌فرض بخش"
+
+msgid "Preview options"
+msgstr "گزینه‌های پیش‌نمایش"
+
+msgid "Previous conversations"
+msgstr "گفتگوهای قبلی"
+
+msgid "Pricing page help offer"
+msgstr "پیشنهاد راهنمایی در صفحهٔ قیمت‌ها"
+
+msgid "Pricing page template"
+msgstr "الگوی صفحهٔ قیمت‌ها"
+
+msgid "Priority"
+msgstr "اولویت"
+
+msgid "Priority %s"
+msgstr "اولویت %s"
+
+msgid "Private file storage"
+msgstr "محل نگهداری خصوصی فایل‌ها"
+
+msgid "Process Bale update"
+msgstr "پردازش به‌روزرسانی بله"
+
+msgid "Processed"
+msgstr "پردازش‌شده"
+
+msgid "Product"
+msgstr "محصول"
+
+msgid "Product category"
+msgstr "دستهٔ محصول"
+
+msgid "Publicly reachable! Add the nginx rule from the documentation or set GAPBAN_STORAGE_DIR."
+msgstr "از بیرون قابل دسترسی است! قاعدهٔ nginx مستندات را اضافه کنید یا GAPBAN_STORAGE_DIR را تنظیم کنید."
+
+msgid "Query parameters containing any of these words are removed from page addresses before operators or rules see them."
+msgstr "پارامترهایی که نامشان شامل این واژه‌هاست، پیش از آنکه اپراتورها یا قوانین ببینند از نشانی صفحه حذف می‌شوند."
+
+msgid "Queue"
+msgstr "صف"
+
+msgid "Queue message"
+msgstr "پیام صف انتظار"
+
+msgid "Queue wait (median)"
+msgstr "انتظار در صف (میانه)"
+
+msgid "Queue wait = time from start until an operator was assigned (claim, reply or automatic assignment)."
+msgstr "انتظار در صف = فاصلهٔ شروع تا واگذاری به اپراتور (برداشتن، پاسخ یا واگذاری خودکار)."
+
+msgid "Queued for another attempt."
+msgstr "برای تلاش دوباره در صف قرار گرفت."
+
+msgid "Rating: %s of 5"
+msgstr "امتیاز: %s از ۵"
+
+msgid "Re-link Bale"
+msgstr "اتصال دوبارهٔ بله"
+
+msgid "Read-more link (optional)"
+msgstr "پیوند ادامهٔ مطلب (اختیاری)"
+
+msgid "Ready"
+msgstr "آماده"
+
+msgid "Received"
+msgstr "دریافت"
+
+msgid "Receiving"
+msgstr "دریافت"
+
+msgid "Receiving updates"
+msgstr "دریافت به‌روزرسانی‌ها"
+
+msgid "Receiving updates from Bale"
+msgstr "دریافت به‌روزرسانی‌ها از بله"
+
+msgid "Recent Bale updates"
+msgstr "به‌روزرسانی‌های اخیر بله"
+
+msgid "Recorded only after the visitor allows the microphone. Delivered to Bale as an audio file, not as a native Bale voice note."
+msgstr "فقط پس از اجازهٔ بازدیدکننده برای میکروفون ضبط می‌شود. به‌صورت فایل صوتی به بله تحویل می‌شود، نه پیام صوتی اصلی بله."
+
+msgid "Register webhook"
+msgstr "ثبت وب‌هوک"
+
+msgid "Reliability"
+msgstr "پایداری"
+
+msgid "Remove"
+msgstr "حذف"
+
+msgid "Remove action"
+msgstr "حذف کنش"
+
+msgid "Remove condition"
+msgstr "حذف شرط"
+
+msgid "Remove group"
+msgstr "حذف گروه"
+
+msgid "Remove holiday"
+msgstr "حذف تعطیلی"
+
+msgid "Remove time range"
+msgstr "حذف بازهٔ زمانی"
+
+msgid "Remove webhook"
+msgstr "حذف وب‌هوک"
+
+msgid "Reopen"
+msgstr "بازگشایی"
+
+msgid "Replace another application’s webhook?"
+msgstr "وب‌هوک برنامهٔ دیگر جایگزین شود؟"
+
+msgid "Replace token"
+msgstr "جایگزینی توکن"
+
+msgid "Replace webhook"
+msgstr "جایگزینی وب‌هوک"
+
+msgid "Replies"
+msgstr "پاسخ‌ها"
+
+msgid "Reply"
+msgstr "پاسخ"
+
+msgid "Reply to visitor"
+msgstr "پاسخ به بازدیدکننده"
+
+msgid "Reports & customer satisfaction"
+msgstr "گزارش‌ها و رضایت مشتری"
+
+msgid "Require consent before chatting"
+msgstr "دریافت رضایت پیش از گفتگو"
+
+msgid "Required"
+msgstr "الزامی"
+
+msgid "Resolution time (median)"
+msgstr "زمان حل (میانه)"
+
+msgid "Resolution time = time from start to closing, for closed conversations."
+msgstr "زمان حل = فاصلهٔ شروع تا بسته شدن، برای گفتگوهای بسته‌شده."
+
+msgid "Resolved"
+msgstr "حل‌شده"
+
+msgid "Result"
+msgstr "نتیجه"
+
+msgid "Retention"
+msgstr "مدت نگهداری"
+
+msgid "Retry"
+msgstr "تلاش دوباره"
+
+msgid "Retry automatically (a message may appear twice in Bale)"
+msgstr "تلاش دوبارهٔ خودکار (ممکن است پیامی دو بار در بله دیده شود)"
+
+msgid "Retrying"
+msgstr "در حال تلاش دوباره"
+
+msgid "Returning visitor"
+msgstr "بازدیدکنندهٔ بازگشتی"
+
+msgid "Rotate secret"
+msgstr "تعویض رمز"
+
+msgid "Round-robin"
+msgstr "نوبتی"
+
+msgid "Round-robin among available operators"
+msgstr "نوبتی بین اپراتورهای در دسترس"
+
+msgid "Rule"
+msgstr "قانون"
+
+msgid "Rule ID"
+msgstr "شناسهٔ قانون"
+
+msgid "Rule name"
+msgstr "نام قانون"
+
+msgid "Rule saved."
+msgstr "قانون ذخیره شد."
+
+msgid "Run worker now"
+msgstr "اجرای پردازشگر"
+
+msgid "SVG, HTML and executable files are never accepted."
+msgstr "فایل‌های SVG، HTML و اجرایی هرگز پذیرفته نمی‌شوند."
+
+msgid "Same as the site language"
+msgstr "هم‌زبان با سایت"
+
+msgid "Satisfaction (CSAT)"
+msgstr "رضایت مشتری (CSAT)"
+
+msgid "Satisfaction rating after a conversation"
+msgstr "نظرسنجی رضایت پس از گفتگو"
+
+msgid "Saturday"
+msgstr "شنبه"
+
+msgid "Save"
+msgstr "ذخیره"
+
+msgid "Save changes"
+msgstr "ذخیرهٔ تغییرات"
+
+msgid "Save note"
+msgstr "ذخیرهٔ یادداشت"
+
+msgid "Save rule"
+msgstr "ذخیرهٔ قانون"
+
+msgid "Saved."
+msgstr "ذخیره شد."
+
+msgid "Saw another campaign recently"
+msgstr "به‌تازگی کمپین دیگری را دیده"
+
+msgid "Screen width"
+msgstr "پهنای صفحه‌نمایش"
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid "Search conversations"
+msgstr "جستجوی گفتگوها"
+
+msgid "Search name, email, reference or text…"
+msgstr "جستجوی نام، ایمیل، کد پیگیری یا متن…"
+
+msgid "Search results"
+msgstr "نتایج جستجو"
+
+msgid "Seconds"
+msgstr "ثانیه"
+
+msgid "Seen by visitor"
+msgstr "بازدیدکننده دید"
+
+msgid "Select a conversation"
+msgstr "گفتگویی انتخاب کنید"
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Send a test message to the support group."
+msgstr "یک پیام آزمایشی به گروه پشتیبانی بفرستید."
+
+msgid "Send test message"
+msgstr "ارسال پیام آزمایشی"
+
+msgid "Send this command in that group within 15 minutes."
+msgstr "این فرمان را ظرف ۱۵ دقیقه در همان گروه بفرستید."
+
+msgid "Send this command in the support group within 15 minutes:"
+msgstr "این فرمان را ظرف ۱۵ دقیقه در گروه پشتیبانی بفرستید:"
+
+msgid "Sending"
+msgstr "ارسال"
+
+msgid "Sensitive URL parameter names"
+msgstr "نام پارامترهای حساس نشانی"
+
+msgid "Settings imported: %d rules, %d help items."
+msgstr "تنظیمات وارد شد: %d قانون و %d مورد راهنما."
+
+msgid "Settings saved."
+msgstr "تنظیمات ذخیره شد."
+
+msgid "Setup & connection status"
+msgstr "راه‌اندازی و وضعیت اتصال"
+
+msgid "Setup progress"
+msgstr "پیشرفت راه‌اندازی"
+
+msgid "Shop"
+msgstr "فروشگاه"
+
+msgid "Shortcut"
+msgstr "میان‌بر"
+
+msgid "Show Persian digits"
+msgstr "نمایش رقم‌های فارسی"
+
+msgid "Show a bubble next to the launcher"
+msgstr "نمایش حباب کنار دکمهٔ گفتگو"
+
+msgid "Show an automated message (labelled automated)"
+msgstr "نمایش پیام خودکار (با برچسب «خودکار»)"
+
+msgid "Show dates in the Jalali (Solar Hijri) calendar"
+msgstr "نمایش تاریخ‌ها به تقویم جلالی (هجری خورشیدی)"
+
+msgid "Show the launcher"
+msgstr "نمایش دکمهٔ گفتگو"
+
+msgid "Show when"
+msgstr "نمایش وقتی که"
+
+msgid "Shown"
+msgstr "نمایش"
+
+msgid "Shown once next to the launcher until the visitor dismisses it."
+msgstr "کنار دکمهٔ گفتگو نمایش داده می‌شود تا بازدیدکننده آن را ببندد."
+
+msgid "Simulate a visit and see which rules match and why. Nothing is shown to real visitors."
+msgstr "یک بازدید را شبیه‌سازی کنید و ببینید کدام قوانین و چرا منطبق می‌شوند. چیزی به بازدیدکنندگان واقعی نشان داده نمی‌شود."
+
+msgid "Site time zone (%s)"
+msgstr "منطقهٔ زمانی سایت (%s)"
+
+msgid "Something went wrong. Please try again."
+msgstr "مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
+
+msgid "Sound on new replies (default)"
+msgstr "صدای پاسخ تازه (پیش‌فرض)"
+
+msgid "Spam"
+msgstr "هرزنامه"
+
+msgid "Spam mark removed."
+msgstr "علامت هرزنامه برداشته شد."
+
+msgid "Specific pages or posts"
+msgstr "صفحه‌ها یا نوشته‌های مشخص"
+
+msgid "Speech bubble"
+msgstr "حباب گفتار"
+
+msgid "Stacking order (z-index)"
+msgstr "ترتیب لایه (z-index)"
+
+msgid "Start side (right in Persian, left in English)"
+msgstr "سمت آغازین (در فارسی راست، در انگلیسی چپ)"
+
+msgid "Started"
+msgstr "شروع"
+
+msgid "Started on"
+msgstr "صفحهٔ شروع"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Status filter"
+msgstr "فیلتر وضعیت"
+
+msgid "Step 1"
+msgstr "گام ۱"
+
+msgid "Step 2"
+msgstr "گام ۲"
+
+msgid "Step 3"
+msgstr "گام ۳"
+
+msgid "Step 4"
+msgstr "گام ۴"
+
+msgid "Stop showing after"
+msgstr "توقف نمایش پس از"
+
+msgid "Style"
+msgstr "سبک"
+
+msgid "Subtitle"
+msgstr "زیرعنوان"
+
+msgid "Subtle (as in the design reference)"
+msgstr "ملایم (مطابق مرجع طراحی)"
+
+msgid "Suggested questions"
+msgstr "پرسش‌های پیشنهادی"
+
+msgid "Summary"
+msgstr "خلاصه"
+
+msgid "Sunday"
+msgstr "یکشنبه"
+
+msgid "Support group"
+msgstr "گروه پشتیبانی"
+
+msgid "Support group connected."
+msgstr "گروه پشتیبانی متصل شد."
+
+msgid "System"
+msgstr "سیستم"
+
+msgid "System check"
+msgstr "بررسی سیستم"
+
+msgid "Tablet"
+msgstr "تبلت"
+
+msgid "Tag filter"
+msgstr "فیلتر برچسب"
+
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+msgid "Tags saved."
+msgstr "برچسب‌ها ذخیره شد."
+
+msgid "Taxonomy"
+msgstr "طبقه‌بندی"
+
+msgid "Team availability"
+msgstr "در دسترس بودن تیم"
+
+msgid "Temporary away"
+msgstr "غیبت موقت"
+
+msgid "Test message sent. Now reply to it in Bale."
+msgstr "پیام آزمایشی فرستاده شد. حالا در بله روی آن ریپلای کنید."
+
+msgid "Test receiving"
+msgstr "آزمایش دریافت"
+
+msgid "Test rules"
+msgstr "آزمایش قوانین"
+
+msgid "Test sending"
+msgstr "آزمایش ارسال"
+
+msgid "Test sending and receiving"
+msgstr "آزمایش ارسال و دریافت"
+
+msgid "Text"
+msgstr "متن"
+
+msgid "Text button"
+msgstr "دکمهٔ متنی"
+
+msgid "That Bale account is already linked to another operator."
+msgstr "این حساب بله پیش‌تر به اپراتور دیگری متصل شده است."
+
+msgid "The background worker is not running. Set up the cron job above, or open “Delivery queue & diagnostics” and run the worker manually."
+msgstr "پردازشگر پس‌زمینه اجرا نمی‌شود. کرون بالا را راه‌اندازی کنید یا در «صف ارسال و عیب‌یابی» پردازشگر را دستی اجرا کنید."
+
+msgid "The code could not be used."
+msgstr "این کد قابل استفاده نبود."
+
+msgid "The code was used but binding failed."
+msgstr "کد استفاده شد اما اتصال انجام نشد."
+
+msgid "The conversation keeps its original Bale destination; the transfer changes who is responsible in WordPress."
+msgstr "گفتگو همان مقصد اصلی بله را حفظ می‌کند؛ انتقال فقط مسئول آن را در وردپرس تغییر می‌دهد."
+
+msgid "The conversation was closed"
+msgstr "گفتگو بسته شد"
+
+msgid "The conversation was reopened"
+msgstr "گفتگو دوباره باز شد"
+
+msgid "The date picker uses your browser’s calendar; the list above shows Jalali dates."
+msgstr "انتخابگر تاریخ از تقویم مرورگر شما استفاده می‌کند؛ فهرست بالا تاریخ‌ها را به تقویم جلالی نشان می‌دهد."
+
+msgid "The file is too large."
+msgstr "حجم فایل بیش از حد مجاز است."
+
+msgid "The operator opens a private chat with the bot in Bale (search for its username)."
+msgstr "اپراتور در بله گفتگوی خصوصی با ربات را باز می‌کند (نام کاربری ربات را جستجو کند)."
+
+msgid "The preview does not create conversations. Click the launcher to see the chat window."
+msgstr "پیش‌نمایش گفتگویی ایجاد نمی‌کند. برای دیدن پنجرهٔ گفتگو روی دکمه کلیک کنید."
+
+msgid "The server needs outbound HTTPS access to %s. Ask your host to allow it; some hosts block outgoing requests by default."
+msgstr "سرور به دسترسی HTTPS خروجی به %s نیاز دارد. از میزبان بخواهید آن را مجاز کند؛ برخی میزبان‌ها درخواست‌های خروجی را به‌طور پیش‌فرض می‌بندند."
+
+msgid "The visitor will be able to chat again."
+msgstr "بازدیدکننده دوباره می‌تواند گفتگو کند."
+
+msgid "They send this exact command within 15 minutes. The code works once."
+msgstr "او همین فرمان را ظرف ۱۵ دقیقه می‌فرستد. کد فقط یک بار کار می‌کند."
+
+msgid "This URL is shown only once. Keep it private; anyone with it can trigger the worker (but cannot read data)."
+msgstr "این نشانی فقط یک بار نمایش داده می‌شود. آن را خصوصی نگه دارید؛ هر کس آن را داشته باشد می‌تواند پردازشگر را اجرا کند (اما نمی‌تواند داده‌ای بخواند)."
+
+msgid "This bot currently sends its updates to %s. Replacing it will stop that application from receiving messages from this bot."
+msgstr "این ربات اکنون به‌روزرسانی‌هایش را به %s می‌فرستد. با جایگزینی، آن برنامه دیگر پیام‌های این ربات را دریافت نمی‌کند."
+
+msgid "This is not a valid JSON file."
+msgstr "این فایل JSON معتبر نیست."
+
+msgid "This site does not use HTTPS, so a webhook cannot be registered."
+msgstr "این سایت از HTTPS استفاده نمی‌کند؛ بنابراین ثبت وب‌هوک ممکن نیست."
+
+msgid "Thursday"
+msgstr "پنجشنبه"
+
+msgid "Time zone"
+msgstr "منطقهٔ زمانی"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "To"
+msgstr "تا"
+
+msgid "Token"
+msgstr "توکن"
+
+msgid "Transactions (InnoDB)"
+msgstr "تراکنش‌ها (InnoDB)"
+
+msgid "Transfer"
+msgstr "انتقال"
+
+msgid "Transfer conversation"
+msgstr "انتقال گفتگو"
+
+msgid "Trigger"
+msgstr "محرک"
+
+msgid "Troubleshooting"
+msgstr "رفع اشکال"
+
+msgid "Trusted reverse proxies (IP or CIDR)"
+msgstr "پراکسی‌های معکوس مورد اعتماد (IP یا CIDR)"
+
+msgid "Tuesday"
+msgstr "سه‌شنبه"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Type / and the shortcut in the reply box to insert it."
+msgstr "برای درج، در کادر پاسخ / و سپس میان‌بر را بنویسید."
+
+msgid "URL query parameter"
+msgstr "پارامتر نشانی"
+
+msgid "UTM key (e.g. utm_source)"
+msgstr "کلید UTM (مثلاً utm_source)"
+
+msgid "Unanswered"
+msgstr "بی‌پاسخ"
+
+msgid "Unanswered rate = conversations without any operator message ÷ all conversations."
+msgstr "نرخ بی‌پاسخ = گفتگوهای بدون هیچ پیام اپراتور ÷ همهٔ گفتگوها."
+
+msgid "Unassigned"
+msgstr "واگذارنشده"
+
+msgid "Unassigned (back to the queue)"
+msgstr "واگذارنشده (بازگشت به صف)"
+
+msgid "Unblock"
+msgstr "رفع مسدودی"
+
+msgid "Unblock visitor"
+msgstr "رفع مسدودی بازدیدکننده"
+
+msgid "Uncertain"
+msgstr "نامطمئن"
+
+msgid "Uncertain — may or may not have reached Bale"
+msgstr "نامطمئن — شاید به بله رسیده باشد، شاید نه"
+
+msgid "Unknown"
+msgstr "نامشخص"
+
+msgid "Unlink Bale account"
+msgstr "قطع اتصال حساب بله"
+
+msgid "Up to six one-tap questions shown on the widget’s home screen. Tapping one starts a chat with that text."
+msgstr "حداکثر شش پرسش تک‌لمسی در صفحهٔ اول ابزارک. با لمس هر پرسش، گفتگو با همان متن شروع می‌شود."
+
+msgid "Update"
+msgstr "به‌روزرسانی"
+
+msgid "Updated"
+msgstr "به‌روزرسانی"
+
+msgid "Upload failed"
+msgstr "بارگذاری ناموفق بود"
+
+msgid "Uploading"
+msgstr "در حال بارگذاری"
+
+msgid "Urgent"
+msgstr "فوری"
+
+msgid "Use a different greeting"
+msgstr "استفاده از متن خوشامد دیگر"
+
+msgid "Use business hours"
+msgstr "استفاده از ساعات کاری"
+
+msgid "Use polling"
+msgstr "استفاده از دریافت دوره‌ای"
+
+msgid "Use this for short breaks; the widget shows the away message until the time below."
+msgstr "برای وقفه‌های کوتاه؛ ابزارک تا زمان زیر پیام غیبت را نشان می‌دهد."
+
+msgid "Uses the browser’s built-in Persian calendar. Exports keep UTC timestamps."
+msgstr "از تقویم فارسی داخلی مرورگر استفاده می‌کند. خروجی‌ها زمان UTC را حفظ می‌کنند."
+
+msgid "Value"
+msgstr "مقدار"
+
+msgid "Verified on this site"
+msgstr "تأییدشده روی همین سایت"
+
+msgid "Verify and save"
+msgstr "بررسی و ذخیره"
+
+msgid "Versions"
+msgstr "نسخه‌ها"
+
+msgid "Visible to visitors"
+msgstr "قابل مشاهده برای بازدیدکنندگان"
+
+msgid "Visitor"
+msgstr "بازدیدکننده"
+
+msgid "Visitor blocked."
+msgstr "بازدیدکننده مسدود شد."
+
+msgid "Visitor is logged in"
+msgstr "بازدیدکننده وارد حساب شده"
+
+msgid "Visitor is typing…"
+msgstr "بازدیدکننده در حال نوشتن است…"
+
+msgid "Visitor name"
+msgstr "نام بازدیدکننده"
+
+msgid "Visitor session lifetime (days)"
+msgstr "عمر نشست بازدیدکننده (روز)"
+
+msgid "Visitor unblocked."
+msgstr "مسدودی بازدیدکننده برداشته شد."
+
+msgid "Visitors can choose this department"
+msgstr "بازدیدکننده می‌تواند این بخش را انتخاب کند"
+
+msgid "Visitors can reopen a closed conversation by writing again"
+msgstr "بازدیدکننده با نوشتن دوباره می‌تواند گفتگوی بسته را باز کند"
+
+msgid "Visitors see this name next to the operator’s replies."
+msgstr "بازدیدکننده این نام را کنار پاسخ‌های اپراتور می‌بیند."
+
+msgid "Visitors who ask their system for reduced motion never see animation."
+msgstr "بازدیدکنندگانی که در سیستم خود «کاهش حرکت» را فعال کرده‌اند هرگز پویانمایی نمی‌بینند."
+
+msgid "Voice messages"
+msgstr "پیام صوتی"
+
+msgid "WP-Cron"
+msgstr "کرون وردپرس"
+
+msgid "Waiting"
+msgstr "در انتظار"
+
+msgid "Waiting for an operator"
+msgstr "در انتظار اپراتور"
+
+msgid "Waiting for the bot to receive it… (receiving must already work: webhook or polling)"
+msgstr "در انتظار دریافت توسط ربات… (دریافت باید از قبل کار کند: وب‌هوک یا دریافت دوره‌ای)"
+
+msgid "Waiting for the bot to receive the code…"
+msgstr "در انتظار دریافت کد توسط ربات…"
+
+msgid "Waiting for visitor"
+msgstr "در انتظار بازدیدکننده"
+
+msgid "Waiting for your reply in Bale"
+msgstr "در انتظار ریپلای شما در بله"
+
+msgid "Waiting to send to Bale"
+msgstr "در انتظار ارسال به بله"
+
+msgid "Webhook (recommended)"
+msgstr "وب‌هوک (پیشنهادی)"
+
+msgid "Webhook registered."
+msgstr "وب‌هوک ثبت شد."
+
+msgid "Webhook removed."
+msgstr "وب‌هوک حذف شد."
+
+msgid "Webhook secret rotated."
+msgstr "رمز وب‌هوک تعویض شد."
+
+msgid "Wednesday"
+msgstr "چهارشنبه"
+
+msgid "Weekly schedule"
+msgstr "برنامهٔ هفتگی"
+
+msgid "Welcome subtitle"
+msgstr "زیرعنوان خوشامد"
+
+msgid "Welcome title"
+msgstr "عنوان خوشامد"
+
+msgid "What is sent to Bale"
+msgstr "چه چیزی به بله فرستاده می‌شود"
+
+msgid "When"
+msgstr "زمان"
+
+msgid "When Bale’s answer is unclear (timeout)"
+msgstr "وقتی پاسخ بله نامشخص است (پایان مهلت)"
+
+msgid "Widget appearance & preview"
+msgstr "ظاهر ابزارک و پیش‌نمایش"
+
+msgid "Widget enabled"
+msgstr "ابزارک فعال است"
+
+msgid "Widget language"
+msgstr "زبان ابزارک"
+
+msgid "Widget preview"
+msgstr "پیش‌نمایش ابزارک"
+
+msgid "With WP-CLI (preferred):"
+msgstr "با WP-CLI (پیشنهادی):"
+
+msgid "Within business hours"
+msgstr "در ساعات کاری"
+
+msgid "Within hours"
+msgstr "در بازهٔ (ساعت)"
+
+msgid "Without WP-CLI (shared hosting): call the secret cron URL every minute:"
+msgstr "بدون WP-CLI (هاست اشتراکی): نشانی محرمانهٔ کرون را هر دقیقه فراخوانی کنید:"
+
+msgid "Without rules the launcher appears on every page and no proactive messages are shown."
+msgstr "بدون قانون، دکمهٔ گفتگو در همهٔ صفحه‌ها نمایش داده می‌شود و هیچ پیام پیشگیرانه‌ای نشان داده نمی‌شود."
+
+msgid "WooCommerce page"
+msgstr "صفحهٔ ووکامرس"
+
+msgid "WordPress inbox only"
+msgstr "فقط صندوق گفتگوهای وردپرس"
+
+msgid "WordPress role"
+msgstr "نقش کاربری وردپرس"
+
+msgid "WordPress user"
+msgstr "کاربر وردپرس"
+
+msgid "WordPress user (optional)"
+msgstr "کاربر وردپرس (اختیاری)"
+
+msgid "Worker ran: %d done, %d failed."
+msgstr "پردازشگر اجرا شد: %d موفق، %d ناموفق."
+
+msgid "Works"
+msgstr "کار می‌کند"
+
+msgid "Write a note for your team (never sent to the visitor)…"
+msgstr "برای همکارانتان یادداشت بنویسید (هرگز برای بازدیدکننده فرستاده نمی‌شود)…"
+
+msgid "Write a reply… Type / for canned responses. Ctrl+Enter sends."
+msgstr "پاسخ بنویسید… برای پاسخ آماده / بزنید. Ctrl+Enter ارسال می‌کند."
+
+msgid "Yes"
+msgstr "بله"
+
+msgid "You can read this conversation but not reply to it."
+msgstr "می‌توانید این گفتگو را بخوانید ولی نمی‌توانید پاسخ دهید."
+
+msgid "You have unsaved changes."
+msgstr "تغییرات ذخیره‌نشده دارید."
+
+msgid "after %s seconds of inactivity"
+msgstr "پس از %s ثانیه بی‌فعالیتی"
+
+msgid "after %s seconds of viewing the page"
+msgstr "پس از %s ثانیه دیدن صفحه"
+
+msgid "after scrolling %s%% of the page"
+msgstr "پس از اسکرول %s٪ صفحه"
+
+msgid "and"
+msgstr "و"
+
+msgid "another address"
+msgstr "نشانی دیگری"
+
+msgid "any page"
+msgstr "هر صفحه‌ای"
+
+msgid "available"
+msgstr "در دسترس"
+
+msgid "average %s"
+msgstr "میانگین %s"
+
+msgid "completed"
+msgstr "انجام شد"
+
+msgid "contains"
+msgstr "شامل"
+
+msgid "database"
+msgstr "پایگاه داده"
+
+msgid "derived from WordPress salts"
+msgstr "برگرفته از کلیدهای امنیتی وردپرس"
+
+msgid "direct visit"
+msgstr "ورود مستقیم"
+
+msgid "disabled (server cron expected)"
+msgstr "غیرفعال (کرون سرور انتظار می‌رود)"
+
+msgid "dismissed before"
+msgstr "قبلاً بسته شده"
+
+msgid "e.g. Nowruz"
+msgstr "مثلاً نوروز"
+
+msgid "enabled (runs only on visits)"
+msgstr "فعال (فقط با بازدید اجرا می‌شود)"
+
+msgid "except when"
+msgstr "به‌جز وقتی که"
+
+msgid "exists"
+msgstr "وجود دارد"
+
+msgid "expired"
+msgstr "منقضی شده"
+
+msgid "false"
+msgstr "نادرست"
+
+msgid "from Bale"
+msgstr "از بله"
+
+msgid "from wp-config.php"
+msgstr "از wp-config.php"
+
+msgid "hide the launcher"
+msgstr "دکمهٔ گفتگو پنهان شود"
+
+msgid "immediately"
+msgstr "بلافاصله"
+
+msgid "in cooldown"
+msgstr "در فاصلهٔ تکرار"
+
+msgid "inactive"
+msgstr "غیرفعال"
+
+msgid "is"
+msgstr "برابر است با"
+
+msgid "key source"
+msgstr "منبع کلید"
+
+msgid "last worker run"
+msgstr "آخرین اجرای پردازشگر"
+
+msgid "matches"
+msgstr "منطبق با"
+
+msgid "never"
+msgstr "هرگز"
+
+msgid "never again after dismissal"
+msgstr "پس از بستن دیگر هرگز"
+
+msgid "no"
+msgstr "خیر"
+
+msgid "not"
+msgstr "نه"
+
+msgid "not again within %s hours"
+msgstr "تا %s ساعت دوباره نه"
+
+msgid "not completed"
+msgstr "انجام نشده"
+
+msgid "open the chat window"
+msgstr "پنجرهٔ گفتگو باز شود"
+
+msgid "or"
+msgstr "یا"
+
+msgid "page limit reached"
+msgstr "سقف صفحه پر شده"
+
+msgid "rule #%s within %s hours"
+msgstr "قانون شمارهٔ %s در %s ساعت اخیر"
+
+msgid "schema"
+msgstr "طرح‌واره"
+
+msgid "select department"
+msgstr "بخش انتخاب شود"
+
+msgid "show the automated message"
+msgstr "پیام خودکار نمایش داده شود"
+
+msgid "show the bubble"
+msgstr "حباب نمایش داده شود"
+
+msgid "show the launcher"
+msgstr "دکمهٔ گفتگو نمایش داده شود"
+
+msgid "skipped on phones"
+msgstr "در گوشی رد شد"
+
+msgid "support group"
+msgstr "گروه پشتیبانی"
+
+msgid "true"
+msgstr "درست"
+
+msgid "until an operator was assigned"
+msgstr "تا واگذاری به اپراتور"
+
+msgid "use the greeting"
+msgstr "از این متن خوشامد استفاده شود"
+
+msgid "visit limit reached"
+msgstr "سقف بازدید پر شده"
+
+msgid "visitor limit reached"
+msgstr "سقف بازدیدکننده پر شده"
+
+msgid "when the mouse leaves the page (desktop only)"
+msgstr "وقتی نشانگر موس از صفحه خارج شود (فقط دسکتاپ)"
+
+msgid "yes"
+msgstr "بله"
+
+msgid "“Could not reach Bale”"
+msgstr "«دسترسی به بله ممکن نشد»"
+
+msgid "“Observed” means this site actually performed the operation successfully. Features Bale’s bot API does not offer are disabled instead of imitated."
+msgstr "«مشاهده‌شده» یعنی این سایت واقعاً آن عملیات را با موفقیت انجام داده است. قابلیت‌هایی که API ربات بله ارائه نمی‌دهد، به‌جای تقلید غیرفعال شده‌اند."
+
+msgid "“Uncertain” means Bale may already have the message (for example after a timeout). Check the Bale group before retrying to avoid a duplicate."
+msgstr "«نامطمئن» یعنی شاید پیام قبلاً به بله رسیده باشد (مثلاً پس از پایان مهلت). برای جلوگیری از تکرار، پیش از تلاش دوباره گروه بله را بررسی کنید."
+
+msgid "Bot identity (getMe)"
+msgstr "هویت ربات (getMe)"
+
+msgid "Send text (sendMessage)"
+msgstr "ارسال متن (sendMessage)"
+
+msgid "Send photo (sendPhoto)"
+msgstr "ارسال عکس (sendPhoto)"
+
+msgid "Send document (sendDocument)"
+msgstr "ارسال فایل (sendDocument)"
+
+msgid "Receive operator text"
+msgstr "دریافت متن اپراتور"
+
+msgid "Reply metadata (reply_to_message)"
+msgstr "اطلاعات ریپلای (reply_to_message)"
+
+msgid "Receive operator files (getFile)"
+msgstr "دریافت فایل اپراتور (getFile)"
+
+msgid "Webhook delivery (setWebhook)"
+msgstr "تحویل با وب‌هوک (setWebhook)"
+
+msgid "Polling fallback (getUpdates)"
+msgstr "دریافت دوره‌ای جایگزین (getUpdates)"
+
+msgid "Implemented; not yet observed working on this site. Run the connection test."
+msgstr "پیاده‌سازی شده، اما هنوز کارکردش روی این سایت مشاهده نشده است. آزمون اتصال را اجرا کنید."
+
+msgid "Topics (one topic per conversation)"
+msgstr "موضوع‌بندی (یک موضوع برای هر گفتگو)"
+
+msgid "Inline buttons / callback queries"
+msgstr "دکمه‌های شیشه‌ای / callback query"
+
+msgid "Not offered. Operators use text commands (/close, /claim) in reply to a conversation message; every command is authorized against the operator allowlist."
+msgstr "ارائه نمی‌شود. اپراتورها با ریپلای روی پیام گفتگو از فرمان‌های متنی (‎/close و ‎/claim) استفاده می‌کنند و هر فرمان با فهرست اپراتورهای مجاز بررسی می‌شود."
+
+msgid "Signed webhook header"
+msgstr "سرآیند امضاشدهٔ وب‌هوک"
+
+msgid "No signed or header-authenticated webhook mechanism is assumed for Bale. Gapban uses a high-entropy, revocable secret URL path plus sender/chat allowlists."
+msgstr "برای بله هیچ سازوکار وب‌هوک امضاشده یا مبتنی بر سرآیند فرض نشده است. گپ‌بان از مسیر نشانی محرمانهٔ قوی و قابل‌ابطال به‌همراه فهرست مجاز فرستنده و گفتگو استفاده می‌کند."
+
+msgid "Operator read receipts, presence and typing from Bale"
+msgstr "خوانده‌شدن، حضور و در حال نوشتن اپراتور از بله"
+
+msgid "Not available to bots; Gapban never fabricates them. Website read/typing markers come only from the WordPress inbox."
+msgstr "برای ربات‌ها در دسترس نیست و گپ‌بان هرگز آن‌ها را جعل نمی‌کند. نشانه‌های «دیده شد» و «در حال نوشتن» در سایت فقط از صندوق گفتگوهای وردپرس می‌آیند."
+
+msgid "Syncing edits made in Bale"
+msgstr "همگام‌سازی ویرایش‌های انجام‌شده در بله"
+
+msgid "Edited operator messages are recorded as an audit event and are not re-sent to the visitor."
+msgstr "ویرایش پیام اپراتور به‌عنوان رویداد ثبت می‌شود و دوباره برای بازدیدکننده فرستاده نمی‌شود."
+
+msgid "Topics are not supported by the current Bale API."
+msgstr "موضوع‌بندی در API فعلی بله پشتیبانی نمی‌شود"
+
+msgid "Gapban could not confirm topic creation, topic identifiers and per-topic message routing in the official Bale Bot API, so Topics Mode cannot be selected. Reply Mode is used instead; for real per-conversation separation use the WordPress inbox or separate destination groups per department."
+msgstr "گپ‌بان نتوانست ساخت موضوع، شناسهٔ موضوع و ارسال پیام به تفکیک موضوع را در API رسمی ربات بله تأیید کند؛ بنابراین حالت موضوع‌بندی قابل انتخاب نیست و حالت ریپلای استفاده می‌شود. برای جداسازی واقعی هر گفتگو از صندوق گفتگوهای وردپرس یا گروه مقصد جداگانه برای هر بخش استفاده کنید."
+
+msgid "You"
+msgstr "شما"
+
+msgid "Support"
+msgstr "پشتیبانی"
+
+msgid "internal note"
+msgstr "یادداشت داخلی"
+
+msgid "file"
+msgstr "فایل"
+
+msgid "Gapban must be activated on each site individually; network activation is not supported."
+msgstr "گپ‌بان باید در هر سایت جداگانه فعال شود؛ فعال‌سازی شبکه‌ای پشتیبانی نمی‌شود."
+
+msgid "Activation refused"
+msgstr "فعال‌سازی انجام نشد"
+
+msgid "This conversation is closed. Please start a new one."
+msgstr "این گفتگو بسته شده است. لطفاً گفتگوی تازه‌ای شروع کنید."
+
+msgid "This conversation is not available."
+msgstr "این گفتگو در دسترس نیست."
+
+msgid "Please start a conversation first."
+msgstr "لطفاً ابتدا گفتگو را شروع کنید."
+
+msgid "Not found."
+msgstr "پیدا نشد."
+
+msgid "You are not allowed to do that."
+msgstr "اجازهٔ این کار را ندارید."
+
+msgid "That action is not possible in the conversation's current state."
+msgstr "این کار در وضعیت فعلی گفتگو ممکن نیست."
+
+msgid "Someone else changed this conversation. Reload and try again."
+msgstr "شخص دیگری این گفتگو را تغییر داده است. صفحه را دوباره بارگذاری و تلاش کنید."
+
+msgid "Another operator has already claimed this conversation."
+msgstr "اپراتور دیگری این گفتگو را برداشته است."
+
+msgid "The assignment changed meanwhile. Reload and try again."
+msgstr "در این فاصله واگذاری تغییر کرده است. دوباره بارگذاری و تلاش کنید."
+
+msgid "That operator is not active."
+msgstr "این اپراتور فعال نیست."
+
+msgid "Unknown action."
+msgstr "کنش ناشناخته."
+
+msgid "Chat with us"
+msgstr "گفتگو با ما"
+
+msgid "%d unread messages"
+msgstr "%d پیام خوانده‌نشده"
+
+msgid "Dismiss"
+msgstr "بستن"
+
+msgid "The chat could not be loaded. Please check your connection and try again."
+msgstr "گفتگو بارگذاری نشد. اتصال اینترنت را بررسی و دوباره تلاش کنید."
+
+msgid "You have a new reply from our team."
+msgstr "پاسخ تازه‌ای از همکاران ما دارید."
+
+msgid "Collapse"
+msgstr "کوچک کردن"
+
+msgid "Expand"
+msgstr "بزرگ کردن"
+
+msgid "More options"
+msgstr "گزینه‌های بیشتر"
+
+msgid "Minimize chat"
+msgstr "کوچک کردن گفتگو"
+
+msgid "Online — we usually reply within minutes"
+msgstr "آنلاین — معمولاً ظرف چند دقیقه پاسخ می‌دهیم"
+
+msgid "Our team is away right now; leave a message"
+msgstr "همکاران ما الان در دسترس نیستند؛ پیام بگذارید"
+
+msgid "Temporarily away"
+msgstr "موقتاً در دسترس نیستیم"
+
+msgid "Outside business hours; leave a message"
+msgstr "خارج از ساعات کاری؛ پیام بگذارید"
+
+msgid "Closed for the holiday; leave a message"
+msgstr "به‌مناسبت تعطیلی در دسترس نیستیم؛ پیام بگذارید"
+
+msgid "Typing…"
+msgstr "در حال نوشتن…"
+
+msgid "Reference"
+msgstr "کد پیگیری"
+
+msgid "Messages are stored securely on this website."
+msgstr "پیام‌ها به‌صورت امن در همین سایت ذخیره می‌شوند."
+
+msgid "Turn sound on"
+msgstr "روشن کردن صدا"
+
+msgid "Turn sound off"
+msgstr "خاموش کردن صدا"
+
+msgid "Notify me about new replies"
+msgstr "اعلان پاسخ‌های تازه"
+
+msgid "Download transcript"
+msgstr "دریافت متن گفتگو"
+
+msgid "End conversation"
+msgstr "پایان گفتگو"
+
+msgid "End this conversation?"
+msgstr "این گفتگو پایان یابد؟"
+
+msgid "Start a conversation"
+msgstr "شروع گفتگو"
+
+msgid "Leave a message"
+msgstr "گذاشتن پیام"
+
+msgid "Common questions"
+msgstr "پرسش‌های رایج"
+
+msgid "Read more"
+msgstr "ادامهٔ مطلب"
+
+msgid "Talk to a person"
+msgstr "گفتگو با یک همکار"
+
+msgid "Leave us a message"
+msgstr "برای ما پیام بگذارید"
+
+msgid "Before we start"
+msgstr "پیش از شروع"
+
+msgid "A few details help us answer faster."
+msgstr "با چند اطلاعات کوتاه، سریع‌تر پاسخ می‌دهیم."
+
+msgid "Your name"
+msgstr "نام شما"
+
+msgid "This field is required."
+msgstr "پر کردن این فیلد الزامی است."
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Back"
+msgstr "بازگشت"
+
+msgid "New messages ↓"
+msgstr "پیام‌های تازه ↓"
+
+msgid "Support team"
+msgstr "تیم پشتیبانی"
+
+msgid "Sending…"
+msgstr "در حال ارسال…"
+
+msgid "Not sent."
+msgstr "ارسال نشد."
+
+msgid "Received by the website"
+msgstr "در سایت ثبت شد"
+
+msgid "Delivered to the support team"
+msgstr "به تیم پشتیبانی تحویل شد"
+
+msgid "Seen by the support team"
+msgstr "تیم پشتیبانی دید"
+
+msgid "The file is no longer available."
+msgstr "این فایل دیگر در دسترس نیست."
+
+msgid "Download"
+msgstr "دریافت"
+
+msgid "How was your conversation?"
+msgstr "گفتگو چطور بود؟"
+
+msgid "%d out of 5"
+msgstr "%d از ۵"
+
+msgid "Anything to add? (optional)"
+msgstr "نکتهٔ دیگری دارید؟ (اختیاری)"
+
+msgid "Send rating"
+msgstr "ثبت امتیاز"
+
+msgid "Thank you for your feedback!"
+msgstr "از بازخوردتان سپاسگزاریم!"
+
+msgid "Start a new conversation"
+msgstr "شروع گفتگوی تازه"
+
+msgid "Write a message…"
+msgstr "پیامتان را بنویسید…"
+
+msgid "Emoji"
+msgstr "ایموجی"
+
+msgid "Recording…"
+msgstr "در حال ضبط…"
+
+msgid "Record a voice message (sent as an audio file)"
+msgstr "ضبط پیام صوتی (به‌صورت فایل صوتی فرستاده می‌شود)"
+
+msgid "Voice message"
+msgstr "پیام صوتی"
+
+msgid "Cancel upload"
+msgstr "لغو بارگذاری"
+
+msgid "Remove file"
+msgstr "حذف فایل"
+
+msgid "Files can be at most %d MB."
+msgstr "حجم فایل حداکثر %d مگابایت است."
+
+msgid "This file type is not allowed."
+msgstr "این نوع فایل مجاز نیست."
+
+msgid "Microphone access was not allowed. You can type or attach a file instead."
+msgstr "اجازهٔ دسترسی به میکروفون داده نشد. می‌توانید به‌جای آن بنویسید یا فایل پیوست کنید."
+
+msgid "Please wait until the upload finishes."
+msgstr "لطفاً تا پایان بارگذاری صبر کنید."
+
+msgid "Connection lost. Reconnecting…"
+msgstr "اتصال قطع شد. در حال اتصال دوباره…"
+
+msgid "Sent a file"
+msgstr "فایلی فرستاد"
+
+msgid "You are sending messages too quickly. Please wait a moment."
+msgstr "پیام‌ها را خیلی سریع می‌فرستید. لطفاً کمی صبر کنید."
+
+msgid "When you use the chat on this site, we store your messages, any files you send, the details you enter in the chat form (such as name, email or mobile number), the page you started the chat from, and technical data needed to keep the chat secure (a hashed network address and a random session key stored in your browser)."
+msgstr "هنگام استفاده از گفتگوی این سایت، پیام‌ها، فایل‌های ارسالی، اطلاعاتی که در فرم گفتگو وارد می‌کنید (مانند نام، ایمیل یا شمارهٔ موبایل)، صفحه‌ای که گفتگو را از آن شروع کرده‌اید و داده‌های فنی لازم برای امنیت گفتگو (نشانی شبکهٔ درهم‌سازی‌شده و کلید نشست تصادفی ذخیره‌شده در مرورگر شما) نگهداری می‌شود."
+
+msgid "To answer you, chat messages and files may be transmitted to our support team through the Bale messenger (bale.ai). Copies delivered to Bale are processed by Bale under its own terms and may not be deleted when we delete the conversation on this site."
+msgstr "برای پاسخ‌گویی، پیام‌ها و فایل‌های گفتگو ممکن است از طریق پیام‌رسان بله (bale.ai) به تیم پشتیبانی ما منتقل شوند. نسخه‌های تحویل‌شده به بله طبق شرایط خود بله پردازش می‌شوند و با حذف گفتگو در این سایت ممکن است حذف نشوند."
+
+msgid "Conversations are kept for the period configured by the site owner and then deleted automatically. You can ask us for a copy of your conversations or for their deletion."
+msgstr "گفتگوها برای مدتی که مدیر سایت تعیین کرده نگهداری و سپس خودکار حذف می‌شوند. می‌توانید نسخه‌ای از گفتگوهایتان یا حذف آن‌ها را درخواست کنید."
+
+msgid "Gapban chat conversations"
+msgstr "گفتگوهای گپ‌بان"
+
+msgid "Chat conversations"
+msgstr "گفتگوها"
+
+msgid "Started (UTC)"
+msgstr "زمان شروع (UTC)"
+
+msgid "Transcript"
+msgstr "متن گفتگو"
+
+msgid "Chat conversations were deleted from this site. Copies already delivered to Bale are not affected."
+msgstr "گفتگوها از این سایت حذف شدند. نسخه‌هایی که پیش‌تر به بله تحویل شده‌اند تغییری نمی‌کنند."
+
+msgid "The message is empty."
+msgstr "پیام خالی است."
+
+msgid "The message is too long."
+msgstr "پیام بیش از حد طولانی است."
+
+msgid "The note is empty."
+msgstr "یادداشت خالی است."
+
+msgid "The upload failed. Please try again."
+msgstr "بارگذاری ناموفق بود. لطفاً دوباره تلاش کنید."
+
+msgid "Enter a tag name."
+msgstr "نام برچسب را وارد کنید."
+
+msgid "Bale rejected the bot token. Check the token from @BotFather in Bale and try again."
+msgstr "بله توکن ربات را رد کرد. توکن را از ‎@BotFather در بله بررسی کنید و دوباره تلاش کنید."
+
+msgid "Bale is rate limiting requests. Wait a little and try again."
+msgstr "بله تعداد درخواست‌ها را محدود کرده است. کمی صبر کنید و دوباره تلاش کنید."
+
+msgid "Could not reach Bale. Check the server's internet access and firewall (outbound HTTPS to tapi.bale.ai)."
+msgstr "دسترسی به بله ممکن نشد. دسترسی اینترنت و دیوار آتش سرور را بررسی کنید (HTTPS خروجی به tapi.bale.ai)."
+
+msgid "Bale did not answer clearly; the request may or may not have been applied. Check the chat before retrying."
+msgstr "پاسخ بله روشن نبود؛ ممکن است درخواست اعمال شده باشد یا نه. پیش از تلاش دوباره گفتگو را بررسی کنید."
+
+msgid "Bale refused the request."
+msgstr "بله درخواست را نپذیرفت."
+
+msgid "Bale says the chat was not found. Make sure the bot is a member of the group and the chat ID is correct."
+msgstr "بله می‌گوید گفتگو پیدا نشد. مطمئن شوید ربات عضو گروه است و شناسهٔ گفتگو درست است."
+
+msgid "The bot is not allowed to post in this chat. Add the bot to the group again and give it permission to send messages."
+msgstr "ربات اجازهٔ ارسال در این گفتگو را ندارد. ربات را دوباره به گروه اضافه کنید و اجازهٔ ارسال پیام بدهید."
+
+msgid "Webhooks need an HTTPS site address. Enable HTTPS or use the polling mode with a server cron job."
+msgstr "وب‌هوک به نشانی HTTPS نیاز دارد. HTTPS را فعال کنید یا از حالت دریافت دوره‌ای با کرون سرور استفاده کنید."
+
+msgid "Unknown routing mode."
+msgstr "حالت مسیریابی ناشناخته است."
+
+msgid "The SVG icon contains unsupported or unsafe content (scripts, styles, links or external references). Use a simple path-based icon."
+msgstr "نماد SVG محتوای پشتیبانی‌نشده یا ناامن دارد (اسکریپت، استایل، پیوند یا ارجاع بیرونی). از یک نماد ساده با مسیر (path) استفاده کنید."
+
+msgid "This file is not a Gapban settings export."
+msgstr "این فایل، خروجی تنظیمات گپ‌بان نیست."
+
+msgid "The token is defined in wp-config.php (GAPBAN_BALE_TOKEN) and cannot be changed here."
+msgstr "توکن در wp-config.php (GAPBAN_BALE_TOKEN) تعریف شده و اینجا قابل تغییر نیست."
+
+msgid "This does not look like a Bale bot token. It should look like 123456789:AbC…"
+msgstr "این به توکن ربات بله شبیه نیست. باید شبیه 123456789:AbC… باشد."
+
+msgid "Invalid request."
+msgstr "درخواست نامعتبر است."
+
+msgid "Set a destination chat first."
+msgstr "ابتدا گفتگوی مقصد را تعیین کنید."
+
+msgid "✅ Gapban connection test. Reply to this message with any text to test receiving; the result appears on the setup screen."
+msgstr "✅ آزمون اتصال گپ‌بان. برای آزمودن دریافت، روی همین پیام با هر متنی ریپلای کنید؛ نتیجه در صفحهٔ راه‌اندازی نمایش داده می‌شود."
+
+msgid "Enter the operator's name."
+msgstr "نام اپراتور را وارد کنید."
+
+msgid "This Bale user is already linked to another operator."
+msgstr "این کاربر بله پیش‌تر به اپراتور دیگری متصل شده است."
+
+msgid "Operator not found."
+msgstr "اپراتور پیدا نشد."
+
+msgid "Enter the department name."
+msgstr "نام بخش را وارد کنید."
+
+msgid "At least one department is required."
+msgstr "دست‌کم یک بخش لازم است."
+
+msgid "This file is not a Gapban rules export."
+msgstr "این فایل، خروجی قوانین گپ‌بان نیست."
+
+msgid "Title and text are required."
+msgstr "عنوان و متن الزامی است."
+
+msgid "Your chat session has expired. Please refresh."
+msgstr "نشست گفتگوی شما منقضی شده است. لطفاً صفحه را دوباره بارگذاری کنید."
+
+msgid "Chat is not available."
+msgstr "گفتگو در دسترس نیست."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "درخواست‌ها بیش از حد است. لطفاً کمی صبر کنید."
+
+msgid "Request rejected."
+msgstr "درخواست رد شد."
+
+msgid "Please accept the privacy notice to start chatting."
+msgstr "برای شروع گفتگو لطفاً شرایط حریم خصوصی را بپذیرید."
+
+msgid "Please enter your name."
+msgstr "لطفاً نام خود را وارد کنید."
+
+msgid "Please enter a valid email address."
+msgstr "لطفاً ایمیل معتبر وارد کنید."
+
+msgid "Please enter your email address."
+msgstr "لطفاً ایمیل خود را وارد کنید."
+
+msgid "Please enter a valid mobile number, e.g. 0912 345 6789."
+msgstr "لطفاً شمارهٔ موبایل معتبر وارد کنید؛ مثلاً ۰۹۱۲ ۳۴۵ ۶۷۸۹."
+
+msgid "Please enter your mobile number."
+msgstr "لطفاً شمارهٔ موبایل خود را وارد کنید."
+
+msgid "Please enter a number."
+msgstr "لطفاً عدد وارد کنید."
+
+msgid "Please enter a valid URL."
+msgstr "لطفاً نشانی معتبر وارد کنید."
+
+msgid "Please check the highlighted fields."
+msgstr "لطفاً فیلدهای مشخص‌شده را بررسی کنید."
+
+msgid "File uploads are disabled."
+msgstr "ارسال فایل غیرفعال است."
+
+msgid "Too many uploads. Please wait a moment."
+msgstr "تعداد بارگذاری‌ها زیاد است. لطفاً کمی صبر کنید."
+
+msgid "The upload quota for this conversation is full."
+msgstr "سهمیهٔ بارگذاری این گفتگو پر شده است."
+
+msgid "File not found."
+msgstr "فایل پیدا نشد."
+
+msgid "Ratings are disabled."
+msgstr "امتیازدهی غیرفعال است."
+
+msgid "Please choose a rating from 1 to 5."
+msgstr "لطفاً امتیازی از ۱ تا ۵ انتخاب کنید."
+
+msgid "You can rate the conversation after an operator has replied."
+msgstr "پس از پاسخ اپراتور می‌توانید به گفتگو امتیاز دهید."
+
+msgid "Transcripts are disabled."
+msgstr "دریافت متن گفتگو غیرفعال است."
+
+msgid "You are not registered as a Gapban operator, so this message was not delivered."
+msgstr "شما به‌عنوان اپراتور گپ‌بان ثبت نشده‌اید؛ بنابراین این پیام تحویل داده نشد."
+
+msgid "To answer a visitor, reply to one of the conversation messages sent by the bot."
+msgstr "برای پاسخ به بازدیدکننده، روی یکی از پیام‌هایی که ربات برای آن گفتگو فرستاده ریپلای کنید."
+
+msgid "This reply is not linked to any conversation, so it was not delivered. Reply to a message the bot sent for the conversation."
+msgstr "این ریپلای به هیچ گفتگویی مربوط نیست و تحویل داده نشد. روی پیامی ریپلای کنید که ربات برای همان گفتگو فرستاده است."
+
+msgid "You are not a member of this conversation's department."
+msgstr "شما عضو بخش این گفتگو نیستید."
+
+msgid "This conversation is assigned to another operator. Your message was not delivered."
+msgstr "این گفتگو به اپراتور دیگری واگذار شده است. پیام شما تحویل داده نشد."
+
+msgid "This conversation is marked as spam."
+msgstr "این گفتگو هرزنامه علامت خورده است."
+
+msgid "This message type is not supported. Send text, a photo or a file."
+msgstr "این نوع پیام پشتیبانی نمی‌شود. متن، عکس یا فایل بفرستید."
+
+msgid "Unknown command. Available as a reply: /claim /close /reopen /spam /note text. Anywhere: /online /away /offline"
+msgstr "فرمان ناشناخته. با ریپلای: ‎/claim ‎/close ‎/reopen ‎/spam ‎/note متن. در هر جا: ‎/online ‎/away ‎/offline"
+
+msgid "The conversation is now assigned to you."
+msgstr "گفتگو اکنون به شما واگذار شد."
+
+msgid "This conversation is already assigned to you."
+msgstr "این گفتگو از قبل به شما واگذار شده است."
+
+msgid "Conversation marked as spam."
+msgstr "گفتگو هرزنامه علامت خورد."
+
+msgid "This code is invalid, expired or already used. Create a new one in WordPress."
+msgstr "این کد نامعتبر، منقضی یا قبلاً استفاده‌شده است. در وردپرس کد تازه بسازید."
+
+msgid "Your Bale account is now linked to Gapban."
+msgstr "حساب بلهٔ شما به گپ‌بان متصل شد."
+
+msgid "This Bale account is already linked to another operator."
+msgstr "این حساب بله پیش‌تر به اپراتور دیگری متصل شده است."
+
+msgid "This chat is now a Gapban support destination. Everyone in this chat can see conversations sent here."
+msgstr "این گفتگو اکنون مقصد پشتیبانی گپ‌بان است. همهٔ اعضای آن، گفتگوهای ارسال‌شده به اینجا را می‌بینند."
+
+msgid "Your status: online."
+msgstr "وضعیت شما: آنلاین."
+
+msgid "Your status: away."
+msgstr "وضعیت شما: غایب."
+
+msgid "Your status: offline."
+msgstr "وضعیت شما: آفلاین."
+
+msgid "The file is larger than the allowed size and was not delivered."
+msgstr "حجم فایل بیش از حد مجاز است و تحویل داده نشد."
+
+msgid "This file type is not allowed and was not delivered."
+msgstr "این نوع فایل مجاز نیست و تحویل داده نشد."
+
+msgid "Your message could not be saved. Please try again."
+msgstr "پیام شما ذخیره نشد. لطفاً دوباره تلاش کنید."
+
+msgid "Receiving works: Gapban got your reply."
+msgstr "دریافت کار می‌کند: گپ‌بان پاسخ شما را گرفت."
+
+msgid "↩️ %1$s · reply by %2$s from the WordPress inbox:"
+msgstr "↩️ %1$s · پاسخ %2$s از صندوق گفتگوهای وردپرس:"
+
+msgid "operator"
+msgstr "اپراتور"
+
+msgid "🟢 New conversation %s"
+msgstr "🟢 گفتگوی تازه %s"
+
+msgid "🏷 Department: %s"
+msgstr "🏷 بخش: %s"
+
+msgid "📄 Page: %s"
+msgstr "📄 صفحه: %s"
+
+msgid "🌙 Left while the team was offline"
+msgstr "🌙 در زمان آفلاین بودن تیم گذاشته شده"
+
+msgid "Reply to this message to answer. Commands (as a reply): /claim /close /note"
+msgstr "برای پاسخ، روی همین پیام ریپلای کنید. فرمان‌ها (با ریپلای): ‎/claim ‎/close ‎/note"
+
+msgid "The rule is not a valid object."
+msgstr "قانون ساختار معتبری ندارد."
+
+msgid "The rule needs a name."
+msgstr "قانون باید نام داشته باشد."
+
+msgid "Unknown trigger."
+msgstr "محرک ناشناخته است."
+
+msgid "This action needs a message text."
+msgstr "این کنش به متن پیام نیاز دارد."
+
+msgid "Add at least one action."
+msgstr "دست‌کم یک کنش اضافه کنید."
+
+msgid "A rule cannot both show and hide the launcher."
+msgstr "یک قانون نمی‌تواند هم‌زمان دکمهٔ گفتگو را نمایش دهد و پنهان کند."
+
+msgid "Condition groups are nested too deeply (max 4 levels)."
+msgstr "گروه‌های شرط بیش از حد تودرتو هستند (حداکثر ۴ سطح)."
+
+msgid "Invalid condition group."
+msgstr "گروه شرط نامعتبر است."
+
+msgid "Too many conditions (max 60)."
+msgstr "تعداد شرط‌ها زیاد است (حداکثر ۶۰)."
+
+msgid "Unknown condition type."
+msgstr "نوع شرط ناشناخته است."
+
+msgid "A condition is missing its value."
+msgstr "یکی از شرط‌ها مقدار ندارد."
+
+msgid "The URL pattern is invalid."
+msgstr "الگوی نشانی نامعتبر است."
+
+msgid "A numeric condition needs a number."
+msgstr "شرط عددی به عدد نیاز دارد."
+
+msgid "The image could not be read."
+msgstr "تصویر قابل خواندن نیست."
