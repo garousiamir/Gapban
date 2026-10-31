@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حساب کاربری | SEVI</title>
+  <meta name="description" content="قالب SEVI — داشبورد حساب کاربری با ادامه پخش، ذخیره‌ها، اشتراک، اعلان‌ها، پروفایل و امنیت." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="accountPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-[#fafafa] selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="podcast-archive.html" class="nav-link">قسمت‌ها</a>
+          <a href="pricing.html" class="nav-link">عضویت</a>
+          <a href="account.html" class="nav-link text-gray-950 font-bold">حساب کاربری</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn relative" aria-label="اعلان‌ها">
+            <i class="fa-regular fa-bell text-sm"></i>
+            <span class="absolute -top-0.5 -end-0.5 size-4 rounded-full bg-brand text-white text-[8px] font-bold flex items-center justify-center" x-text="toFa(unread)"></span>
+          </button>
+
+          <!-- user menu -->
+          <div class="relative" @click.outside="userMenu = false">
+            <button @click="userMenu = !userMenu" class="flex items-center gap-2 h-10 ps-1.5 pe-3 rounded-2xl bg-white border border-gray-100 hover:border-brand/30 transition">
+              <span class="size-7 rounded-xl gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-[10px] font-black text-white/90">
+                م
+                <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+              </span>
+              <span class="hidden sm:block text-[11px] font-bold text-gray-700" x-text="user.firstName"></span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-gray-400"></i>
+            </button>
+
+            <div
+              x-show="userMenu"
+              x-transition:enter="transition ease-out duration-200"
+              x-transition:enter-start="opacity-0 -translate-y-2"
+              x-transition:enter-end="opacity-100 translate-y-0"
+              class="absolute end-0 top-full mt-2 w-[220px] rounded-[22px] bg-white border border-gray-100 shadow-[0_24px_60px_rgba(15,23,42,0.14)] p-2"
+              style="display:none"
+            >
+              <div class="px-3 py-2.5 border-b border-gray-100 mb-1.5">
+                <p class="text-xs font-black text-gray-950" x-text="user.name"></p>
+                <p class="mt-0.5 text-[10px] text-gray-400 truncate" dir="ltr" x-text="user.email"></p>
+              </div>
+
+              <template x-for="tab in tabs" :key="'um-' + tab.key">
+                <button @click="activeTab = tab.key; userMenu = false" class="w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-[11px] text-gray-600 hover:bg-gray-50 hover:text-brand transition text-start">
+                  <i class="fa-solid text-[10px] w-4 text-center" :class="tab.icon"></i>
+                  <span x-text="tab.label"></span>
+                </button>
+              </template>
+
+              <a href="login.html" class="mt-1.5 pt-1.5 border-t border-gray-100 w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-[11px] text-brand hover:bg-brand/5 transition">
+                <i class="fa-solid fa-arrow-right-from-bracket text-[10px] w-4 text-center"></i>
+                خروج از حساب
+              </a>
+            </div>
+          </div>
+
+          <button @click="mobileNav = true" class="lg:hidden icon-btn" aria-label="منوی حساب">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE NAV ===================== -->
+  <div x-show="mobileNav" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileNav = false" style="display:none">
+    <aside
+      x-show="mobileNav"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[340px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-black text-gray-950">منوی حساب</span>
+        <button @click="mobileNav = false" class="icon-btn" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-6 space-y-1.5">
+        <template x-for="tab in tabs" :key="'mn-' + tab.key">
+          <button
+            @click="activeTab = tab.key; mobileNav = false"
+            class="account-nav-item"
+            :class="activeTab === tab.key ? 'bg-brand/10 text-brand font-bold' : 'text-gray-600 hover:bg-gray-50'"
+          >
+            <i class="fa-solid text-[11px] w-4 text-center" :class="tab.icon"></i>
+            <span class="flex-1" x-text="tab.label"></span>
+            <span x-show="tab.badge" class="rounded-md bg-brand/10 px-1.5 text-[9px] font-bold text-brand" x-text="toFa(tab.badge)" style="display:none"></span>
+          </button>
+        </template>
+      </nav>
+    </aside>
+  </div>
+
+  <main id="main" class="container-page py-8 sm:py-10">
+
+    <!-- greeting -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
+      <div>
+        <p class="eyebrow"><i class="fa-regular fa-hand"></i> سلام دوباره</p>
+        <h1 class="mt-3 text-2xl sm:text-[32px] font-black leading-[1.5] text-gray-950">
+          <span x-text="user.firstName"></span> عزیز، خوش آمدید
+        </h1>
+      </div>
+
+      <span
+        class="inline-flex items-center gap-2 rounded-2xl px-4 py-2.5 text-[11px] font-bold w-max"
+        :class="subscription.active ? 'bg-brand/10 text-brand' : 'bg-gray-100 text-gray-500'"
+      >
+        <i class="fa-solid text-[10px]" :class="subscription.active ? 'fa-star' : 'fa-headphones'"></i>
+        <span x-text="'پلن ' + subscription.plan"></span>
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+      <!-- ===================== SIDEBAR ===================== -->
+      <aside class="hidden lg:block lg:col-span-3 lg:sticky lg:top-[92px]">
+        <div class="rounded-[28px] bg-white border border-gray-100 p-4 shadow-[0_16px_45px_rgba(15,23,42,0.04)]">
+          <div class="flex items-center gap-3 p-3 mb-2">
+            <span class="size-12 rounded-2xl gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-sm font-black text-white/90 shrink-0">
+              م
+              <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+            </span>
+            <span class="min-w-0">
+              <span class="block text-xs font-black text-gray-950 truncate" x-text="user.name"></span>
+              <span class="block text-[10px] text-gray-400 truncate" dir="ltr" x-text="user.email"></span>
+            </span>
+          </div>
+
+          <nav class="space-y-1">
+            <template x-for="tab in tabs" :key="tab.key">
+              <button
+                @click="activeTab = tab.key"
+                class="account-nav-item"
+                :class="activeTab === tab.key ? 'bg-brand/10 text-brand font-bold' : 'text-gray-600 hover:bg-gray-50'"
+                :aria-current="activeTab === tab.key ? 'page' : false"
+              >
+                <i class="fa-solid text-[11px] w-4 text-center" :class="tab.icon"></i>
+                <span class="flex-1" x-text="tab.label"></span>
+                <span x-show="tab.badge" class="rounded-md bg-brand/10 px-1.5 text-[9px] font-bold text-brand" x-text="toFa(tab.badge)" style="display:none"></span>
+              </button>
+            </template>
+          </nav>
+
+          <a href="login.html" class="mt-3 pt-3 border-t border-gray-100 account-nav-item text-brand hover:bg-brand/5">
+            <i class="fa-solid fa-arrow-right-from-bracket text-[11px] w-4 text-center"></i>
+            <span class="flex-1">خروج از حساب</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- ===================== PANELS ===================== -->
+      <div class="lg:col-span-9 space-y-6">
+
+        <!-- ============ OVERVIEW ============ -->
+        <div x-show="activeTab === 'overview'" class="space-y-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <template x-for="stat in stats" :key="stat.label">
+              <div class="stat-mini">
+                <span class="size-9 rounded-xl flex items-center justify-center text-xs" :class="stat.tile">
+                  <i class="fa-solid" :class="stat.icon"></i>
+                </span>
+                <p class="mt-3 text-xl font-black text-gray-950 leading-none" x-text="stat.value"></p>
+                <p class="mt-1.5 text-[10px] text-gray-500" x-text="stat.label"></p>
+              </div>
+            </template>
+          </div>
+
+          <!-- continue listening -->
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-4 pb-4 border-b border-gray-100">
+              <p class="text-sm font-black text-gray-950">ادامه پخش</p>
+              <a href="podcast-archive.html" class="text-[11px] text-gray-400 hover:text-brand transition">همه قسمت‌ها</a>
+            </div>
+
+            <div class="mt-4 space-y-3">
+              <template x-for="item in continueList" :key="item.id">
+                <div class="flex items-center gap-4 rounded-[22px] bg-gray-50 p-3">
+                  <button class="relative size-14 rounded-xl shrink-0 overflow-hidden group" :class="item.bg" :aria-label="'ادامه ' + item.title">
+                    <span class="absolute inset-0 bg-gray-950/40 group-hover:bg-gray-950/25 transition flex items-center justify-center text-white">
+                      <i class="fa-solid fa-play text-[11px]"></i>
+                    </span>
+                  </button>
+
+                  <div class="min-w-0 flex-1">
+                    <p class="text-[12px] font-bold text-gray-950 line-clamp-1" x-text="item.title"></p>
+                    <div class="mt-2 flex items-center gap-2.5">
+                      <span class="flex-1 h-1.5 rounded-full bg-gray-200 overflow-hidden">
+                        <span class="block h-full rounded-full bg-brand" :style="'width:' + item.percent + '%'"></span>
+                      </span>
+                      <span class="text-[10px] text-gray-400 tabular-nums shrink-0" x-text="toFa(item.percent) + '٪'"></span>
+                    </div>
+                    <p class="mt-1.5 text-[10px] text-gray-400" x-text="item.left + ' باقی مانده'"></p>
+                  </div>
+
+                  <a href="podcast-single.html" class="icon-btn size-9 shrink-0" aria-label="جزئیات قسمت">
+                    <i class="fa-solid fa-angle-left text-[11px]"></i>
+                  </a>
+                </div>
+              </template>
+            </div>
+          </section>
+
+          <!-- activity -->
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">فعالیت اخیر</p>
+
+            <div class="mt-4 space-y-1">
+              <template x-for="(item, index) in activity" :key="index">
+                <div class="flex items-start gap-3.5 py-3 border-b border-dashed border-gray-100 last:border-0">
+                  <span class="size-9 rounded-xl flex items-center justify-center shrink-0 text-[11px]" :class="item.tile">
+                    <i class="fa-solid" :class="item.icon"></i>
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-[12px] leading-7 text-gray-700" x-text="item.text"></p>
+                    <p class="mt-0.5 text-[10px] text-gray-400" x-text="item.time"></p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ SAVED ============ -->
+        <div x-show="activeTab === 'saved'" class="space-y-6" style="display:none">
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100">
+              <p class="text-sm font-black text-gray-950">
+                ذخیره‌شده‌ها
+                <span class="text-gray-400 font-normal">(<span x-text="toFa(saved.length)"></span>)</span>
+              </p>
+
+              <div class="flex items-center gap-2">
+                <template x-for="filter in savedFilters" :key="filter.key">
+                  <button
+                    @click="savedFilter = filter.key"
+                    class="h-9 px-3.5 rounded-xl text-[11px] transition flex items-center gap-2"
+                    :class="savedFilter === filter.key ? 'bg-brand/10 text-brand font-bold' : 'bg-gray-50 text-gray-500 hover:text-gray-950'"
+                  >
+                    <i class="fa-solid text-[9px]" :class="filter.icon"></i>
+                    <span x-text="filter.label"></span>
+                  </button>
+                </template>
+              </div>
+            </div>
+
+            <div class="mt-4 space-y-3">
+              <template x-for="item in visibleSaved()" :key="item.id">
+                <div class="flex items-center gap-4 rounded-[22px] border border-gray-100 p-3 hover:border-gray-200 transition group">
+                  <span class="size-14 rounded-xl shrink-0 relative overflow-hidden" :class="item.bg">
+                    <span class="absolute bottom-1 end-1 size-5 rounded-lg bg-gray-950/70 backdrop-blur text-white flex items-center justify-center">
+                      <i class="fa-solid text-[8px]" :class="item.type === 'episode' ? 'fa-headphones' : 'fa-file-lines'"></i>
+                    </span>
+                  </span>
+
+                  <div class="min-w-0 flex-1">
+                    <p class="text-[12px] font-bold text-gray-950 line-clamp-1" x-text="item.title"></p>
+                    <div class="mt-1.5 flex items-center gap-2.5 text-[10px] text-gray-400">
+                      <span x-text="item.type === 'episode' ? 'قسمت پادکست' : 'مقاله'"></span>
+                      <span class="w-px h-3 bg-gray-200"></span>
+                      <span x-text="item.meta"></span>
+                      <span class="w-px h-3 bg-gray-200"></span>
+                      <span x-text="'ذخیره ' + item.savedAt"></span>
+                    </div>
+                  </div>
+
+                  <button
+                    @click="removeSaved(item.id)"
+                    class="icon-btn size-9 shrink-0 hover:!bg-brand hover:!text-white hover:!border-brand"
+                    :aria-label="'حذف ' + item.title"
+                  >
+                    <i class="fa-regular fa-bookmark text-[11px]"></i>
+                  </button>
+                </div>
+              </template>
+            </div>
+
+            <div x-show="!visibleSaved().length" class="empty-state" style="display:none">
+              <span class="empty-icon"><i class="fa-regular fa-bookmark"></i></span>
+              <p class="mt-6 text-sm font-black text-gray-950">چیزی ذخیره نشده</p>
+              <p class="mt-2 text-xs text-gray-500">با آیکون نشانک، قسمت‌ها و مقالات را برای بعد ذخیره کنید.</p>
+              <a href="podcast-archive.html" class="mt-6 btn-ghost">
+                مرور قسمت‌ها
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </a>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ SUBSCRIPTION ============ -->
+        <div x-show="activeTab === 'subscription'" class="space-y-6" style="display:none">
+          <section class="relative overflow-hidden rounded-[28px] gradient-b p-6 sm:p-8">
+            <div class="absolute inset-0 dot-grid opacity-30"></div>
+            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+              <div>
+                <span class="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-3 py-1.5 text-[10px] font-black text-gray-800">
+                  <i class="fa-solid fa-star text-brand text-[9px]"></i>
+                  اشتراک فعال
+                </span>
+                <h2 class="mt-4 text-2xl font-black text-gray-950">پلن <span x-text="subscription.plan"></span></h2>
+                <p class="mt-2 text-xs leading-7 text-gray-700">
+                  تمدید بعدی: <span class="font-bold" x-text="subscription.renews"></span>
+                  <span class="mx-1.5 text-gray-400">·</span>
+                  <span class="font-bold" x-text="toFa(subscription.amount)"></span> هزار تومان در ماه
+                </p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 shrink-0">
+                <a href="pricing.html" class="btn-dark">تغییر پلن</a>
+                <button @click="cancelOpen = true" class="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-white/85 backdrop-blur text-sm font-bold text-gray-900 hover:bg-white transition">
+                  لغو اشتراک
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+              <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">روش پرداخت</p>
+              <div class="mt-4 flex items-center gap-4 rounded-[22px] bg-gray-50 p-4">
+                <span class="size-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500">
+                  <i class="fa-regular fa-credit-card"></i>
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-bold text-gray-950" dir="ltr">•••• •••• •••• ۴۲۸۱</p>
+                  <p class="mt-1 text-[10px] text-gray-400">بانک ملت · انقضا ۰۶/۰۸</p>
+                </div>
+                <button class="text-[11px] font-bold text-brand hover:underline shrink-0">تغییر</button>
+              </div>
+            </section>
+
+            <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+              <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">مصرف این ماه</p>
+              <div class="mt-4 space-y-3">
+                <template x-for="usage in usageBars" :key="usage.label">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-[11px] text-gray-600" x-text="usage.label"></span>
+                      <span class="text-[10px] text-gray-400 tabular-nums" x-text="usage.value"></span>
+                    </div>
+                    <span class="block h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                      <span class="block h-full rounded-full bg-brand" :style="'width:' + usage.percent + '%'"></span>
+                    </span>
+                  </div>
+                </template>
+              </div>
+            </section>
+          </div>
+
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">تاریخچه پرداخت</p>
+
+            <div class="mt-4 overflow-x-auto">
+              <table class="w-full min-w-[520px]">
+                <thead>
+                  <tr class="border-b border-gray-100">
+                    <th class="py-3 text-start text-[11px] font-black text-gray-500">تاریخ</th>
+                    <th class="py-3 text-start text-[11px] font-black text-gray-500">شرح</th>
+                    <th class="py-3 text-start text-[11px] font-black text-gray-500">مبلغ</th>
+                    <th class="py-3 text-start text-[11px] font-black text-gray-500">وضعیت</th>
+                    <th class="py-3 text-end text-[11px] font-black text-gray-500">فاکتور</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="invoice in invoices" :key="invoice.id">
+                    <tr class="border-b border-gray-100 last:border-0">
+                      <td class="py-3.5 text-[11px] text-gray-600" x-text="invoice.date"></td>
+                      <td class="py-3.5 text-[11px] text-gray-600" x-text="invoice.desc"></td>
+                      <td class="py-3.5 text-[11px] font-bold text-gray-950 tabular-nums" x-text="toFa(invoice.amount) + ' هزار'"></td>
+                      <td class="py-3.5">
+                        <span class="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-600">
+                          <i class="fa-solid fa-check text-[8px]"></i>
+                          پرداخت شد
+                        </span>
+                      </td>
+                      <td class="py-3.5 text-end">
+                        <button class="text-[11px] font-bold text-brand hover:underline">دانلود</button>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ NOTIFICATIONS ============ -->
+        <div x-show="activeTab === 'notifications'" style="display:none">
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <div class="pb-4 border-b border-gray-100">
+              <p class="text-sm font-black text-gray-950">تنظیمات اعلان</p>
+              <p class="mt-1.5 text-xs text-gray-500">انتخاب کنید چه چیزی و از چه راهی به شما اطلاع داده شود.</p>
+            </div>
+
+            <div class="mt-5 space-y-2">
+              <template x-for="pref in preferences" :key="pref.key">
+                <div class="flex items-center gap-4 rounded-[22px] bg-gray-50 p-4">
+                  <span class="size-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 shrink-0">
+                    <i class="fa-solid text-[11px]" :class="pref.icon"></i>
+                  </span>
+
+                  <div class="min-w-0 flex-1">
+                    <p class="text-xs font-bold text-gray-950" x-text="pref.label"></p>
+                    <p class="mt-1 text-[10px] leading-6 text-gray-500" x-text="pref.hint"></p>
+                  </div>
+
+                  <button
+                    @click="pref.on = !pref.on"
+                    class="relative h-6 w-11 rounded-full transition shrink-0"
+                    :class="pref.on ? 'bg-brand' : 'bg-gray-200'"
+                    role="switch"
+                    :aria-checked="pref.on"
+                    :aria-label="pref.label"
+                  >
+                    <span class="absolute top-1 size-4 rounded-full bg-white shadow transition-all" :class="pref.on ? 'start-1' : 'start-6'"></span>
+                  </button>
+                </div>
+              </template>
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button @click="saveToast('تنظیمات اعلان ذخیره شد.')" class="btn-primary">
+                ذخیره تغییرات
+                <i class="fa-solid fa-check text-xs"></i>
+              </button>
+              <button @click="preferences.forEach(p => p.on = false)" class="btn-ghost">خاموش کردن همه</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ PROFILE ============ -->
+        <div x-show="activeTab === 'profile'" style="display:none">
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">اطلاعات پروفایل</p>
+
+            <div class="mt-6 flex flex-col sm:flex-row sm:items-center gap-5 pb-6 border-b border-gray-100">
+              <span class="size-20 rounded-[24px] gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-2xl font-black text-white/90 shrink-0">
+                م
+                <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+              </span>
+              <div>
+                <p class="text-sm font-black text-gray-950">تصویر پروفایل</p>
+                <p class="mt-1.5 text-[11px] text-gray-500">PNG یا JPG، حداکثر ۲ مگابایت.</p>
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+                  <button class="tag-chip !py-1.5 !text-[11px]"><i class="fa-solid fa-upload"></i> آپلود تصویر</button>
+                  <button class="tag-chip !py-1.5 !text-[11px]"><i class="fa-solid fa-trash-can"></i> حذف</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label for="pf-name" class="field-label">نام و نام خانوادگی</label>
+                <input id="pf-name" type="text" x-model="profile.name" class="comment-input" />
+              </div>
+              <div>
+                <label for="pf-mail" class="field-label">ایمیل</label>
+                <input id="pf-mail" type="email" dir="ltr" x-model="profile.email" class="comment-input text-end" />
+              </div>
+              <div>
+                <label for="pf-user" class="field-label">نام کاربری</label>
+                <div class="relative">
+                  <input id="pf-user" type="text" dir="ltr" x-model="profile.username" class="comment-input text-end pe-9" />
+                  <span class="absolute end-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs">@</span>
+                </div>
+              </div>
+              <div>
+                <label for="pf-phone" class="field-label">شماره تماس</label>
+                <input id="pf-phone" type="tel" x-model="profile.phone" class="comment-input" />
+              </div>
+              <div class="md:col-span-2">
+                <label for="pf-bio" class="field-label">درباره من</label>
+                <textarea id="pf-bio" x-model="profile.bio" class="comment-textarea !min-h-[110px]"></textarea>
+                <p class="field-hint">این متن در صفحه عمومی پروفایل شما نمایش داده می‌شود.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <button @click="saveToast('پروفایل به‌روزرسانی شد.')" class="btn-primary">
+                ذخیره تغییرات
+                <i class="fa-solid fa-check text-xs"></i>
+              </button>
+              <button class="btn-ghost">انصراف</button>
+            </div>
+          </section>
+        </div>
+
+        <!-- ============ SECURITY ============ -->
+        <div x-show="activeTab === 'security'" class="space-y-6" style="display:none">
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <p class="text-sm font-black text-gray-950 pb-4 border-b border-gray-100">تغییر رمز عبور</p>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="md:col-span-2">
+                <label for="sec-old" class="field-label">رمز فعلی</label>
+                <input id="sec-old" type="password" dir="ltr" class="comment-input text-end" placeholder="••••••••" />
+              </div>
+              <div>
+                <label for="sec-new" class="field-label">رمز جدید</label>
+                <input id="sec-new" type="password" dir="ltr" class="comment-input text-end" placeholder="••••••••" />
+              </div>
+              <div>
+                <label for="sec-rep" class="field-label">تکرار رمز جدید</label>
+                <input id="sec-rep" type="password" dir="ltr" class="comment-input text-end" placeholder="••••••••" />
+              </div>
+            </div>
+
+            <button @click="saveToast('رمز عبور تغییر کرد.')" class="mt-6 btn-primary">
+              تغییر رمز
+              <i class="fa-solid fa-lock text-xs"></i>
+            </button>
+          </section>
+
+          <section class="rounded-[28px] bg-white border border-gray-100 p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-gray-100">
+              <p class="text-sm font-black text-gray-950">دستگاه‌های فعال</p>
+              <button @click="sessions = sessions.filter(s => s.current)" class="text-[11px] font-bold text-brand hover:underline">
+                خروج از همه دستگاه‌ها
+              </button>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <template x-for="session in sessions" :key="session.id">
+                <div class="flex items-center gap-4 rounded-[22px] bg-gray-50 p-4">
+                  <span class="size-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-500 shrink-0">
+                    <i class="fa-solid text-[11px]" :class="session.icon"></i>
+                  </span>
+
+                  <div class="min-w-0 flex-1">
+                    <p class="flex items-center gap-2">
+                      <span class="text-xs font-bold text-gray-950" x-text="session.device"></span>
+                      <span x-show="session.current" class="rounded-md bg-emerald-50 px-1.5 py-0.5 text-[9px] font-bold text-emerald-600" style="display:none">این دستگاه</span>
+                    </p>
+                    <p class="mt-1 text-[10px] text-gray-400" x-text="session.place + ' · ' + session.time"></p>
+                  </div>
+
+                  <button
+                    x-show="!session.current"
+                    @click="sessions = sessions.filter(s => s.id !== session.id)"
+                    class="text-[11px] font-bold text-brand hover:underline shrink-0"
+                    style="display:none"
+                  >
+                    خروج
+                  </button>
+                </div>
+              </template>
+            </div>
+          </section>
+
+          <section class="rounded-[28px] border border-brand/20 bg-brand/5 p-5 sm:p-6">
+            <div class="flex items-start gap-4">
+              <span class="size-10 rounded-2xl bg-brand text-white flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-black text-gray-950">حذف حساب کاربری</p>
+                <p class="mt-2 text-xs leading-7 text-gray-600">
+                  با حذف حساب، همه داده‌های شما شامل ذخیره‌ها، تاریخچه پخش و نظرات برای همیشه پاک می‌شود.
+                  این کار قابل بازگشت نیست.
+                </p>
+                <button class="mt-4 h-11 px-5 rounded-2xl bg-white border border-brand/30 text-xs font-bold text-brand hover:bg-brand hover:text-white transition">
+                  حذف حساب من
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== CANCEL MODAL ===================== -->
+  <div
+    x-show="cancelOpen"
+    x-transition.opacity
+    class="fixed inset-0 z-[90] bg-gray-950/55 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+    @click.self="cancelOpen = false"
+    @keydown.escape.window="cancelOpen = false"
+    role="dialog"
+    aria-modal="true"
+    aria-label="لغو اشتراک"
+    style="display:none"
+  >
+    <div
+      x-show="cancelOpen"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 scale-95"
+      x-transition:enter-end="opacity-100 scale-100"
+      class="w-full max-w-[460px] rounded-[28px] bg-white p-6 sm:p-8 shadow-[0_40px_120px_rgba(15,23,42,0.35)]"
+      style="display:none"
+    >
+      <span class="size-14 rounded-[22px] bg-brand/10 text-brand flex items-center justify-center text-xl">
+        <i class="fa-solid fa-heart-crack"></i>
+      </span>
+
+      <h2 class="mt-5 text-lg font-black text-gray-950">مطمئنید می‌خواهید لغو کنید؟</h2>
+      <p class="mt-3 text-xs leading-7 text-gray-500">
+        اشتراک شما تا <span class="font-bold text-gray-950" x-text="subscription.renews"></span>
+        فعال می‌ماند و بعد از آن به پلن رایگان منتقل می‌شوید. هر زمان می‌توانید دوباره عضو شوید.
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <button @click="cancelOpen = false" class="btn-primary flex-1">نگه داشتن اشتراک</button>
+        <button
+          @click="subscription.active = false; subscription.plan = 'شنونده'; cancelOpen = false; saveToast('اشتراک لغو شد.')"
+          class="btn-ghost flex-1"
+        >
+          بله، لغو کن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div
+    x-show="toast"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-y-4"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-end="opacity-0 translate-y-4"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[95] glass-card rounded-2xl px-5 py-4 flex items-center gap-3 max-w-[90vw]"
+    style="display:none"
+  >
+    <span class="size-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-check text-xs"></i>
+    </span>
+    <p class="text-xs font-bold text-gray-800" x-text="toast"></p>
+  </div>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function accountPage() {
+      return {
+        demoPanel: false,
+        mobileNav: false,
+        userMenu: false,
+        cancelOpen: false,
+        scrolled: false,
+        activeTab: 'overview',
+        savedFilter: 'all',
+        toast: '',
+        toastTimer: null,
+        unread: 3,
+
+        toFa: toFaDigits,
+
+        user: { name: 'مریم فراهانی', firstName: 'مریم', email: 'maryam@sevi.ir' },
+
+        subscription: { active: true, plan: 'عضو', renews: '۲۸ مهر ۱۴۰۵', amount: 89 },
+
+        tabs: [
+          { key: 'overview',      label: 'نمای کلی',   icon: 'fa-gauge',        badge: 0 },
+          { key: 'saved',         label: 'ذخیره‌ها',   icon: 'fa-bookmark',     badge: 5 },
+          { key: 'subscription',  label: 'اشتراک',     icon: 'fa-credit-card',  badge: 0 },
+          { key: 'notifications', label: 'اعلان‌ها',   icon: 'fa-bell',         badge: 0 },
+          { key: 'profile',       label: 'پروفایل',    icon: 'fa-user',         badge: 0 },
+          { key: 'security',      label: 'امنیت',      icon: 'fa-shield-halved', badge: 0 }
+        ],
+
+        stats: [
+          { value: '۴۸', label: 'قسمت شنیده‌شده', icon: 'fa-headphones', tile: 'bg-brand/10 text-brand' },
+          { value: '۳۲', label: 'ساعت گوش دادن', icon: 'fa-clock',      tile: 'bg-blue-50 text-blue-500' },
+          { value: '۵',  label: 'ذخیره‌شده',      icon: 'fa-bookmark',   tile: 'bg-emerald-50 text-emerald-500' },
+          { value: '۱۴', label: 'ماه عضویت',      icon: 'fa-star',       tile: 'bg-amber-50 text-amber-500' }
+        ],
+
+        continueList: [
+          { id: 1, title: 'قسمت ۲۴ — چرا دیزاین‌سیستم‌ها شکست می‌خورند؟', percent: 68, left: '۱۳ دقیقه', bg: 'gradient-thumb-2' },
+          { id: 2, title: 'قسمت ۲۲ — کارایی وب؛ چه چیزی واقعاً اثر دارد؟', percent: 24, left: '۲۹ دقیقه', bg: 'gradient-thumb-4' },
+          { id: 3, title: 'قسمت ۲۱ — قیمت‌گذاری پروژه‌های طراحی', percent: 91, left: '۴ دقیقه', bg: 'gradient-thumb-5' }
+        ],
+
+        activity: [
+          { text: 'قسمت ۲۴ را تا انتها گوش دادید.', time: '۲ ساعت پیش', icon: 'fa-circle-check', tile: 'bg-emerald-50 text-emerald-500' },
+          { text: 'مقاله «راهنمای تایپوگرافی فارسی» را ذخیره کردید.', time: 'دیروز', icon: 'fa-bookmark', tile: 'bg-brand/10 text-brand' },
+          { text: 'روی قسمت ۲۳ نظر گذاشتید.', time: '۳ روز پیش', icon: 'fa-comment', tile: 'bg-blue-50 text-blue-500' },
+          { text: 'اشتراک شما با موفقیت تمدید شد.', time: '۲۸ شهریور', icon: 'fa-credit-card', tile: 'bg-amber-50 text-amber-500' }
+        ],
+
+        savedFilters: [
+          { key: 'all',     label: 'همه',     icon: 'fa-layer-group' },
+          { key: 'episode', label: 'قسمت‌ها', icon: 'fa-headphones' },
+          { key: 'post',    label: 'مقالات',  icon: 'fa-file-lines' }
+        ],
+
+        saved: [
+          { id: 1, type: 'episode', title: 'قسمت ۲۳ — گفتگو با یک طراح تایپ‌فیس فارسی', meta: '۵۶:۰۲', savedAt: '۲ روز پیش', bg: 'gradient-thumb-9' },
+          { id: 2, type: 'post',    title: 'راهنمای کامل تایپوگرافی فارسی برای وب',       meta: '۱۱ دقیقه مطالعه', savedAt: 'دیروز', bg: 'gradient-thumb-2' },
+          { id: 3, type: 'episode', title: 'قسمت ۲۱ — قیمت‌گذاری پروژه‌های طراحی',        meta: '۵۱:۱۸', savedAt: '۵ روز پیش', bg: 'gradient-thumb-5' },
+          { id: 4, type: 'post',    title: 'در ستایش فضای خالی؛ چرا صفحه‌های شلوغ خسته می‌کنند', meta: '۱۴ دقیقه مطالعه', savedAt: 'هفته پیش', bg: 'gradient-thumb-1' },
+          { id: 5, type: 'episode', title: 'قسمت ۱۷ — از فیگما تا کد؛ تحویل طراحی بدون درد', meta: '۴۴:۲۰', savedAt: '۲ هفته پیش', bg: 'gradient-thumb-6' }
+        ],
+
+        usageBars: [
+          { label: 'ساعت گوش دادن', value: '۳۲ از ۴۰ ساعت', percent: 80 },
+          { label: 'دانلود آفلاین', value: '۱۲ از ۲۰ قسمت', percent: 60 },
+          { label: 'دستگاه فعال',   value: '۲ از ۳ دستگاه',  percent: 66 }
+        ],
+
+        invoices: [
+          { id: 1, date: '۲۸ شهریور ۱۴۰۵', desc: 'اشتراک ماهانه — پلن عضو', amount: 89 },
+          { id: 2, date: '۲۸ مرداد ۱۴۰۵',  desc: 'اشتراک ماهانه — پلن عضو', amount: 89 },
+          { id: 3, date: '۲۸ تیر ۱۴۰۵',    desc: 'اشتراک ماهانه — پلن عضو', amount: 89 },
+          { id: 4, date: '۲۸ خرداد ۱۴۰۵',  desc: 'اشتراک ماهانه — پلن عضو', amount: 89 }
+        ],
+
+        preferences: [
+          { key: 'new-episode', label: 'قسمت تازه پادکست', hint: 'هر بار که قسمت جدیدی منتشر شود.', icon: 'fa-microphone-lines', on: true },
+          { key: 'newsletter',  label: 'خبرنامه هفتگی',    hint: 'خلاصه بهترین مطالب هر پنجشنبه.',   icon: 'fa-envelope',        on: true },
+          { key: 'replies',     label: 'پاسخ به نظرات',    hint: 'وقتی کسی به نظر شما پاسخ می‌دهد.', icon: 'fa-comment-dots',    on: true },
+          { key: 'member-only', label: 'محتوای ویژه اعضا', hint: 'قسمت‌ها و مطالب مخصوص اعضا.',      icon: 'fa-star',            on: false },
+          { key: 'marketing',   label: 'پیشنهادها و تخفیف', hint: 'به‌ندرت و فقط وقتی واقعاً مهم باشد.', icon: 'fa-tag',          on: false }
+        ],
+
+        profile: {
+          name: 'مریم فراهانی',
+          email: 'maryam@sevi.ir',
+          username: 'maryamf',
+          phone: '۰۹۱۲۰۰۰۰۰۰۰',
+          bio: 'طراح تایپ‌فیس و نویسنده حوزه تجربه کاربری. میزبان پادکست «گفتگوهای ساختن».'
+        },
+
+        sessions: [
+          { id: 1, device: 'کروم روی ویندوز', place: 'تهران، ایران', time: 'همین حالا', icon: 'fa-desktop', current: true },
+          { id: 2, device: 'سافاری روی آیفون', place: 'تهران، ایران', time: '۳ ساعت پیش', icon: 'fa-mobile-screen', current: false },
+          { id: 3, device: 'فایرفاکس روی مک', place: 'اصفهان، ایران', time: '۲ روز پیش', icon: 'fa-laptop', current: false }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-brand', current: true },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        visibleSaved() {
+          if (this.savedFilter === 'all') return this.saved;
+          return this.saved.filter(item => item.type === this.savedFilter);
+        },
+
+        removeSaved(id) {
+          this.saved = this.saved.filter(item => item.id !== id);
+
+          /* keep the sidebar badge in step with the real list */
+          const tab = this.tabs.find(t => t.key === 'saved');
+          if (tab) tab.badge = this.saved.length;
+
+          this.saveToast('از ذخیره‌ها حذف شد.');
+        },
+
+        saveToast(message) {
+          this.toast = message;
+          clearTimeout(this.toastTimer);
+          this.toastTimer = setTimeout(() => (this.toast = ''), 3000);
+        },
+
+        onScroll() {
+          this.scrolled = window.scrollY > 500;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          const lock = () => {
+            document.body.style.overflow = (this.mobileNav || this.cancelOpen) ? 'hidden' : '';
+          };
+          this.$watch('mobileNav', lock);
+          this.$watch('cancelOpen', lock);
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

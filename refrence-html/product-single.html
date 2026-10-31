@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قالب وبلاگ سوی | فروشگاه SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه محصول با گالری و لایت‌باکس، متغیرها، انتخاب تعداد، تب توضیحات و مشخصات، نظرات مشتریان و محصولات مرتبط." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="productPage()"
+  @scroll.window="onScroll()"
+  @keydown.escape.window="closeLightbox()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="shop.html" class="nav-link">فروشگاه</a>
+          <a href="services.html" class="nav-link">خدمات</a>
+          <a href="portfolio.html" class="nav-link">نمونه‌کارها</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="shop.html" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            همه محصولات
+          </a>
+          <a href="cart.html" class="relative icon-btn" aria-label="سبد خرید">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span
+              x-show="cartCount"
+              class="absolute -top-1 -end-1 min-w-[18px] h-[18px] px-1 rounded-full bg-brand text-white text-[9px] font-black flex items-center justify-center"
+              x-text="toFa(cartCount)"
+              style="display:none"
+            ></span>
+          </a>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="باز کردن منو">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن منو"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="shop.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">فروشگاه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="cart.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">سبد خرید <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="checkout.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">تسویه حساب <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">تماس <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main id="main" class="pb-24 lg:pb-6">
+
+    <!-- ===================== BREADCRUMB ===================== -->
+    <section class="container-page pt-6 sm:pt-8">
+      <nav class="flex flex-wrap items-center gap-2 text-[11px] text-gray-500">
+        <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+        <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+        <a href="shop.html" class="hover:text-brand transition">فروشگاه</a>
+        <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+        <a href="shop.html" class="hover:text-brand transition" x-text="product.category"></a>
+        <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+        <span class="text-gray-950 font-bold line-clamp-1" x-text="product.title"></span>
+      </nav>
+    </section>
+
+    <!-- ===================== PRODUCT ===================== -->
+    <section class="container-page mt-6 sm:mt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+
+        <!-- ---------- GALLERY ---------- -->
+        <div class="lg:col-span-6">
+          <div class="relative overflow-hidden rounded-[28px] sm:rounded-[32px] aspect-[4/3]" :class="activeShot().bg">
+            <img :src="activeShot().photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950/20 to-transparent"></div>
+
+            <span x-show="product.oldPrice" class="absolute top-4 start-4 sale-badge" style="display:none">
+              <i class="fa-solid fa-tag text-[7px]"></i>
+              <span x-text="'٪' + toFa(discount()) + ' تخفیف'"></span>
+            </span>
+
+            <button @click="openLightbox(gallery.indexOf(activeShot()))" class="absolute bottom-4 end-4 size-11 rounded-2xl bg-white/90 backdrop-blur text-gray-700 shadow-lg transition hover:bg-white hover:text-brand" aria-label="بزرگ‌نمایی تصویر">
+              <i class="fa-solid fa-expand text-xs"></i>
+            </button>
+
+            <button @click="prevShot()" class="absolute top-1/2 -translate-y-1/2 start-4 size-11 rounded-2xl bg-white/85 backdrop-blur text-gray-700 shadow-lg transition hover:bg-white hover:text-brand" aria-label="تصویر قبلی">
+              <i class="fa-solid fa-angle-right text-xs"></i>
+            </button>
+            <button @click="nextShot()" class="absolute top-1/2 -translate-y-1/2 end-4 size-11 rounded-2xl bg-white/85 backdrop-blur text-gray-700 shadow-lg transition hover:bg-white hover:text-brand" aria-label="تصویر بعدی">
+              <i class="fa-solid fa-angle-left text-xs"></i>
+            </button>
+          </div>
+
+          <div class="mt-4 flex items-center gap-3 overflow-x-auto hide-scrollbar pb-1">
+            <template x-for="(shot, index) in gallery" :key="shot.id">
+              <button
+                @click="shotIndex = index"
+                class="thumb-btn"
+                :class="[shot.bg, shotIndex === index ? 'border-brand' : 'border-transparent opacity-60 hover:opacity-100']"
+                :aria-label="'تصویر ' + toFa(index + 1)"
+                :aria-pressed="shotIndex === index"
+              >
+                <img :src="shot.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <!-- ---------- BUY BOX ---------- -->
+        <div class="lg:col-span-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 rounded-lg bg-brand/10 px-2.5 py-1 text-[10px] font-black text-brand" x-text="product.category"></span>
+            <span x-show="product.digital" class="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 border border-gray-100 px-2.5 py-1 text-[10px] font-bold text-gray-600" style="display:none">
+              <i class="fa-solid fa-cloud-arrow-down text-[8px]"></i>
+              دانلودی
+            </span>
+            <span class="stock-dot ms-auto" :class="inStock() ? 'text-emerald-600' : 'text-gray-400'">
+              <span class="size-1.5 rounded-full" :class="inStock() ? 'bg-emerald-500' : 'bg-gray-300'"></span>
+              <span x-text="stockLabel()"></span>
+            </span>
+          </div>
+
+          <h1 class="mt-4 text-[24px] sm:text-[32px] font-black leading-[1.5] text-gray-950" x-text="product.title"></h1>
+
+          <div class="mt-4 flex flex-wrap items-center gap-4 text-[11px]">
+            <span class="star-row">
+              <template x-for="star in 5" :key="'s-' + star">
+                <i class="fa-solid fa-star" :class="star <= Math.round(product.rating) ? 'text-amber-400' : 'text-gray-200'"></i>
+              </template>
+              <span class="ms-1.5 font-bold text-gray-700" x-text="toFa(product.rating)"></span>
+            </span>
+            <button @click="goToReviews()" class="text-gray-400 transition hover:text-brand">
+              <span x-text="toFa(reviews.length)"></span> دیدگاه ثبت‌شده
+            </button>
+            <span class="w-px h-3 bg-gray-200"></span>
+            <span class="text-gray-400">کد کالا: <span class="text-gray-600 font-bold" dir="ltr" x-text="product.sku"></span></span>
+          </div>
+
+          <p class="mt-5 text-sm leading-8 text-gray-600" x-text="product.summary"></p>
+
+          <!-- price -->
+          <div class="mt-6 flex flex-wrap items-end gap-3">
+            <span class="inline-flex items-baseline gap-1.5 text-[26px] font-black text-gray-950">
+              <span x-text="money(unitPrice())"></span>
+              <span class="text-xs font-bold text-gray-400">تومان</span>
+            </span>
+            <span x-show="product.oldPrice" class="price-old text-sm" x-text="money(product.oldPrice)" style="display:none"></span>
+            <span x-show="product.oldPrice" class="rounded-lg bg-emerald-50 px-2 py-1 text-[10px] font-black text-emerald-600" style="display:none">
+              <span x-text="money(product.oldPrice - unitPrice())"></span> تومان سود شما
+            </span>
+          </div>
+
+          <!-- variations -->
+          <div class="mt-7 space-y-6">
+            <div>
+              <div class="flex items-center justify-between">
+                <p class="text-[12px] font-bold text-gray-800">رنگ</p>
+                <span class="text-[11px] text-gray-500" x-text="colorLabel()"></span>
+              </div>
+              <div class="mt-3 flex flex-wrap items-center gap-2.5">
+                <template x-for="color in product.colors" :key="color.key">
+                  <button
+                    @click="activeColor = color.key"
+                    class="variant-swatch"
+                    :class="[color.bg, activeColor === color.key ? 'border-gray-950 scale-110' : 'border-gray-200 hover:border-gray-400']"
+                    :aria-pressed="activeColor === color.key"
+                    :title="color.label"
+                  ></button>
+                </template>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <p class="text-[12px] font-bold text-gray-800">نسخه</p>
+                <span x-show="editionExtra()" class="text-[11px] text-brand font-bold" style="display:none">
+                  + <span x-text="money(editionExtra())"></span> تومان
+                </span>
+              </div>
+              <div class="mt-3 flex flex-wrap items-center gap-2">
+                <template x-for="edition in product.editions" :key="edition.key">
+                  <button
+                    @click="activeEdition = edition.key"
+                    class="variant-chip"
+                    :class="activeEdition === edition.key ? 'border-brand bg-brand/5 text-brand' : 'border-gray-200 text-gray-600 hover:border-gray-400'"
+                    :aria-pressed="activeEdition === edition.key"
+                    x-text="edition.label"
+                  ></button>
+                </template>
+              </div>
+              <p class="mt-3 text-[11px] leading-6 text-gray-500" x-text="editionNote()"></p>
+            </div>
+          </div>
+
+          <!-- quantity + add -->
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <div class="qty-box">
+              <button @click="setQty(qty - 1)" class="qty-btn" :disabled="qty <= 1" aria-label="کاهش تعداد">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <span class="qty-value" x-text="toFa(qty)"></span>
+              <button @click="setQty(qty + 1)" class="qty-btn" :disabled="qty >= product.maxQty" aria-label="افزایش تعداد">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <button
+              @click="addToCart()"
+              class="flex-1 min-w-[200px] inline-flex items-center justify-center gap-2 h-14 px-6 rounded-2xl bg-brand text-white text-sm font-black shadow-lg shadow-brand/25 transition hover:bg-brand-dark disabled:opacity-40 disabled:shadow-none"
+              :disabled="!inStock()"
+            >
+              <i class="fa-solid fa-bag-shopping text-xs"></i>
+              <span x-text="inStock() ? 'افزودن به سبد خرید' : 'موجود نیست'"></span>
+            </button>
+
+            <button
+              @click="wished = !wished"
+              class="size-14 rounded-2xl border transition"
+              :class="wished ? 'border-brand bg-brand/5 text-brand' : 'border-gray-100 bg-white text-gray-500 hover:text-brand hover:border-brand/30'"
+              :aria-pressed="wished"
+              aria-label="افزودن به علاقه‌مندی‌ها"
+            >
+              <i class="text-sm" :class="wished ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+            </button>
+          </div>
+
+          <p class="mt-4 text-[11px] text-gray-500">
+            مجموع
+            <span class="font-black text-gray-950" x-text="money(totalPrice())"></span>
+            تومان برای
+            <span class="font-bold" x-text="toFa(qty)"></span>
+            عدد
+          </p>
+
+          <!-- assurances -->
+          <div class="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <template x-for="item in assurances" :key="item.label">
+              <div class="rounded-2xl border border-gray-100 bg-gray-50/60 p-3.5 text-center">
+                <i class="fa-solid text-brand text-sm" :class="item.icon"></i>
+                <p class="mt-2 text-[11px] font-bold text-gray-800" x-text="item.label"></p>
+                <p class="mt-1 text-[10px] text-gray-500" x-text="item.note"></p>
+              </div>
+            </template>
+          </div>
+
+          <!-- meta -->
+          <div class="mt-7 pt-6 border-t border-gray-100 space-y-2.5 text-[11px]">
+            <div class="flex items-center gap-3">
+              <span class="text-gray-400 w-20">دسته‌بندی</span>
+              <a href="shop.html" class="text-gray-700 hover:text-brand transition" x-text="product.category"></a>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-gray-400 w-20 shrink-0">برچسب‌ها</span>
+              <span class="flex flex-wrap gap-1.5">
+                <template x-for="tag in product.tags" :key="tag">
+                  <a href="shop.html" class="rounded-lg bg-gray-50 border border-gray-100 px-2 py-0.5 text-[10px] text-gray-500 transition hover:text-brand" x-text="tag"></a>
+                </template>
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-gray-400 w-20">اشتراک‌گذاری</span>
+              <span class="flex items-center gap-1.5">
+                <button @click="copyLink()" class="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 border border-gray-100 px-2.5 py-1 text-[10px] text-gray-600 transition hover:text-brand">
+                  <i class="fa-solid" :class="copied ? 'fa-check text-emerald-500' : 'fa-link'"></i>
+                  <span x-text="copied ? 'کپی شد' : 'کپی نشانی'"></span>
+                </button>
+                <a href="#" class="icon-btn size-8" aria-label="تلگرام"><i class="fa-brands fa-telegram text-[11px]"></i></a>
+                <a href="#" class="icon-btn size-8" aria-label="واتساپ"><i class="fa-brands fa-whatsapp text-[11px]"></i></a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TABS ===================== -->
+    <section id="details" class="container-page mt-14 sm:mt-20">
+      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar border-b border-gray-100 pb-px">
+        <template x-for="item in tabs" :key="item.key">
+          <button
+            @click="activeTab = item.key"
+            class="relative h-12 px-5 text-[12px] font-bold transition shrink-0"
+            :class="activeTab === item.key ? 'text-brand' : 'text-gray-500 hover:text-gray-950'"
+            :aria-pressed="activeTab === item.key"
+          >
+            <span x-text="item.label"></span>
+            <span x-show="item.count" class="ms-1.5 rounded-md bg-gray-100 px-1.5 text-[9px] font-black text-gray-500" x-text="toFa(item.count)" style="display:none"></span>
+            <span x-show="activeTab === item.key" class="absolute bottom-0 inset-x-3 h-[2px] rounded-full bg-brand" style="display:none"></span>
+          </button>
+        </template>
+      </div>
+
+      <!-- description -->
+      <div x-show="activeTab === 'desc'" class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-8">
+          <div class="entry-content">
+            <template x-for="paragraph in product.description" :key="paragraph.slice(0, 24)">
+              <p x-text="paragraph"></p>
+            </template>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <template x-for="point in product.highlights" :key="point">
+              <div class="flex items-start gap-3 rounded-2xl border border-gray-100 bg-white p-4">
+                <span class="plan-check bg-emerald-50 text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                <span class="text-[12px] leading-7 text-gray-600" x-text="point"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <aside class="lg:col-span-4">
+          <div class="sidebar-box">
+            <p class="widget-title">این محصول مناسب کیست</p>
+            <div class="mt-4 space-y-3">
+              <template x-for="who in product.audience" :key="who.label">
+                <div class="flex items-start gap-3">
+                  <span class="icon-tile size-9 shrink-0" :class="who.tile">
+                    <i class="fa-solid text-[11px]" :class="who.icon"></i>
+                  </span>
+                  <span>
+                    <span class="block text-[12px] font-bold text-gray-950" x-text="who.label"></span>
+                    <span class="block mt-1 text-[11px] leading-6 text-gray-500" x-text="who.note"></span>
+                  </span>
+                </div>
+              </template>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- specifications -->
+      <div x-show="activeTab === 'specs'" class="mt-8" style="display:none">
+        <div class="overflow-hidden rounded-[24px] border border-gray-100">
+          <template x-for="(row, index) in product.specs" :key="row.label">
+            <div class="flex items-center gap-4 px-5 py-4 text-[12px]" :class="index % 2 ? 'bg-white' : 'bg-gray-50/70'">
+              <span class="spec-label w-32 sm:w-48 shrink-0" x-text="row.label"></span>
+              <span class="spec-value" x-text="row.value"></span>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- reviews -->
+      <div x-show="activeTab === 'reviews'" class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8" style="display:none">
+        <div class="lg:col-span-4">
+          <div class="sidebar-box text-center">
+            <p class="text-[44px] font-black leading-none text-gray-950" x-text="toFa(product.rating)"></p>
+            <span class="star-row justify-center mt-3 text-sm">
+              <template x-for="star in 5" :key="'avg-' + star">
+                <i class="fa-solid fa-star" :class="star <= Math.round(product.rating) ? 'text-amber-400' : 'text-gray-200'"></i>
+              </template>
+            </span>
+            <p class="mt-3 text-[11px] text-gray-500">
+              از <span class="font-bold text-gray-700" x-text="toFa(reviews.length)"></span> دیدگاه
+            </p>
+
+            <div class="mt-6 space-y-2.5">
+              <template x-for="bar in ratingBars()" :key="bar.star">
+                <div class="flex items-center gap-3">
+                  <span class="text-[10px] text-gray-400 w-8 shrink-0" x-text="toFa(bar.star) + ' ★'"></span>
+                  <span class="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
+                    <span class="block h-full rounded-full bg-amber-400" :style="'width:' + bar.percent + '%'"></span>
+                  </span>
+                  <span class="text-[10px] text-gray-400 w-6 text-end shrink-0" x-text="toFa(bar.count)"></span>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 space-y-4">
+          <template x-for="review in reviews" :key="review.id">
+            <article class="rounded-[24px] border border-gray-100 bg-white p-5">
+              <div class="flex items-start gap-4">
+                <span class="size-11 rounded-2xl shrink-0 flex items-center justify-center text-white text-xs font-black" :class="review.bg" x-text="review.initial"></span>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="text-[12px] font-black text-gray-950" x-text="review.name"></span>
+                    <span x-show="review.verified" class="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-[9px] font-bold text-emerald-600" style="display:none">
+                      <i class="fa-solid fa-circle-check text-[7px]"></i>
+                      خرید تأییدشده
+                    </span>
+                    <span class="star-row ms-auto">
+                      <template x-for="star in 5" :key="review.id + '-' + star">
+                        <i class="fa-solid fa-star text-[9px]" :class="star <= review.rating ? 'text-amber-400' : 'text-gray-200'"></i>
+                      </template>
+                    </span>
+                  </div>
+                  <p class="mt-3 text-[12px] leading-7 text-gray-600" x-text="review.text"></p>
+                  <div class="mt-3 flex items-center gap-4 text-[10px] text-gray-400">
+                    <span x-text="review.date"></span>
+                    <button @click="likeReview(review)" class="inline-flex items-center gap-1.5 transition hover:text-brand">
+                      <i class="fa-regular fa-thumbs-up"></i>
+                      مفید بود (<span x-text="toFa(review.likes)"></span>)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </template>
+
+          <!-- write a review -->
+          <div class="rounded-[24px] border border-gray-100 bg-gray-50/60 p-5 sm:p-6">
+            <p class="text-sm font-black text-gray-950">دیدگاه خود را بنویسید</p>
+            <p class="mt-2 text-[11px] text-gray-500">تنها خریداران این محصول می‌توانند دیدگاه ثبت کنند.</p>
+
+            <div class="mt-5">
+              <label class="field-label text-[12px]">امتیاز شما</label>
+              <div class="flex items-center gap-1.5">
+                <template x-for="star in 5" :key="'new-' + star">
+                  <button @click="newReview.rating = star" class="text-lg transition" :aria-label="'امتیاز ' + toFa(star)">
+                    <i class="fa-solid fa-star" :class="star <= newReview.rating ? 'text-amber-400' : 'text-gray-200 hover:text-amber-200'"></i>
+                  </button>
+                </template>
+              </div>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="field-label text-[12px]" for="review-name">نام</label>
+                <input id="review-name" type="text" x-model="newReview.name" class="comment-input" placeholder="نام شما" />
+                <p x-show="reviewErrors.name" class="field-error" x-text="reviewErrors.name" style="display:none"></p>
+              </div>
+              <div>
+                <label class="field-label text-[12px]" for="review-email">ایمیل</label>
+                <input id="review-email" type="email" x-model="newReview.email" dir="ltr" class="comment-input" placeholder="name@example.com" />
+                <p x-show="reviewErrors.email" class="field-error" x-text="reviewErrors.email" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="field-label text-[12px]" for="review-text">دیدگاه</label>
+              <textarea id="review-text" x-model="newReview.text" rows="4" class="comment-textarea" placeholder="تجربه‌تان از این محصول چه بود؟"></textarea>
+              <p x-show="reviewErrors.text" class="field-error" x-text="reviewErrors.text" style="display:none"></p>
+            </div>
+
+            <div class="mt-5 flex flex-wrap items-center gap-3">
+              <button @click="submitReview()" class="btn-primary">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                ثبت دیدگاه
+              </button>
+              <p x-show="reviewSent" class="text-[11px] font-bold text-emerald-600" style="display:none">
+                <i class="fa-solid fa-circle-check"></i>
+                دیدگاه شما ثبت شد و پس از بررسی منتشر می‌شود.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RELATED ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="flex items-end justify-between gap-4 mb-6">
+        <div>
+          <p class="eyebrow"><i class="fa-solid fa-layer-group"></i> پیشنهاد ما</p>
+          <h2 class="mt-3 rule-title">محصولات مرتبط</h2>
+        </div>
+        <a href="shop.html" class="hidden sm:inline-flex text-xs text-gray-500 transition hover:text-brand">همه محصولات</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <template x-for="item in related" :key="item.id">
+          <div class="product-card group lift-card">
+            <a :href="item.href" class="relative block h-[170px] overflow-hidden" :class="item.bg">
+              <img :src="item.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="" />
+              <span class="cover-shine absolute inset-0"></span>
+              <span x-show="item.oldPrice" class="absolute top-3 start-3 sale-badge" style="display:none">
+                <span x-text="'٪' + toFa(Math.round((1 - item.price / item.oldPrice) * 100))"></span>
+              </span>
+            </a>
+            <div class="flex flex-1 flex-col p-4">
+              <span class="text-[10px] text-gray-400" x-text="item.category"></span>
+              <a :href="item.href" class="mt-2 block text-[13px] font-black leading-7 text-gray-950 transition group-hover:text-brand line-clamp-2" x-text="item.title"></a>
+              <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="price">
+                  <span x-text="money(item.price)"></span>
+                  <span class="price-unit">تومان</span>
+                </span>
+                <span class="star-row">
+                  <i class="fa-solid fa-star"></i>
+                  <span class="text-gray-500 font-bold" x-text="toFa(item.rating)"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== STICKY BUY BAR (mobile) ===================== -->
+  <div x-show="scrolled" x-transition class="fixed bottom-0 inset-x-0 z-[75] lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 px-4 py-3" style="display:none">
+    <div class="flex items-center gap-3">
+      <span class="flex flex-col">
+        <span class="text-[10px] text-gray-400">مجموع</span>
+        <span class="price text-[15px]">
+          <span x-text="money(totalPrice())"></span>
+          <span class="price-unit">تومان</span>
+        </span>
+      </span>
+      <button
+        @click="addToCart()"
+        class="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-2xl bg-brand text-white text-xs font-black shadow-lg shadow-brand/25 transition hover:bg-brand-dark disabled:opacity-40"
+        :disabled="!inStock()"
+      >
+        <i class="fa-solid fa-bag-shopping text-[11px]"></i>
+        افزودن به سبد
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div x-show="lightbox !== null" class="lightbox-shell" @click.self="closeLightbox()" style="display:none">
+    <button @click="closeLightbox()" x-ref="lightboxClose" class="absolute top-5 end-5 size-11 rounded-2xl bg-white/15 backdrop-blur border border-white/20 text-white transition hover:bg-white hover:text-gray-950" aria-label="بستن">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <button @click="prevLightbox()" class="absolute top-1/2 -translate-y-1/2 start-5 size-12 rounded-2xl bg-white/15 backdrop-blur border border-white/20 text-white transition hover:bg-white hover:text-gray-950" aria-label="تصویر قبلی">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+    <button @click="nextLightbox()" class="absolute top-1/2 -translate-y-1/2 end-5 size-12 rounded-2xl bg-white/15 backdrop-blur border border-white/20 text-white transition hover:bg-white hover:text-gray-950" aria-label="تصویر بعدی">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <figure class="w-full max-w-[900px]">
+      <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[26px]" :class="lightboxShot().bg">
+        <img :src="lightboxShot().photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+      </div>
+      <figcaption class="mt-4 flex items-center justify-between text-[11px] text-white/70">
+        <span x-text="lightboxShot().caption"></span>
+        <span x-text="toFa(lightbox + 1) + ' از ' + toFa(gallery.length)"></span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div
+    x-show="toast"
+    x-transition:enter="transition ease-out duration-250"
+    x-transition:enter-start="opacity-0 translate-y-3"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-end="opacity-0 translate-y-3"
+    class="fixed bottom-24 lg:bottom-6 start-6 z-[85] flex items-center gap-3 rounded-2xl bg-gray-950 px-5 py-3.5 text-white shadow-[0_24px_60px_rgba(15,23,42,0.3)]"
+    style="display:none"
+  >
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span class="text-xs font-bold" x-text="toast"></span>
+    <a href="cart.html" class="text-[11px] font-bold text-brand hover:underline">دیدن سبد</a>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="shop.html" class="hover:text-brand transition">فروشگاه</a>
+          <a href="cart.html" class="hover:text-brand transition">سبد خرید</a>
+          <a href="checkout.html" class="hover:text-brand transition">تسویه حساب</a>
+          <a href="account.html" class="hover:text-brand transition">حساب کاربری</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-24 lg:bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="hidden lg:flex size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition items-center justify-center" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function toMoney(value) {
+      return toFaDigits(String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, '٬'));
+    }
+
+    function productPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+
+        shotIndex: 0,
+        lightbox: null,
+        activeTab: 'desc',
+        activeColor: 'brand',
+        activeEdition: 'personal',
+        qty: 1,
+        wished: false,
+        cartCount: 2,
+        copied: false,
+        copyTimer: null,
+        toast: '',
+        toastTimer: null,
+        reviewSent: false,
+        reviewErrors: {},
+
+        newReview: { name: '', email: '', text: '', rating: 5 },
+
+        toFa: toFaDigits,
+        money: toMoney,
+
+        product: {
+          title: 'قالب وبلاگ سوی — نسخه کامل',
+          category: 'قالب و رابط',
+          sku: 'SEVI-TPL-01',
+          price: 1450000,
+          oldPrice: 1950000,
+          rating: 4.9,
+          stockQty: 14,
+          maxQty: 10,
+          digital: true,
+          summary: 'یک قالب کامل برای وبلاگ و پادکست: هشت دمو، راست‌چین از پایه، تایپوگرافی فارسی تنظیم‌شده و کدی که خواندنش سخت نیست.',
+          tags: ['وردپرس', 'راست‌چین', 'پادکست', 'المنتور'],
+
+          colors: [
+            { key: 'brand', label: 'قرمز سوی', bg: 'bg-brand' },
+            { key: 'black', label: 'مشکی',     bg: 'bg-gray-900' },
+            { key: 'blue',  label: 'آبی',      bg: 'bg-blue-500' },
+            { key: 'green', label: 'سبز',      bg: 'bg-emerald-500' }
+          ],
+
+          editions: [
+            { key: 'personal', label: 'شخصی',   extra: 0,       note: 'برای یک وب‌سایت شخصی، شش ماه پشتیبانی و به‌روزرسانی رایگان.' },
+            { key: 'business', label: 'تجاری',  extra: 900000,  note: 'برای پروژه‌های تجاری، یک سال پشتیبانی و اجازه استفاده روی سه دامنه.' },
+            { key: 'agency',   label: 'آژانسی', extra: 2400000, note: 'استفاده نامحدود روی پروژه‌های مشتریان، پشتیبانی اولویت‌دار و فایل‌های منبع.' }
+          ],
+
+          description: [
+            'قالب سوی از یک سؤال ساده شروع شد: چرا خواندن یک وبلاگ فارسی روی موبایل این‌قدر خسته‌کننده است؟ جواب معمولاً تایپوگرافی است، نه گرافیک. بنابراین کار را از اندازه خط، فاصله سطرها و عرض ستون شروع کردیم و بعد سراغ بقیه رفتیم.',
+            'نتیجه هشت دموی متفاوت است که همگی روی یک سیستم طراحی مشترک ساخته شده‌اند. یعنی اگر رنگ برند را عوض کنید، همه‌جا عوض می‌شود — نه فقط دکمه‌ها.',
+            'همه‌چیز از پایه راست‌چین نوشته شده. این یعنی آیکون‌ها، فلش‌ها، نوار پیشرفت پخش‌کننده و حتی جهت انیمیشن‌ها درست کار می‌کنند، نه اینکه یک قالب چپ‌چین را برعکس کرده باشیم.'
+          ],
+
+          highlights: [
+            'هشت دموی آماده، همگی روی یک سیستم طراحی',
+            'راست‌چین از پایه، نه ترجمه‌شده',
+            'پخش‌کننده پادکست با فصل‌بندی و متن پیاده‌شده',
+            'سازگار با المنتور و گوتنبرگ',
+            'فونت متغیر استعداد با وزن ۱۰۰ تا ۹۰۰',
+            'کد تمیز و مستند، بدون وابستگی اضافه'
+          ],
+
+          audience: [
+            { label: 'نویسنده‌های مستقل', note: 'اگر وبلاگ شخصی دارید و می‌خواهید خوانده شوید.', icon: 'fa-feather',          tile: 'bg-brand/10 text-brand' },
+            { label: 'تیم‌های رسانه‌ای',   note: 'اگر چند نویسنده دارید و به آرشیو منظم نیاز دارید.', icon: 'fa-newspaper',   tile: 'bg-violet-50 text-violet-500' },
+            { label: 'پادکسترها',          note: 'اگر قسمت‌ها را جایی جز فیدهای عمومی هم منتشر می‌کنید.', icon: 'fa-microphone-lines', tile: 'bg-amber-50 text-amber-500' }
+          ],
+
+          specs: [
+            { label: 'نسخه',               value: '۲٫۴٫۰' },
+            { label: 'آخرین به‌روزرسانی',  value: '۲۹ شهریور ۱۴۰۵' },
+            { label: 'سازگار با وردپرس',   value: '۶٫۵ به بالا' },
+            { label: 'سازگار با المنتور',  value: '۳٫۲۰ به بالا' },
+            { label: 'فرمت فایل',          value: 'ZIP شامل قالب، افزونه و مستندات' },
+            { label: 'زبان‌ها',            value: 'فارسی، انگلیسی، عربی' },
+            { label: 'جهت',                value: 'راست‌چین و چپ‌چین' },
+            { label: 'مرورگرها',           value: 'کروم، فایرفاکس، سافاری، اج' },
+            { label: 'پشتیبانی',           value: 'بسته به نسخه، شش ماه تا یک سال' }
+          ]
+        },
+
+        gallery: [
+          { id: 1, caption: 'نمای کلی دموی کلاسیک',    bg: 'gradient-thumb-1', photo: 'assets/images/hero-laptop.jpg' },
+          { id: 2, caption: 'صفحه مقاله و فهرست مطالب', bg: 'gradient-thumb-2', photo: 'assets/images/hero-office.jpg' },
+          { id: 3, caption: 'پخش‌کننده پادکست',         bg: 'gradient-thumb-3', photo: 'assets/images/forest.jpg' },
+          { id: 4, caption: 'نمای موبایل',              bg: 'gradient-thumb-5', photo: 'assets/images/mountains.jpg' },
+          { id: 5, caption: 'پنل تنظیمات قالب',         bg: 'gradient-thumb-7', photo: 'assets/images/office-interior.jpg' }
+        ],
+
+        assurances: [
+          { label: 'دانلود آنی',   note: 'بلافاصله پس از پرداخت', icon: 'fa-bolt' },
+          { label: 'به‌روزرسانی',  note: 'رایگان تا پایان دوره',   icon: 'fa-arrows-rotate' },
+          { label: 'ضمانت بازگشت', note: 'تا هفت روز',             icon: 'fa-shield-halved' }
+        ],
+
+        reviews: [
+          { id: 1, name: 'مریم فراهانی', initial: 'م', bg: 'bg-brand',         rating: 5, verified: true,  likes: 18, date: '۲۱ شهریور ۱۴۰۵', text: 'بعد از سه قالب فارسی دیگر، این اولی بود که مجبور نشدم CSS دستکاری کنم تا متن درست بنشیند. فاصله سطرها از اول درست است.' },
+          { id: 2, name: 'نیما شریفی',   initial: 'ن', bg: 'bg-violet-500',    rating: 5, verified: true,  likes: 11, date: '۱۴ شهریور ۱۴۰۵', text: 'پخش‌کننده پادکست دقیقاً همان چیزی بود که دنبالش بودم. نوار پیشرفت در حالت راست‌چین هم درست کار می‌کند که کم پیش می‌آید.' },
+          { id: 3, name: 'سارا کاظمی',   initial: 'س', bg: 'bg-emerald-500',   rating: 4, verified: true,  likes: 6,  date: '۰۲ شهریور ۱۴۰۵', text: 'خیلی خوب است، فقط مستندات می‌توانست درباره تنظیمات المنتور کمی کامل‌تر باشد. پشتیبانی سریع جواب داد.' },
+          { id: 4, name: 'رضا موسوی',    initial: 'ر', bg: 'bg-amber-500',     rating: 5, verified: false, likes: 4,  date: '۲۵ مرداد ۱۴۰۵', text: 'سرعت بارگذاری واقعاً خوب است. روی هاست اشتراکی معمولی هم سبک بالا می‌آید.' },
+          { id: 5, name: 'الهام رستمی',  initial: 'ا', bg: 'bg-blue-500',      rating: 5, verified: true,  likes: 9,  date: '۱۰ مرداد ۱۴۰۵', text: 'عوض کردن رنگ برند از پنل، واقعاً همه‌جا را عوض می‌کند. انتظار نداشتم این‌قدر یکپارچه باشد.' }
+        ],
+
+        related: [
+          { id: 5, title: 'دیزاین‌سیستم راست‌چین آماده', category: 'قالب و رابط', price: 2100000, oldPrice: 2600000, rating: 5,   href: 'product-single.html', bg: 'gradient-thumb-5', photo: 'assets/images/mountains.jpg' },
+          { id: 9, title: 'پک آیکون راست‌چین — ۶۰۰ آیکون', category: 'قالب و رابط', price: 450000, oldPrice: 0,     rating: 4.5, href: 'product-single.html', bg: 'gradient-thumb-9', photo: 'assets/images/landscape-2.jpg' },
+          { id: 2, title: 'دوره ساخت پادکست از صفر',     category: 'دوره آموزشی', price: 890000,  oldPrice: 0,       rating: 4.8, href: 'product-single.html', bg: 'gradient-thumb-2', photo: 'assets/images/hero-office.jpg' },
+          { id: 4, title: 'کتاب تایپوگرافی فارسی در وب', category: 'کتاب',        price: 320000,  oldPrice: 0,       rating: 4.6, href: 'product-single.html', bg: 'gradient-thumb-4', photo: 'assets/images/lake.jpg' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-brand', current: true },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        get tabs() {
+          return [
+            { key: 'desc',    label: 'توضیحات',   count: 0 },
+            { key: 'specs',   label: 'مشخصات',    count: this.product.specs.length },
+            { key: 'reviews', label: 'دیدگاه‌ها', count: this.reviews.length }
+          ];
+        },
+
+        /* ---------- gallery ---------- */
+        activeShot() {
+          return this.gallery[this.shotIndex] || this.gallery[0];
+        },
+
+        nextShot() {
+          this.shotIndex = (this.shotIndex + 1) % this.gallery.length;
+        },
+
+        prevShot() {
+          this.shotIndex = this.shotIndex === 0 ? this.gallery.length - 1 : this.shotIndex - 1;
+        },
+
+        openLightbox(index) {
+          this.lightbox = index;
+          this.$nextTick(() => {
+            if (this.$refs.lightboxClose) this.$refs.lightboxClose.focus();
+          });
+        },
+
+        closeLightbox() {
+          this.lightbox = null;
+        },
+
+        lightboxShot() {
+          return this.gallery[this.lightbox] || this.gallery[0];
+        },
+
+        nextLightbox() {
+          if (this.lightbox === null) return;
+          this.lightbox = (this.lightbox + 1) % this.gallery.length;
+        },
+
+        prevLightbox() {
+          if (this.lightbox === null) return;
+          this.lightbox = this.lightbox === 0 ? this.gallery.length - 1 : this.lightbox - 1;
+        },
+
+        /* ---------- pricing ---------- */
+        editionExtra() {
+          const edition = this.product.editions.find(e => e.key === this.activeEdition);
+          return edition ? edition.extra : 0;
+        },
+
+        editionNote() {
+          const edition = this.product.editions.find(e => e.key === this.activeEdition);
+          return edition ? edition.note : '';
+        },
+
+        colorLabel() {
+          const color = this.product.colors.find(c => c.key === this.activeColor);
+          return color ? color.label : '';
+        },
+
+        unitPrice() {
+          return this.product.price + this.editionExtra();
+        },
+
+        totalPrice() {
+          return this.unitPrice() * this.qty;
+        },
+
+        discount() {
+          if (!this.product.oldPrice) return 0;
+          return Math.round((1 - this.product.price / this.product.oldPrice) * 100);
+        },
+
+        /* ---------- stock & quantity ---------- */
+        inStock() {
+          return this.product.stockQty > 0;
+        },
+
+        stockLabel() {
+          if (!this.inStock()) return 'ناموجود';
+          if (this.product.stockQty <= 5) return 'تنها ' + toFaDigits(this.product.stockQty) + ' عدد باقی مانده';
+          return 'موجود در انبار';
+        },
+
+        setQty(value) {
+          /* never below one, never past the per-order cap or the shelf */
+          const ceiling = Math.min(this.product.maxQty, this.product.stockQty);
+          this.qty = Math.min(Math.max(1, value), Math.max(1, ceiling));
+        },
+
+        addToCart() {
+          if (!this.inStock()) return;
+          this.cartCount += this.qty;
+          this.showToast(toFaDigits(this.qty) + ' عدد به سبد اضافه شد');
+        },
+
+        /* ---------- reviews ---------- */
+        ratingBars() {
+          return [5, 4, 3, 2, 1].map(star => {
+            const count = this.reviews.filter(r => r.rating === star).length;
+            const percent = this.reviews.length ? Math.round((count / this.reviews.length) * 100) : 0;
+            return { star, count, percent };
+          });
+        },
+
+        likeReview(review) {
+          review.likes += 1;
+        },
+
+        submitReview() {
+          const errors = {};
+          if (!this.newReview.name.trim()) errors.name = 'نام را وارد کنید.';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newReview.email.trim())) errors.email = 'ایمیل معتبر وارد کنید.';
+          if (this.newReview.text.trim().length < 10) errors.text = 'دیدگاه باید دست‌کم ده حرف باشد.';
+
+          this.reviewErrors = errors;
+          if (Object.keys(errors).length) {
+            this.reviewSent = false;
+            return false;
+          }
+
+          this.reviewSent = true;
+          this.newReview = { name: '', email: '', text: '', rating: 5 };
+          return true;
+        },
+
+        goToReviews() {
+          this.activeTab = 'reviews';
+          this.$nextTick(() => {
+            const target = document.getElementById('details');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          });
+        },
+
+        /* ---------- misc ---------- */
+        copyLink() {
+          const done = () => {
+            this.copied = true;
+            clearTimeout(this.copyTimer);
+            this.copyTimer = setTimeout(() => { this.copied = false; }, 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(window.location.href).then(done).catch(done);
+          } else {
+            done();
+          }
+        },
+
+        showToast(message) {
+          this.toast = message;
+          clearTimeout(this.toastTimer);
+          this.toastTimer = setTimeout(() => { this.toast = ''; }, 3200);
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          /* one lock, two things that can open: the drawer and the lightbox */
+          const lock = () => {
+            document.body.style.overflow = this.mobileMenu || this.lightbox !== null ? 'hidden' : '';
+          };
+          this.$watch('mobileMenu', lock);
+          this.$watch('lightbox', lock);
+
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

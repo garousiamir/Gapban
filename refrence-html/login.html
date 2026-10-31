@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ورود به حساب | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه ورود با اعتبارسنجی، نمایش رمز، ورود با شبکه‌های اجتماعی و بازیابی رمز." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="loginPage()"
+  class="font-estedad bg-[#fafafa] selection:bg-brand selection:text-white min-h-screen flex flex-col"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به فرم ورود</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="bg-white border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:block text-[11px] text-gray-500">حساب ندارید؟</span>
+          <a href="register.html" class="inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+            ثبت‌نام
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="flex-1 flex items-center justify-center px-4 sm:px-6 py-10 sm:py-16">
+    <div class="w-full max-w-[1000px] auth-panel">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+
+        <!-- ============ FORM ============ -->
+        <div class="p-7 sm:p-10 lg:p-12 order-2 lg:order-1">
+
+          <!-- success state -->
+          <div x-show="signedIn" x-transition class="py-12 text-center" style="display:none">
+            <span class="mx-auto size-20 rounded-[28px] bg-emerald-50 text-emerald-500 flex items-center justify-center text-3xl animate-pop">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            <h1 class="mt-6 text-xl font-black text-gray-950">خوش آمدید</h1>
+            <p class="mt-3 text-sm leading-8 text-gray-500">
+              با موفقیت وارد شدید. در حال انتقال به حساب کاربری...
+            </p>
+            <a href="account.html" class="mt-7 btn-primary">
+              رفتن به حساب کاربری
+              <i class="fa-solid fa-arrow-left text-xs"></i>
+            </a>
+          </div>
+
+          <form x-show="!signedIn" @submit.prevent="submit()" novalidate>
+            <p class="eyebrow"><i class="fa-regular fa-user"></i> ورود</p>
+            <h1 class="mt-4 text-2xl sm:text-[30px] font-black leading-[1.5] text-gray-950">
+              خوش برگشتید
+            </h1>
+            <p class="mt-3 text-sm leading-8 text-gray-500">
+              برای ادامه شنیدن و دسترسی به محتوای اعضا وارد شوید.
+            </p>
+
+            <!-- social -->
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <template x-for="provider in providers" :key="provider.label">
+                <button type="button" class="h-12 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 flex items-center justify-center gap-2.5 hover:border-brand/30 hover:text-brand transition">
+                  <i :class="provider.icon"></i>
+                  <span x-text="provider.label"></span>
+                </button>
+              </template>
+            </div>
+
+            <div class="my-7 flex items-center gap-4">
+              <span class="flex-1 h-px bg-gray-100"></span>
+              <span class="text-[11px] text-gray-400">یا با ایمیل</span>
+              <span class="flex-1 h-px bg-gray-100"></span>
+            </div>
+
+            <!-- error banner -->
+            <div x-show="formError" class="notice border-brand/20 bg-brand/5 mb-5" style="display:none">
+              <span class="notice-icon bg-brand text-white"><i class="fa-solid fa-circle-exclamation"></i></span>
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-black text-brand">ورود ناموفق</p>
+                <p class="mt-1 text-xs leading-7 text-gray-600" x-text="formError"></p>
+              </div>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label for="login-email" class="field-label">ایمیل</label>
+                <div class="relative">
+                  <input
+                    id="login-email"
+                    type="email"
+                    dir="ltr"
+                    x-model="form.email"
+                    @input="clearError('email')"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    class="comment-input ps-11 text-end"
+                    :class="errors.email ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  />
+                  <i class="fa-regular fa-envelope absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                </div>
+                <p x-show="errors.email" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span x-text="errors.email"></span>
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between">
+                  <label for="login-pass" class="field-label">رمز عبور</label>
+                  <a href="#" class="mb-2 text-[11px] font-bold text-brand hover:underline">فراموش کرده‌اید؟</a>
+                </div>
+
+                <div class="relative">
+                  <input
+                    id="login-pass"
+                    :type="showPassword ? 'text' : 'password'"
+                    dir="ltr"
+                    x-model="form.password"
+                    @input="clearError('password')"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                    class="comment-input ps-11 pe-12 text-end"
+                    :class="errors.password ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  />
+                  <i class="fa-solid fa-lock absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  <button
+                    type="button"
+                    @click="showPassword = !showPassword"
+                    class="absolute end-3 top-1/2 -translate-y-1/2 size-8 rounded-lg text-gray-400 hover:text-brand transition flex items-center justify-center"
+                    :aria-label="showPassword ? 'پنهان کردن رمز' : 'نمایش رمز'"
+                  >
+                    <i class="fa-solid text-xs" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+                <p x-show="errors.password" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span x-text="errors.password"></span>
+                </p>
+              </div>
+
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" x-model="form.remember" class="accent-red-500 size-4" />
+                <span class="text-xs text-gray-600">مرا به خاطر بسپار</span>
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              class="mt-7 btn-primary w-full"
+              :disabled="sending"
+              :class="sending ? 'opacity-70 pointer-events-none' : ''"
+            >
+              <template x-if="!sending">
+                <span class="inline-flex items-center gap-2">
+                  ورود به حساب
+                  <i class="fa-solid fa-arrow-left text-xs"></i>
+                </span>
+              </template>
+              <template x-if="sending">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-circle-notch fa-spin text-xs"></i>
+                  در حال ورود...
+                </span>
+              </template>
+            </button>
+
+            <p class="mt-6 text-center text-xs text-gray-500">
+              حساب ندارید؟
+              <a href="register.html" class="font-bold text-brand hover:underline">ثبت‌نام کنید</a>
+            </p>
+
+            <p class="mt-4 text-center text-[10px] leading-6 text-gray-400">
+              با ورود، <a href="page.html" class="text-gray-600 hover:text-brand">قوانین</a> و
+              <a href="page.html" class="text-gray-600 hover:text-brand">حریم خصوصی</a> را می‌پذیرید.
+            </p>
+          </form>
+        </div>
+
+        <!-- ============ SIDE PANEL ============ -->
+        <div class="relative overflow-hidden order-1 lg:order-2 min-h-[220px] lg:min-h-0">
+          <div class="absolute inset-0 gradient-thumb-2"></div>
+          <div class="absolute inset-0 dot-grid opacity-20"></div>
+          <div class="absolute inset-0 bg-gray-950/50"></div>
+          <div class="pointer-events-none absolute -bottom-20 -end-16 size-64 bg-white/20 blur-3xl rounded-full animate-floaty-slow"></div>
+
+          <div class="relative z-10 h-full p-7 sm:p-10 flex flex-col justify-between text-white">
+            <div class="flex items-center gap-2.5">
+              <span class="size-10 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <span class="text-lg font-black tracking-[0.18em] uppercase">SEVI</span>
+            </div>
+
+            <div class="hidden lg:block">
+              <i class="fa-solid fa-quote-left text-3xl text-white/25"></i>
+              <p class="mt-5 text-base leading-9 font-bold">
+                تنها پادکست فارسی‌ای که بعد از هر قسمت یک یادداشت برمی‌دارم.
+              </p>
+              <div class="mt-6 flex items-center gap-3">
+                <span class="size-11 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center text-sm font-black">ا</span>
+                <span>
+                  <span class="block text-sm font-black">الهام کاظمی</span>
+                  <span class="block text-[11px] text-white/65 mt-0.5">عضو · ۱۴ ماه</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-6">
+              <template x-for="stat in stats" :key="stat.label">
+                <span>
+                  <span class="block text-xl font-black" x-text="stat.value"></span>
+                  <span class="block text-[10px] text-white/60 mt-0.5" x-text="stat.label"></span>
+                </span>
+              </template>
+            </div>
+
+            <p class="lg:hidden text-sm font-bold">به بیش از ۴٬۲۰۰ شنونده بپیوندید</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-gray-100 bg-white">
+    <div class="container-page py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-gray-400">
+        <a href="pricing.html" class="hover:text-brand transition">عضویت</a>
+        <a href="page.html" class="hover:text-brand transition">حریم خصوصی</a>
+        <a href="contact.html" class="hover:text-brand transition">پشتیبانی</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function loginPage() {
+      return {
+        demoPanel: false,
+        showPassword: false,
+        sending: false,
+        signedIn: false,
+        formError: '',
+
+        toFa: toFaDigits,
+
+        form: { email: '', password: '', remember: true },
+        errors: {},
+
+        providers: [
+          { label: 'ورود با گوگل', icon: 'fa-brands fa-google' },
+          { label: 'ورود با گیت‌هاب', icon: 'fa-brands fa-github' }
+        ],
+
+        stats: [
+          { value: '۶۴', label: 'قسمت' },
+          { value: '۴٬۲۰۰', label: 'عضو' },
+          { value: '۴٫۹', label: 'امتیاز' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-brand', current: true },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        clearError(field) {
+          if (this.errors[field]) this.errors = { ...this.errors, [field]: '' };
+          this.formError = '';
+        },
+
+        validate() {
+          const errors = {};
+          const email = this.form.email.trim();
+
+          if (!email) errors.email = 'وارد کردن ایمیل الزامی است.';
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = 'فرمت ایمیل درست به نظر نمی‌رسد.';
+
+          if (!this.form.password) errors.password = 'رمز عبور را وارد کنید.';
+          else if (this.form.password.length < 8) errors.password = 'رمز عبور حداقل ۸ کاراکتر است.';
+
+          this.errors = errors;
+          return Object.keys(errors).length === 0;
+        },
+
+        submit() {
+          this.formError = '';
+          if (!this.validate()) return;
+
+          this.sending = true;
+
+          /* شبیه‌سازی ورود — اینجا درخواست واقعی به سرور را جایگزین کنید */
+          setTimeout(() => {
+            this.sending = false;
+            this.signedIn = true;
+          }, 1100);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

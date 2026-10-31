@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>صفحه پیدا نشد | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه خطای ۴۰۴ با جستجو، پیشنهاد مطالب و لینک‌های سریع." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="notFoundPage()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white min-h-screen flex flex-col"
+>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="archive.html" class="nav-link">آرشیو</a>
+          <a href="index-6.html" class="nav-link">پادکست</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <a href="index-1.html" class="inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-gray-950 text-white text-xs font-bold hover:bg-brand transition">
+          <i class="fa-solid fa-house text-[10px]"></i>
+          صفحه اصلی
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    <!-- ===================== 404 ===================== -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 gradient-a opacity-40"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/88 to-white"></div>
+      <div class="pointer-events-none absolute -top-24 start-1/4 size-80 brand-glow blur-3xl animate-floaty"></div>
+      <div class="pointer-events-none absolute bottom-0 end-1/4 size-72 violet-glow blur-3xl animate-floaty-slow"></div>
+
+      <div class="container-page relative z-10 py-16 sm:py-24 text-center">
+
+        <!-- big 404 -->
+        <div class="relative inline-flex items-center justify-center gap-2 sm:gap-4">
+          <span class="text-[86px] sm:text-[150px] font-black leading-none text-gradient select-none">۴</span>
+
+          <span class="relative size-[76px] sm:size-[128px] shrink-0">
+            <span class="absolute inset-0 rounded-full gradient-thumb-2 animate-floaty"></span>
+            <span class="absolute inset-0 flex items-center justify-center text-white">
+              <i class="fa-solid fa-plug-circle-xmark text-2xl sm:text-5xl"></i>
+            </span>
+          </span>
+
+          <span class="text-[86px] sm:text-[150px] font-black leading-none text-gradient select-none">۴</span>
+        </div>
+
+        <h1 class="mt-8 text-2xl sm:text-[38px] font-black leading-[1.5] text-gray-950">
+          این صفحه را پیدا نکردیم
+        </h1>
+
+        <p class="mt-5 mx-auto max-w-[480px] text-sm leading-9 text-gray-500">
+          شاید آدرس عوض شده، مطلب حذف شده یا لینک اشتباه تایپ شده باشد.
+          بیایید از یکی از این راه‌ها ادامه دهیم.
+        </p>
+
+        <!-- search -->
+        <div class="mt-9 relative max-w-[460px] mx-auto">
+          <input
+            type="text"
+            x-model="query"
+            @keydown.enter="go()"
+            placeholder="جستجو در سایت..."
+            class="w-full h-14 rounded-2xl bg-white border border-gray-100 ps-12 pe-28 text-sm outline-none shadow-[0_16px_40px_rgba(15,23,42,0.08)] focus:border-brand/30 focus:ring-4 focus:ring-brand/10 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          <button
+            @click="go()"
+            class="absolute end-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-xl bg-brand text-white text-xs font-bold hover:bg-brand-dark transition"
+          >
+            جستجو
+          </button>
+        </div>
+
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <a href="index-1.html" class="btn-primary">
+            <i class="fa-solid fa-house text-xs"></i>
+            بازگشت به خانه
+          </a>
+          <button @click="goBack()" class="btn-ghost">
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+            صفحه قبلی
+          </button>
+          <a href="contact.html" class="btn-ghost">
+            <i class="fa-regular fa-paper-plane text-xs"></i>
+            گزارش خرابی لینک
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUICK LINKS ===================== -->
+    <section class="container-page pb-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <template x-for="link in quickLinks" :key="link.label">
+          <a :href="link.href" class="group rounded-[24px] bg-white border border-gray-100 p-5 text-center shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+            <span class="icon-tile mx-auto" :class="link.tile">
+              <i class="fa-solid" :class="link.icon"></i>
+            </span>
+            <p class="mt-4 text-sm font-black text-gray-950 group-hover:text-brand transition" x-text="link.label"></p>
+            <p class="mt-1.5 text-[11px] text-gray-500" x-text="link.note"></p>
+          </a>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== SUGGESTED POSTS ===================== -->
+    <section class="container-page mt-12 sm:mt-16">
+      <div class="flex items-end justify-between gap-4 mb-7">
+        <div>
+          <p class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> شاید دنبال این‌ها بودید</p>
+          <h2 class="mt-3 rule-title">پرخواننده‌ترین مطالب</h2>
+        </div>
+        <a href="archive.html" class="hidden sm:inline-flex text-xs text-gray-500 hover:text-brand transition">مشاهده آرشیو</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <template x-for="post in suggested" :key="post.title">
+          <article class="mag-card group">
+            <a href="single-post.html" class="relative block h-[170px] overflow-hidden" :class="post.bg">
+              <img :src="post.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="" />
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent"></div>
+              <span class="absolute top-3 start-3 rounded-lg bg-white/90 backdrop-blur px-2.5 py-1 text-[10px] font-bold text-gray-800" x-text="post.category"></span>
+            </a>
+
+            <div class="p-5">
+              <div class="flex items-center gap-3 text-[10px] text-gray-400">
+                <span x-text="post.date"></span>
+                <span class="w-px h-3 bg-gray-200"></span>
+                <span x-text="post.read"></span>
+              </div>
+              <h3 class="mt-3 text-sm font-extrabold leading-7 text-gray-950 line-clamp-2 group-hover:text-brand transition" x-text="post.title"></h3>
+            </div>
+          </article>
+        </template>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="archive.html" class="hover:text-brand transition">آرشیو</a>
+          <a href="search.html" class="hover:text-brand transition">جستجو</a>
+          <a href="author.html" class="hover:text-brand transition">نویسنده</a>
+          <a href="page.html" class="hover:text-brand transition">صفحه ساده</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function notFoundPage() {
+      return {
+        demoPanel: false,
+        query: '',
+
+        toFa: toFaDigits,
+
+        quickLinks: [
+          { label: 'خانه',    note: 'تازه‌ترین مطالب',  href: 'index-1.html', icon: 'fa-house',            tile: 'bg-brand/10 text-brand' },
+          { label: 'آرشیو',   note: 'همه دسته‌بندی‌ها', href: 'archive.html', icon: 'fa-box-archive',      tile: 'bg-blue-50 text-blue-500' },
+          { label: 'پادکست',  note: '۶۴ قسمت',          href: 'index-6.html', icon: 'fa-microphone-lines', tile: 'bg-violet-50 text-violet-500' },
+          { label: 'تماس',    note: 'گزارش مشکل',       href: 'contact.html', icon: 'fa-paper-plane',      tile: 'bg-emerald-50 text-emerald-500' }
+        ],
+
+        suggested: [
+          { title: 'راهنمای کامل تایپوگرافی فارسی برای وب', category: 'طراحی', date: '۲۶ شهریور', read: '۱۱ دقیقه', bg: 'gradient-thumb-2', photo: 'assets/images/hero-laptop.jpg' },
+          { title: 'معماری یک دیزاین‌سیستم راست‌چین', category: 'دیزاین سیستم', date: '۲۸ شهریور', read: '۱۴ دقیقه', bg: 'gradient-thumb-1', photo: 'assets/images/hero-office.jpg' },
+          { title: 'کارایی وب؛ چه چیزی واقعاً اثر دارد؟', category: 'توسعه', date: '۲۴ شهریور', read: '۹ دقیقه', bg: 'gradient-thumb-6', photo: 'assets/images/mountains.jpg' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-brand', current: true },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        go() {
+          const term = this.query.trim();
+          window.location.href = term
+            ? 'search.html?s=' + encodeURIComponent(term)
+            : 'search.html';
+        },
+
+        goBack() {
+          if (window.history.length > 1) window.history.back();
+          else window.location.href = 'index-1.html';
+        }
+      };
+    }
+  </script>
+</body>
+</html>

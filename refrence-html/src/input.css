@@ -1,0 +1,12 @@
+/*
+ * Entry point for the 37-page HTML preview.
+ *
+ * source(none) turns off Tailwind automatic content detection, which would
+ * otherwise walk the whole repository -- including wordpress/vendor, where
+ * 1,748 PHP files of coding-standards source would be mined for class names.
+ */
+@import "tailwindcss" source(none);
+
+@source "../*.html";
+
+@import "./_shared.css";

@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>به‌زودی | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه به‌زودی با شمارش معکوس زنده، نوار پیشرفت، ثبت ایمیل و لینک شبکه‌های اجتماعی." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="soonPage()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white min-h-screen flex flex-col"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <!-- ===================== BACKDROP ===================== -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 gradient-a opacity-45"></div>
+    <div class="absolute inset-0 dot-grid opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white/50 via-white/80 to-white"></div>
+    <div class="pointer-events-none absolute -top-28 start-1/4 size-[420px] brand-glow blur-3xl animate-floaty"></div>
+    <div class="pointer-events-none absolute -bottom-32 end-1/5 size-[360px] violet-glow blur-3xl animate-floaty-slow"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="relative z-10">
+    <div class="container-page">
+      <div class="h-[82px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2.5">
+          <span class="size-10 rounded-2xl bg-brand flex items-center justify-center shadow-lg shadow-brand/25">
+            <i class="fa-solid fa-bolt text-white text-sm"></i>
+          </span>
+          <span>
+            <span class="block text-lg font-black tracking-[0.18em] text-gray-950 uppercase leading-none">SEVI</span>
+            <span class="block mt-1 text-[10px] text-gray-400">مجله و پادکست</span>
+          </span>
+        </a>
+
+        <a href="contact.html" class="inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+          <i class="fa-regular fa-paper-plane text-[10px]"></i>
+          <span class="hidden sm:inline">تماس با ما</span>
+          <span class="sm:hidden">تماس</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main id="main" class="relative z-10 flex-1 flex items-center">
+    <div class="container-page py-10 sm:py-16">
+      <div class="max-w-[820px] mx-auto text-center">
+
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 text-[11px] text-gray-600 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <span class="relative flex size-2">
+            <span class="absolute inset-0 rounded-full bg-brand animate-ping-ring"></span>
+            <span class="relative size-2 rounded-full bg-brand"></span>
+          </span>
+          فصل چهارم در راه است
+        </span>
+
+        <h1 class="mt-7 text-[32px] sm:text-[52px] font-black leading-[1.4] text-gray-950">
+          به‌زودی
+          <span class="relative inline-block">
+            <span class="relative z-10 text-brand">برمی‌گردیم</span>
+            <span class="absolute inset-x-0 bottom-1.5 h-3 bg-brand/15 rounded-full"></span>
+          </span>
+        </h1>
+
+        <p class="mt-6 mx-auto max-w-[540px] text-sm sm:text-[15px] leading-9 text-gray-600">
+          داریم روی چیز تازه‌ای کار می‌کنیم؛ فصل چهارم پادکست به‌همراه یک بخش جدید
+          برای متن کامل گفتگوها. ایمیلتان را بگذارید تا اولین نفر خبردار شوید.
+        </p>
+
+        <!-- ===================== COUNTDOWN ===================== -->
+        <div class="mt-11">
+          <div x-show="!launched" class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <template x-for="unit in units" :key="unit.key">
+              <div class="rounded-[24px] bg-white border border-gray-100 shadow-[0_18px_45px_rgba(15,23,42,0.07)] px-4 sm:px-6 py-4 sm:py-5 min-w-[80px] sm:min-w-[96px]">
+                <p class="text-[26px] sm:text-[36px] font-black leading-none text-gray-950 tabular-nums" x-text="pad(remaining[unit.key])"></p>
+                <p class="mt-2 text-[10px] sm:text-[11px] text-gray-400" x-text="unit.label"></p>
+              </div>
+            </template>
+          </div>
+
+          <div x-show="launched" class="inline-flex items-center gap-3 rounded-[24px] bg-emerald-50 border border-emerald-100 px-6 py-5" style="display:none">
+            <span class="size-11 rounded-2xl bg-emerald-500 text-white flex items-center justify-center">
+              <i class="fa-solid fa-rocket"></i>
+            </span>
+            <div class="text-start">
+              <p class="text-sm font-black text-emerald-700">منتشر شد!</p>
+              <p class="mt-1 text-[11px] text-emerald-600">فصل چهارم هم‌اکنون در دسترس است.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== PROGRESS ===================== -->
+        <div class="mt-10 mx-auto max-w-[460px]">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-[11px] font-bold text-gray-700">پیشرفت آماده‌سازی</span>
+            <span class="text-[11px] font-black text-brand tabular-nums" x-text="toFa(progressPercent) + '٪'"></span>
+          </div>
+
+          <div class="h-2.5 rounded-full bg-gray-100 overflow-hidden">
+            <div class="h-full rounded-full bg-brand transition-[width] duration-700" :style="'width:' + progressPercent + '%'"></div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <template x-for="step in steps" :key="step.label">
+              <span class="flex items-center gap-1.5 text-[10px]" :class="step.done ? 'text-emerald-600' : 'text-gray-400'">
+                <i class="fa-solid text-[9px]" :class="step.done ? 'fa-circle-check' : 'fa-circle-notch'"></i>
+                <span x-text="step.label"></span>
+              </span>
+            </template>
+          </div>
+        </div>
+
+        <!-- ===================== SUBSCRIBE ===================== -->
+        <div class="mt-11 mx-auto max-w-[480px]">
+          <div x-show="!subscribed">
+            <form @submit.prevent="subscribe()" class="flex flex-col sm:flex-row items-stretch gap-2.5">
+              <div class="relative flex-1">
+                <input
+                  type="email"
+                  dir="ltr"
+                  x-model="email"
+                  @input="emailError = ''"
+                  placeholder="you@example.com"
+                  aria-label="نشانی ایمیل"
+                  class="w-full h-14 rounded-2xl bg-white border ps-5 pe-12 text-sm text-end outline-none shadow-[0_14px_35px_rgba(15,23,42,0.06)] transition focus:ring-4 focus:ring-brand/10"
+                  :class="emailError ? 'border-brand/60 ring-4 ring-brand/10' : 'border-gray-100 focus:border-brand/30'"
+                />
+                <i class="fa-regular fa-envelope absolute end-5 top-1/2 -translate-y-1/2 text-gray-300 text-sm"></i>
+              </div>
+
+              <button type="submit" class="h-14 px-7 rounded-2xl bg-brand text-white text-sm font-bold shadow-lg shadow-brand/25 hover:bg-brand-dark transition flex items-center justify-center gap-2 shrink-0">
+                خبرم کن
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </button>
+            </form>
+
+            <p x-show="emailError" class="mt-3 field-error justify-center" style="display:none">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span x-text="emailError"></span>
+            </p>
+
+            <p x-show="!emailError" class="mt-3 text-[11px] text-gray-400">
+              <span x-text="toFa(waitlist)"></span> نفر در فهرست انتظار هستند.
+            </p>
+          </div>
+
+          <div x-show="subscribed" x-transition class="rounded-[24px] border border-emerald-100 bg-emerald-50 p-5 flex items-center gap-4" style="display:none">
+            <span class="size-11 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shrink-0 animate-pop">
+              <i class="fa-solid fa-check"></i>
+            </span>
+            <div class="min-w-0 text-start">
+              <p class="text-sm font-black text-emerald-700">ثبت شد</p>
+              <p class="mt-1 text-[11px] leading-6 text-emerald-600">
+                به محض انتشار به <span class="font-bold" dir="ltr" x-text="email"></span> خبر می‌دهیم.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== SOCIAL ===================== -->
+        <div class="mt-12">
+          <p class="text-[11px] text-gray-400">تا آن موقع ما را دنبال کنید</p>
+          <div class="mt-4 flex items-center justify-center gap-2.5">
+            <template x-for="social in socials" :key="social.label">
+              <a
+                :href="social.href"
+                class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-500 flex items-center justify-center shadow-[0_10px_30px_rgba(15,23,42,0.05)] hover:bg-brand hover:text-white hover:border-brand transition"
+                :aria-label="social.label"
+              >
+                <i :class="social.icon"></i>
+              </a>
+            </template>
+          </div>
+        </div>
+
+        <!-- ===================== MEANWHILE ===================== -->
+        <div class="mt-12 pt-10 border-t border-gray-100">
+          <p class="text-[11px] text-gray-400 mb-5">در این فاصله می‌توانید</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <template x-for="link in meanwhile" :key="link.label">
+              <a :href="link.href" class="group rounded-[22px] bg-white border border-gray-100 p-4 text-start shadow-[0_12px_32px_rgba(15,23,42,0.04)] lift-card">
+                <span class="size-10 rounded-xl flex items-center justify-center" :class="link.tile">
+                  <i class="fa-solid text-xs" :class="link.icon"></i>
+                </span>
+                <span class="block mt-3 text-xs font-black text-gray-950 group-hover:text-brand transition" x-text="link.label"></span>
+                <span class="block mt-1 text-[10px] text-gray-400" x-text="link.note"></span>
+              </a>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="relative z-10 border-t border-gray-100 bg-white/70 backdrop-blur-sm">
+    <div class="container-page py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-gray-400">
+        <a href="demos.html" class="hover:text-brand transition">دموها</a>
+        <a href="page.html" class="hover:text-brand transition">حریم خصوصی</a>
+        <a href="contact.html" class="hover:text-brand transition">تماس</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function soonPage() {
+      return {
+        demoPanel: false,
+        email: '',
+        emailError: '',
+        subscribed: false,
+        waitlist: 4218,
+        progressPercent: 76,
+        tickTimer: null,
+
+        /* launch target — change this one line to move the date */
+        target: new Date('2026-12-21T09:00:00'),
+        remaining: { days: 0, hours: 0, minutes: 0, seconds: 0 },
+        launched: false,
+
+        toFa: toFaDigits,
+
+        units: [
+          { key: 'days',    label: 'روز' },
+          { key: 'hours',   label: 'ساعت' },
+          { key: 'minutes', label: 'دقیقه' },
+          { key: 'seconds', label: 'ثانیه' }
+        ],
+
+        steps: [
+          { label: 'ضبط قسمت‌ها', done: true },
+          { label: 'تدوین صدا', done: true },
+          { label: 'متن گفتگوها', done: true },
+          { label: 'انتشار نهایی', done: false }
+        ],
+
+        socials: [
+          { label: 'اینستاگرام', icon: 'fa-brands fa-instagram', href: '#' },
+          { label: 'تلگرام', icon: 'fa-brands fa-telegram', href: '#' },
+          { label: 'ایکس', icon: 'fa-brands fa-x-twitter', href: '#' },
+          { label: 'اسپاتیفای', icon: 'fa-brands fa-spotify', href: '#' },
+          { label: 'RSS', icon: 'fa-solid fa-rss', href: '#' }
+        ],
+
+        meanwhile: [
+          { label: 'شنیدن فصل سوم', note: '۲۴ قسمت آماده', href: 'podcast-archive.html', icon: 'fa-headphones', tile: 'bg-brand/10 text-brand' },
+          { label: 'خواندن وبلاگ',  note: '۲۱۴ مطلب',      href: 'archive.html',         icon: 'fa-newspaper', tile: 'bg-blue-50 text-blue-500' },
+          { label: 'دیدن دموها',    note: '۸ دمو کامل',    href: 'demos.html',           icon: 'fa-layer-group', tile: 'bg-emerald-50 text-emerald-500' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-brand', current: true },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        pad(value) {
+          return toFaDigits(String(Math.max(0, value)).padStart(2, '0'));
+        },
+
+        /* split the gap between now and the target into d/h/m/s */
+        tick() {
+          const gap = this.target.getTime() - Date.now();
+
+          if (gap <= 0) {
+            this.launched = true;
+            this.remaining = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            return;
+          }
+
+          this.launched = false;
+          const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
+
+          this.remaining = {
+            days: Math.floor(gap / day),
+            hours: Math.floor((gap % day) / hour),
+            minutes: Math.floor((gap % hour) / minute),
+            seconds: Math.floor((gap % minute) / second)
+          };
+        },
+
+        subscribe() {
+          const value = this.email.trim();
+
+          if (!value) {
+            this.emailError = 'نشانی ایمیل را وارد کنید.';
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+            this.emailError = 'فرمت ایمیل درست به نظر نمی‌رسد.';
+            return;
+          }
+
+          this.emailError = '';
+          this.subscribed = true;
+          this.waitlist += 1;
+        },
+
+        init() {
+          this.tick();
+          this.tickTimer = setInterval(() => this.tick(), 1000);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

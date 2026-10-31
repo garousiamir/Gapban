@@ -1,0 +1,1329 @@
+/*
+ * Shared design system: font face, theme tokens, base layer and every component.
+ *
+ * Imported by both entry points -- src/input.css (the HTML preview) and
+ * src/theme.css (the WordPress theme) -- so the two can never drift apart.
+ * Neither entry point declares components of its own; they differ only in
+ * which files Tailwind scans for class names.
+ */
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('../fonts/Estedad-VariableFont_wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  font-variation-settings: 'wght' var(--font-weight, 300);
+}
+
+@theme {
+  --font-estedad: "Estedad", sans-serif;
+  --color-brand: #ef4b4b;
+  --color-brand-dark: #d33c3c;
+  --color-ink: #111827;
+  --color-muted: #6b7280;
+  --color-soft: #f7f7f8;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-estedad);
+    background: #ffffff;
+    color: #111827;
+    overflow-x: hidden;
+  }
+
+  button,
+  input {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+
+    .container-page {
+    @apply w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-xl border border-white/70 shadow-[0_20px_55px_rgba(15,23,42,0.06)];
+  }
+
+  .card-box {
+    @apply rounded-[28px] bg-white border border-gray-100 shadow-[0_15px_45px_rgba(15,23,42,0.05)];
+  }
+
+  .sidebar-box {
+    @apply rounded-[28px] bg-white border border-gray-100 p-5 shadow-[0_16px_45px_rgba(15,23,42,0.05)];
+  }
+
+  .icon-btn {
+    @apply size-10 rounded-full border border-gray-100 bg-white text-gray-600 flex items-center justify-center transition hover:bg-brand hover:text-white hover:border-brand;
+  }
+
+  .nav-link {
+    @apply text-[13px] text-gray-500 hover:text-gray-950 transition-colors;
+  }
+
+  .tag-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-100 px-4 py-2 text-[12px] text-gray-600 transition hover:bg-brand hover:text-white hover:border-brand;
+  }
+
+  .meta-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-white/70 px-3 py-2 text-[11px] text-gray-600;
+  }
+
+  .upload-tile {
+    @apply relative rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-4 text-center hover:border-brand/40 hover:bg-brand/5 transition cursor-pointer;
+  }
+
+  .comment-input {
+    @apply w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm text-gray-700 outline-none transition focus:border-brand/40 focus:ring-4 focus:ring-brand/10;
+  }
+
+  .comment-textarea {
+    @apply w-full min-h-[150px] rounded-3xl border border-gray-200 bg-white px-4 py-4 text-sm text-gray-700 outline-none transition focus:border-brand/40 focus:ring-4 focus:ring-brand/10 resize-y;
+  }
+
+  .article-content h2 {
+    @apply mt-10 mb-4 text-xl sm:text-2xl font-black text-gray-950;
+  }
+
+  .article-content h3 {
+    @apply mt-8 mb-3 text-lg sm:text-xl font-extrabold text-gray-900;
+  }
+
+  .article-content p {
+    @apply text-[15px] leading-9 text-gray-600 mb-5;
+  }
+
+  .article-content ul {
+    @apply space-y-3 mb-6 text-gray-600;
+  }
+
+  .article-content ul li {
+    @apply relative ps-6 leading-8;
+  }
+
+  .article-content ul li::before {
+    content: "";
+    @apply absolute start-0 top-3 size-2 rounded-full bg-brand;
+  }
+
+  .article-content blockquote {
+    @apply my-8 rounded-[24px] border border-brand/10 bg-brand/5 px-5 py-5 sm:px-7 sm:py-6 text-gray-700 leading-9 font-medium;
+  }
+
+  .article-content img {
+    @apply w-full rounded-[28px] object-cover my-8;
+  }
+
+  .article-content code {
+    @apply rounded-lg bg-gray-100 px-2 py-1 text-[13px] text-brand;
+  }
+
+  .gradient-a {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255, 232, 166, 0.9), transparent 28%),
+      radial-gradient(circle at 80% 25%, rgba(255, 105, 180, 0.45), transparent 32%),
+      radial-gradient(circle at 60% 80%, rgba(87, 106, 255, 0.55), transparent 34%),
+      linear-gradient(135deg, #dbeafe, #f5d0fe 45%, #c7d2fe);
+  }
+
+  .gradient-b {
+    background:
+      radial-gradient(circle at 20% 15%, rgba(255, 245, 157, 0.95), transparent 26%),
+      radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.35), transparent 30%),
+      linear-gradient(135deg, #fed7aa, #fbcfe8 46%, #c4b5fd);
+  }
+
+  .gradient-c {
+    background:
+      radial-gradient(circle at 82% 18%, rgba(163, 230, 53, 0.8), transparent 24%),
+      radial-gradient(circle at 15% 78%, rgba(30, 41, 59, 0.8), transparent 30%),
+      linear-gradient(135deg, #6ee7b7, #bef264 42%, #4338ca);
+  }
+
+  .gradient-d {
+    background:
+      radial-gradient(circle at 25% 22%, rgba(255, 255, 255, 0.85), transparent 16%),
+      radial-gradient(circle at 72% 18%, rgba(244, 114, 182, 0.8), transparent 24%),
+      linear-gradient(135deg, #7dd3fc, #f9a8d4 45%, #8b5cf6);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .container-page {
+    @apply w-full max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-xl border border-white/70 shadow-[0_18px_50px_rgba(15,23,42,0.06)];
+  }
+
+  .nav-link {
+    @apply text-[13px] text-gray-500 hover:text-gray-950 transition-colors;
+  }
+
+  .icon-btn {
+    @apply size-9 rounded-full bg-white border border-gray-100 text-gray-600 flex items-center justify-center hover:bg-gray-50 hover:text-brand transition;
+  }
+
+  .pill {
+    @apply inline-flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-[11px] text-white border border-white/20;
+  }
+
+  .dark-post-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.18) 35%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+  }
+
+  .gradient-thumb-1 {
+    background:
+      radial-gradient(circle at 15% 15%, #fff7ad 0 8%, transparent 32%),
+      radial-gradient(circle at 82% 20%, #ff65d8 0 10%, transparent 38%),
+      radial-gradient(circle at 65% 85%, #8457ff 0 20%, transparent 50%),
+      linear-gradient(135deg, #88d7ff, #f9b0d5 55%, #7a5cff);
+  }
+
+  .gradient-thumb-2 {
+    background:
+      radial-gradient(circle at 20% 20%, #ffe27a 0 10%, transparent 35%),
+      radial-gradient(circle at 85% 80%, #3d1cff 0 10%, transparent 35%),
+      linear-gradient(135deg, #ff89d8, #d865ff 48%, #5428ff);
+  }
+
+  .gradient-thumb-3 {
+    background:
+      radial-gradient(circle at 50% 52%, #0a7cff 0 8%, transparent 40%),
+      linear-gradient(135deg, #a7ddff, #eef8ff 45%, #80caff);
+  }
+
+  .gradient-thumb-4 {
+    background:
+      radial-gradient(circle at 85% 12%, #e8ff54 0 12%, transparent 34%),
+      radial-gradient(circle at 15% 90%, #0e053f 0 16%, transparent 46%),
+      linear-gradient(135deg, #18e3a2, #a5ff58 42%, #e7ff6d);
+  }
+
+  .gradient-thumb-5 {
+    background:
+      radial-gradient(circle at 75% 35%, #ff4d8e 0 8%, transparent 35%),
+      radial-gradient(circle at 35% 70%, #5bd4ff 0 12%, transparent 38%),
+      linear-gradient(135deg, #ffe9a3, #e4cbff 48%, #ff89bb);
+  }
+
+  .gradient-thumb-6 {
+    background:
+      radial-gradient(circle at 30% 10%, #00a7ff 0 14%, transparent 36%),
+      radial-gradient(circle at 72% 18%, #ff354f 0 10%, transparent 35%),
+      radial-gradient(circle at 50% 90%, #ffda25 0 13%, transparent 36%),
+      linear-gradient(135deg, #11d9f0, #6938ff 46%, #ff5a8c);
+  }
+
+  .gradient-thumb-7 {
+    background:
+      radial-gradient(circle at 18% 12%, #fff9b7 0 10%, transparent 32%),
+      radial-gradient(circle at 82% 15%, #ff71df 0 12%, transparent 36%),
+      linear-gradient(135deg, #91d9ff, #f8b4d3 52%, #8c5cff);
+  }
+
+  .gradient-thumb-8 {
+    background:
+      radial-gradient(circle at 20% 85%, #08013c 0 18%, transparent 44%),
+      radial-gradient(circle at 84% 15%, #9eff3d 0 14%, transparent 36%),
+      linear-gradient(135deg, #3cf2bf, #c3ff42 47%, #2433ff);
+  }
+
+  .gradient-thumb-9 {
+    background:
+      radial-gradient(circle at 78% 18%, #ff4feb 0 12%, transparent 38%),
+      linear-gradient(135deg, #ffb8ef, #d86fff 50%, #381bff);
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Shared primitives used by about.html / contact.html
+   --------------------------------------------------------------- */
+@layer components {
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold text-brand;
+  }
+
+  .section-title {
+    @apply text-2xl sm:text-3xl lg:text-[34px] font-black leading-[1.6] text-gray-950;
+  }
+
+  .section-sub {
+    @apply mt-3 max-w-[560px] text-sm leading-8 text-gray-500;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-brand text-white text-sm font-bold shadow-lg shadow-brand/25 transition hover:bg-brand-dark hover:shadow-xl hover:shadow-brand/30;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-white border border-gray-100 text-sm font-bold text-gray-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition hover:text-brand hover:border-brand/30;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-gray-950 text-white text-sm font-bold transition hover:bg-brand;
+  }
+
+  .stat-tile {
+    @apply rounded-[26px] border border-gray-100 bg-white p-5 text-center shadow-[0_16px_45px_rgba(15,23,42,0.05)];
+  }
+
+  .lift-card {
+    @apply transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_65px_rgba(15,23,42,0.10)];
+  }
+
+  .icon-tile {
+    @apply size-14 rounded-[20px] flex items-center justify-center text-lg shrink-0;
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-bold text-gray-800;
+  }
+
+  .field-hint {
+    @apply mt-2 text-[11px] text-gray-400;
+  }
+
+  .field-error {
+    @apply mt-2 flex items-center gap-1.5 text-[11px] font-bold text-brand;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .brand-glow {
+    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-brand) 22%, transparent), transparent 68%);
+  }
+
+  .violet-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(124, 92, 255, 0.20), transparent 68%);
+  }
+
+  .map-surface {
+    background-color: #eef1f6;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.9) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.9) 2px, transparent 2px),
+      linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+    background-size: 90px 90px, 90px 90px, 18px 18px, 18px 18px;
+  }
+}
+
+@keyframes sevi-floaty {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -18px, 0); }
+}
+
+@keyframes sevi-pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.55; }
+  70%  { transform: scale(1.7);  opacity: 0; }
+  100% { transform: scale(1.7);  opacity: 0; }
+}
+
+@keyframes sevi-pop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-floaty      { animation: sevi-floaty 7s ease-in-out infinite; }
+.animate-floaty-slow { animation: sevi-floaty 11s ease-in-out infinite; }
+.animate-ping-ring   { animation: sevi-pulse-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.animate-pop         { animation: sevi-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-floaty,
+  .animate-floaty-slow,
+  .animate-ping-ring,
+  .animate-pop {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Demo 2 (magazine) + Demo 3 (dark creative) primitives
+   --------------------------------------------------------------- */
+@layer components {
+
+  /* ---------- marquee / ticker ---------- */
+  .marquee {
+    @apply relative overflow-hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    flex-shrink: 0;
+    animation: sevi-marquee 30s linear infinite;
+  }
+
+  .marquee-track-reverse {
+    animation-direction: reverse;
+  }
+
+  .marquee-fast .marquee-track {
+    animation-duration: 18s;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* ---------- magazine ---------- */
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[11px] font-black tracking-wide uppercase;
+  }
+
+  .rule-title {
+    @apply relative ps-4 text-xl sm:text-2xl font-black text-gray-950;
+  }
+
+  .rule-title::before {
+    content: "";
+    @apply absolute start-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-full bg-brand;
+  }
+
+  .num-outline {
+    -webkit-text-stroke: 2px rgba(15, 23, 42, 0.14);
+    color: transparent;
+  }
+
+  .mag-card {
+    @apply rounded-[22px] bg-white border border-gray-100 overflow-hidden transition duration-300;
+  }
+
+  .mag-card:hover {
+    @apply border-gray-200 shadow-[0_26px_60px_rgba(15,23,42,0.10)];
+  }
+
+  .cat-dot {
+    @apply inline-block size-1.5 rounded-full shrink-0;
+  }
+
+  /* ---------- dark / night surfaces ---------- */
+  .night-card {
+    @apply rounded-[26px] bg-white/[0.04] border border-white/10 backdrop-blur-xl;
+  }
+
+  .night-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/[0.06] border border-white/10 px-4 py-2 text-[12px] text-white/70 transition hover:bg-white/10 hover:text-white;
+  }
+
+  .night-icon-btn {
+    @apply size-10 rounded-full bg-white/[0.06] border border-white/10 text-white/70 flex items-center justify-center transition hover:bg-brand hover:text-white hover:border-brand;
+  }
+
+  .night-input {
+    @apply w-full rounded-2xl bg-white/[0.06] border border-white/10 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-white/30 focus:border-brand/50 focus:ring-4 focus:ring-brand/10;
+  }
+
+  /* ---------- gradient text ---------- */
+  .text-gradient {
+    background: linear-gradient(115deg, color-mix(in srgb, var(--color-brand) 42%, white), var(--color-brand) 32%, #a855f7 68%, #38bdf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ---------- atmosphere ---------- */
+  .aurora-brand  { background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--color-brand) 45%, transparent), transparent 66%); }
+  .aurora-violet { background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.42), transparent 66%); }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+@keyframes sevi-marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes sevi-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(28px, -22px, 0) scale(1.06); }
+  66%  { transform: translate3d(-22px, 16px, 0) scale(0.96); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+.animate-drift      { animation: sevi-drift 18s ease-in-out infinite; }
+.animate-drift-slow { animation: sevi-drift 26s ease-in-out infinite reverse; }
+
+@keyframes sevi-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.animate-progress { animation: sevi-progress 7s linear forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-drift,
+  .animate-drift-slow,
+  .animate-progress {
+    animation: none;
+  }
+}
+
+/* number outline turns brand-red when its card is hovered */
+.group:hover .num-outline {
+  -webkit-text-stroke-color: color-mix(in oklab, var(--color-brand) 85%, transparent);
+}
+
+/* ---------------------------------------------------------------
+   Demo 4 (minimal) + Demo 5 (media) primitives
+   --------------------------------------------------------------- */
+@layer components {
+
+  /* ---------- minimal ---------- */
+  .display-xl {
+    @apply text-[32px] sm:text-[48px] lg:text-[60px] font-black leading-[1.35] tracking-tight text-gray-950;
+  }
+
+  .row-link {
+    @apply relative flex items-start gap-4 sm:gap-7 py-6 border-b border-gray-100 transition;
+  }
+
+  .row-link::after {
+    content: "";
+    @apply absolute -bottom-px start-0 h-px w-0 bg-brand transition-all duration-500;
+  }
+
+  .row-link:hover::after {
+    @apply w-full;
+  }
+
+  .quiet-link {
+    @apply text-[13px] text-gray-500 transition hover:text-brand;
+  }
+
+  .stamp {
+    @apply inline-flex items-center justify-center rounded-full border border-gray-200 px-3 py-1 text-[10px] font-bold text-gray-400;
+  }
+
+  /* ---------- media ---------- */
+  .play-btn {
+    @apply rounded-full bg-white text-gray-950 flex items-center justify-center shadow-[0_18px_40px_rgba(15,23,42,0.20)] transition hover:bg-brand hover:text-white;
+  }
+
+  .platform-btn {
+    @apply inline-flex items-center gap-3 h-12 px-5 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 transition hover:border-brand/30 hover:text-brand hover:shadow-[0_14px_35px_rgba(15,23,42,0.07)];
+  }
+
+  .wave-bar-light {
+    @apply w-1 rounded-full bg-brand/45;
+    transform-origin: bottom;
+    animation: sevi-wave 1.1s ease-in-out infinite;
+  }
+
+  .duration-badge {
+    @apply absolute bottom-3 end-3 rounded-lg bg-gray-950/75 backdrop-blur px-2.5 py-1 text-[10px] font-bold text-white;
+  }
+}
+
+@keyframes sevi-wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar-light {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Demo 6 (podcast) — persistent player primitives
+   --------------------------------------------------------------- */
+@layer components {
+
+  .player-bar {
+    @apply bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-[0_-12px_40px_rgba(15,23,42,0.10)];
+  }
+
+  .ctrl-btn {
+    @apply size-10 rounded-full text-gray-500 flex items-center justify-center transition hover:bg-gray-100 hover:text-gray-950;
+  }
+
+  .chapter-row {
+    @apply w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-start transition;
+  }
+
+  .eq-bar {
+    @apply w-[3px] rounded-full bg-brand;
+    transform-origin: bottom;
+    animation: sevi-wave 0.9s ease-in-out infinite;
+  }
+
+  .star-row {
+    @apply flex items-center gap-0.5 text-[11px] text-amber-400;
+  }
+}
+
+/* range input — styled with plain CSS because the vendor thumb
+   pseudo-elements need -webkit-appearance before anything else */
+.range-brand {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  background: #e5e7eb;
+  outline: none;
+  cursor: pointer;
+}
+
+.range-brand::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: var(--color-brand);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand) 16%, transparent);
+}
+
+.range-brand::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--color-brand);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Demo 7 (podcast grid) + Demo 8 (podcast modal)
+   --------------------------------------------------------------- */
+@layer components {
+
+  /* light sweep across cover art on card hover */
+  .cover-shine {
+    @apply relative overflow-hidden;
+  }
+
+  .cover-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.38) 50%, transparent 62%);
+    transform: translateX(-130%);
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .group:hover .cover-shine::after {
+    transform: translateX(130%);
+  }
+
+  .seg-btn {
+    @apply h-9 px-3 rounded-lg text-[11px] font-bold transition flex items-center gap-2;
+  }
+
+  .tab-pill {
+    @apply h-9 px-4 rounded-xl text-[11px] font-bold transition shrink-0;
+  }
+
+  .modal-panel {
+    @apply relative w-full max-w-[1000px] max-h-[90vh] overflow-hidden rounded-[28px] bg-white shadow-[0_40px_120px_rgba(15,23,42,0.35)];
+  }
+
+  .mini-player {
+    @apply rounded-[22px] bg-white/95 backdrop-blur-xl border border-gray-100 shadow-[0_24px_60px_rgba(15,23,42,0.18)];
+  }
+
+  .soft-select {
+    @apply h-10 ps-10 pe-9 rounded-2xl bg-gray-50 border border-gray-100 text-[11px] font-bold text-gray-600 outline-none appearance-none cursor-pointer transition focus:border-brand/30 focus:ring-4 focus:ring-brand/10;
+  }
+}
+
+/* ---------------------------------------------------------------
+   WordPress template pages (archive / search / author / page / 404)
+   --------------------------------------------------------------- */
+@layer components {
+
+  .pager-btn {
+    @apply size-10 rounded-full border border-gray-100 bg-white text-gray-500 text-sm flex items-center justify-center transition hover:border-brand hover:text-brand;
+  }
+
+  .pager-active {
+    @apply bg-brand text-white border-brand shadow-lg shadow-brand/20 hover:text-white;
+  }
+
+  .mark-hit {
+    @apply rounded bg-brand/15 px-1 font-bold text-brand;
+  }
+
+  .widget-title {
+    @apply flex items-center justify-between pb-4 border-b border-gray-100 text-sm font-black text-gray-950;
+  }
+
+  .archive-banner {
+    @apply relative overflow-hidden rounded-[28px] sm:rounded-[34px] border border-gray-100;
+  }
+
+  .empty-state {
+    @apply py-16 sm:py-20 text-center;
+  }
+
+  .empty-icon {
+    @apply mx-auto size-20 rounded-[28px] bg-gray-50 text-gray-300 flex items-center justify-center text-3xl;
+  }
+
+  .toc-link {
+    @apply flex items-center justify-between rounded-2xl px-4 py-3 text-xs transition;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Podcast CPT templates (single / archive / show / host)
+   --------------------------------------------------------------- */
+@layer components {
+
+  .code-block {
+    @apply rounded-2xl bg-gray-950 text-gray-100 px-4 py-3.5 text-[11px] leading-7 overflow-x-auto;
+  }
+
+  .speaker-tag {
+    @apply inline-flex items-center gap-1.5 rounded-lg px-2 py-0.5 text-[10px] font-black;
+  }
+
+  .stat-pill {
+    @apply inline-flex items-center gap-2 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 px-4 py-2.5 text-[11px] text-white;
+  }
+
+  .sticky-player {
+    @apply fixed bottom-0 inset-x-0 z-[75] bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-[0_-12px_40px_rgba(15,23,42,0.10)];
+  }
+}
+
+/* ---------------------------------------------------------------
+   WordPress / Gutenberg block styles
+   Required by the WP theme review guidelines + used by elements.html
+   --------------------------------------------------------------- */
+
+/* --- required accessibility helper (WP theme check) --- */
+.screen-reader-text {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute !important;
+  white-space: nowrap;
+}
+
+.screen-reader-text:focus {
+  clip-path: none;
+  height: auto;
+  width: auto;
+  margin: 0;
+  padding: 1rem 1.5rem;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100000;
+  border-radius: 1rem;
+  background: #ffffff;
+  color: var(--color-brand);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+  text-decoration: none;
+}
+
+@layer components {
+
+  /* --- the editable content column --- */
+  .entry-content {
+    @apply max-w-[720px] mx-auto;
+  }
+
+  .entry-content > * {
+    @apply mx-auto;
+  }
+
+  /* --- alignment (Gutenberg) --- */
+  .entry-content .alignwide {
+    width: min(1000px, 92vw);
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .entry-content .alignfull {
+    width: 100vw;
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+  }
+
+  .aligncenter {
+    @apply block mx-auto;
+  }
+
+  .alignleft {
+    float: left;
+    margin-inline-end: 1.75rem;
+    margin-block: 0.5rem 1.25rem;
+    max-width: 50%;
+  }
+
+  .alignright {
+    float: right;
+    margin-inline-start: 1.75rem;
+    margin-block: 0.5rem 1.25rem;
+    max-width: 50%;
+  }
+
+  .alignnone {
+    @apply block;
+  }
+
+  /* --- required post-class hooks (WP theme check) --- */
+  .sticky {
+    @apply relative;
+  }
+
+  .post-password-form {
+    @apply rounded-[24px] border border-gray-100 bg-gray-50 p-5 sm:p-6;
+  }
+
+  .post-password-form input[type="password"] {
+    @apply w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none transition focus:border-brand/40 focus:ring-4 focus:ring-brand/10;
+  }
+
+  .bypostauthor > .comment-body {
+    @apply rounded-[24px] border border-brand/20 bg-brand/5 p-4;
+  }
+
+  /* --- images + captions --- */
+  .wp-block-image figcaption,
+  .wp-caption-text,
+  .gallery-caption,
+  .entry-content figcaption {
+    @apply mt-3 text-center text-[11px] leading-6 text-gray-400;
+  }
+
+  .wp-caption {
+    @apply max-w-full;
+  }
+
+  /* --- drop cap --- */
+  .has-drop-cap:first-letter {
+    float: right;
+    margin-inline-start: 0.75rem;
+    margin-block: 0.35rem 0;
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 0.82;
+    color: var(--color-brand);
+  }
+
+  /* --- quotes --- */
+  .wp-block-quote {
+    @apply my-8 border-0 ps-6 relative text-gray-700;
+  }
+
+  .wp-block-quote::before {
+    content: "";
+    @apply absolute start-0 top-1 bottom-1 w-1 rounded-full bg-brand;
+  }
+
+  .wp-block-quote cite,
+  .wp-block-pullquote cite {
+    @apply mt-3 block text-[11px] font-bold not-italic text-gray-400;
+  }
+
+  .wp-block-pullquote {
+    @apply my-10 rounded-[28px] border border-brand/15 bg-brand/5 px-6 py-8 text-center;
+  }
+
+  .wp-block-pullquote p {
+    @apply text-lg sm:text-xl font-black leading-[1.9] text-gray-950 mb-0;
+  }
+
+  /* --- separator --- */
+  .wp-block-separator {
+    @apply my-10 h-px border-0 bg-gray-100;
+  }
+
+  .wp-block-separator.is-style-dots {
+    @apply bg-transparent text-center text-gray-300;
+  }
+
+  .wp-block-separator.is-style-dots::before {
+    content: "···";
+    @apply text-2xl tracking-[0.6em];
+  }
+
+  .wp-block-separator.is-style-wide {
+    @apply bg-gray-200;
+  }
+
+  /* --- table --- */
+  .wp-block-table,
+  .entry-content table {
+    @apply w-full my-8 text-sm;
+  }
+
+  .wp-block-table table,
+  .entry-content table {
+    @apply w-full border-collapse overflow-hidden rounded-[20px];
+  }
+
+  .entry-content th {
+    @apply bg-gray-50 px-4 py-3.5 text-start text-[12px] font-black text-gray-950 border-b border-gray-100;
+  }
+
+  .entry-content td {
+    @apply px-4 py-3.5 text-[12px] leading-7 text-gray-600 border-b border-gray-100;
+  }
+
+  .entry-content tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .entry-content tbody tr:hover td {
+    @apply bg-gray-50/70;
+  }
+
+  /* --- code --- */
+  .wp-block-code,
+  .wp-block-preformatted {
+    @apply my-7 rounded-2xl bg-gray-950 px-5 py-4 text-gray-100 overflow-x-auto;
+  }
+
+  .wp-block-code code,
+  .wp-block-preformatted {
+    @apply bg-transparent p-0 text-[12px] leading-8 text-gray-100;
+  }
+
+  /* --- buttons --- */
+  .wp-block-button__link {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-brand text-white text-sm font-bold no-underline shadow-lg shadow-brand/25 transition hover:bg-brand-dark;
+  }
+
+  .is-style-outline .wp-block-button__link {
+    @apply bg-transparent text-brand border border-brand shadow-none hover:bg-brand hover:text-white;
+  }
+
+  .wp-block-buttons {
+    @apply flex flex-wrap gap-3 my-7;
+  }
+
+  /* --- gallery + columns --- */
+  .wp-block-gallery {
+    @apply grid gap-3 my-8;
+  }
+
+  .wp-block-gallery.columns-2 { @apply grid-cols-2; }
+  .wp-block-gallery.columns-3 { @apply grid-cols-2 sm:grid-cols-3; }
+  .wp-block-gallery.columns-4 { @apply grid-cols-2 sm:grid-cols-4; }
+
+  .wp-block-columns {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-7 my-8;
+  }
+
+  .wp-block-columns.has-3-columns {
+    @apply md:grid-cols-3;
+  }
+
+  /* --- embeds --- */
+  .wp-block-embed {
+    @apply my-8;
+  }
+
+  .wp-block-embed__wrapper {
+    @apply relative rounded-[24px] overflow-hidden;
+  }
+
+  /* --- misc blocks --- */
+  .wp-block-verse {
+    @apply my-8 rounded-2xl bg-gray-50 px-5 py-4 text-sm leading-9 text-gray-600 whitespace-pre-wrap;
+  }
+
+  .entry-content ol {
+    @apply mb-6 space-y-3 text-gray-600 ps-6;
+    list-style: decimal;
+  }
+
+  .entry-content ol li {
+    @apply leading-8 ps-1;
+  }
+
+  .entry-content dl {
+    @apply my-7 space-y-3;
+  }
+
+  .entry-content dt {
+    @apply text-sm font-black text-gray-950;
+  }
+
+  .entry-content dd {
+    @apply text-xs leading-7 text-gray-500 ps-5 mb-3;
+  }
+
+  /* --- notices / alerts --- */
+  .notice {
+    @apply flex items-start gap-3.5 rounded-[22px] border p-4 sm:p-5;
+  }
+
+  .notice-icon {
+    @apply size-10 rounded-2xl flex items-center justify-center shrink-0 text-sm;
+  }
+
+  /* --- styleguide helpers --- */
+  .swatch {
+    @apply h-20 rounded-[18px] border border-gray-100;
+  }
+
+  .spec-label {
+    @apply mt-2.5 block text-[10px] font-bold text-gray-950;
+  }
+
+  .spec-value {
+    @apply block text-[10px] text-gray-400 tabular-nums;
+  }
+
+  .demo-box {
+    @apply rounded-[24px] border border-gray-100 bg-white p-5 sm:p-6;
+  }
+
+  .demo-label {
+    @apply mb-4 flex items-center gap-2 text-[11px] font-black text-gray-400;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Membership & account (pricing / login / register / account / soon)
+   --------------------------------------------------------------- */
+@layer components {
+
+  .auth-panel {
+    @apply relative overflow-hidden rounded-[30px] border border-gray-100 bg-white shadow-[0_28px_70px_rgba(15,23,42,0.08)];
+  }
+
+  .plan-card {
+    @apply relative flex flex-col rounded-[28px] border bg-white p-6 sm:p-7 transition;
+  }
+
+  .plan-feature {
+    @apply flex items-start gap-3 text-xs leading-7;
+  }
+
+  .plan-check {
+    @apply size-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-[9px];
+  }
+
+  .strength-seg {
+    @apply h-1.5 flex-1 rounded-full bg-gray-100 transition-colors duration-300;
+  }
+
+  .account-nav-item {
+    @apply w-full flex items-center gap-3 rounded-2xl px-4 py-3 text-start text-xs transition;
+  }
+
+  .stat-mini {
+    @apply rounded-[22px] border border-gray-100 bg-white p-4;
+  }
+
+  .count-box {
+    @apply rounded-[22px] bg-white/15 backdrop-blur-md border border-white/20 px-4 py-4 text-center min-w-[74px];
+  }
+}
+
+/* ---------------------------------------------------------------
+   Services / portfolio / newsletter
+   --------------------------------------------------------------- */
+@layer components {
+
+  .service-card {
+    @apply relative overflow-hidden rounded-[28px] border border-gray-100 bg-white p-6 sm:p-7 transition;
+  }
+
+  /* pair this with `group` in the markup -- `group` is a marker, not a utility */
+  .work-card {
+    @apply relative overflow-hidden rounded-[28px] bg-white border border-gray-100 transition;
+  }
+
+  .work-card:hover {
+    @apply border-gray-200 shadow-[0_28px_65px_rgba(15,23,42,0.10)];
+  }
+
+  .step-num {
+    @apply size-10 rounded-2xl flex items-center justify-center text-sm font-black shrink-0;
+  }
+
+  .result-tile {
+    @apply rounded-[24px] border border-gray-100 bg-white p-5 text-center;
+  }
+
+  .issue-row {
+    @apply flex items-center gap-4 rounded-[22px] border border-gray-100 bg-white p-4 transition hover:border-brand/25 hover:shadow-[0_18px_45px_rgba(15,23,42,0.06)];
+  }
+
+  .lightbox-shell {
+    @apply fixed inset-0 z-[90] bg-gray-950/85 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8;
+  }
+
+  /* ---------------------------------------------------------------
+     Phase 1 -- shop primitives (shop / product / cart / checkout)
+     --------------------------------------------------------------- */
+
+  .product-card {
+    @apply relative flex flex-col overflow-hidden rounded-[26px] border border-gray-100 bg-white transition;
+  }
+
+  .sale-badge {
+    @apply inline-flex items-center gap-1 rounded-lg bg-brand px-2 py-1 text-[9px] font-black text-white;
+  }
+
+  /* prices carry Persian digits, so they must stay right-to-left with the unit last */
+  .price {
+    @apply inline-flex items-baseline gap-1 text-sm font-black text-gray-950;
+  }
+
+  .price-unit {
+    @apply text-[10px] font-bold text-gray-400;
+  }
+
+  .price-old {
+    @apply text-[11px] font-bold text-gray-300 line-through;
+  }
+
+  .stock-dot {
+    @apply inline-flex items-center gap-1.5 text-[10px] font-bold;
+  }
+
+  /* quantity stepper -- the minus sits on the right in RTL, which is what the
+     browser does on its own once the row is laid out in document order */
+  .qty-box {
+    @apply inline-flex items-center rounded-2xl border border-gray-100 bg-gray-50 p-1;
+  }
+
+  .qty-btn {
+    @apply size-8 rounded-xl text-gray-500 text-xs flex items-center justify-center transition hover:bg-white hover:text-brand disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-gray-500 disabled:cursor-not-allowed;
+  }
+
+  .qty-value {
+    @apply w-10 text-center text-xs font-black text-gray-950 tabular-nums;
+  }
+
+  .variant-swatch {
+    @apply size-9 rounded-full border-2 transition;
+  }
+
+  .variant-chip {
+    @apply h-10 min-w-10 px-3 rounded-xl border text-[11px] font-bold transition;
+  }
+
+  .thumb-btn {
+    @apply relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border-2 transition;
+  }
+
+  .cart-row {
+    @apply flex flex-col gap-4 border-b border-gray-100 py-5 last:border-0 sm:flex-row sm:items-center;
+  }
+
+  .summary-line {
+    @apply flex items-center justify-between py-2.5 text-xs;
+  }
+
+  .checkout-step {
+    @apply flex items-center gap-2.5 text-[11px] font-bold;
+  }
+
+  .step-bullet {
+    @apply size-7 rounded-full flex items-center justify-center text-[10px] font-black transition;
+  }
+
+  .pay-method {
+    @apply flex w-full items-center gap-3 rounded-2xl border p-4 text-start transition;
+  }
+
+  .ship-option {
+    @apply flex w-full items-center gap-3 rounded-2xl border p-4 text-start transition;
+  }
+
+  /* ---------------------------------------------------------------
+     Direction-aware pieces
+     ---------------------------------------------------------------
+     Everything else in this file is direction-agnostic: the layout uses
+     logical utilities (ps-, pe-, start-, end-) that follow the document
+     direction on their own. Two things cannot work that way, and both
+     are collected here so the markup stays direction-free.
+
+     1. Transforms are always physical -- there is no logical translateX.
+     2. Arrow glyphs point wherever they were drawn.
+     --------------------------------------------------------------- */
+
+  /* Off-canvas panel anchored to the inline-start edge. It slides out
+     toward that edge, which is physical right in RTL and left in LTR. */
+  .drawer-hidden {
+    transform: translateX(100%);
+  }
+
+  .drawer-shown {
+    transform: translateX(0);
+  }
+
+  /* Shifts an element half its own width toward the inline start, so a marker
+     positioned at start-4 sits centred on a line drawn at start-4. Tailwind v4
+     compiles its translate utilities to the `translate` property, so this
+     `transform` composes with them instead of overwriting them. */
+  .shift-half-start {
+    transform: translateX(50%);
+  }
+
+  /* Arrows used for next, previous, breadcrumbs and "read on" are drawn
+     pointing the RTL way. In an LTR document they point backwards, so
+     they are mirrored. Vertical arrows (fa-arrow-up), trend arrows
+     (fa-arrow-trend-up) and sort icons (fa-arrow-down-short-wide) carry
+     meaning rather than direction and are deliberately left alone. */
+  .fa-angle-left,
+  .fa-angle-right,
+  .fa-arrow-left,
+  .fa-arrow-right,
+  .fa-chevron-left,
+  .fa-chevron-right,
+  .fa-arrow-up-left,
+  .fa-arrow-right-from-bracket {
+    display: inline-block;
+  }
+}
+
+[dir="ltr"] .drawer-hidden {
+  transform: translateX(-100%);
+}
+
+[dir="ltr"] .shift-half-start {
+  transform: translateX(-50%);
+}
+
+[dir="ltr"] .fa-angle-left,
+[dir="ltr"] .fa-angle-right,
+[dir="ltr"] .fa-arrow-left,
+[dir="ltr"] .fa-arrow-right,
+[dir="ltr"] .fa-chevron-left,
+[dir="ltr"] .fa-chevron-right,
+[dir="ltr"] .fa-arrow-up-left,
+[dir="ltr"] .fa-arrow-right-from-bracket {
+  transform: scaleX(-1);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+   ---------------------------------------------------------------
+   The keyframes already switch themselves off under reduced motion,
+   section by section, further up this file. What was missing:
+   a visible focus ring, reduced transitions, and one marquee variant
+   the existing blocks did not name.
+   --------------------------------------------------------------- */
+
+/* :focus-visible, not :focus -- a mouse click leaves no ring behind,
+   a Tab key always does. Without this the theme is unusable by
+   keyboard, because Tailwind's reset removes the browser default. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /*
+   * Durations are near-zero rather than zero, so transitionend still
+   * fires. Code waiting on that event would otherwise never continue.
+   */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Named in none of the blocks above. */
+  .marquee-track-reverse {
+    animation: none;
+    transform: none;
+  }
+
+  /* A marquee prints its content twice; with the animation stopped the
+     second copy is redundant rather than invisible. */
+  .marquee-track,
+  .marquee-track-reverse {
+    transform: none;
+  }
+}

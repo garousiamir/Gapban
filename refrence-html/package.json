@@ -1,0 +1,30 @@
+{
+  "name": "sevi-blog",
+  "private": true,
+  "scripts": {
+    "css": "tailwindcss -i ./src/input.css -o ./assets/css/output.css && node build/tokenize.mjs assets/css/output.css",
+    "css:theme": "tailwindcss -i ./src/theme.css -o ./wordpress/sevi/assets/css/sevi.css && node build/tokenize.mjs wordpress/sevi/assets/css/sevi.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./assets/css/output.css --watch",
+    "assets": "node build/assets.mjs",
+    "font": "python build/font.py",
+    "screenshot": "python build/screenshot.py",
+    "templates": "python build/templates.py",
+    "pot": "python build/pot.py",
+    "a11y": "python build/a11y.py",
+    "check": "python build/check.py",
+    "docs": "python build/docs.py",
+    "test:php": "php wordpress/tests/run.php",
+    "lint:php": "node build/phpcs.mjs --report=summary --no-colors",
+    "compat:php": "node build/phpcs.mjs --compat --report=summary --no-colors",
+    "audit": "python build/audit.py",
+    "fix:php": "node build/phpcs.mjs --fix --no-colors",
+    "build": "npm run css && npm run css:theme && npm run templates && npm run pot && npm run assets && npm run check && npm run lint:php && npm run compat:php && npm run test:php && npm run audit && npm run docs",
+    "package": "npm run build && python build/package.py"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@tailwindcss/cli": "^4.1.11",
+    "alpinejs": "^3.14.9",
+    "tailwindcss": "^4.1.11"
+  }
+}

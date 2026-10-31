@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خدمات ما | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه خدمات با معرفی سرویس‌ها، فرایند کار، برآوردگر هزینه پروژه و سوالات متداول." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="servicesPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="services.html" class="nav-link text-gray-950 font-bold">خدمات</a>
+          <a href="portfolio.html" class="nav-link">نمونه‌کارها</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="#estimate" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-brand text-white text-xs font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition">
+            <i class="fa-solid fa-calculator text-[10px]"></i>
+            برآورد هزینه
+          </a>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="باز کردن منو">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن منو"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="services.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">خدمات <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="portfolio.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">نمونه‌کارها <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="#estimate" @click="mobileMenu = false" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">برآورد هزینه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">تماس <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main id="main" class="pb-6">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-a opacity-40"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/88 to-white"></div>
+      <div class="pointer-events-none absolute -top-24 end-1/4 size-80 brand-glow blur-3xl animate-floaty"></div>
+
+      <div class="container-page relative z-10 py-14 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7">
+            <p class="eyebrow"><i class="fa-solid fa-pen-ruler"></i> خدمات</p>
+
+            <h1 class="mt-5 text-[30px] sm:text-[46px] font-black leading-[1.45] text-gray-950">
+              طراحی و ساخت
+              <span class="text-brand">تجربه‌های خواندنی</span>
+            </h1>
+
+            <p class="mt-6 max-w-[540px] text-sm sm:text-[15px] leading-9 text-gray-600">
+              از بازطراحی یک وبلاگ تا ساختن کامل یک رسانه دیجیتال. کار را از شنیدن شروع
+              می‌کنیم و با کدی تمیز و مستند تحویل می‌دهیم.
+            </p>
+
+            <div class="mt-9 flex flex-wrap items-center gap-3">
+              <a href="#estimate" class="btn-primary">
+                <i class="fa-solid fa-calculator text-xs"></i>
+                برآورد سریع هزینه
+              </a>
+              <a href="portfolio.html" class="btn-ghost">
+                دیدن نمونه‌کارها
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </a>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] text-gray-500">
+              <span><span class="text-gray-950 font-black">۲۴۰+</span> پروژه تحویل‌شده</span>
+              <span class="w-px h-4 bg-gray-200"></span>
+              <span><span class="text-gray-950 font-black">۹۸٪</span> رضایت مشتری</span>
+              <span class="w-px h-4 bg-gray-200"></span>
+              <span><span class="text-gray-950 font-black">۸</span> سال تجربه</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="relative h-[300px] sm:h-[360px]">
+              <span class="absolute top-0 start-0 w-[70%] h-[58%] rounded-[28px] gradient-thumb-1 shadow-[0_28px_70px_rgba(15,23,42,0.18)]"></span>
+              <span class="absolute bottom-0 end-0 w-[58%] h-[46%] rounded-[26px] gradient-thumb-6 shadow-[0_24px_60px_rgba(15,23,42,0.16)] animate-floaty-slow"></span>
+
+              <div class="absolute top-[50%] end-0 glass-card rounded-[22px] px-4 py-3 animate-floaty">
+                <div class="flex items-center gap-3">
+                  <span class="size-10 rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                    <i class="fa-solid fa-gauge-high"></i>
+                  </span>
+                  <div>
+                    <p class="text-sm font-black text-gray-950">۹۵+ امتیاز</p>
+                    <p class="text-[10px] text-gray-500">میانگین Lighthouse</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="text-center max-w-[600px] mx-auto">
+        <p class="eyebrow justify-center"><i class="fa-solid fa-layer-group"></i> چه کاری انجام می‌دهیم</p>
+        <h2 class="mt-3 section-title">شش خدمت اصلی</h2>
+        <p class="section-sub mx-auto text-center">
+          هر کدام را جدا یا به‌صورت یک پروژه کامل می‌توانید سفارش دهید.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <template x-for="service in services" :key="service.key">
+          <article class="service-card group lift-card" :class="service.border">
+            <span
+              class="absolute -top-10 -end-10 size-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+              :class="service.glow"
+            ></span>
+
+            <div class="relative z-10">
+              <span class="icon-tile" :class="service.tile">
+                <i class="fa-solid" :class="service.icon"></i>
+              </span>
+
+              <h3 class="mt-5 text-base font-black text-gray-950" x-text="service.name"></h3>
+              <p class="mt-3 text-xs leading-7 text-gray-500" x-text="service.desc"></p>
+
+              <ul class="mt-5 space-y-2">
+                <template x-for="item in service.includes" :key="item">
+                  <li class="flex items-start gap-2.5 text-[11px] leading-6 text-gray-600">
+                    <i class="fa-solid fa-check text-[9px] text-brand mt-1.5 shrink-0"></i>
+                    <span x-text="item"></span>
+                  </li>
+                </template>
+              </ul>
+
+              <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-[11px] text-gray-400">
+                  از <span class="font-black text-gray-950" x-text="toFa(service.from)"></span> میلیون
+                </span>
+                <span class="text-[10px] text-gray-400" x-text="service.duration"></span>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="mt-14 sm:mt-20 bg-[#fafafa] border-y border-gray-100 py-14 sm:py-20">
+      <div class="container-page">
+        <div class="text-center max-w-[600px] mx-auto mb-12">
+          <p class="eyebrow justify-center"><i class="fa-solid fa-diagram-project"></i> روش کار</p>
+          <h2 class="mt-3 section-title">پنج مرحله، بدون سورپرایز</h2>
+        </div>
+
+        <div class="relative">
+          <span class="hidden lg:block absolute top-5 start-[10%] end-[10%] h-px border-t-2 border-dashed border-gray-200"></span>
+
+          <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <template x-for="(step, index) in steps" :key="step.title">
+              <div class="text-center">
+                <span class="step-num mx-auto bg-white border border-gray-100 text-gray-400 shadow-[0_12px_32px_rgba(15,23,42,0.06)]" x-text="toFa(index + 1)"></span>
+                <h3 class="mt-4 text-sm font-black text-gray-950" x-text="step.title"></h3>
+                <p class="mt-2.5 text-[11px] leading-7 text-gray-500 max-w-[200px] mx-auto" x-text="step.desc"></p>
+                <span class="mt-3 inline-block rounded-lg bg-white border border-gray-100 px-2.5 py-1 text-[10px] text-gray-400" x-text="step.time"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ESTIMATOR ===================== -->
+    <section id="estimate" class="container-page mt-14 sm:mt-20 scroll-mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+        <div class="lg:col-span-5">
+          <p class="eyebrow"><i class="fa-solid fa-calculator"></i> برآورد هزینه</p>
+          <h2 class="mt-3 rule-title">یک عدد تقریبی، همین حالا</h2>
+          <p class="section-sub">
+            خدمات مورد نیاز، اندازه پروژه و فوریت را انتخاب کنید تا یک بازه تقریبی ببینید.
+            عدد نهایی بعد از جلسه اول و به‌صورت مکتوب اعلام می‌شود.
+          </p>
+
+          <div class="mt-7 space-y-3">
+            <template x-for="note in estimateNotes" :key="note">
+              <div class="flex items-start gap-3 rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <i class="fa-solid fa-circle-info text-[11px] text-brand mt-0.5 shrink-0"></i>
+                <p class="text-[11px] leading-7 text-gray-600" x-text="note"></p>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="rounded-[28px] bg-white border border-gray-100 p-6 sm:p-8 shadow-[0_20px_55px_rgba(15,23,42,0.06)]">
+
+            <!-- services -->
+            <p class="field-label">خدمات مورد نیاز</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <template x-for="service in services" :key="'e-' + service.key">
+                <button
+                  @click="toggleService(service.key)"
+                  class="flex items-center gap-3 rounded-2xl border p-3.5 text-start transition"
+                  :class="picked.includes(service.key)
+                    ? 'border-brand/40 bg-brand/5'
+                    : 'border-gray-100 bg-gray-50 hover:border-brand/20'"
+                  :aria-pressed="picked.includes(service.key)"
+                >
+                  <span
+                    class="size-5 rounded-md border-2 shrink-0 flex items-center justify-center transition"
+                    :class="picked.includes(service.key) ? 'border-brand bg-brand' : 'border-gray-300'"
+                  >
+                    <i x-show="picked.includes(service.key)" class="fa-solid fa-check text-[8px] text-white" style="display:none"></i>
+                  </span>
+
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[11px] font-bold text-gray-800 truncate" x-text="service.name"></span>
+                    <span class="block text-[10px] text-gray-400">از <span x-text="toFa(service.from)"></span> میلیون</span>
+                  </span>
+                </button>
+              </template>
+            </div>
+
+            <!-- scope -->
+            <p class="field-label mt-7">اندازه پروژه</p>
+            <div class="grid grid-cols-3 gap-2.5">
+              <template x-for="option in scopes" :key="option.key">
+                <button
+                  @click="scope = option.key"
+                  class="rounded-2xl border p-3.5 text-center transition"
+                  :class="scope === option.key ? 'border-brand/40 bg-brand/5' : 'border-gray-100 bg-gray-50 hover:border-brand/20'"
+                  :aria-pressed="scope === option.key"
+                >
+                  <span class="block text-[11px] font-bold" :class="scope === option.key ? 'text-brand' : 'text-gray-800'" x-text="option.label"></span>
+                  <span class="block mt-1 text-[10px] text-gray-400" x-text="option.hint"></span>
+                </button>
+              </template>
+            </div>
+
+            <!-- urgency -->
+            <p class="field-label mt-7">زمان‌بندی</p>
+            <div class="grid grid-cols-3 gap-2.5">
+              <template x-for="option in urgencies" :key="option.key">
+                <button
+                  @click="urgency = option.key"
+                  class="rounded-2xl border p-3.5 text-center transition"
+                  :class="urgency === option.key ? 'border-brand/40 bg-brand/5' : 'border-gray-100 bg-gray-50 hover:border-brand/20'"
+                  :aria-pressed="urgency === option.key"
+                >
+                  <span class="block text-[11px] font-bold" :class="urgency === option.key ? 'text-brand' : 'text-gray-800'" x-text="option.label"></span>
+                  <span class="block mt-1 text-[10px] text-gray-400" x-text="option.hint"></span>
+                </button>
+              </template>
+            </div>
+
+            <!-- result -->
+            <div class="mt-8 pt-6 border-t border-gray-100">
+              <div x-show="!picked.length" class="text-center py-6" style="display:none">
+                <span class="mx-auto size-14 rounded-2xl bg-gray-50 text-gray-300 flex items-center justify-center text-xl">
+                  <i class="fa-solid fa-hand-pointer"></i>
+                </span>
+                <p class="mt-4 text-xs text-gray-500">حداقل یک خدمت را انتخاب کنید.</p>
+              </div>
+
+              <div x-show="picked.length" style="display:none">
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <p class="text-[11px] text-gray-400">بازه تقریبی</p>
+                    <p class="mt-2 text-[28px] sm:text-[34px] font-black text-gray-950 leading-none tabular-nums">
+                      <span x-text="toFa(estimate().low)"></span>
+                      <span class="text-gray-300 mx-1.5">—</span>
+                      <span x-text="toFa(estimate().high)"></span>
+                      <span class="text-sm font-bold text-gray-500 ms-2">میلیون تومان</span>
+                    </p>
+                  </div>
+
+                  <div class="text-end">
+                    <p class="text-[11px] text-gray-400">زمان تقریبی</p>
+                    <p class="mt-2 text-sm font-black text-gray-950" x-text="estimate().weeks"></p>
+                  </div>
+                </div>
+
+                <div class="mt-5 flex flex-wrap items-center gap-2">
+                  <template x-for="key in picked" :key="'chip-' + key">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-100 px-3 py-1.5 text-[10px] text-gray-600">
+                      <span x-text="serviceName(key)"></span>
+                      <button @click="toggleService(key)" class="text-gray-400 hover:text-brand transition" :aria-label="'حذف ' + serviceName(key)">
+                        <i class="fa-solid fa-xmark text-[9px]"></i>
+                      </button>
+                    </span>
+                  </template>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center gap-3">
+                  <a href="contact.html" class="btn-primary">
+                    درخواست پیشنهاد دقیق
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                  </a>
+                  <button @click="resetEstimate()" class="btn-ghost">
+                    <i class="fa-solid fa-rotate-right text-xs"></i>
+                    شروع دوباره
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIAL ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[36px] bg-gray-950 text-white p-8 sm:p-14">
+        <div class="absolute inset-0 grid-lines opacity-50"></div>
+        <div class="pointer-events-none absolute -top-24 start-1/4 size-80 aurora-brand blur-3xl animate-drift"></div>
+
+        <div class="relative z-10 max-w-[760px] mx-auto text-center">
+          <i class="fa-solid fa-quote-left text-3xl text-white/15"></i>
+          <p class="mt-6 text-lg sm:text-2xl font-black leading-[1.8]">
+            «از اولین جلسه تا تحویل، همه‌چیز شفاف بود. زمان‌بندی را دقیق رعایت کردند و
+            چیزی که تحویل دادند از دموی اولیه هم بهتر بود.»
+          </p>
+
+          <div class="mt-9 flex items-center justify-center gap-3">
+            <span class="size-12 rounded-2xl gradient-thumb-9 flex items-center justify-center font-black">ا</span>
+            <div class="text-start">
+              <p class="text-sm font-black">الهام کاظمی</p>
+              <p class="text-[11px] text-white/55 mt-0.5">مدیر بازاریابی، فروشگاه آوند</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-9">
+        <div class="lg:col-span-4">
+          <p class="eyebrow"><i class="fa-regular fa-circle-question"></i> سوالات متداول</p>
+          <h2 class="mt-3 rule-title">قبل از شروع همکاری</h2>
+          <a href="contact.html" class="mt-6 inline-flex btn-ghost">
+            پرسیدن سوال
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+          </a>
+        </div>
+
+        <div class="lg:col-span-8 space-y-3">
+          <template x-for="(item, index) in faqs" :key="item.q">
+            <div
+              class="rounded-[24px] border bg-white overflow-hidden transition"
+              :class="openFaq === index ? 'border-brand/25 shadow-[0_20px_50px_rgba(15,23,42,0.07)]' : 'border-gray-100 hover:border-gray-200'"
+            >
+              <button type="button" @click="openFaq = openFaq === index ? null : index" class="w-full flex items-center gap-4 p-5 text-start" :aria-expanded="openFaq === index">
+                <span class="size-9 rounded-xl flex items-center justify-center shrink-0 transition" :class="openFaq === index ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400'">
+                  <i class="fa-solid text-[11px]" :class="openFaq === index ? 'fa-minus' : 'fa-plus'"></i>
+                </span>
+                <span class="flex-1 text-sm font-bold" :class="openFaq === index ? 'text-brand' : 'text-gray-950'" x-text="item.q"></span>
+              </button>
+
+              <div class="grid transition-all duration-300 ease-out" :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+                <div class="overflow-hidden">
+                  <p class="px-5 pb-5 ps-[72px] text-xs leading-8 text-gray-500" x-text="item.a"></p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[36px] gradient-d">
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="pointer-events-none absolute -bottom-24 -end-12 size-72 bg-white/40 blur-3xl rounded-full"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 p-8 sm:p-12 lg:p-14">
+          <div class="lg:col-span-7">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-4 py-2 text-[11px] font-bold text-gray-800">
+              <i class="fa-solid fa-bolt text-brand"></i>
+              ظرفیت پروژه جدید داریم
+            </span>
+            <h2 class="mt-5 text-2xl sm:text-[34px] font-black leading-[1.6] text-gray-950">
+              بیایید درباره پروژه شما حرف بزنیم
+            </h2>
+            <p class="mt-4 max-w-[520px] text-sm leading-8 text-gray-700">
+              یک جلسه مشاوره ۳۰ دقیقه‌ای رایگان؛ صادقانه درباره بودجه و زمان‌بندی صحبت می‌کنیم.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <a href="contact.html" class="btn-dark w-full">رزرو جلسه <i class="fa-solid fa-arrow-left text-xs"></i></a>
+            <a href="portfolio.html" class="w-full inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-white/85 backdrop-blur text-sm font-bold text-gray-900 hover:bg-white transition">
+              <i class="fa-solid fa-briefcase text-xs"></i>
+              دیدن نمونه‌کارها
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="portfolio.html" class="hover:text-brand transition">نمونه‌کارها</a>
+          <a href="newsletter.html" class="hover:text-brand transition">خبرنامه</a>
+          <a href="pricing.html" class="hover:text-brand transition">عضویت</a>
+          <a href="about.html" class="hover:text-brand transition">درباره ما</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function servicesPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        openFaq: 0,
+
+        picked: ['design'],
+        scope: 'medium',
+        urgency: 'normal',
+
+        toFa: toFaDigits,
+
+        services: [
+          {
+            key: 'design', name: 'طراحی رابط کاربری', icon: 'fa-pen-ruler', from: 25, duration: '۲ تا ۴ هفته',
+            tile: 'bg-brand/10 text-brand', glow: 'bg-brand/25', border: 'border-gray-100',
+            desc: 'طراحی کامل رابط، از وایرفریم تا فایل آماده تحویل به توسعه.',
+            includes: ['وایرفریم و معماری اطلاعات', 'طراحی بصری همه صفحات', 'نسخه موبایل و دسکتاپ']
+          },
+          {
+            key: 'system', name: 'دیزاین‌سیستم', icon: 'fa-cubes', from: 40, duration: '۴ تا ۶ هفته',
+            tile: 'bg-violet-50 text-violet-500', glow: 'bg-violet-300/40', border: 'border-gray-100',
+            desc: 'ساخت سیستم طراحی راست‌چین، مستند و قابل استفاده مجدد.',
+            includes: ['توکن‌های رنگ و تایپوگرافی', 'کتابخانه کامپوننت', 'مستندات کامل استفاده']
+          },
+          {
+            key: 'frontend', name: 'پیاده‌سازی فرانت‌اند', icon: 'fa-code', from: 35, duration: '۳ تا ۶ هفته',
+            tile: 'bg-blue-50 text-blue-500', glow: 'bg-blue-300/40', border: 'border-gray-100',
+            desc: 'کدنویسی تمیز، ریسپانسیو و راست‌چین با Tailwind و Alpine.',
+            includes: ['HTML و CSS استاندارد', 'تعامل‌های جاوااسکریپتی', 'تست روی دستگاه‌های واقعی']
+          },
+          {
+            key: 'wordpress', name: 'تبدیل به وردپرس', icon: 'fa-brands fa-wordpress', from: 30, duration: '۳ تا ۵ هفته',
+            tile: 'bg-sky-50 text-sky-500', glow: 'bg-sky-300/40', border: 'border-gray-100',
+            desc: 'تبدیل طراحی به قالب وردپرس با پشتیبانی کامل گوتنبرگ.',
+            includes: ['قالب سفارشی و سبک', 'سازگاری با گوتنبرگ', 'پنل تنظیمات قالب']
+          },
+          {
+            key: 'content', name: 'استراتژی محتوا', icon: 'fa-feather', from: 18, duration: '۲ تا ۳ هفته',
+            tile: 'bg-emerald-50 text-emerald-500', glow: 'bg-emerald-300/40', border: 'border-gray-100',
+            desc: 'برنامه محتوایی، لحن برند و ساختار دسته‌بندی‌ها.',
+            includes: ['تقویم محتوایی سه‌ماهه', 'راهنمای لحن و نگارش', 'ساختار دسته و برچسب']
+          },
+          {
+            key: 'podcast', name: 'راه‌اندازی پادکست', icon: 'fa-microphone-lines', from: 22, duration: '۲ تا ۴ هفته',
+            tile: 'bg-amber-50 text-amber-500', glow: 'bg-amber-300/40', border: 'border-gray-100',
+            desc: 'از هویت صوتی و کاور تا توزیع روی همه پلتفرم‌ها.',
+            includes: ['هویت بصری و کاور', 'صفحه اختصاصی پادکست', 'توزیع و فید RSS']
+          }
+        ],
+
+        scopes: [
+          { key: 'small',  label: 'کوچک',  hint: 'تا ۵ صفحه',   multiplier: 0.7 },
+          { key: 'medium', label: 'متوسط', hint: '۵ تا ۱۵ صفحه', multiplier: 1 },
+          { key: 'large',  label: 'بزرگ',  hint: 'بیش از ۱۵ صفحه', multiplier: 1.6 }
+        ],
+
+        urgencies: [
+          { key: 'relaxed', label: 'انعطاف‌پذیر', hint: 'بدون عجله',   multiplier: 0.9 },
+          { key: 'normal',  label: 'عادی',        hint: 'زمان‌بندی معمول', multiplier: 1 },
+          { key: 'rush',    label: 'فوری',        hint: 'نصف زمان',    multiplier: 1.4 }
+        ],
+
+        estimateNotes: [
+          'این عدد فقط یک بازه اولیه است و جای پیشنهاد مکتوب را نمی‌گیرد.',
+          'پرداخت معمولاً در سه مرحله انجام می‌شود و هزینه پنهانی وجود ندارد.',
+          'سه ماه پشتیبانی رایگان بعد از تحویل، در همه پروژه‌ها گنجانده شده است.'
+        ],
+
+        steps: [
+          { title: 'شنیدن',      desc: 'جلسه‌ای عمیق درباره مخاطب، هدف و محدودیت‌ها.', time: '۱ جلسه' },
+          { title: 'پیشنهاد',    desc: 'سند مکتوب شامل مراحل، خروجی و هزینه ثابت.',   time: '۳ روز' },
+          { title: 'طراحی',      desc: 'وایرفریم، طرح بصری و بازخوردهای پیاپی.',      time: '۲ تا ۴ هفته' },
+          { title: 'پیاده‌سازی', desc: 'کدنویسی تمیز، مستند و تست روی دستگاه واقعی.', time: '۳ تا ۶ هفته' },
+          { title: 'تحویل',      desc: 'آموزش تیم، مستندسازی و سه ماه پشتیبانی.',     time: '۱ هفته' }
+        ],
+
+        faqs: [
+          { q: 'حداقل بودجه برای شروع چقدر است؟', a: 'کوچک‌ترین پروژه‌ای که می‌پذیریم حدود ۱۸ میلیون تومان است. زیر این عدد معمولاً نه برای شما و نه برای ما صرف نمی‌کند و ترجیح می‌دهیم صادقانه بگوییم.' },
+          { q: 'آیا فقط طراحی یا فقط کدنویسی هم انجام می‌دهید؟', a: 'بله. اگر تیم توسعه داخلی دارید فقط طراحی و دیزاین‌سیستم را تحویل می‌دهیم، و برعکس اگر طراحی آماده دارید فقط پیاده‌سازی را انجام می‌دهیم.' },
+          { q: 'مالکیت کد و طراحی با کیست؟', a: 'از لحظه تسویه نهایی، مالکیت کامل کد و فایل‌های طراحی متعلق به شماست. کد را روی مخزن خودتان و به‌صورت مستند تحویل می‌دهیم.' },
+          { q: 'اگر وسط کار نظرمان عوض شود؟', a: 'تا دو دور بازنگری در هر مرحله رایگان است. تغییرات بزرگ‌تر که دامنه کار را عوض کند، به‌صورت مکتوب برآورد و بعد اعمال می‌شود.' },
+          { q: 'با تیم‌های خارج از ایران هم کار می‌کنید؟', a: 'بله. بخش زیادی از پروژه‌ها دورکاری انجام می‌شود؛ جلسات در بازه زمانی مورد توافق و ارتباط روزانه از طریق ابزار مورد نظر شما.' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-brand', current: true },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        serviceName(key) {
+          const service = this.services.find(s => s.key === key);
+          return service ? service.name : '';
+        },
+
+        toggleService(key) {
+          this.picked = this.picked.includes(key)
+            ? this.picked.filter(k => k !== key)
+            : [...this.picked, key];
+        },
+
+        resetEstimate() {
+          /* back to the page's own starting state, not an empty estimator */
+          this.picked = ['design'];
+          this.scope = 'medium';
+          this.urgency = 'normal';
+        },
+
+        /* base = sum of the picked services' floor prices,
+           then scaled by scope and urgency; high end adds 45% */
+        estimate() {
+          const base = this.picked.reduce((sum, key) => {
+            const service = this.services.find(s => s.key === key);
+            return sum + (service ? service.from : 0);
+          }, 0);
+
+          const scope = this.scopes.find(s => s.key === this.scope);
+          const urgency = this.urgencies.find(u => u.key === this.urgency);
+          const factor = (scope ? scope.multiplier : 1) * (urgency ? urgency.multiplier : 1);
+
+          const low = Math.round(base * factor);
+          const high = Math.round(low * 1.45);
+
+          /* rough duration: one week per 12 million, floored at 2 */
+          const weeksLow = Math.max(2, Math.round(low / 12));
+          const weeksHigh = Math.max(weeksLow + 2, Math.round(high / 12));
+
+          return {
+            low,
+            high,
+            weeks: toFaDigits(weeksLow) + ' تا ' + toFaDigits(weeksHigh) + ' هفته'
+          };
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

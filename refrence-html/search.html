@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نتایج جستجو | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه نتایج جستجو با فیلتر نوع محتوا، هایلایت عبارت و حالت «نتیجه‌ای یافت نشد»." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="searchPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="archive.html" class="nav-link">آرشیو</a>
+          <a href="index-6.html" class="nav-link">پادکست</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="flex items-center gap-2 ms-auto">
+          <button class="hidden sm:flex icon-btn" aria-label="ذخیره"><i class="fa-regular fa-bookmark text-sm"></i></button>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="archive.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">آرشیو <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="search.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">نتایج جستجو <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="author.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">نویسنده <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="404.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">صفحه ۴۰۴ <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main class="pb-6">
+
+    <!-- ===================== SEARCH HERO ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-a opacity-40"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/88 to-white"></div>
+
+      <div class="container-page relative z-10 py-12 sm:py-16">
+        <nav class="flex items-center gap-2 text-[11px] text-gray-500">
+          <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+          <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+          <span class="text-gray-950 font-bold">نتایج جستجو</span>
+        </nav>
+
+        <h1 class="mt-6 text-2xl sm:text-[38px] font-black leading-[1.5] text-gray-950">
+          <template x-if="query.trim()">
+            <span>نتایج برای «<span class="text-brand" x-text="query"></span>»</span>
+          </template>
+          <template x-if="!query.trim()">
+            <span>چه چیزی را جستجو می‌کنید؟</span>
+          </template>
+        </h1>
+
+        <p class="mt-4 text-sm text-gray-500">
+          <template x-if="query.trim()">
+            <span>
+              <span class="text-gray-950 font-bold" x-text="toFa(results().length)"></span>
+              نتیجه پیدا شد
+              <span class="text-gray-300 mx-1">·</span>
+              <span x-text="'در ' + searchTime + ' ثانیه'"></span>
+            </span>
+          </template>
+          <template x-if="!query.trim()">
+            <span>عبارتی بنویسید تا در مقاله‌ها، قسمت‌های پادکست و صفحه‌ها بگردیم.</span>
+          </template>
+        </p>
+
+        <!-- big search box -->
+        <div class="mt-8 relative max-w-[640px]">
+          <input
+            type="text"
+            x-model="query"
+            x-ref="searchInput"
+            placeholder="مثلاً: تایپوگرافی فارسی"
+            class="w-full h-16 rounded-[22px] bg-white border border-gray-100 ps-14 pe-14 text-sm sm:text-base outline-none shadow-[0_18px_45px_rgba(15,23,42,0.08)] focus:border-brand/30 focus:ring-4 focus:ring-brand/10 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+          <button
+            x-show="query"
+            @click="query = ''; $refs.searchInput.focus()"
+            class="absolute end-5 top-1/2 -translate-y-1/2 size-8 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center hover:bg-brand hover:text-white transition"
+            style="display:none"
+            aria-label="پاک کردن"
+          >
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
+        </div>
+
+        <!-- popular searches -->
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="text-[11px] text-gray-400 me-2">جستجوهای پرتکرار:</span>
+          <template x-for="term in popularSearches" :key="term">
+            <button @click="query = term" class="tag-chip !py-1.5 !text-[11px]" x-text="term"></button>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESULTS ===================== -->
+    <section class="container-page mt-10 sm:mt-12">
+
+      <!-- type filters -->
+      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2 border-b border-gray-100">
+        <template x-for="type in types" :key="type.key">
+          <button
+            @click="activeType = type.key"
+            class="shrink-0 h-10 px-4 rounded-2xl text-[11px] transition flex items-center gap-2"
+            :class="activeType === type.key ? 'bg-brand/10 text-brand font-bold' : 'bg-gray-50 text-gray-500 hover:text-gray-950'"
+          >
+            <i class="fa-solid text-[10px]" :class="type.icon"></i>
+            <span x-text="type.label"></span>
+            <span class="rounded-md bg-white/70 px-1.5 text-[9px] font-bold" x-text="toFa(countByType(type.key))"></span>
+          </button>
+        </template>
+      </div>
+
+      <!-- results list -->
+      <div x-show="results().length" class="mt-7 space-y-3">
+        <template x-for="item in results()" :key="'r-' + item.id">
+          <article class="group rounded-[24px] border border-gray-100 bg-white p-5 transition hover:border-gray-200 hover:shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+            <div class="flex items-start gap-4">
+              <span class="size-11 rounded-2xl shrink-0 flex items-center justify-center text-white text-sm" :class="typeMeta(item.type).bg">
+                <i class="fa-solid" :class="typeMeta(item.type).icon"></i>
+              </span>
+
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2.5 text-[10px] text-gray-400 mb-2">
+                  <span class="rounded-md bg-gray-50 px-2 py-0.5 font-bold" x-text="typeMeta(item.type).label"></span>
+                  <span x-text="item.date"></span>
+                  <span class="w-px h-3 bg-gray-200"></span>
+                  <span x-text="item.meta"></span>
+                </div>
+
+                <h2 class="text-[15px] font-extrabold leading-7 text-gray-950 group-hover:text-brand transition">
+                  <a href="single-post.html" x-html="highlight(item.title)"></a>
+                </h2>
+
+                <p class="mt-2 text-xs leading-7 text-gray-500 line-clamp-2" x-html="highlight(item.excerpt)"></p>
+
+                <div class="mt-3 flex items-center gap-2 text-[10px] text-gray-400">
+                  <i class="fa-solid fa-link text-[8px]"></i>
+                  <span dir="ltr" x-text="item.url"></span>
+                </div>
+              </div>
+
+              <i class="fa-solid fa-arrow-left text-[11px] text-gray-300 group-hover:text-brand transition shrink-0 mt-3"></i>
+            </div>
+          </article>
+        </template>
+      </div>
+
+      <!-- no results -->
+      <div x-show="!results().length" class="empty-state" style="display:none">
+        <span class="empty-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+
+        <h2 class="mt-6 text-lg font-black text-gray-950">
+          <template x-if="query.trim()">
+            <span>نتیجه‌ای برای «<span class="text-brand" x-text="query"></span>» پیدا نشد</span>
+          </template>
+          <template x-if="!query.trim()">
+            <span>هنوز چیزی جستجو نکرده‌اید</span>
+          </template>
+        </h2>
+
+        <p class="mt-3 mx-auto max-w-[420px] text-xs leading-7 text-gray-500">
+          املای عبارت را بررسی کنید، کلمه‌های کمتری بنویسید یا یکی از پیشنهادهای زیر را امتحان کنید.
+        </p>
+
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-2">
+          <template x-for="term in popularSearches" :key="'s-' + term">
+            <button @click="query = term; activeType = 'all'" class="tag-chip !py-1.5 !text-[11px]" x-text="term"></button>
+          </template>
+        </div>
+
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <button @click="query = ''; activeType = 'all'; $refs.searchInput.focus()" class="btn-ghost">
+            <i class="fa-solid fa-rotate-right text-xs"></i>
+            جستجوی دوباره
+          </button>
+          <a href="archive.html" class="btn-primary">
+            مرور آرشیو
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- pagination -->
+      <nav x-show="results().length > 4" class="mt-10 flex items-center justify-center gap-2" aria-label="صفحه‌بندی" style="display:none">
+        <button class="pager-btn opacity-40 pointer-events-none" aria-label="صفحه قبلی"><i class="fa-solid fa-arrow-right text-xs"></i></button>
+        <button class="pager-btn pager-active" aria-current="page">۱</button>
+        <button class="pager-btn">۲</button>
+        <button class="pager-btn">۳</button>
+        <button class="pager-btn" aria-label="صفحه بعدی"><i class="fa-solid fa-arrow-left text-xs"></i></button>
+      </nav>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="archive.html" class="hover:text-brand transition">آرشیو</a>
+          <a href="author.html" class="hover:text-brand transition">نویسنده</a>
+          <a href="page.html" class="hover:text-brand transition">صفحه ساده</a>
+          <a href="404.html" class="hover:text-brand transition">۴۰۴</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function searchPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+
+        query: 'تایپوگرافی',
+        activeType: 'all',
+        searchTime: '۰٫۰۴',
+
+        toFa: toFaDigits,
+
+        popularSearches: ['تایپوگرافی', 'راست‌چین', 'دیزاین‌سیستم', 'دارک‌مود', 'سئو', 'کارایی'],
+
+        types: [
+          { key: 'all',     label: 'همه',        icon: 'fa-layer-group' },
+          { key: 'post',    label: 'مقاله',      icon: 'fa-newspaper' },
+          { key: 'episode', label: 'قسمت پادکست', icon: 'fa-microphone-lines' },
+          { key: 'page',    label: 'صفحه',       icon: 'fa-file-lines' }
+        ],
+
+        items: [
+          { id: 1, type: 'post', title: 'راهنمای کامل تایپوگرافی فارسی برای وب', excerpt: 'نیم‌فاصله، ارتفاع خط، طول سطر و وزن فونت؛ چهار تنظیم تایپوگرافی که بیشترین اثر را روی خوانایی متن فارسی دارند.', date: '۲۶ شهریور ۱۴۰۵', meta: '۱۱ دقیقه مطالعه', url: 'sevi.ir/blog/persian-typography' },
+          { id: 2, type: 'post', title: 'فاصله‌گذاری در فارسی: چرا متن شما شلوغ به نظر می‌رسد', excerpt: 'سه تنظیمی که بیشترین تاثیر را روی نفس‌کشیدن متن دارند. بخشی از مجموعه تایپوگرافی فارسی.', date: '۲۱ شهریور ۱۴۰۵', meta: '۶ دقیقه مطالعه', url: 'sevi.ir/blog/persian-spacing' },
+          { id: 3, type: 'episode', title: 'گفتگو با یک طراح تایپ‌فیس فارسی', excerpt: 'چهار سال کار روی تایپوگرافی و طراحی حروف؛ از اولین طرح دستی تا انتشار یک خانواده فونت کامل.', date: '۲۱ شهریور ۱۴۰۵', meta: '۵۶:۰۲ دقیقه', url: 'sevi.ir/podcast/episode-23' },
+          { id: 4, type: 'post', title: 'انتخاب فونت برای پروژه‌های فارسی', excerpt: 'معیارهای عملی برای انتخاب یک تایپ‌فیس مناسب: پوشش وزن‌ها، کیفیت اتصال حروف و مجوز استفاده.', date: '۱۴ مرداد ۱۴۰۵', meta: '۹ دقیقه مطالعه', url: 'sevi.ir/blog/choosing-a-font' },
+          { id: 5, type: 'page', title: 'راهنمای تایپوگرافی سیستم طراحی SEVI', excerpt: 'مستندات داخلی ما درباره مقیاس تایپوگرافی، ارتفاع خط و کاربرد هر وزن در محصولات مختلف.', date: 'به‌روزرسانی ۰۱ شهریور', meta: 'صفحه مستندات', url: 'sevi.ir/docs/typography' },
+          { id: 6, type: 'episode', title: 'بازطراحی زنده: صفحه محصول یک فروشگاه', excerpt: 'یک صفحه واقعی را از صفر بازطراحی می‌کنیم؛ از تایپوگرافی و شبکه تا رنگ و فاصله‌گذاری.', date: '۱۴ شهریور ۱۴۰۵', meta: '۲۴:۱۸ دقیقه', url: 'sevi.ir/podcast/episode-22' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-brand', current: true },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        typeMeta(key) {
+          return ({
+            post:    { label: 'مقاله',        icon: 'fa-newspaper',        bg: 'bg-brand' },
+            episode: { label: 'قسمت پادکست',  icon: 'fa-microphone-lines', bg: 'bg-violet-500' },
+            page:    { label: 'صفحه',         icon: 'fa-file-lines',       bg: 'bg-blue-500' }
+          })[key] || { label: 'محتوا', icon: 'fa-file', bg: 'bg-gray-400' };
+        },
+
+        matches(item) {
+          const term = this.query.trim().toLowerCase();
+          if (!term) return false;
+          return (item.title + ' ' + item.excerpt).toLowerCase().includes(term);
+        },
+
+        results() {
+          return this.items.filter(item => {
+            if (!this.matches(item)) return false;
+            return this.activeType === 'all' || item.type === this.activeType;
+          });
+        },
+
+        countByType(key) {
+          return this.items.filter(item => this.matches(item) && (key === 'all' || item.type === key)).length;
+        },
+
+        escapeHtml(value) {
+          return String(value).replace(/[&<>"']/g, ch => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+          }[ch]));
+        },
+
+        /* escape the text first, then the term, so nothing user-typed can inject markup */
+        highlight(text) {
+          const safe = this.escapeHtml(text);
+          const term = this.query.trim();
+          if (!term) return safe;
+
+          const pattern = this.escapeHtml(term).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          return safe.replace(new RegExp(pattern, 'gi'), hit => '<mark class="mark-hit">' + hit + '</mark>');
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+wordpress/vendor/
+wordpress/dist/
+.phpcs-cache
+.DS_Store
+Thumbs.db
+*.log

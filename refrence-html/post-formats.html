@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فرمت‌های نوشته | SEVI</title>
+  <meta name="description" content="قالب SEVI — نمایش همه post formatهای وردپرس: استاندارد، گالری، تصویر، ویدیو، صوت، نقل‌قول، لینک، حاشیه، وضعیت و گفتگو." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="formatsPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="demos.html" class="nav-link">دموها</a>
+          <a href="elements.html" class="nav-link">عناصر</a>
+          <a href="post-formats.html" class="nav-link text-gray-950 font-bold">فرمت‌های نوشته</a>
+          <a href="categories.html" class="nav-link">دسته‌بندی‌ها</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="archive.html" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-brand text-white text-xs font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition">
+            <i class="fa-solid fa-box-archive text-[10px]"></i>
+            آرشیو
+          </a>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="باز کردن منو">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن منو"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="demos.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">دموها <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="elements.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">عناصر <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="post-formats.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">فرمت‌های نوشته <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="categories.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">دسته‌بندی‌ها <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="archive.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">آرشیو <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main id="main" class="pb-6">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-b opacity-40"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/90 to-white"></div>
+
+      <div class="container-page relative z-10 py-12 sm:py-16">
+        <nav class="flex items-center gap-2 text-[11px] text-gray-500">
+          <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+          <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+          <span class="text-gray-950 font-bold">فرمت‌های نوشته</span>
+        </nav>
+
+        <h1 class="mt-6 text-[28px] sm:text-[42px] font-black leading-[1.45] text-gray-950">
+          فرمت‌های نوشته وردپرس
+        </h1>
+
+        <p class="mt-5 max-w-[620px] text-sm sm:text-[15px] leading-9 text-gray-600">
+          وردپرس ده فرمت استاندارد برای نوشته دارد و هر کدام باید ظاهر خودش را داشته باشد.
+          این صفحه همه آن‌ها را در یک فید نشان می‌دهد تا در تبدیل به قالب چیزی جا نماند.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] text-gray-500">
+          <span><i class="fa-solid fa-shapes me-1.5 text-gray-300"></i><span x-text="toFa(posts.length)"></span> فرمت</span>
+          <span class="w-px h-4 bg-gray-200"></span>
+          <span class="font-mono" dir="ltr">add_theme_support( 'post-formats' )</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FILTER ===================== -->
+    <section class="container-page mt-10 sm:mt-12">
+      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-3 border-b border-gray-100">
+        <button
+          @click="activeFormat = 'all'"
+          class="shrink-0 h-10 px-4 rounded-2xl text-[11px] transition"
+          :class="activeFormat === 'all' ? 'bg-brand/10 text-brand font-bold' : 'bg-gray-50 text-gray-500 hover:text-gray-950'"
+        >
+          همه فرمت‌ها
+        </button>
+        <template x-for="post in posts" :key="'f-' + post.format">
+          <button
+            @click="activeFormat = post.format"
+            class="shrink-0 h-10 px-4 rounded-2xl text-[11px] transition flex items-center gap-2"
+            :class="activeFormat === post.format ? 'bg-brand/10 text-brand font-bold' : 'bg-gray-50 text-gray-500 hover:text-gray-950'"
+          >
+            <i class="fa-solid text-[10px]" :class="post.icon"></i>
+            <span x-text="post.label"></span>
+          </button>
+        </template>
+      </div>
+
+      <!-- ===================== FEED ===================== -->
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+        <div class="lg:col-span-8 space-y-6">
+          <template x-for="post in visible()" :key="post.format">
+            <article :class="'format-' + post.format" class="rounded-[28px] bg-white border border-gray-100 overflow-hidden shadow-[0_16px_45px_rgba(15,23,42,0.04)]">
+
+              <!-- format ribbon -->
+              <div class="flex items-center justify-between gap-3 px-5 py-3.5 border-b border-gray-100 bg-gray-50/70">
+                <span class="flex items-center gap-2.5">
+                  <span class="size-8 rounded-xl flex items-center justify-center text-white text-[11px]" :class="post.badge">
+                    <i class="fa-solid" :class="post.icon"></i>
+                  </span>
+                  <span class="text-[11px] font-black text-gray-950" x-text="post.label"></span>
+                </span>
+                <span class="text-[10px] text-gray-400 font-mono" dir="ltr" x-text="'post-format-' + post.format"></span>
+              </div>
+
+              <!-- ===== media area, varies per format ===== -->
+
+              <!-- image -->
+              <template x-if="post.format === 'image'">
+                <figure class="wp-block-image m-0">
+                  <span class="block h-[260px] gradient-thumb-1"></span>
+                  <figcaption class="px-5 pt-3">تصویر شاخص تمام‌عرض با زیرنویس.</figcaption>
+                </figure>
+              </template>
+
+              <!-- gallery -->
+              <template x-if="post.format === 'gallery'">
+                <div class="p-4">
+                  <div class="grid grid-cols-4 gap-2">
+                    <span class="col-span-2 row-span-2 h-[164px] rounded-2xl gradient-thumb-2"></span>
+                    <span class="h-[78px] rounded-2xl gradient-thumb-5"></span>
+                    <span class="h-[78px] rounded-2xl gradient-thumb-9"></span>
+                    <span class="h-[78px] rounded-2xl gradient-thumb-6"></span>
+                    <span class="relative h-[78px] rounded-2xl gradient-thumb-4 overflow-hidden">
+                      <span class="absolute inset-0 bg-gray-950/55 flex items-center justify-center text-white text-xs font-black">۶+</span>
+                    </span>
+                  </div>
+                </div>
+              </template>
+
+              <!-- video -->
+              <template x-if="post.format === 'video'">
+                <div class="relative h-[240px] gradient-thumb-8">
+                  <span class="absolute inset-0 bg-gray-950/35"></span>
+                  <button class="absolute inset-0 flex items-center justify-center group" aria-label="پخش ویدیو">
+                    <span class="play-btn size-16 group-hover:scale-105"><i class="fa-solid fa-play text-base"></i></span>
+                  </button>
+                  <span class="duration-badge">۱۰:۳۴</span>
+                </div>
+              </template>
+
+              <!-- audio -->
+              <template x-if="post.format === 'audio'">
+                <div class="p-5">
+                  <div class="rounded-[22px] bg-gray-50 border border-gray-100 p-4 flex items-center gap-4">
+                    <button
+                      @click="audioPlaying = !audioPlaying"
+                      class="size-12 rounded-2xl bg-brand text-white flex items-center justify-center shrink-0 hover:bg-brand-dark transition"
+                      :aria-label="audioPlaying ? 'توقف' : 'پخش'"
+                    >
+                      <i class="fa-solid text-sm" :class="audioPlaying ? 'fa-pause' : 'fa-play'"></i>
+                    </button>
+
+                    <div class="min-w-0 flex-1">
+                      <p class="text-[11px] font-bold text-gray-950 truncate">قسمت ۲۴ — چرا دیزاین‌سیستم‌ها شکست می‌خورند؟</p>
+                      <div class="mt-2.5 flex items-end gap-[3px] h-7">
+                        <template x-for="(bar, i) in waveBars" :key="i">
+                          <span
+                            class="flex-1 rounded-full transition-colors"
+                            :class="audioPlaying ? 'wave-bar-light' : 'bg-gray-200'"
+                            :style="'height:' + bar + '%; animation-delay:' + (i * 0.06) + 's'"
+                          ></span>
+                        </template>
+                      </div>
+                    </div>
+
+                    <span class="hidden sm:block text-[11px] text-gray-500 tabular-nums shrink-0">۴۲:۱۰</span>
+                  </div>
+                </div>
+              </template>
+
+              <!-- quote -->
+              <template x-if="post.format === 'quote'">
+                <div class="relative p-6 sm:p-9 gradient-a">
+                  <span class="absolute inset-0 bg-white/55"></span>
+                  <div class="relative z-10 text-center">
+                    <i class="fa-solid fa-quote-left text-3xl text-brand/25"></i>
+                    <p class="mt-5 text-lg sm:text-xl font-black leading-[1.9] text-gray-950">
+                      مینیمالیسم خوب یعنی حذف شلوغی، نه حذف شخصیت.
+                    </p>
+                    <p class="mt-5 text-[11px] font-bold text-gray-500">— آرمان عظیمی، مدیر هنری</p>
+                  </div>
+                </div>
+              </template>
+
+              <!-- link -->
+              <template x-if="post.format === 'link'">
+                <a href="#" class="block p-5 group">
+                  <div class="rounded-[22px] border border-gray-100 bg-gray-50 p-4 flex items-center gap-4 group-hover:border-brand/25 transition">
+                    <span class="size-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center shrink-0 text-brand">
+                      <i class="fa-solid fa-link text-sm"></i>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-sm font-black text-gray-950 group-hover:text-brand transition">راهنمای رسمی دیزاین‌سیستم‌های راست‌چین</span>
+                      <span class="block mt-1 text-[10px] text-gray-400 font-mono truncate" dir="ltr">https://rtl-design-systems.dev/guide</span>
+                    </span>
+                    <i class="fa-solid fa-arrow-up-left text-[11px] text-gray-300 group-hover:text-brand transition shrink-0"></i>
+                  </div>
+                </a>
+              </template>
+
+              <!-- status -->
+              <template x-if="post.format === 'status'">
+                <div class="p-5">
+                  <div class="flex items-start gap-3.5">
+                    <span class="size-11 rounded-full gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-sm font-black text-white/90 shrink-0">
+                      م
+                      <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                    </span>
+                    <div class="min-w-0">
+                      <p class="flex items-center gap-2">
+                        <span class="text-sm font-black text-gray-950">مریم فراهانی</span>
+                        <span class="text-[10px] text-gray-400">۲ ساعت پیش</span>
+                      </p>
+                      <p class="mt-2 text-sm leading-8 text-gray-600">
+                        ضبط قسمت ۲۵ تمام شد. این یکی طولانی‌تر از همیشه شد — ۶۸ دقیقه خام.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </template>
+
+              <!-- chat -->
+              <template x-if="post.format === 'chat'">
+                <div class="p-5 space-y-2.5">
+                  <template x-for="line in chat" :key="line.at">
+                    <div class="flex gap-3" :class="line.me ? 'flex-row-reverse text-end' : ''">
+                      <span class="size-8 rounded-full shrink-0 flex items-center justify-center text-[10px] font-black text-white/90" :class="line.bg" x-text="line.who.charAt(0)"></span>
+                      <span class="max-w-[78%]">
+                        <span class="speaker-tag mb-1" :class="line.me ? 'bg-brand/10 text-brand' : 'bg-blue-50 text-blue-600'" x-text="line.who"></span>
+                        <span
+                          class="block rounded-2xl px-4 py-2.5 text-xs leading-7"
+                          :class="line.me ? 'bg-brand text-white' : 'bg-gray-50 text-gray-600'"
+                          x-text="line.text"
+                        ></span>
+                      </span>
+                    </div>
+                  </template>
+                </div>
+              </template>
+
+              <!-- ===== shared body ===== -->
+              <div class="p-5" :class="post.format === 'quote' || post.format === 'status' || post.format === 'chat' ? 'pt-0' : ''">
+                <template x-if="post.format !== 'quote' && post.format !== 'status'">
+                  <h2 class="text-[15px] sm:text-lg font-extrabold leading-8 text-gray-950 hover:text-brand transition">
+                    <a href="single-post.html" x-text="post.title"></a>
+                  </h2>
+                </template>
+
+                <template x-if="post.format !== 'status' && post.format !== 'chat'">
+                  <p class="mt-2.5 text-xs leading-7 text-gray-500" x-text="post.excerpt"></p>
+                </template>
+
+                <div class="mt-5 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
+                  <div class="flex items-center gap-2">
+                    <span class="size-7 rounded-full relative overflow-hidden flex items-center justify-center text-[10px] font-black text-white/90" :class="post.authorBg">
+                      <span x-text="post.author.charAt(0)"></span>
+                      <img :src="post.authorPhoto" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                    </span>
+                    <a href="author.html" class="text-[11px] text-gray-500 hover:text-brand transition" x-text="post.author"></a>
+                    <span class="w-px h-3 bg-gray-200"></span>
+                    <span class="text-[10px] text-gray-400" x-text="post.date"></span>
+                  </div>
+
+                  <div class="flex items-center gap-3 text-[10px] text-gray-400">
+                    <span><i class="fa-regular fa-comment me-1"></i><span x-text="post.comments"></span></span>
+                    <span><i class="fa-regular fa-heart me-1"></i><span x-text="post.likes"></span></span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </template>
+        </div>
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="lg:col-span-4 space-y-5 lg:sticky lg:top-[92px]">
+
+          <div class="sidebar-box">
+            <p class="widget-title">فرمت‌ها <i class="fa-solid fa-shapes text-gray-300"></i></p>
+            <div class="mt-4 space-y-1.5">
+              <template x-for="post in posts" :key="'s-' + post.format">
+                <button
+                  @click="activeFormat = post.format"
+                  class="w-full flex items-center gap-3 rounded-2xl p-2.5 transition text-start"
+                  :class="activeFormat === post.format ? 'bg-brand/5 border border-brand/20' : 'border border-transparent hover:bg-gray-50'"
+                >
+                  <span class="size-8 rounded-xl shrink-0 flex items-center justify-center text-white text-[10px]" :class="post.badge">
+                    <i class="fa-solid" :class="post.icon"></i>
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[11px] font-bold" :class="activeFormat === post.format ? 'text-brand' : 'text-gray-800'" x-text="post.label"></span>
+                    <span class="block text-[10px] text-gray-400 font-mono truncate" dir="ltr" x-text="post.format"></span>
+                  </span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <div class="sidebar-box">
+            <p class="widget-title">پشتیبانی در قالب <i class="fa-brands fa-wordpress text-gray-300"></i></p>
+            <p class="mt-4 text-xs leading-7 text-gray-500">
+              برای فعال‌سازی این فرمت‌ها، این خط را در <span class="font-mono text-[11px]" dir="ltr">functions.php</span> قرار دهید:
+            </p>
+            <pre class="code-block mt-4" dir="ltr"><code>add_theme_support( 'post-formats', array(
+  'aside', 'gallery', 'link', 'image',
+  'quote', 'status', 'video', 'audio', 'chat'
+) );</code></pre>
+          </div>
+
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-a p-5">
+              <span class="size-12 rounded-2xl bg-white/80 text-brand flex items-center justify-center">
+                <i class="fa-solid fa-cubes text-lg"></i>
+              </span>
+              <h3 class="mt-4 text-base font-black text-gray-950">راهنمای عناصر</h3>
+              <p class="mt-2 text-xs leading-7 text-gray-700">
+                همه استایل‌ها و بلوک‌های گوتنبرگ در یک صفحه.
+              </p>
+              <a href="elements.html" class="mt-4 h-11 rounded-2xl bg-gray-950 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-brand transition">
+                مشاهده عناصر
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="demos.html" class="hover:text-brand transition">دموها</a>
+          <a href="elements.html" class="hover:text-brand transition">عناصر</a>
+          <a href="categories.html" class="hover:text-brand transition">دسته‌بندی‌ها</a>
+          <a href="archive.html" class="hover:text-brand transition">آرشیو</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function formatsPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        activeFormat: 'all',
+        audioPlaying: false,
+
+        toFa: toFaDigits,
+
+        waveBars: [40, 68, 34, 88, 52, 100, 44, 74, 58, 84, 36, 92, 48, 66, 40, 78, 56, 94, 34, 70],
+
+        chat: [
+          { at: 1, who: 'مریم', me: false, bg: 'gradient-thumb-2', text: 'قسمت جدید را شنیدی؟ فکر می‌کنم بخش مستندسازی خیلی خوب درآمد.' },
+          { at: 2, who: 'آرمان', me: true,  bg: 'gradient-thumb-1', text: 'آره، همان بخشی که گفتی سه ماه فقط مستندات نوشتید.' },
+          { at: 3, who: 'مریم', me: false, bg: 'gradient-thumb-2', text: 'دقیقاً. بیشترین بازخورد را هم همان قسمت گرفت.' }
+        ],
+
+        posts: [
+          {
+            format: 'standard', label: 'استاندارد', icon: 'fa-align-right', badge: 'bg-gray-950',
+            title: 'معماری یک دیزاین‌سیستم راست‌چین که واقعاً مقیاس می‌گیرد',
+            excerpt: 'فرمت پیش‌فرض وردپرس. یک نوشته معمولی با عنوان، خلاصه و اطلاعات نویسنده — بدون رسانه خاص.',
+            author: 'آرمان عظیمی', authorBg: 'gradient-thumb-1', authorPhoto: 'assets/images/avatar-man-1.jpg',
+            date: '۲۸ شهریور', comments: '۲۴', likes: '۳۱۵'
+          },
+          {
+            format: 'image', label: 'تصویر', icon: 'fa-image', badge: 'bg-blue-500',
+            title: 'در ستایش فضای خالی؛ چرا صفحه‌های شلوغ ما را خسته می‌کنند',
+            excerpt: 'فرمت تصویر یک عکس شاخص تمام‌عرض را بالای نوشته نمایش می‌دهد، معمولاً همراه زیرنویس.',
+            author: 'مریم فراهانی', authorBg: 'gradient-thumb-2', authorPhoto: 'assets/images/avatar-maryam.jpg',
+            date: '۲۶ شهریور', comments: '۱۸', likes: '۲۴۸'
+          },
+          {
+            format: 'gallery', label: 'گالری', icon: 'fa-images', badge: 'bg-violet-500',
+            title: 'نگاهی به ده رابط کاربری فارسی که امسال ما را متوقف کردند',
+            excerpt: 'فرمت گالری چند تصویر را در یک چیدمان شبکه‌ای نشان می‌دهد؛ تصویر نخست بزرگ‌تر است.',
+            author: 'سارا موسوی', authorBg: 'gradient-thumb-6', authorPhoto: 'assets/images/avatar-woman-2.jpg',
+            date: '۲۴ شهریور', comments: '۱۲', likes: '۱۹۲'
+          },
+          {
+            format: 'video', label: 'ویدیو', icon: 'fa-video', badge: 'bg-rose-500',
+            title: 'آموزش: ساخت هدر راست‌چین در ده دقیقه',
+            excerpt: 'فرمت ویدیو یک پخش‌کننده بالای نوشته قرار می‌دهد. مدت ویدیو روی تصویر نمایش داده می‌شود.',
+            author: 'سارا موسوی', authorBg: 'gradient-thumb-6', authorPhoto: 'assets/images/avatar-woman-2.jpg',
+            date: '۲۱ شهریور', comments: '۳۱', likes: '۴۱۲'
+          },
+          {
+            format: 'audio', label: 'صوت', icon: 'fa-music', badge: 'bg-emerald-500',
+            title: 'قسمت ۲۴ پادکست: چرا دیزاین‌سیستم‌ها شکست می‌خورند؟',
+            excerpt: 'فرمت صوت یک پخش‌کننده فشرده با موج صدا نمایش می‌دهد — مناسب قسمت‌های پادکست.',
+            author: 'مریم فراهانی', authorBg: 'gradient-thumb-2', authorPhoto: 'assets/images/avatar-maryam.jpg',
+            date: '۱۹ شهریور', comments: '۴۲', likes: '۳۸۷'
+          },
+          {
+            format: 'quote', label: 'نقل‌قول', icon: 'fa-quote-right', badge: 'bg-amber-500',
+            title: 'نقل‌قول هفته',
+            excerpt: 'فرمت نقل‌قول عنوان را پنهان می‌کند و خود جمله را بزرگ و در مرکز نشان می‌دهد.',
+            author: 'آرمان عظیمی', authorBg: 'gradient-thumb-1', authorPhoto: 'assets/images/avatar-man-1.jpg',
+            date: '۱۶ شهریور', comments: '۹', likes: '۱۵۶'
+          },
+          {
+            format: 'link', label: 'لینک', icon: 'fa-link', badge: 'bg-cyan-500',
+            title: 'یک منبع خوب درباره دیزاین‌سیستم‌های راست‌چین',
+            excerpt: 'فرمت لینک نوشته را به یک آدرس بیرونی تبدیل می‌کند؛ کارت لینک جای تصویر شاخص می‌نشیند.',
+            author: 'کاوه رستمی', authorBg: 'gradient-thumb-4', authorPhoto: 'assets/images/avatar-man-2.jpg',
+            date: '۱۴ شهریور', comments: '۵', likes: '۸۸'
+          },
+          {
+            format: 'aside', label: 'حاشیه', icon: 'fa-note-sticky', badge: 'bg-orange-500',
+            title: 'یادداشت کوتاه درباره نیم‌فاصله',
+            excerpt: 'فرمت حاشیه برای یادداشت‌های کوتاه بدون عنوان برجسته است — چیزی شبیه پست‌های میکروبلاگ.',
+            author: 'مریم فراهانی', authorBg: 'gradient-thumb-2', authorPhoto: 'assets/images/avatar-maryam.jpg',
+            date: '۱۱ شهریور', comments: '۳', likes: '۶۴'
+          },
+          {
+            format: 'status', label: 'وضعیت', icon: 'fa-comment', badge: 'bg-pink-500',
+            title: 'وضعیت',
+            excerpt: 'فرمت وضعیت مثل یک به‌روزرسانی کوتاه شبکه اجتماعی است؛ عکس نویسنده در کنار متن قرار می‌گیرد.',
+            author: 'مریم فراهانی', authorBg: 'gradient-thumb-2', authorPhoto: 'assets/images/avatar-maryam.jpg',
+            date: '۲ ساعت پیش', comments: '۷', likes: '۴۵'
+          },
+          {
+            format: 'chat', label: 'گفتگو', icon: 'fa-comments', badge: 'bg-teal-500',
+            title: 'بخشی از گفتگوی تیم درباره قسمت ۲۴',
+            excerpt: 'فرمت گفتگو متن را به شکل پیام‌های رد و بدل شده نمایش می‌دهد.',
+            author: 'تیم SEVI', authorBg: 'gradient-thumb-2', authorPhoto: 'assets/images/avatar-maryam.jpg',
+            date: '۸ شهریور', comments: '۱۱', likes: '۷۲'
+          }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-brand', current: true },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        visible() {
+          if (this.activeFormat === 'all') return this.posts;
+          return this.posts.filter(post => post.format === this.activeFormat);
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

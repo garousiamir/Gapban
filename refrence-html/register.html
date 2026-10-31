@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ساخت حساب | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه ثبت‌نام با سنجه قدرت رمز، تأیید رمز، پذیرش قوانین و ورود با شبکه‌های اجتماعی." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="registerPage()"
+  class="font-estedad bg-[#fafafa] selection:bg-brand selection:text-white min-h-screen flex flex-col"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به فرم ثبت‌نام</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="bg-white border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:block text-[11px] text-gray-500">حساب دارید؟</span>
+          <a href="login.html" class="inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+            ورود
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="flex-1 flex items-center justify-center px-4 sm:px-6 py-10 sm:py-14">
+    <div class="w-full max-w-[1000px] auth-panel">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+
+        <!-- ============ FORM ============ -->
+        <div class="p-7 sm:p-10 lg:p-12 order-2 lg:order-1">
+
+          <!-- success -->
+          <div x-show="done" x-transition class="py-12 text-center" style="display:none">
+            <span class="mx-auto size-20 rounded-[28px] bg-emerald-50 text-emerald-500 flex items-center justify-center text-3xl animate-pop">
+              <i class="fa-solid fa-envelope-open-text"></i>
+            </span>
+            <h1 class="mt-6 text-xl font-black text-gray-950">ایمیل را بررسی کنید</h1>
+            <p class="mt-3 mx-auto max-w-[360px] text-sm leading-8 text-gray-500">
+              لینک فعال‌سازی به
+              <span class="font-bold text-gray-950" dir="ltr" x-text="form.email"></span>
+              فرستاده شد. بعد از تأیید می‌توانید وارد شوید.
+            </p>
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <a href="login.html" class="btn-primary">رفتن به صفحه ورود <i class="fa-solid fa-arrow-left text-xs"></i></a>
+              <button @click="reset()" class="btn-ghost">ویرایش ایمیل</button>
+            </div>
+          </div>
+
+          <form x-show="!done" @submit.prevent="submit()" novalidate>
+            <p class="eyebrow"><i class="fa-solid fa-user-plus"></i> ثبت‌نام</p>
+            <h1 class="mt-4 text-2xl sm:text-[30px] font-black leading-[1.5] text-gray-950">
+              ساخت حساب رایگان
+            </h1>
+            <p class="mt-3 text-sm leading-8 text-gray-500">
+              کمتر از یک دقیقه طول می‌کشد و نیازی به کارت بانکی نیست.
+            </p>
+
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <template x-for="provider in providers" :key="provider.label">
+                <button type="button" class="h-12 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 flex items-center justify-center gap-2.5 hover:border-brand/30 hover:text-brand transition">
+                  <i :class="provider.icon"></i>
+                  <span x-text="provider.label"></span>
+                </button>
+              </template>
+            </div>
+
+            <div class="my-7 flex items-center gap-4">
+              <span class="flex-1 h-px bg-gray-100"></span>
+              <span class="text-[11px] text-gray-400">یا با ایمیل</span>
+              <span class="flex-1 h-px bg-gray-100"></span>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label for="reg-name" class="field-label">نام و نام خانوادگی</label>
+                <div class="relative">
+                  <input
+                    id="reg-name"
+                    type="text"
+                    x-model="form.name"
+                    @input="clearError('name')"
+                    placeholder="مثلاً مریم فراهانی"
+                    autocomplete="name"
+                    class="comment-input ps-11"
+                    :class="errors.name ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  />
+                  <i class="fa-regular fa-user absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                </div>
+                <p x-show="errors.name" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i><span x-text="errors.name"></span>
+                </p>
+              </div>
+
+              <div>
+                <label for="reg-email" class="field-label">ایمیل</label>
+                <div class="relative">
+                  <input
+                    id="reg-email"
+                    type="email"
+                    dir="ltr"
+                    x-model="form.email"
+                    @input="clearError('email')"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    class="comment-input ps-11 text-end"
+                    :class="errors.email ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  />
+                  <i class="fa-regular fa-envelope absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                </div>
+                <p x-show="errors.email" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i><span x-text="errors.email"></span>
+                </p>
+              </div>
+
+              <!-- password + strength -->
+              <div>
+                <label for="reg-pass" class="field-label">رمز عبور</label>
+                <div class="relative">
+                  <input
+                    id="reg-pass"
+                    :type="showPassword ? 'text' : 'password'"
+                    dir="ltr"
+                    x-model="form.password"
+                    @input="clearError('password')"
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                    class="comment-input ps-11 pe-12 text-end"
+                    :class="errors.password ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  />
+                  <i class="fa-solid fa-lock absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  <button
+                    type="button"
+                    @click="showPassword = !showPassword"
+                    class="absolute end-3 top-1/2 -translate-y-1/2 size-8 rounded-lg text-gray-400 hover:text-brand transition flex items-center justify-center"
+                    :aria-label="showPassword ? 'پنهان کردن رمز' : 'نمایش رمز'"
+                  >
+                    <i class="fa-solid text-xs" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+
+                <!-- strength meter -->
+                <div x-show="form.password" class="mt-3" style="display:none">
+                  <div class="flex items-center gap-1.5">
+                    <template x-for="i in 4" :key="'seg-' + i">
+                      <span class="strength-seg" :class="i <= strength().score ? strength().bar : 'bg-gray-100'"></span>
+                    </template>
+                  </div>
+
+                  <div class="mt-2.5 flex items-center justify-between gap-3">
+                    <span class="text-[11px] font-bold" :class="strength().text" x-text="strength().label"></span>
+                    <span class="text-[10px] text-gray-400" x-text="strength().hint"></span>
+                  </div>
+
+                  <ul class="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5">
+                    <template x-for="rule in rules" :key="rule.key">
+                      <li class="flex items-center gap-1.5 text-[10px]" :class="rule.test(form.password) ? 'text-emerald-600' : 'text-gray-400'">
+                        <i class="fa-solid text-[8px]" :class="rule.test(form.password) ? 'fa-circle-check' : 'fa-circle'"></i>
+                        <span x-text="rule.label"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+
+                <p x-show="errors.password" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i><span x-text="errors.password"></span>
+                </p>
+              </div>
+
+              <div>
+                <label for="reg-confirm" class="field-label">تکرار رمز عبور</label>
+                <div class="relative">
+                  <input
+                    id="reg-confirm"
+                    :type="showPassword ? 'text' : 'password'"
+                    dir="ltr"
+                    x-model="form.confirm"
+                    @input="clearError('confirm')"
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                    class="comment-input ps-11 pe-12 text-end"
+                    :class="confirmState() === 'bad' ? '!border-brand/60 !ring-4 !ring-brand/10' : (confirmState() === 'good' ? '!border-emerald-300' : '')"
+                  />
+                  <i class="fa-solid fa-lock absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  <span
+                    x-show="confirmState() !== 'idle'"
+                    class="absolute end-4 top-1/2 -translate-y-1/2 text-xs"
+                    :class="confirmState() === 'good' ? 'text-emerald-500' : 'text-brand'"
+                    style="display:none"
+                  >
+                    <i class="fa-solid" :class="confirmState() === 'good' ? 'fa-circle-check' : 'fa-circle-xmark'"></i>
+                  </span>
+                </div>
+                <p x-show="errors.confirm" class="field-error" style="display:none">
+                  <i class="fa-solid fa-circle-exclamation"></i><span x-text="errors.confirm"></span>
+                </p>
+              </div>
+
+              <label
+                class="flex items-start gap-3 rounded-2xl border p-4 cursor-pointer transition"
+                :class="errors.terms ? 'border-brand/50 bg-brand/5' : 'border-gray-100 bg-gray-50'"
+              >
+                <input type="checkbox" x-model="form.terms" @change="clearError('terms')" class="mt-0.5 accent-red-500 size-4" />
+                <span>
+                  <span class="block text-xs leading-7 text-gray-600">
+                    <a href="page.html" class="font-bold text-brand hover:underline">قوانین استفاده</a>
+                    و
+                    <a href="page.html" class="font-bold text-brand hover:underline">حریم خصوصی</a>
+                    را خوانده‌ام و می‌پذیرم.
+                  </span>
+                  <span x-show="errors.terms" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i><span x-text="errors.terms"></span>
+                  </span>
+                </span>
+              </label>
+
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" x-model="form.newsletter" class="mt-0.5 accent-red-500 size-4" />
+                <span class="text-xs leading-7 text-gray-600">
+                  خبرنامه هفتگی را برایم بفرستید (هر زمان قابل لغو است).
+                </span>
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              class="mt-7 btn-primary w-full"
+              :disabled="sending"
+              :class="sending ? 'opacity-70 pointer-events-none' : ''"
+            >
+              <template x-if="!sending">
+                <span class="inline-flex items-center gap-2">
+                  ساخت حساب
+                  <i class="fa-solid fa-arrow-left text-xs"></i>
+                </span>
+              </template>
+              <template x-if="sending">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-circle-notch fa-spin text-xs"></i>
+                  در حال ساخت حساب...
+                </span>
+              </template>
+            </button>
+
+            <p class="mt-6 text-center text-xs text-gray-500">
+              حساب دارید؟
+              <a href="login.html" class="font-bold text-brand hover:underline">وارد شوید</a>
+            </p>
+          </form>
+        </div>
+
+        <!-- ============ SIDE PANEL ============ -->
+        <div class="relative overflow-hidden order-1 lg:order-2 min-h-[220px] lg:min-h-0">
+          <div class="absolute inset-0 gradient-thumb-6"></div>
+          <div class="absolute inset-0 dot-grid opacity-20"></div>
+          <div class="absolute inset-0 bg-gray-950/50"></div>
+          <div class="pointer-events-none absolute -top-20 -start-16 size-64 bg-white/20 blur-3xl rounded-full animate-floaty"></div>
+
+          <div class="relative z-10 h-full p-7 sm:p-10 flex flex-col justify-between text-white">
+            <div class="flex items-center gap-2.5">
+              <span class="size-10 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <span class="text-lg font-black tracking-[0.18em] uppercase">SEVI</span>
+            </div>
+
+            <div class="hidden lg:block">
+              <h2 class="text-xl font-black leading-[1.7]">با ساخت حساب چه چیزی می‌گیرید</h2>
+              <ul class="mt-6 space-y-3.5">
+                <template x-for="perk in perks" :key="perk">
+                  <li class="flex items-start gap-3 text-sm leading-7 text-white/85">
+                    <span class="size-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <i class="fa-solid fa-check text-[9px]"></i>
+                    </span>
+                    <span x-text="perk"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+
+            <a href="pricing.html" class="hidden lg:inline-flex items-center gap-2 text-[11px] font-bold text-white/80 hover:text-white transition">
+              مقایسه پلن‌های عضویت
+              <i class="fa-solid fa-arrow-left text-[9px]"></i>
+            </a>
+
+            <p class="lg:hidden text-sm font-bold">ساخت حساب کمتر از یک دقیقه</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-gray-100 bg-white">
+    <div class="container-page py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] text-gray-400">
+        <a href="pricing.html" class="hover:text-brand transition">عضویت</a>
+        <a href="page.html" class="hover:text-brand transition">حریم خصوصی</a>
+        <a href="contact.html" class="hover:text-brand transition">پشتیبانی</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function registerPage() {
+      return {
+        demoPanel: false,
+        showPassword: false,
+        sending: false,
+        done: false,
+
+        toFa: toFaDigits,
+
+        form: { name: '', email: '', password: '', confirm: '', terms: false, newsletter: true },
+        errors: {},
+
+        providers: [
+          { label: 'ثبت‌نام با گوگل', icon: 'fa-brands fa-google' },
+          { label: 'ثبت‌نام با گیت‌هاب', icon: 'fa-brands fa-github' }
+        ],
+
+        perks: [
+          'دسترسی به همه قسمت‌ها و مقالات',
+          'ذخیره قسمت‌ها برای شنیدن بعدی',
+          'ادامه پخش از همان جایی که رها کردید',
+          'خبرنامه هفتگی بدون اسپم'
+        ],
+
+        rules: [
+          { key: 'len',   label: 'حداقل ۸ کاراکتر', test: v => v.length >= 8 },
+          { key: 'upper', label: 'یک حرف بزرگ',     test: v => /[A-Z]/.test(v) },
+          { key: 'digit', label: 'یک عدد',          test: v => /[0-9]/.test(v) },
+          { key: 'sym',   label: 'یک نماد',         test: v => /[^A-Za-z0-9]/.test(v) }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-brand', current: true },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        /* score = how many rules pass (0..4), with a long-password bonus */
+        strength() {
+          const value = this.form.password;
+          if (!value) return { score: 0, label: '', hint: '', bar: 'bg-gray-100', text: 'text-gray-400' };
+
+          let score = this.rules.filter(rule => rule.test(value)).length;
+          if (value.length >= 14 && score === 4) score = 4;
+          if (value.length < 8) score = Math.min(score, 1);
+
+          const levels = [
+            { label: 'خیلی ضعیف', hint: 'حداقل ۸ کاراکتر لازم است', bar: 'bg-brand',        text: 'text-brand' },
+            { label: 'ضعیف',      hint: 'حروف بزرگ و عدد اضافه کنید', bar: 'bg-brand',       text: 'text-brand' },
+            { label: 'متوسط',     hint: 'یک نماد اضافه کنید',        bar: 'bg-amber-400',   text: 'text-amber-600' },
+            { label: 'خوب',       hint: 'تقریباً عالی است',          bar: 'bg-emerald-400', text: 'text-emerald-600' },
+            { label: 'عالی',      hint: 'رمز قوی است',               bar: 'bg-emerald-500', text: 'text-emerald-600' }
+          ];
+
+          return { score, ...levels[score] };
+        },
+
+        confirmState() {
+          if (!this.form.confirm) return 'idle';
+          return this.form.confirm === this.form.password ? 'good' : 'bad';
+        },
+
+        clearError(field) {
+          if (this.errors[field]) this.errors = { ...this.errors, [field]: '' };
+        },
+
+        validate() {
+          const errors = {};
+          const email = this.form.email.trim();
+
+          if (this.form.name.trim().length < 3) errors.name = 'نام خود را کامل وارد کنید.';
+
+          if (!email) errors.email = 'وارد کردن ایمیل الزامی است.';
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = 'فرمت ایمیل درست به نظر نمی‌رسد.';
+
+          if (!this.form.password) errors.password = 'رمز عبور را وارد کنید.';
+          else if (this.form.password.length < 8) errors.password = 'رمز عبور حداقل ۸ کاراکتر است.';
+          else if (this.strength().score < 3) errors.password = 'رمز قوی‌تری انتخاب کنید.';
+
+          if (!this.form.confirm) errors.confirm = 'تکرار رمز را وارد کنید.';
+          else if (this.form.confirm !== this.form.password) errors.confirm = 'دو رمز یکسان نیستند.';
+
+          if (!this.form.terms) errors.terms = 'برای ادامه باید قوانین را بپذیرید.';
+
+          this.errors = errors;
+          return Object.keys(errors).length === 0;
+        },
+
+        submit() {
+          if (!this.validate()) return;
+          this.sending = true;
+
+          /* شبیه‌سازی ثبت‌نام — اینجا درخواست واقعی به سرور را جایگزین کنید */
+          setTimeout(() => {
+            this.sending = false;
+            this.done = true;
+          }, 1200);
+        },
+
+        reset() {
+          this.done = false;
+          this.errors = {};
+        }
+      };
+    }
+  </script>
+</body>
+</html>

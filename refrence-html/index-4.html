@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEVI | دمو ۴ — مینیمال</title>
+  <meta name="description" content="قالب وبلاگ SEVI — نسخه مینیمال و تایپوگرافی‌محور با بایگانی متنی و فضای سفید فراوان." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="minimalPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <!-- Reading progress -->
+  <div class="fixed top-0 inset-x-0 h-[2px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER (centered logo) ===================== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[84px] grid grid-cols-3 items-center gap-4">
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="index-4.html" class="nav-link text-gray-950 font-bold">خانه</a>
+          <a href="#archive" class="nav-link">بایگانی</a>
+          <a href="about.html" class="nav-link">درباره</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <a href="index-1.html" class="justify-self-center flex flex-col items-center gap-1">
+          <span class="text-[22px] font-black tracking-[0.34em] text-gray-950 uppercase leading-none ps-[0.34em]">SEVI</span>
+          <span class="text-[9px] tracking-[0.22em] text-gray-300 uppercase">journal</span>
+        </a>
+
+        <div class="justify-self-end flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn border-transparent hover:border-brand" aria-label="جستجو">
+            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          </button>
+
+          <a href="#subscribe" class="hidden sm:inline-flex items-center h-10 px-5 rounded-full border border-gray-200 text-[11px] font-bold text-gray-700 hover:border-brand hover:text-brand transition">
+            عضویت
+          </a>
+
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn border-transparent" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div
+    x-show="mobileMenu"
+    x-transition.opacity
+    class="fixed inset-0 z-[80] bg-black/40 lg:hidden"
+    @click.self="mobileMenu = false"
+    style="display:none"
+  >
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-6 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-xl font-black tracking-[0.3em] uppercase ps-[0.3em]">SEVI</span>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-9 space-y-1">
+        <a href="index-4.html" class="row-link !py-4 text-base font-bold text-gray-950">خانه</a>
+        <a href="#archive" class="row-link !py-4 text-base text-gray-600">بایگانی</a>
+        <a href="index-1.html" class="row-link !py-4 text-base text-gray-600">دمو کلاسیک</a>
+        <a href="index-2.html" class="row-link !py-4 text-base text-gray-600">دمو مجله</a>
+        <a href="index-3.html" class="row-link !py-4 text-base text-gray-600">دمو کاوش</a>
+        <a href="index-5.html" class="row-link !py-4 text-base text-gray-600">دمو رسانه</a>
+        <a href="index-6.html" class="row-link !py-4 text-base text-gray-600">دمو پادکست</a>
+        <a href="about.html" class="row-link !py-4 text-base text-gray-600">درباره</a>
+        <a href="contact.html" class="row-link !py-4 text-base text-gray-600">تماس</a>
+      </nav>
+
+      <div class="mt-10">
+        <p class="text-[10px] tracking-[0.2em] text-gray-300 uppercase">موضوعات</p>
+        <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+          <template x-for="topic in topics" :key="topic">
+            <a href="#archive" class="quiet-link" x-text="topic"></a>
+          </template>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+
+    <!-- ===================== HERO (pure type) ===================== -->
+    <section class="container-page">
+      <div class="max-w-[820px] mx-auto pt-16 sm:pt-28 pb-14 sm:pb-20 text-center">
+        <p class="text-[10px] tracking-[0.3em] text-gray-300 uppercase">
+          شماره ۴۲ — ۲۸ شهریور ۱۴۰۵
+        </p>
+
+        <h1 class="mt-8 display-xl">
+          کمتر بنویس،
+          <span class="relative inline-block">
+            <span class="relative z-10">دقیق‌تر</span>
+            <span class="absolute inset-x-0 bottom-2 h-3 bg-brand/15 rounded-full"></span>
+          </span>
+          بنویس.
+        </h1>
+
+        <p class="mt-8 mx-auto max-w-[560px] text-sm sm:text-base leading-9 text-gray-500">
+          یک نشریه هفتگی درباره طراحی، نوشتن و ساختن چیزهای ساده.
+          بدون تصویر اضافه، بدون شلوغی — فقط متن و فضایی برای نفس کشیدن.
+        </p>
+
+        <div class="mt-11 flex flex-wrap items-center justify-center gap-3">
+          <a href="#archive" class="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-gray-950 text-white text-xs font-bold hover:bg-brand transition">
+            خواندن بایگانی
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          </a>
+          <a href="#subscribe" class="inline-flex items-center gap-2 h-12 px-7 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:border-brand hover:text-brand transition">
+            عضویت در خبرنامه
+          </a>
+        </div>
+
+        <div class="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-[11px] text-gray-400">
+          <span><span class="text-gray-950 font-black" x-text="toFa(214)"></span> نوشته</span>
+          <span class="hidden sm:block w-px h-4 bg-gray-100"></span>
+          <span><span class="text-gray-950 font-black" x-text="toFa(8)"></span> سال</span>
+          <span class="hidden sm:block w-px h-4 bg-gray-100"></span>
+          <span><span class="text-gray-950 font-black">۴٬۲۰۰</span> خواننده هفتگی</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURED ESSAY ===================== -->
+    <section class="border-y border-gray-100 bg-[#fafafa]">
+      <div class="container-page py-14 sm:py-20">
+        <div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <div class="md:col-span-5">
+            <div class="relative aspect-square rounded-[28px] overflow-hidden gradient-thumb-1">
+              <img src="assets/images/hero-office.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+              <span class="absolute top-4 start-4 rounded-full bg-white/90 backdrop-blur px-3 py-1.5 text-[10px] font-bold text-gray-800">
+                نوشته این هفته
+              </span>
+            </div>
+          </div>
+
+          <div class="md:col-span-7">
+            <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase">مقاله بلند</p>
+
+            <h2 class="mt-5 text-2xl sm:text-[34px] font-black leading-[1.55] text-gray-950">
+              در ستایش فضای خالی؛ چرا صفحه‌های شلوغ ما را خسته می‌کنند
+            </h2>
+
+            <p class="mt-6 text-sm leading-9 text-gray-500">
+              فضای خالی تنبلی طراح نیست؛ تصمیم اوست. وقتی هر چیزی روی صفحه فریاد می‌زند،
+              هیچ‌چیز شنیده نمی‌شود. در این یادداشت بلند سراغ سه پروژه واقعی می‌رویم که
+              با حذف کردن — نه اضافه کردن — بهتر شدند.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] text-gray-400">
+              <span class="flex items-center gap-2">
+                <span class="size-7 rounded-full gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-[10px] font-black text-white/90">
+                  م
+                  <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                </span>
+                مریم فراهانی
+              </span>
+              <span class="w-px h-3 bg-gray-200"></span>
+              <span>۲۸ شهریور ۱۴۰۵</span>
+              <span class="w-px h-3 bg-gray-200"></span>
+              <span>۱۴ دقیقه مطالعه</span>
+            </div>
+
+            <a href="single-post.html" class="mt-8 inline-flex items-center gap-3 text-sm font-bold text-gray-950 hover:text-brand transition group">
+              ادامه مطلب
+              <span class="w-8 h-px bg-gray-300 group-hover:w-12 group-hover:bg-brand transition-all duration-300"></span>
+              <i class="fa-solid fa-arrow-left text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ARCHIVE LIST ===================== -->
+    <section id="archive" class="container-page py-14 sm:py-20 scroll-mt-24">
+      <div class="max-w-[860px] mx-auto">
+
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-4">
+          <div>
+            <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase">بایگانی</p>
+            <h2 class="mt-4 text-2xl sm:text-3xl font-black text-gray-950">همه نوشته‌ها</h2>
+          </div>
+
+          <div class="flex items-center gap-x-5 gap-y-2 flex-wrap">
+            <template x-for="filter in filters" :key="filter">
+              <button
+                @click="activeFilter = filter"
+                class="text-[12px] transition"
+                :class="activeFilter === filter
+                  ? 'text-brand font-black'
+                  : 'text-gray-400 hover:text-gray-950'"
+                x-text="filter"
+              ></button>
+            </template>
+          </div>
+        </div>
+
+        <template x-for="group in filteredArchive()" :key="group.month">
+          <div class="mt-12 first:mt-8">
+            <div class="flex items-center gap-4">
+              <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase shrink-0" x-text="group.month"></p>
+              <span class="flex-1 h-px bg-gray-100"></span>
+              <span class="stamp shrink-0"><span x-text="toFa(group.posts.length)"></span> نوشته</span>
+            </div>
+
+            <div>
+              <template x-for="post in group.posts" :key="post.title">
+                <a href="single-post.html" class="row-link group">
+                  <span class="shrink-0 w-[46px] pt-1 text-[11px] text-gray-300 tabular-nums" x-text="post.day"></span>
+
+                  <span class="min-w-0 flex-1">
+                    <span class="flex items-center gap-2 mb-2">
+                      <span class="cat-dot" :class="post.dot"></span>
+                      <span class="text-[10px] font-bold text-gray-400" x-text="post.category"></span>
+                    </span>
+
+                    <span class="block text-[15px] sm:text-lg font-extrabold leading-8 text-gray-950 group-hover:text-brand transition" x-text="post.title"></span>
+
+                    <span class="mt-2 block text-xs leading-7 text-gray-500 line-clamp-2" x-text="post.excerpt"></span>
+
+                    <span class="mt-3 flex items-center gap-3 text-[10px] text-gray-400">
+                      <span x-text="post.author"></span>
+                      <span class="w-px h-3 bg-gray-200"></span>
+                      <span x-text="post.read"></span>
+                    </span>
+                  </span>
+
+                  <span class="shrink-0 self-center size-9 rounded-full border border-gray-100 text-gray-300 flex items-center justify-center group-hover:border-brand group-hover:text-brand transition">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                  </span>
+                </a>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <div class="mt-12 flex flex-col items-center gap-4">
+          <p class="text-[11px] text-gray-400">
+            <span x-text="toFa(visibleCount())"></span> نوشته از <span x-text="toFa(214)"></span>
+          </p>
+          <button class="inline-flex items-center gap-2 h-12 px-7 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:border-brand hover:text-brand transition">
+            <i class="fa-solid fa-rotate text-[10px]"></i>
+            نوشته‌های قدیمی‌تر
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TOPICS ===================== -->
+    <section class="border-y border-gray-100 bg-[#fafafa]">
+      <div class="container-page py-14 sm:py-16">
+        <div class="max-w-[860px] mx-auto text-center">
+          <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase">موضوعات</p>
+
+          <div class="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
+            <template x-for="(topic, index) in topics" :key="topic">
+              <span class="flex items-center gap-7">
+                <a href="#archive" class="text-base sm:text-xl font-black text-gray-300 hover:text-brand transition" x-text="topic"></a>
+                <i x-show="index < topics.length - 1" class="fa-solid fa-circle text-[3px] text-gray-200" style="display:none"></i>
+              </span>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FROM THE ARCHIVE ===================== -->
+    <section class="container-page py-14 sm:py-20">
+      <div class="max-w-[860px] mx-auto">
+        <div class="flex items-center gap-4 mb-10">
+          <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase shrink-0">از بایگانی</p>
+          <span class="flex-1 h-px bg-gray-100"></span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <template x-for="(item, index) in fromArchive" :key="item.title">
+            <a href="single-post.html" class="group">
+              <span class="block text-[40px] font-black leading-none num-outline transition" x-text="toFa(index + 1).padStart(2, '۰')"></span>
+
+              <h3 class="mt-5 text-sm font-extrabold leading-7 text-gray-950 group-hover:text-brand transition" x-text="item.title"></h3>
+
+              <p class="mt-3 text-xs leading-7 text-gray-500 line-clamp-3" x-text="item.excerpt"></p>
+
+              <p class="mt-4 text-[10px] text-gray-300" x-text="item.year"></p>
+            </a>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AUTHOR NOTE ===================== -->
+    <section class="border-t border-gray-100">
+      <div class="container-page py-14 sm:py-20">
+        <div class="max-w-[620px] mx-auto text-center">
+          <span class="mx-auto size-16 rounded-full gradient-thumb-2 flex items-center justify-center text-xl font-black text-white/90 relative overflow-hidden">
+            م
+            <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+          </span>
+
+          <p class="mt-7 text-sm sm:text-base leading-9 text-gray-600">
+            «این نشریه را تنها می‌نویسم. هر هفته یک موضوع را برمی‌دارم، تا ته‌اش می‌روم
+            و بعد هر چیزی را که لازم نیست حذف می‌کنم. آنچه می‌ماند، همان چیزی است که می‌خوانید.»
+          </p>
+
+          <p class="mt-7 text-sm font-black text-gray-950">مریم فراهانی</p>
+          <p class="mt-1.5 text-[11px] text-gray-400">سردبیر و نویسنده</p>
+
+          <div class="mt-7 flex items-center justify-center gap-2">
+            <a href="#" class="icon-btn border-transparent hover:border-brand" aria-label="ایکس"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+            <a href="#" class="icon-btn border-transparent hover:border-brand" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+            <a href="about.html" class="icon-btn border-transparent hover:border-brand" aria-label="بعدی"><i class="fa-solid fa-arrow-left text-xs"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SUBSCRIBE ===================== -->
+    <section id="subscribe" class="border-t border-gray-100 bg-[#fafafa] scroll-mt-24">
+      <div class="container-page py-16 sm:py-24">
+        <div class="max-w-[560px] mx-auto text-center">
+          <p class="text-[10px] tracking-[0.25em] text-gray-300 uppercase">خبرنامه</p>
+
+          <h2 class="mt-6 text-2xl sm:text-[32px] font-black leading-[1.5] text-gray-950">
+            پنجشنبه‌ها، یک نوشته در ایمیل شما
+          </h2>
+
+          <p class="mt-5 text-sm leading-8 text-gray-500">
+            بدون تبلیغات و بدون اسپم. هر زمان خواستید با یک کلیک لغو کنید.
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row items-stretch gap-2 max-w-[440px] mx-auto">
+            <div class="relative flex-1">
+              <input
+                type="email"
+                x-model="newsletterEmail"
+                dir="ltr"
+                placeholder="you@example.com"
+                class="w-full h-13 rounded-full bg-white border border-gray-200 ps-5 pe-12 text-sm text-gray-800 outline-none focus:border-brand/40 focus:ring-4 focus:ring-brand/10 transition placeholder:text-gray-300"
+              />
+              <i class="fa-regular fa-envelope absolute end-5 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+            </div>
+
+            <button
+              type="button"
+              @click="subscribe()"
+              class="h-13 px-7 rounded-full bg-gray-950 text-white text-xs font-bold hover:bg-brand transition flex items-center justify-center gap-2 shrink-0"
+            >
+              <template x-if="!subscribed">
+                <span class="inline-flex items-center gap-2">عضویت <i class="fa-solid fa-arrow-left text-[10px]"></i></span>
+              </template>
+              <template x-if="subscribed">
+                <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check text-[10px]"></i> عضو شدید</span>
+              </template>
+            </button>
+          </div>
+
+          <p class="mt-5 text-[11px] text-gray-400">
+            به ۴٬۲۰۰ خواننده دیگر بپیوندید.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER (minimal) ===================== -->
+  <footer class="border-t border-gray-100">
+    <div class="container-page py-12">
+      <div class="max-w-[860px] mx-auto text-center">
+        <a href="index-1.html" class="inline-flex flex-col items-center gap-1">
+          <span class="text-lg font-black tracking-[0.34em] text-gray-950 uppercase ps-[0.34em]">SEVI</span>
+          <span class="text-[9px] tracking-[0.22em] text-gray-300 uppercase">journal</span>
+        </a>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+          <a href="index-1.html" class="quiet-link">دمو کلاسیک</a>
+          <a href="index-2.html" class="quiet-link">دمو مجله</a>
+          <a href="index-3.html" class="quiet-link">دمو کاوش</a>
+          <a href="index-5.html" class="quiet-link">دمو رسانه</a>
+          <a href="index-6.html" class="quiet-link">دمو پادکست</a>
+          <a href="index-7.html" class="quiet-link">شبکه پادکست</a>
+          <a href="index-8.html" class="quiet-link">پادکست پاپ‌آپ</a>
+          <a href="about.html" class="quiet-link">درباره</a>
+          <a href="contact.html" class="quiet-link">تماس</a>
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-2">
+          <a href="#" class="icon-btn border-transparent hover:border-brand" aria-label="اینستاگرام"><i class="fa-brands fa-instagram text-xs"></i></a>
+          <a href="#" class="icon-btn border-transparent hover:border-brand" aria-label="تلگرام"><i class="fa-brands fa-telegram text-xs"></i></a>
+          <a href="#" class="icon-btn border-transparent hover:border-brand" aria-label="ایکس"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+        </div>
+
+        <p class="mt-8 text-[11px] text-gray-300">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        @click="demoPanel = !demoPanel"
+        class="h-12 px-5 rounded-full bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2"
+      >
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button
+        x-show="scrolled"
+        x-transition
+        @click="toTop()"
+        class="size-12 rounded-full bg-white border border-gray-200 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition"
+        aria-label="بازگشت به بالا"
+        style="display:none"
+      >
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function minimalPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        activeFilter: 'همه',
+        newsletterEmail: '',
+        subscribed: false,
+
+        toFa: toFaDigits,
+
+        topics: ['طراحی', 'نوشتن', 'تایپوگرافی', 'سادگی', 'تمرکز', 'ابزارها'],
+
+        filters: ['همه', 'طراحی', 'نوشتن', 'یادداشت'],
+
+        archive: [
+          {
+            month: 'شهریور ۱۴۰۵',
+            posts: [
+              {
+                day: '۲۶',
+                title: 'چرا هر بازطراحی با حذف کردن شروع می‌شود',
+                excerpt: 'قبل از اینکه چیزی به صفحه اضافه کنید، فهرستی از چیزهایی بنویسید که می‌توانید برداریدشان. معمولاً همان فهرست، خودِ راه‌حل است.',
+                category: 'طراحی', filter: 'طراحی', dot: 'bg-brand', author: 'مریم فراهانی', read: '۹ دقیقه'
+              },
+              {
+                day: '۱۹',
+                title: 'نوشتن برای کسی که عجله دارد',
+                excerpt: 'خواننده شما وسط کار است، در اتوبوس است، حواسش پرت است. جمله اول باید کل قرارداد را ببندد.',
+                category: 'نوشتن', filter: 'نوشتن', dot: 'bg-violet-500', author: 'مریم فراهانی', read: '۶ دقیقه'
+              },
+              {
+                day: '۱۲',
+                title: 'یادداشت: سه ابزاری که امسال کنار گذاشتم',
+                excerpt: 'هر ابزاری که برای استفاده از آن باید چیزی یاد بگیرم که به کارم ربطی ندارد، ابزار من نیست.',
+                category: 'یادداشت', filter: 'یادداشت', dot: 'bg-amber-500', author: 'مریم فراهانی', read: '۴ دقیقه'
+              }
+            ]
+          },
+          {
+            month: 'مرداد ۱۴۰۵',
+            posts: [
+              {
+                day: '۲۸',
+                title: 'ریتم عمودی؛ چیزی که چشم می‌بیند اما اسمش را نمی‌داند',
+                excerpt: 'وقتی فاصله‌ها روی یک شبکه مشترک بنشینند، صفحه آرام می‌شود — حتی اگر کسی نتواند بگوید چرا.',
+                category: 'طراحی', filter: 'طراحی', dot: 'bg-brand', author: 'آرمان عظیمی', read: '۸ دقیقه'
+              },
+              {
+                day: '۱۵',
+                title: 'در دفاع از پاراگراف‌های کوتاه',
+                excerpt: 'پاراگراف بلند در فارسی سنگین‌تر از انگلیسی دیده می‌شود. دلیلش شکل حروف است، نه تنبلی خواننده.',
+                category: 'نوشتن', filter: 'نوشتن', dot: 'bg-violet-500', author: 'مریم فراهانی', read: '۵ دقیقه'
+              },
+              {
+                day: '۰۴',
+                title: 'یادداشت: درباره جمع‌آوری بی‌پایان الهام',
+                excerpt: 'صد بورد پینترست جای یک تصمیم را نمی‌گیرد. جایی باید جمع‌آوری تمام شود و کار شروع شود.',
+                category: 'یادداشت', filter: 'یادداشت', dot: 'bg-amber-500', author: 'کاوه رستمی', read: '۳ دقیقه'
+              }
+            ]
+          },
+          {
+            month: 'تیر ۱۴۰۵',
+            posts: [
+              {
+                day: '۲۱',
+                title: 'طراحی مینیمال در صفحات وبلاگ',
+                excerpt: 'چطور یک تجربه خواندن تمیز، مدرن و حرفه‌ای بسازیم بدون اینکه صفحه بی‌روح شود.',
+                category: 'طراحی', filter: 'طراحی', dot: 'bg-brand', author: 'مریم فراهانی', read: '۸ دقیقه'
+              },
+              {
+                day: '۰۹',
+                title: 'ویرایش، مهم‌تر از نوشتن است',
+                excerpt: 'نسخه اول برای این است که وجود داشته باشد. نسخه سوم برای این است که خوانده شود.',
+                category: 'نوشتن', filter: 'نوشتن', dot: 'bg-violet-500', author: 'مریم فراهانی', read: '۷ دقیقه'
+              }
+            ]
+          }
+        ],
+
+        fromArchive: [
+          {
+            title: 'سادگی یعنی تصمیم گرفتن، نه کم گذاشتن',
+            excerpt: 'تفاوت یک طراحی مینیمال و یک طراحی ناقص، در تعداد عناصر نیست؛ در تعداد تصمیم‌هاست.',
+            year: '۱۴۰۴'
+          },
+          {
+            title: 'چگونه یک عنوان بنویسیم که دروغ نگوید',
+            excerpt: 'عنوان خوب کنجکاوی می‌سازد بدون اینکه چیزی را وعده بدهد که متن ندارد.',
+            year: '۱۴۰۴'
+          },
+          {
+            title: 'کار عمیق برای تیم‌های کوچک',
+            excerpt: 'وقتی سه نفرید، هر جلسه ۳۳ درصد ظرفیت تیم است. این عدد را جدی بگیرید.',
+            year: '۱۴۰۳'
+          }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-brand', current: true },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        filteredArchive() {
+          if (this.activeFilter === 'همه') return this.archive;
+
+          return this.archive
+            .map(group => ({
+              month: group.month,
+              posts: group.posts.filter(post => post.filter === this.activeFilter)
+            }))
+            .filter(group => group.posts.length > 0);
+        },
+
+        visibleCount() {
+          return this.filteredArchive().reduce((sum, group) => sum + group.posts.length, 0);
+        },
+
+        subscribe() {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newsletterEmail.trim())) return;
+          this.subscribed = true;
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

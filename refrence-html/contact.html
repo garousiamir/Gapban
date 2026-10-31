@@ -1,0 +1,1387 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تماس با ما | SEVI Blog</title>
+  <meta name="description" content="راه‌های ارتباط با تیم SEVI؛ فرم تماس، شماره تلفن، آدرس دفاتر و پاسخ به سوالات پرتکرار." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body x-data="contactPage()" class="font-estedad selection:bg-brand selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="index-1.html#latest" class="nav-link">وبلاگ‌ها</a>
+          <a href="single-post.html" class="nav-link">نمونه‌کار</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link text-gray-950 font-bold">تماس</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-[280px] relative">
+          <input
+            type="text"
+            placeholder="جستجو در وبلاگ..."
+            class="w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 ps-10 pe-4 text-xs outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand/30 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+            <i class="fa-regular fa-heart text-sm"></i>
+          </button>
+
+          <button class="hidden sm:flex icon-btn relative">
+            <i class="fa-regular fa-bell text-sm"></i>
+            <span class="absolute top-2 start-2 size-1.5 rounded-full bg-brand"></span>
+          </button>
+
+          <a
+            href="tel:+982191001000"
+            class="hidden sm:flex items-center gap-2 h-10 px-4 rounded-2xl bg-brand text-white text-xs font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition"
+          >
+            <i class="fa-solid fa-phone"></i>
+            ۰۲۱-۹۱۰۰۱۰۰۰
+          </a>
+
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div
+    x-show="mobileMenu"
+    x-transition.opacity
+    class="fixed inset-0 z-[80] bg-black/40 lg:hidden"
+    @click.self="mobileMenu = false"
+    style="display:none"
+  >
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand"></i>
+          </span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="mt-6 relative">
+        <input
+          type="text"
+          placeholder="جستجو..."
+          class="w-full h-12 rounded-2xl bg-gray-50 border border-gray-100 ps-11 pe-4 text-sm outline-none"
+        />
+        <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      </div>
+
+      <nav class="mt-6 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          خانه <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="index-1.html#latest" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          وبلاگ‌ها <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="single-post.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          نمونه‌کار <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="about.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          درباره ما <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">
+          تماس <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+      </nav>
+
+      <div class="mt-8 p-4 rounded-3xl bg-gray-50 border border-gray-100">
+        <p class="text-sm font-bold">راه‌های ارتباطی</p>
+        <p class="mt-2 text-xs leading-6 text-gray-500">
+          هر روز از ۹ صبح تا ۶ عصر پاسخگوی شما هستیم.
+        </p>
+
+        <div class="mt-4 grid grid-cols-4 gap-2">
+          <a class="icon-btn" href="#" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a class="icon-btn" href="#" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a class="icon-btn" href="#" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="icon-btn" href="#" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+
+        <a
+          href="tel:+982191001000"
+          class="mt-4 h-11 rounded-2xl bg-brand text-white flex items-center justify-center gap-2 text-xs font-bold"
+        >
+          <i class="fa-solid fa-phone"></i>
+          تماس سریع
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <main class="pb-4">
+
+    <!-- ============ HERO ============ -->
+    <section class="container-page pt-6 sm:pt-8">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[38px] bg-gray-50 border border-gray-100">
+        <div class="absolute inset-0 gradient-b opacity-50"></div>
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/85 to-white"></div>
+
+        <div class="pointer-events-none absolute -top-20 start-1/4 size-72 brand-glow blur-2xl animate-floaty"></div>
+        <div class="pointer-events-none absolute -bottom-24 end-10 size-64 violet-glow blur-2xl animate-floaty-slow"></div>
+
+        <div class="relative z-10 px-6 sm:px-10 lg:px-14 py-12 sm:py-16 text-center">
+          <nav class="flex items-center justify-center gap-2 text-[11px] text-gray-500">
+            <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+            <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+            <span class="text-gray-950 font-bold">تماس با ما</span>
+          </nav>
+
+          <span class="mt-6 inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 text-[11px] text-gray-600 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+            <span class="relative flex size-2">
+              <span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping-ring"></span>
+              <span class="relative size-2 rounded-full bg-emerald-500"></span>
+            </span>
+            همین حالا آنلاین هستیم
+          </span>
+
+          <h1 class="mt-5 text-[28px] sm:text-[42px] lg:text-[50px] leading-[1.55] font-black text-gray-950">
+            بیایید درباره پروژه شما
+            <span class="relative inline-block">
+              <span class="relative z-10 text-brand">حرف بزنیم</span>
+              <span class="absolute inset-x-0 bottom-1 h-3 bg-brand/15 rounded-full"></span>
+            </span>
+          </h1>
+
+          <p class="mt-6 mx-auto max-w-[580px] text-sm sm:text-[15px] leading-9 text-gray-600">
+            فرقی نمی‌کند یک ایده خام دارید یا یک پروژه نیمه‌تمام؛ پیام بگذارید،
+            کمتر از یک روز کاری پاسخ می‌دهیم. مشاوره اولیه کاملاً رایگان است.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <a href="#contact-form" class="btn-primary">
+              ارسال پیام
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </a>
+            <a href="tel:+982191001000" class="btn-ghost">
+              <i class="fa-solid fa-phone text-xs"></i>
+              تماس تلفنی
+            </a>
+            <a href="#faq" class="btn-ghost">
+              <i class="fa-regular fa-circle-question text-xs"></i>
+              سوالات متداول
+            </a>
+          </div>
+
+          <!-- response promise -->
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[11px] text-gray-500">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-bolt text-brand"></i>
+              میانگین پاسخ‌گویی: ۴ ساعت
+            </span>
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-lock text-brand"></i>
+              اطلاعات شما محرمانه می‌ماند
+            </span>
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-comments text-brand"></i>
+              مشاوره اولیه رایگان
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT CHANNELS ============ -->
+    <section class="container-page mt-6 sm:mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <template x-for="channel in channels" :key="channel.title">
+          <a
+            :href="channel.href"
+            class="group relative overflow-hidden rounded-[28px] bg-white border border-gray-100 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card"
+          >
+            <span
+              class="absolute -top-12 -end-12 size-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+              :class="channel.glow"
+            ></span>
+
+            <div class="relative z-10">
+              <span class="icon-tile" :class="channel.tile">
+                <i class="fa-solid" :class="channel.icon"></i>
+              </span>
+
+              <h3 class="mt-5 text-sm font-black text-gray-950" x-text="channel.title"></h3>
+              <p class="mt-2 text-[13px] font-bold text-gray-700" dir="auto" x-text="channel.value"></p>
+              <p class="mt-2 text-[11px] leading-6 text-gray-400" x-text="channel.note"></p>
+
+              <span class="mt-4 inline-flex items-center gap-2 text-[11px] font-bold text-gray-300 group-hover:text-brand transition">
+                <span x-text="channel.action"></span>
+                <i class="fa-solid fa-arrow-left text-[9px]"></i>
+              </span>
+            </div>
+          </a>
+        </template>
+      </div>
+    </section>
+
+    <!-- ============ FORM + SIDEBAR ============ -->
+    <section id="contact-form" class="container-page mt-16 sm:mt-24 scroll-mt-24">
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
+
+        <!-- ---------- FORM ---------- -->
+        <div class="xl:col-span-8">
+          <div class="card-box p-5 sm:p-8 relative overflow-hidden">
+            <span class="pointer-events-none absolute -top-24 -end-24 size-64 brand-glow blur-3xl opacity-60"></span>
+
+            <!-- success state -->
+            <div
+              x-show="sent"
+              x-transition
+              class="relative z-10 py-10 text-center"
+              style="display:none"
+            >
+              <span class="mx-auto size-20 rounded-[28px] bg-emerald-50 text-emerald-500 flex items-center justify-center text-3xl animate-pop">
+                <i class="fa-solid fa-check"></i>
+              </span>
+
+              <h2 class="mt-6 text-xl sm:text-2xl font-black text-gray-950">پیام شما ثبت شد</h2>
+              <p class="mt-3 mx-auto max-w-[420px] text-sm leading-8 text-gray-500">
+                ممنون که وقت گذاشتید. کد پیگیری شما
+                <span class="font-black text-gray-950" x-text="ticketId"></span>
+                است و تیم ما حداکثر تا یک روز کاری با شما تماس می‌گیرد.
+              </p>
+
+              <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <button type="button" @click="resetForm()" class="btn-ghost">
+                  <i class="fa-solid fa-rotate-right text-xs"></i>
+                  ارسال پیام جدید
+                </button>
+                <a href="index-1.html#latest" class="btn-primary">
+                  خواندن مقالات
+                  <i class="fa-solid fa-arrow-left text-xs"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- form -->
+            <form
+              x-show="!sent"
+              @submit.prevent="submitForm()"
+              novalidate
+              class="relative z-10"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                  <p class="eyebrow">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    فرم تماس
+                  </p>
+                  <h2 class="mt-4 text-xl sm:text-2xl font-black text-gray-950">
+                    پیام خود را بنویسید
+                  </h2>
+                </div>
+
+                <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-100 px-4 py-2 text-[11px] text-gray-500 w-max">
+                  <i class="fa-solid fa-clock text-brand"></i>
+                  پاسخ در کمتر از ۲۴ ساعت
+                </span>
+              </div>
+
+              <!-- department -->
+              <div class="mt-8">
+                <p class="field-label">موضوع پیام شما چیست؟</p>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  <template x-for="dept in departments" :key="dept.value">
+                    <label
+                      class="relative cursor-pointer rounded-2xl border p-4 text-center transition"
+                      :class="form.department === dept.value
+                        ? 'border-brand/40 bg-brand/5 shadow-[0_10px_30px_rgba(239,75,75,0.10)]'
+                        : 'border-gray-100 bg-gray-50 hover:border-brand/20'"
+                    >
+                      <input type="radio" name="department" class="sr-only" :value="dept.value" x-model="form.department" />
+
+                      <span
+                        class="mx-auto size-11 rounded-2xl flex items-center justify-center transition"
+                        :class="form.department === dept.value ? 'bg-brand text-white' : 'bg-white text-gray-400 border border-gray-100'"
+                      >
+                        <i class="fa-solid" :class="dept.icon"></i>
+                      </span>
+
+                      <span class="mt-3 block text-xs font-bold text-gray-800" x-text="dept.label"></span>
+
+                      <span
+                        x-show="form.department === dept.value"
+                        class="absolute top-3 end-3 size-5 rounded-full bg-brand text-white flex items-center justify-center"
+                        style="display:none"
+                      >
+                        <i class="fa-solid fa-check text-[9px]"></i>
+                      </span>
+                    </label>
+                  </template>
+                </div>
+              </div>
+
+              <!-- fields -->
+              <div class="mt-7 grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="name" class="field-label">
+                    نام و نام خانوادگی <span class="text-brand">*</span>
+                  </label>
+                  <div class="relative">
+                    <input
+                      id="name"
+                      type="text"
+                      x-model="form.name"
+                      @input="clearError('name')"
+                      placeholder="مثلاً علی رضایی"
+                      class="comment-input ps-11"
+                      :class="errors.name ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                    />
+                    <i class="fa-regular fa-user absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  </div>
+                  <p x-show="errors.name" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span x-text="errors.name"></span>
+                  </p>
+                </div>
+
+                <div>
+                  <label for="email" class="field-label">
+                    ایمیل <span class="text-brand">*</span>
+                  </label>
+                  <div class="relative">
+                    <input
+                      id="email"
+                      type="email"
+                      x-model="form.email"
+                      @input="clearError('email')"
+                      placeholder="example@gmail.com"
+                      class="comment-input ps-11 text-end"
+                      dir="ltr"
+                      :class="errors.email ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                    />
+                    <i class="fa-regular fa-envelope absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  </div>
+                  <p x-show="errors.email" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span x-text="errors.email"></span>
+                  </p>
+                </div>
+
+                <div>
+                  <label for="phone" class="field-label">شماره تماس</label>
+                  <div class="relative">
+                    <input
+                      id="phone"
+                      type="tel"
+                      x-model="form.phone"
+                      placeholder="۰۹۱۲۰۰۰۰۰۰۰"
+                      class="comment-input ps-11"
+                    />
+                    <i class="fa-solid fa-phone absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  </div>
+                  <p class="field-hint">اختیاری — برای هماهنگی سریع‌تر جلسه</p>
+                </div>
+
+                <div>
+                  <label for="budget" class="field-label">بودجه تقریبی پروژه</label>
+                  <div class="relative">
+                    <select
+                      id="budget"
+                      x-model="form.budget"
+                      class="comment-input ps-11 appearance-none cursor-pointer"
+                    >
+                      <option value="">انتخاب کنید</option>
+                      <option value="a">زیر ۲۰ میلیون تومان</option>
+                      <option value="b">۲۰ تا ۵۰ میلیون تومان</option>
+                      <option value="c">۵۰ تا ۱۲۰ میلیون تومان</option>
+                      <option value="d">بیش از ۱۲۰ میلیون تومان</option>
+                      <option value="e">هنوز مشخص نیست</option>
+                    </select>
+                    <i class="fa-solid fa-wallet absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                    <i class="fa-solid fa-chevron-down absolute end-4 top-1/2 -translate-y-1/2 text-gray-300 text-[10px] pointer-events-none"></i>
+                  </div>
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="subject" class="field-label">
+                    عنوان پیام <span class="text-brand">*</span>
+                  </label>
+                  <div class="relative">
+                    <input
+                      id="subject"
+                      type="text"
+                      x-model="form.subject"
+                      @input="clearError('subject')"
+                      placeholder="در یک جمله کوتاه بگویید موضوع چیست"
+                      class="comment-input ps-11"
+                      :class="errors.subject ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                    />
+                    <i class="fa-regular fa-pen-to-square absolute start-4 top-1/2 -translate-y-1/2 text-gray-300 text-xs"></i>
+                  </div>
+                  <p x-show="errors.subject" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span x-text="errors.subject"></span>
+                  </p>
+                </div>
+
+                <div class="md:col-span-2">
+                  <div class="flex items-center justify-between">
+                    <label for="message" class="field-label">
+                      متن پیام <span class="text-brand">*</span>
+                    </label>
+                    <span
+                      class="text-[11px]"
+                      :class="form.message.length > 900 ? 'text-brand font-bold' : 'text-gray-400'"
+                    >
+                      <span x-text="toFa(form.message.length)"></span> / <span x-text="toFa(1000)"></span>
+                    </span>
+                  </div>
+
+                  <textarea
+                    id="message"
+                    x-model="form.message"
+                    @input="clearError('message')"
+                    maxlength="1000"
+                    placeholder="کمی درباره پروژه، مخاطب و زمان‌بندی مورد نظرتان بنویسید..."
+                    class="comment-textarea"
+                    :class="errors.message ? '!border-brand/60 !ring-4 !ring-brand/10' : ''"
+                  ></textarea>
+
+                  <p x-show="errors.message" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span x-text="errors.message"></span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- attachments -->
+              <div class="mt-8">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div>
+                    <h3 class="text-base font-black text-gray-950">فایل ضمیمه</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                      بریف، طرح اولیه یا هر فایلی که به درک بهتر پروژه کمک می‌کند.
+                    </p>
+                  </div>
+
+                  <span class="rounded-full bg-brand/10 text-brand px-4 py-2 text-[11px] font-bold">
+                    حداکثر ۴ فایل
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept="image/*" multiple @change="handleFiles($event, 'image')" />
+                    <div class="size-12 mx-auto rounded-2xl bg-pink-50 text-pink-500 flex items-center justify-center">
+                      <i class="fa-regular fa-image text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">تصویر</p>
+                    <p class="mt-1 text-[11px] text-gray-500">PNG / JPG</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept=".pdf,.doc,.docx" multiple @change="handleFiles($event, 'doc')" />
+                    <div class="size-12 mx-auto rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center">
+                      <i class="fa-regular fa-file-lines text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">سند</p>
+                    <p class="mt-1 text-[11px] text-gray-500">PDF / DOC</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept="audio/*" multiple @change="handleFiles($event, 'audio')" />
+                    <div class="size-12 mx-auto rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                      <i class="fa-solid fa-microphone-lines text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">وویس</p>
+                    <p class="mt-1 text-[11px] text-gray-500">MP3 / M4A</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" multiple @change="handleFiles($event, 'file')" />
+                    <div class="size-12 mx-auto rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center">
+                      <i class="fa-solid fa-paperclip text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">سایر</p>
+                    <p class="mt-1 text-[11px] text-gray-500">ZIP / FIG</p>
+                  </label>
+                </div>
+
+                <!-- preview -->
+                <div class="mt-5" x-show="uploads.length" style="display:none">
+                  <div class="rounded-[28px] border border-gray-100 bg-gray-50 p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                      <h4 class="text-sm font-black text-gray-900">
+                        فایل‌های انتخاب‌شده
+                        <span class="text-gray-400 font-normal">(<span x-text="toFa(uploads.length)"></span>)</span>
+                      </h4>
+                      <button type="button" @click="uploads = []" class="text-xs text-brand hover:text-brand-dark">
+                        حذف همه
+                      </button>
+                    </div>
+
+                    <div class="space-y-3">
+                      <template x-for="(file, index) in uploads" :key="index">
+                        <div class="rounded-2xl bg-white border border-gray-100 p-3 flex items-center gap-3">
+                          <div
+                            class="size-12 rounded-2xl flex items-center justify-center shrink-0"
+                            :class="file.type === 'image' ? 'bg-pink-50 text-pink-500' :
+                                    file.type === 'doc'   ? 'bg-blue-50 text-blue-500' :
+                                    file.type === 'audio' ? 'bg-emerald-50 text-emerald-500' :
+                                                            'bg-amber-50 text-amber-500'"
+                          >
+                            <i
+                              class="fa-solid"
+                              :class="file.type === 'image' ? 'fa-image' :
+                                      file.type === 'doc'   ? 'fa-file-lines' :
+                                      file.type === 'audio' ? 'fa-wave-square' :
+                                                              'fa-file'"
+                            ></i>
+                          </div>
+
+                          <div class="min-w-0 flex-1">
+                            <p class="text-sm font-bold text-gray-900 truncate" x-text="file.name"></p>
+                            <p class="text-[11px] text-gray-400 mt-1" x-text="file.size"></p>
+                          </div>
+
+                          <button
+                            type="button"
+                            @click="uploads.splice(index, 1)"
+                            class="size-9 rounded-full text-gray-400 hover:bg-brand/10 hover:text-brand transition"
+                            aria-label="حذف فایل"
+                          >
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                          </button>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- consent -->
+              <label
+                class="mt-7 flex items-start gap-3 rounded-2xl border p-4 cursor-pointer transition"
+                :class="errors.consent ? 'border-brand/50 bg-brand/5' : 'border-gray-100 bg-gray-50'"
+              >
+                <input type="checkbox" x-model="form.consent" @change="clearError('consent')" class="mt-1 accent-red-500 size-4" />
+                <div>
+                  <p class="text-sm font-bold text-gray-900">با قوانین و حریم خصوصی موافقم</p>
+                  <p class="text-xs leading-6 text-gray-500 mt-1">
+                    اطلاعات شما فقط برای پاسخ به همین درخواست استفاده می‌شود و در اختیار هیچ شخص ثالثی قرار نمی‌گیرد.
+                  </p>
+                  <p x-show="errors.consent" class="field-error" style="display:none">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span x-text="errors.consent"></span>
+                  </p>
+                </div>
+              </label>
+
+              <!-- actions -->
+              <div class="mt-7 flex flex-wrap items-center gap-3">
+                <button type="submit" class="btn-primary" :disabled="sending" :class="sending ? 'opacity-70 pointer-events-none' : ''">
+                  <template x-if="!sending">
+                    <span class="inline-flex items-center gap-2">
+                      ارسال پیام
+                      <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </span>
+                  </template>
+                  <template x-if="sending">
+                    <span class="inline-flex items-center gap-2">
+                      <i class="fa-solid fa-circle-notch fa-spin text-xs"></i>
+                      در حال ارسال...
+                    </span>
+                  </template>
+                </button>
+
+                <button type="button" @click="resetForm()" class="btn-ghost">
+                  پاک کردن فرم
+                </button>
+
+                <p class="text-[11px] text-gray-400 sm:ms-auto flex items-center gap-2">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  ارسال این فرم هیچ تعهدی برای شما ایجاد نمی‌کند.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ---------- SIDEBAR ---------- -->
+        <aside class="xl:col-span-4 space-y-5 xl:sticky xl:top-[92px]">
+          <!-- map -->
+          <div class="sidebar-box !p-0 overflow-hidden">
+            <div class="relative h-[240px] map-surface">
+              <!-- fake roads -->
+              <span class="absolute inset-x-0 top-1/3 h-3 bg-white/80 -rotate-6"></span>
+              <span class="absolute inset-y-0 start-1/3 w-3 bg-white/80 rotate-3"></span>
+              <span class="absolute bottom-6 inset-x-8 h-2 bg-white/60 rounded-full"></span>
+
+              <!-- pin -->
+              <div class="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-full">
+                <span class="relative flex items-center justify-center">
+                  <span class="absolute size-14 rounded-full bg-brand/30 animate-ping-ring"></span>
+                  <span class="relative size-11 rounded-full bg-brand text-white flex items-center justify-center shadow-lg shadow-brand/30">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </span>
+                </span>
+              </div>
+
+              <div class="absolute bottom-4 inset-x-4 glass-card rounded-2xl px-4 py-3 flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <p class="text-xs font-black text-gray-950 truncate">دفتر مرکزی تهران</p>
+                  <p class="text-[10px] text-gray-500 mt-0.5 truncate">سعادت‌آباد، بلوار فرهنگ</p>
+                </div>
+                <a
+                  href="#"
+                  class="shrink-0 h-9 px-3 rounded-xl bg-gray-950 text-white text-[11px] font-bold flex items-center gap-2 hover:bg-brand transition"
+                >
+                  <i class="fa-solid fa-diamond-turn-right text-[10px]"></i>
+                  مسیریابی
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- working hours -->
+          <div class="sidebar-box">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-black text-gray-950">ساعات کاری</h3>
+              <span class="icon-tile size-10 rounded-2xl bg-brand/10 text-brand text-sm">
+                <i class="fa-regular fa-clock"></i>
+              </span>
+            </div>
+
+            <div class="mt-5 space-y-2">
+              <template x-for="day in workingHours" :key="day.label">
+                <div
+                  class="flex items-center justify-between rounded-2xl px-4 py-3 text-xs"
+                  :class="day.closed ? 'bg-gray-50 text-gray-400' : 'bg-gray-50 text-gray-700'"
+                >
+                  <span class="font-bold" x-text="day.label"></span>
+                  <span :class="day.closed ? '' : 'text-gray-950 font-bold'" x-text="day.time"></span>
+                </div>
+              </template>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 flex items-center gap-3">
+              <span class="relative flex size-2.5 shrink-0">
+                <span class="absolute inset-0 rounded-full bg-emerald-400 animate-ping-ring"></span>
+                <span class="relative size-2.5 rounded-full bg-emerald-500"></span>
+              </span>
+              <p class="text-[11px] leading-6 text-emerald-700">
+                پشتیبانی آنلاین در تلگرام، خارج از ساعات اداری هم فعال است.
+              </p>
+            </div>
+          </div>
+
+          <!-- social -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-a p-5">
+              <span class="size-14 rounded-2xl bg-white/80 text-brand flex items-center justify-center">
+                <i class="fa-solid fa-share-nodes text-xl"></i>
+              </span>
+
+              <h3 class="mt-4 text-lg font-black text-gray-950">ما را دنبال کنید</h3>
+              <p class="mt-2 text-sm leading-8 text-gray-700">
+                نکات طراحی، پشت‌صحنه پروژه‌ها و مقاله‌های تازه را آنجا زودتر منتشر می‌کنیم.
+              </p>
+
+              <div class="mt-5 grid grid-cols-2 gap-2">
+                <template x-for="social in socials" :key="social.label">
+                  <a
+                    :href="social.href"
+                    class="flex items-center gap-2 rounded-2xl bg-white/80 backdrop-blur-sm px-3 py-3 text-xs font-bold text-gray-800 hover:bg-white transition"
+                  >
+                    <i class="fa-brands" :class="social.icon"></i>
+                    <span x-text="social.label"></span>
+                  </a>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- quick help -->
+          <div class="sidebar-box">
+            <h3 class="text-base font-black text-gray-950">سریع‌ترین راه‌ها</h3>
+
+            <div class="mt-5 space-y-3">
+              <a href="tel:+982191001000" class="flex items-center gap-3 rounded-2xl bg-gray-50 px-4 py-3 hover:bg-brand/5 transition group">
+                <span class="size-10 rounded-xl bg-white border border-gray-100 text-brand flex items-center justify-center">
+                  <i class="fa-solid fa-phone text-xs"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-xs font-bold text-gray-800">تماس مستقیم</p>
+                  <p class="text-[10px] text-gray-400 mt-0.5">۰۲۱-۹۱۰۰۱۰۰۰ داخلی ۲</p>
+                </div>
+                <i class="fa-solid fa-angle-left text-[11px] text-gray-300 ms-auto group-hover:text-brand transition"></i>
+              </a>
+
+              <a href="mailto:hello@sevi.ir" class="flex items-center gap-3 rounded-2xl bg-gray-50 px-4 py-3 hover:bg-brand/5 transition group">
+                <span class="size-10 rounded-xl bg-white border border-gray-100 text-brand flex items-center justify-center">
+                  <i class="fa-regular fa-envelope text-xs"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-xs font-bold text-gray-800">ایمیل تیم فروش</p>
+                  <p class="text-[10px] text-gray-400 mt-0.5 text-end" dir="ltr">hello@sevi.ir</p>
+                </div>
+                <i class="fa-solid fa-angle-left text-[11px] text-gray-300 ms-auto group-hover:text-brand transition"></i>
+              </a>
+
+              <a href="#faq" class="flex items-center gap-3 rounded-2xl bg-gray-50 px-4 py-3 hover:bg-brand/5 transition group">
+                <span class="size-10 rounded-xl bg-white border border-gray-100 text-brand flex items-center justify-center">
+                  <i class="fa-regular fa-circle-question text-xs"></i>
+                </span>
+                <div class="min-w-0">
+                  <p class="text-xs font-bold text-gray-800">سوالات متداول</p>
+                  <p class="text-[10px] text-gray-400 mt-0.5">شاید جوابتان اینجا باشد</p>
+                </div>
+                <i class="fa-solid fa-angle-left text-[11px] text-gray-300 ms-auto group-hover:text-brand transition"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ OFFICES ============ -->
+    <section class="mt-16 sm:mt-24 bg-[#fafafa] py-14 sm:py-20 border-y border-gray-100">
+      <div class="container-page">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+          <div>
+            <p class="eyebrow">
+              <i class="fa-solid fa-building"></i>
+              دفاتر ما
+            </p>
+            <h2 class="mt-4 section-title">هر جا که باشید، نزدیکیم</h2>
+            <p class="section-sub">
+              سه دفتر فعال و یک تیم دورکار؛ جلسات حضوری با هماهنگی قبلی برگزار می‌شود.
+            </p>
+          </div>
+
+          <a href="#contact-form" class="hidden sm:inline-flex btn-ghost shrink-0">
+            هماهنگی جلسه
+            <i class="fa-solid fa-calendar-check text-xs"></i>
+          </a>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <template x-for="office in offices" :key="office.city">
+            <article class="group rounded-[28px] bg-white border border-gray-100 overflow-hidden shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+              <div class="relative h-[150px] overflow-hidden" :class="office.bg">
+                <div class="absolute inset-0 dot-grid opacity-25"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent"></div>
+
+                <div class="absolute bottom-4 start-5 flex items-center gap-2">
+                  <span class="size-9 rounded-xl bg-white/90 backdrop-blur text-brand flex items-center justify-center">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                  </span>
+                  <h3 class="text-white font-black text-base" x-text="office.city"></h3>
+                </div>
+
+                <span
+                  x-show="office.main"
+                  class="absolute top-4 end-4 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-[10px] font-bold text-gray-800"
+                  style="display:none"
+                >
+                  دفتر مرکزی
+                </span>
+              </div>
+
+              <div class="p-5">
+                <p class="text-xs leading-7 text-gray-500" x-text="office.address"></p>
+
+                <div class="mt-4 space-y-2">
+                  <div class="flex items-center gap-2 text-[11px] text-gray-600">
+                    <i class="fa-solid fa-phone text-gray-300 w-4 text-center"></i>
+                    <span x-text="office.phone"></span>
+                  </div>
+                  <div class="flex items-center gap-2 text-[11px] text-gray-600">
+                    <i class="fa-regular fa-envelope text-gray-300 w-4 text-center"></i>
+                    <span dir="ltr" x-text="office.email"></span>
+                  </div>
+                </div>
+
+                <a
+                  href="#"
+                  class="mt-5 h-11 rounded-2xl bg-gray-50 border border-gray-100 text-xs font-bold text-gray-700 flex items-center justify-center gap-2 group-hover:bg-brand group-hover:text-white group-hover:border-brand transition"
+                >
+                  مشاهده روی نقشه
+                  <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                </a>
+              </div>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section id="faq" class="container-page mt-16 sm:mt-24 scroll-mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <p class="eyebrow">
+            <i class="fa-regular fa-circle-question"></i>
+            سوالات متداول
+          </p>
+          <h2 class="mt-4 section-title">قبل از تماس، شاید اینجا جواب بگیرید</h2>
+          <p class="section-sub">
+            پرتکرارترین سوال‌هایی که در جلسات اول از ما پرسیده می‌شود.
+          </p>
+
+          <div class="mt-8 rounded-[28px] bg-gray-950 p-6 text-white relative overflow-hidden">
+            <span class="absolute -bottom-10 -end-10 size-40 brand-glow blur-2xl"></span>
+
+            <div class="relative z-10">
+              <span class="size-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                <i class="fa-solid fa-headset"></i>
+              </span>
+              <h3 class="mt-4 text-base font-black">جواب سوالتان را پیدا نکردید؟</h3>
+              <p class="mt-2 text-xs leading-7 text-white/60">
+                یک پیام کوتاه بفرستید؛ همان روز پاسخ می‌دهیم.
+              </p>
+              <a href="#contact-form" class="mt-5 h-11 rounded-2xl bg-white text-gray-950 text-xs font-bold flex items-center justify-center gap-2 hover:bg-brand hover:text-white transition">
+                پرسیدن سوال
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 space-y-3">
+          <template x-for="(item, index) in faqs" :key="index">
+            <div
+              class="rounded-[24px] border bg-white overflow-hidden transition"
+              :class="openFaq === index
+                ? 'border-brand/25 shadow-[0_20px_50px_rgba(15,23,42,0.07)]'
+                : 'border-gray-100 hover:border-gray-200'"
+            >
+              <button
+                type="button"
+                @click="openFaq = openFaq === index ? null : index"
+                class="w-full flex items-center gap-4 p-5 text-start"
+                :aria-expanded="openFaq === index"
+              >
+                <span
+                  class="size-9 rounded-xl flex items-center justify-center shrink-0 transition"
+                  :class="openFaq === index ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400'"
+                >
+                  <i class="fa-solid text-[11px]" :class="openFaq === index ? 'fa-minus' : 'fa-plus'"></i>
+                </span>
+
+                <span
+                  class="flex-1 text-sm font-bold transition"
+                  :class="openFaq === index ? 'text-brand' : 'text-gray-950'"
+                  x-text="item.q"
+                ></span>
+              </button>
+
+              <div
+                class="grid transition-all duration-300 ease-out"
+                :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+              >
+                <div class="overflow-hidden">
+                  <p class="px-5 pb-5 ps-[72px] text-xs leading-8 text-gray-500" x-text="item.a"></p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER CTA ============ -->
+    <section class="container-page mt-16 sm:mt-24 mb-16 sm:mb-20">
+      <div class="relative overflow-hidden rounded-[32px] sm:rounded-[38px] gradient-c">
+        <div class="absolute inset-0 dot-grid opacity-20"></div>
+        <div class="pointer-events-none absolute -top-16 -end-10 size-72 bg-white/25 blur-3xl rounded-full animate-floaty"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 p-8 sm:p-12 lg:p-14 text-white">
+          <div class="lg:col-span-7">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur border border-white/25 px-4 py-2 text-[11px] font-bold">
+              <i class="fa-regular fa-envelope-open"></i>
+              خبرنامه هفتگی SEVI
+            </span>
+
+            <h2 class="mt-5 text-2xl sm:text-[32px] leading-[1.6] font-black">
+              هفته‌ای یک ایمیل، پر از نکته‌های کاربردی طراحی
+            </h2>
+
+            <p class="mt-4 max-w-[540px] text-sm leading-8 text-white/85">
+              بدون تبلیغات و بدون اسپم. هر زمان خواستید با یک کلیک لغو عضویت کنید.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 w-full">
+            <div class="rounded-[26px] bg-white/15 backdrop-blur-md border border-white/20 p-4 sm:p-5">
+              <div class="relative">
+                <input
+                  type="email"
+                  x-model="newsletterEmail"
+                  placeholder="ایمیل شما"
+                  dir="ltr"
+                  class="w-full h-12 rounded-2xl bg-white/90 border border-white/50 ps-4 pe-11 text-sm text-gray-800 outline-none focus:ring-4 focus:ring-white/25 transition placeholder:text-gray-400"
+                />
+                <i class="fa-regular fa-envelope absolute end-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              </div>
+
+              <button
+                type="button"
+                @click="subscribe()"
+                class="mt-3 w-full h-12 rounded-2xl bg-gray-950 text-white text-sm font-bold hover:bg-brand transition flex items-center justify-center gap-2"
+              >
+                <template x-if="!subscribed">
+                  <span class="inline-flex items-center gap-2">
+                    عضویت رایگان
+                    <i class="fa-solid fa-arrow-left text-xs"></i>
+                  </span>
+                </template>
+                <template x-if="subscribed">
+                  <span class="inline-flex items-center gap-2">
+                    <i class="fa-solid fa-check text-xs"></i>
+                    عضو شدید!
+                  </span>
+                </template>
+              </button>
+
+              <p class="mt-3 text-[11px] text-white/75 text-center">
+                بیش از ۴٬۲۰۰ طراح و تولیدکننده محتوا عضو هستند.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-100 py-8">
+    <div class="container-page flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">
+        © ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.
+      </p>
+
+      <div class="flex items-center gap-2">
+        <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div
+    x-show="toast"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-y-4"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-end="opacity-0 translate-y-4"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] glass-card rounded-2xl px-5 py-4 flex items-center gap-3 max-w-[90vw]"
+    style="display:none"
+  >
+    <span class="size-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-check text-xs"></i>
+    </span>
+    <p class="text-xs font-bold text-gray-800" x-text="toast"></p>
+  </div>
+
+  <!-- ===================== FLOATING: demo switcher ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function contactPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-brand', current: true }
+        ],
+        openFaq: 0,
+        sending: false,
+        sent: false,
+        ticketId: '',
+        toast: '',
+        toastTimer: null,
+        uploads: [],
+        newsletterEmail: '',
+        subscribed: false,
+
+        toFa: toFaDigits,
+
+        form: {
+          department: 'project',
+          name: '',
+          email: '',
+          phone: '',
+          budget: '',
+          subject: '',
+          message: '',
+          consent: false
+        },
+
+        errors: {},
+
+        departments: [
+          { value: 'project', label: 'پروژه جدید', icon: 'fa-rocket' },
+          { value: 'support', label: 'پشتیبانی', icon: 'fa-life-ring' },
+          { value: 'career', label: 'همکاری', icon: 'fa-user-plus' },
+          { value: 'other', label: 'سایر موارد', icon: 'fa-comment-dots' }
+        ],
+
+        channels: [
+          {
+            title: 'تماس تلفنی',
+            value: '۰۲۱-۹۱۰۰۱۰۰۰',
+            note: 'شنبه تا چهارشنبه، ۹ تا ۱۸',
+            action: 'تماس بگیرید',
+            href: 'tel:+982191001000',
+            icon: 'fa-phone',
+            tile: 'bg-brand/10 text-brand',
+            glow: 'bg-brand/25'
+          },
+          {
+            title: 'ایمیل',
+            value: 'hello@sevi.ir',
+            note: 'پاسخ در کمتر از ۲۴ ساعت کاری',
+            action: 'ارسال ایمیل',
+            href: 'mailto:hello@sevi.ir',
+            icon: 'fa-envelope',
+            tile: 'bg-blue-50 text-blue-500',
+            glow: 'bg-blue-300/40'
+          },
+          {
+            title: 'پشتیبانی آنلاین',
+            value: '@sevi_support',
+            note: 'تلگرام، هر روز تا ۲۲ شب',
+            action: 'شروع گفتگو',
+            href: '#',
+            icon: 'fa-comments',
+            tile: 'bg-emerald-50 text-emerald-500',
+            glow: 'bg-emerald-300/40'
+          },
+          {
+            title: 'دفتر مرکزی',
+            value: 'تهران، سعادت‌آباد',
+            note: 'بلوار فرهنگ، پلاک ۱۲۴، واحد ۷',
+            action: 'مسیریابی',
+            href: '#',
+            icon: 'fa-location-dot',
+            tile: 'bg-violet-50 text-violet-500',
+            glow: 'bg-violet-300/40'
+          }
+        ],
+
+        workingHours: [
+          { label: 'شنبه تا چهارشنبه', time: '۹:۰۰ — ۱۸:۰۰', closed: false },
+          { label: 'پنجشنبه', time: '۹:۰۰ — ۱۳:۰۰', closed: false },
+          { label: 'جمعه و تعطیلات', time: 'تعطیل', closed: true }
+        ],
+
+        socials: [
+          { label: 'اینستاگرام', icon: 'fa-instagram', href: '#' },
+          { label: 'تلگرام', icon: 'fa-telegram', href: '#' },
+          { label: 'لینکدین', icon: 'fa-linkedin-in', href: '#' },
+          { label: 'ایکس', icon: 'fa-x-twitter', href: '#' }
+        ],
+
+        offices: [
+          {
+            city: 'تهران',
+            main: true,
+            address: 'سعادت‌آباد، بلوار فرهنگ، خیابان دوم، پلاک ۱۲۴، طبقه سوم، واحد ۷',
+            phone: '۰۲۱-۹۱۰۰۱۰۰۰',
+            email: 'tehran@sevi.ir',
+            bg: 'gradient-thumb-1'
+          },
+          {
+            city: 'اصفهان',
+            main: false,
+            address: 'خیابان شیخ صدوق شمالی، مجتمع اداری نگین، طبقه پنجم، واحد ۵۱۲',
+            phone: '۰۳۱-۳۶۶۰۰۱۰۰',
+            email: 'isfahan@sevi.ir',
+            bg: 'gradient-thumb-6'
+          },
+          {
+            city: 'شیراز',
+            main: false,
+            address: 'بلوار زند، ساختمان پارس، طبقه دوم، واحد ۲۰۴',
+            phone: '۰۷۱-۳۲۳۰۰۲۰۰',
+            email: 'shiraz@sevi.ir',
+            bg: 'gradient-thumb-4'
+          }
+        ],
+
+        faqs: [
+          {
+            q: 'یک پروژه معمولاً چقدر طول می‌کشد؟',
+            a: 'بستگی به دامنه کار دارد. یک صفحه فرود بین ۷ تا ۱۰ روز کاری، یک وبلاگ کامل حدود ۳ هفته و یک پروژه فروشگاهی بین ۴ تا ۸ هفته زمان می‌برد. زمان‌بندی دقیق را بعد از جلسه اول و بررسی نیازها به‌صورت مکتوب اعلام می‌کنیم.'
+          },
+          {
+            q: 'هزینه پروژه چطور محاسبه می‌شود؟',
+            a: 'ما بر اساس دامنه کار قیمت می‌دهیم، نه ساعتی. بعد از جلسه کشف، یک پیشنهاد مکتوب شامل مراحل، خروجی هر مرحله و هزینه ثابت دریافت می‌کنید. پرداخت معمولاً در سه مرحله انجام می‌شود و هیچ هزینه پنهانی وجود ندارد.'
+          },
+          {
+            q: 'آیا فقط طراحی هم انجام می‌دهید؟',
+            a: 'بله. اگر تیم توسعه داخلی دارید، می‌توانیم فقط فایل طراحی به همراه سیستم طراحی، مستندات کامپوننت‌ها و راهنمای راست‌چین‌سازی را تحویل دهیم. در این حالت جلسات هماهنگی با تیم شما هم بخشی از کار است.'
+          },
+          {
+            q: 'بعد از تحویل، پشتیبانی دارید؟',
+            a: 'سه ماه پشتیبانی رایگان شامل رفع ایرادها، تغییرات جزئی و راهنمایی تیم شما ارائه می‌شود. بعد از آن می‌توانید قرارداد پشتیبانی ماهانه ببندید یا در صورت نیاز موردی درخواست بدهید.'
+          },
+          {
+            q: 'کد پروژه در اختیار ما قرار می‌گیرد؟',
+            a: 'بله، مالکیت کامل کد و طراحی از لحظه تسویه نهایی متعلق به شماست. کد را به‌صورت مستند و تمیز روی مخزن خودتان تحویل می‌دهیم و یک جلسه آموزشی برای تیم فنی شما برگزار می‌کنیم.'
+          },
+          {
+            q: 'با تیم‌های خارج از ایران هم کار می‌کنید؟',
+            a: 'بله. بخش قابل توجهی از پروژه‌های ما به‌صورت دورکاری انجام می‌شود. جلسات را در بازه زمانی مورد توافق برگزار می‌کنیم و ارتباط روزانه از طریق ابزار مورد نظر شما انجام می‌شود.'
+          }
+        ],
+
+        clearError(field) {
+          if (this.errors[field]) {
+            this.errors = { ...this.errors, [field]: '' };
+          }
+        },
+
+        validate() {
+          const errors = {};
+          const email = this.form.email.trim();
+
+          if (this.form.name.trim().length < 3) {
+            errors.name = 'لطفاً نام خود را کامل وارد کنید.';
+          }
+
+          if (!email) {
+            errors.email = 'وارد کردن ایمیل الزامی است.';
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+            errors.email = 'فرمت ایمیل درست به نظر نمی‌رسد.';
+          }
+
+          if (this.form.subject.trim().length < 4) {
+            errors.subject = 'یک عنوان کوتاه برای پیام بنویسید.';
+          }
+
+          if (this.form.message.trim().length < 20) {
+            errors.message = 'متن پیام باید حداقل ۲۰ کاراکتر باشد.';
+          }
+
+          if (!this.form.consent) {
+            errors.consent = 'برای ارسال پیام باید قوانین را بپذیرید.';
+          }
+
+          this.errors = errors;
+          return Object.keys(errors).length === 0;
+        },
+
+        submitForm() {
+          if (!this.validate()) {
+            this.showToast('لطفاً خطاهای مشخص‌شده را برطرف کنید.');
+            this.$nextTick(() => {
+              const firstError = Array.from(document.querySelectorAll('.field-error'))
+                .find(el => el.offsetParent !== null);
+              if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+            return;
+          }
+
+          this.sending = true;
+
+          /* شبیه‌سازی ارسال — اینجا درخواست واقعی به سرور را جایگزین کنید */
+          setTimeout(() => {
+            this.sending = false;
+            this.sent = true;
+            this.ticketId = 'SV-' + toFaDigits(Math.floor(100000 + Math.random() * 899999));
+            this.showToast('پیام شما با موفقیت ارسال شد.');
+
+            const anchor = document.getElementById('contact-form');
+            const top = anchor.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }, 1200);
+        },
+
+        resetForm() {
+          this.form = {
+            department: 'project',
+            name: '',
+            email: '',
+            phone: '',
+            budget: '',
+            subject: '',
+            message: '',
+            consent: false
+          };
+          this.errors = {};
+          this.uploads = [];
+          this.sent = false;
+        },
+
+        handleFiles(event, type) {
+          const files = Array.from(event.target.files || []);
+
+          files.forEach(file => {
+            if (this.uploads.length < 4) {
+              this.uploads.push({
+                name: file.name,
+                type,
+                size: this.formatBytes(file.size)
+              });
+            }
+          });
+
+          if (files.length && this.uploads.length >= 4) {
+            this.showToast('حداکثر ۴ فایل می‌توانید ضمیمه کنید.');
+          }
+
+          event.target.value = '';
+        },
+
+        formatBytes(bytes) {
+          if (bytes === 0) return '۰ بایت';
+          const k = 1024;
+          const sizes = ['بایت', 'کیلوبایت', 'مگابایت', 'گیگابایت'];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return toFaDigits(parseFloat((bytes / Math.pow(k, i)).toFixed(1))) + ' ' + sizes[i];
+        },
+
+        subscribe() {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newsletterEmail.trim())) {
+            this.showToast('برای عضویت، یک ایمیل معتبر وارد کنید.');
+            return;
+          }
+
+          this.subscribed = true;
+          this.showToast('عضویت شما در خبرنامه ثبت شد.');
+        },
+
+        showToast(message) {
+          this.toast = message;
+          clearTimeout(this.toastTimer);
+          this.toastTimer = setTimeout(() => (this.toast = ''), 3500);
+        },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+        }
+      };
+    }
+  </script>
+</body>
+</html>

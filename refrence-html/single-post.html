@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جزئیات مقاله | SEVI Blog</title>
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+<body x-data="singlePostPage()" class="font-estedad selection:bg-brand selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="#" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="#" class="nav-link">خانه</a>
+          <a href="#" class="nav-link">وبلاگ</a>
+          <a href="#" class="nav-link">دسته‌بندی‌ها</a>
+          <a href="#" class="nav-link">نمونه‌کار</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-[280px] relative">
+          <input
+            type="text"
+            placeholder="جستجو در مقالات..."
+            class="w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 ps-10 pe-4 text-xs outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand/30 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn" aria-label="ذخیره">
+            <i class="fa-regular fa-bookmark"></i>
+          </button>
+          <button class="hidden sm:flex icon-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <button class="lg:hidden icon-btn" @click="mobileMenu = true" aria-label="باز کردن منو">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div
+    x-show="mobileMenu"
+    x-transition.opacity
+    class="fixed inset-0 z-[80] bg-black/40 lg:hidden"
+    @click.self="mobileMenu = false"
+  >
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand"></i>
+          </span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="mt-6 relative">
+        <input
+          type="text"
+          placeholder="جستجو..."
+          class="w-full h-12 rounded-2xl bg-gray-50 border border-gray-100 ps-11 pe-4 text-sm outline-none"
+        />
+        <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      </div>
+
+      <nav class="mt-6 space-y-2">
+        <a href="#" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">
+          خانه <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="#" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          وبلاگ <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="#" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          دسته‌بندی‌ها <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          تماس <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+      </nav>
+
+      <div class="mt-8 rounded-3xl bg-gray-50 border border-gray-100 p-4">
+        <p class="text-sm font-bold">راه‌های ارتباطی</p>
+        <div class="mt-4 grid grid-cols-4 gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main class="pb-16">
+    <!-- Hero -->
+    <section class="container-page pt-6 sm:pt-8">
+      <div class="relative overflow-hidden rounded-[32px] min-h-[420px] sm:min-h-[500px] bg-gray-100">
+        <img
+          src="assets/images/hero-laptop.jpg" onerror="this.remove()"
+          alt="post hero"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10"></div>
+
+        <div class="relative z-10 h-full flex items-end">
+          <div class="w-full p-5 sm:p-8 lg:p-10">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+              <span class="meta-chip"><i class="fa-regular fa-folder-open"></i> طراحی رابط کاربری</span>
+              <span class="meta-chip"><i class="fa-regular fa-clock"></i> ۸ دقیقه مطالعه</span>
+              <span class="meta-chip"><i class="fa-regular fa-eye"></i> ۲٫۴k بازدید</span>
+            </div>
+
+            <h1 class="max-w-[900px] text-white text-[28px] sm:text-[38px] lg:text-[48px] leading-[1.7] font-black">
+              طراحی مینیمال در صفحات وبلاگ؛ چطور یک تجربه خواندن تمیز، مدرن و حرفه‌ای بسازیم؟
+            </h1>
+
+            <div class="mt-6 flex flex-wrap items-center gap-5 text-white/90 text-xs sm:text-sm">
+              <div class="flex items-center gap-3">
+                <img
+                  src="assets/images/avatar-maryam.jpg" onerror="this.remove()"
+                  class="size-11 rounded-full object-cover ring-4 ring-white/20"
+                  alt=""
+                />
+                <div>
+                  <p class="font-bold text-white">مریم فراهانی</p>
+                  <p class="text-white/70 text-xs">نویسنده و استراتژیست محتوا</p>
+                </div>
+              </div>
+
+              <span class="hidden sm:block w-px h-8 bg-white/20"></span>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-regular fa-calendar"></i>
+                <span>۲۱ تیر ۱۴۰۵</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <i class="fa-regular fa-comment"></i>
+                <span>۲۸ نظر</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- floating quick actions -->
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
+          <a href="#" class="tag-chip"><i class="fa-solid fa-house"></i> خانه</a>
+          <a href="#" class="tag-chip"><i class="fa-solid fa-newspaper"></i> وبلاگ</a>
+          <a href="#" class="tag-chip"><i class="fa-solid fa-layer-group"></i> طراحی</a>
+          <span class="tag-chip bg-brand text-white border-brand">مقاله فعلی</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="icon-btn" aria-label="افزودن به علاقه‌مندی‌ها"><i class="fa-regular fa-heart"></i></button>
+          <button class="icon-btn" aria-label="ذخیره"><i class="fa-regular fa-bookmark"></i></button>
+          <button class="icon-btn" aria-label="اشتراک‌گذاری"><i class="fa-solid fa-share-nodes"></i></button>
+          <button class="icon-btn" aria-label="کپی نشانی"><i class="fa-solid fa-link"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="container-page mt-8 sm:mt-10">
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 items-start">
+
+        <!-- Main article -->
+        <div class="xl:col-span-8 space-y-7">
+          <!-- Intro card -->
+          <div class="card-box p-5 sm:p-7">
+            <p class="text-[15px] leading-9 text-gray-600">
+              در طراحی وبلاگ‌های مدرن، فقط نوشتن محتوای خوب کافی نیست. نحوه ارائه محتوا،
+              ریتم بصری، فاصله‌گذاری، نوع کارت‌ها، تایپوگرافی، و حتی تعاملات کوچک مثل
+              ذخیره مقاله یا اشتراک‌گذاری، همگی در تجربه کاربر نقش مهمی دارند.
+            </p>
+
+            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <p class="text-[11px] text-gray-400">تاریخ انتشار</p>
+                <p class="mt-2 text-sm font-bold">۲۱ تیر ۱۴۰۵</p>
+              </div>
+              <div class="rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <p class="text-[11px] text-gray-400">زمان مطالعه</p>
+                <p class="mt-2 text-sm font-bold">۸ دقیقه</p>
+              </div>
+              <div class="rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <p class="text-[11px] text-gray-400">دسته‌بندی</p>
+                <p class="mt-2 text-sm font-bold">UI / UX</p>
+              </div>
+              <div class="rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <p class="text-[11px] text-gray-400">بازدید</p>
+                <p class="mt-2 text-sm font-bold">۲۴۵۰+</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TOC mobile -->
+          <div class="xl:hidden card-box p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-black text-gray-950">فهرست مطالب</h3>
+              <button @click="tocMobile = !tocMobile" class="icon-btn size-9" aria-label="کاهش">
+                <i class="fa-solid" :class="tocMobile ? 'fa-minus' : 'fa-plus'"></i>
+              </button>
+            </div>
+
+            <div x-show="tocMobile" x-transition class="mt-4 space-y-2">
+              <template x-for="item in tocItems" :key="item.id">
+                <a :href="'#' + item.id" class="block rounded-2xl bg-gray-50 px-4 py-3 text-sm text-gray-600 hover:text-brand">
+                  <span x-text="item.label"></span>
+                </a>
+              </template>
+            </div>
+          </div>
+
+          <!-- Article -->
+          <article class="card-box p-5 sm:p-7 lg:p-8">
+            <div class="article-content">
+              <h2 id="intro">چرا طراحی مینیمال برای وبلاگ مهم است؟</h2>
+              <p>
+                طراحی مینیمال باعث می‌شود تمرکز اصلی کاربر روی متن و پیام باقی بماند.
+                در چنین ساختاری، عناصر اضافی حذف می‌شوند و هر بخش از صفحه کارکرد مشخصی دارد.
+                این موضوع نه‌تنها خوانایی را بهتر می‌کند، بلکه باعث می‌شود ظاهر سایت حرفه‌ای‌تر
+                و ماندگارتر به نظر برسد.
+              </p>
+
+              <blockquote>
+                مینیمالیسم خوب یعنی حذف شلوغی، نه حذف شخصیت. یک وبلاگ خوب باید هم آرام باشد، هم زنده.
+              </blockquote>
+
+              <h2 id="typography">۱. تایپوگرافی و فاصله‌گذاری</h2>
+              <p>
+                مهم‌ترین بخش در صفحه مقاله، تایپوگرافی است. اندازه عنوان‌ها، فاصله خطوط، رنگ متن،
+                عرض ستون محتوا و حاشیه‌های سفید باید به‌گونه‌ای انتخاب شوند که مطالعه طولانی خسته‌کننده نشود.
+              </p>
+
+              <ul>
+                <li>استفاده از line-height مناسب برای متن‌های طولانی</li>
+                <li>ایجاد فاصله کافی بین پاراگراف‌ها و تیترها</li>
+                <li>کاهش عرض ستون اصلی برای بهبود تمرکز کاربر</li>
+                <li>استفاده از رنگ خاکستری نرم برای متن اصلی</li>
+              </ul>
+
+              <img
+                src="assets/images/office-interior.jpg" onerror="this.remove()"
+                alt="article image"
+              />
+
+              <h2 id="cards">۲. ساختار کارت‌ها و بخش‌های جانبی</h2>
+              <p>
+                سایدبار حرفه‌ای فقط جای تبلیغات نیست؛ بلکه می‌تواند به کاربر کمک کند
+                مقالات مرتبط را پیدا کند، درباره نویسنده بیشتر بداند، خبرنامه را دنبال کند،
+                یا حتی در نظرسنجی و تعاملات سریع شرکت کند.
+              </p>
+
+              <h3 id="widgets">ویجت‌های پیشنهادی برای سایدبار</h3>
+              <ul>
+                <li>فهرست مطالب شناور</li>
+                <li>باکس نویسنده با CTA</li>
+                <li>پست‌های محبوب و پربازدید</li>
+                <li>دسته‌بندی‌ها و تگ‌ها</li>
+                <li>اشتراک خبرنامه</li>
+                <li>پادکست یا صوت مرتبط</li>
+              </ul>
+
+              <h2 id="experience">۳. تجربه کاربری در بخش نظرات</h2>
+              <p>
+                در پروژه‌های مدرن، بخش نظرات دیگر یک فرم ساده نیست. کاربر دوست دارد علاوه بر متن،
+                تصویر نمونه، ویدیوی کوتاه، فایل صوتی یا حتی فایل ضمیمه بفرستد. اگر این قابلیت با طراحی
+                تمیز و واضح ارائه شود، مشارکت کاربران به شکل محسوسی بیشتر خواهد شد.
+              </p>
+
+              <p>
+                برای نمونه، اگر کاربر درباره یک ایراد طراحی نظر می‌دهد، می‌تواند اسکرین‌شات بفرستد.
+                اگر تجربه‌ای درباره استفاده از محصول دارد، می‌تواند فایل صوتی یا ویدیویی ضمیمه کند.
+              </p>
+
+              <h2 id="final">جمع‌بندی</h2>
+              <p>
+                یک صفحه single post حرفه‌ای باید فقط زیبا نباشد؛ باید کاربردی، سریع، خوانا و قابل تعامل باشد.
+                در این نمونه، تمرکز روی طراحی تمیز، سایدبار غنی، فهرست مطالب مفید، و کامنت‌سیستم حرفه‌ای بوده است.
+              </p>
+            </div>
+
+            <!-- post footer -->
+            <div class="mt-10 border-t border-gray-100 pt-6">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex flex-wrap gap-2">
+                  <a href="#" class="tag-chip"># طراحی</a>
+                  <a href="#" class="tag-chip"># وبلاگ</a>
+                  <a href="#" class="tag-chip"># مینیمال</a>
+                  <a href="#" class="tag-chip"># تجربه کاربری</a>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></button>
+                  <button class="icon-btn" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></button>
+                  <button class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></button>
+                  <button class="icon-btn" aria-label="رونوشت"><i class="fa-regular fa-copy"></i></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Author box -->
+          <section class="card-box p-5 sm:p-7">
+            <div class="flex flex-col sm:flex-row gap-5 sm:items-center">
+              <img
+                src="assets/images/avatar-maryam.jpg" onerror="this.remove()"
+                class="size-20 rounded-[24px] object-cover"
+                alt=""
+              />
+
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-3">
+                  <h3 class="text-lg font-black text-gray-950">مریم فراهانی</h3>
+                  <span class="rounded-full bg-brand/10 text-brand px-3 py-1 text-[11px] font-bold">
+                    نویسنده ارشد
+                  </span>
+                </div>
+
+                <p class="mt-3 text-sm leading-8 text-gray-600">
+                  طراح محتوا و نویسنده حوزه تجربه کاربری، رابط کاربری و استراتژی بصری.
+                  تمرکز من روی ساخت تجربه‌های خوانا، ساده و تاثیرگذار برای محصولات دیجیتال است.
+                </p>
+
+                <div class="mt-4 flex flex-wrap items-center gap-3">
+                  <a href="#" class="tag-chip"><i class="fa-brands fa-instagram"></i> اینستاگرام</a>
+                  <a href="#" class="tag-chip"><i class="fa-brands fa-linkedin-in"></i> لینکدین</a>
+                  <a href="#" class="tag-chip"><i class="fa-solid fa-globe"></i> وب‌سایت</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Related posts -->
+          <section class="space-y-5">
+            <div class="flex items-center justify-between">
+              <h2 class="text-2xl font-black text-gray-950">مقالات مرتبط</h2>
+              <a href="#" class="text-sm text-gray-500 hover:text-brand">مشاهده همه</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+              <template x-for="post in relatedPosts" :key="post.id">
+                <article class="group rounded-[28px] bg-white border border-gray-100 overflow-hidden shadow-[0_12px_35px_rgba(15,23,42,0.04)] hover:shadow-[0_22px_55px_rgba(15,23,42,0.08)] transition">
+                  <a href="#" class="block h-[210px] overflow-hidden relative">
+                    <div class="absolute inset-0 transition duration-700 group-hover:scale-105" :class="post.bg"></div>
+                    <span class="absolute top-4 start-4 rounded-full bg-white/25 border border-white/30 backdrop-blur-md px-3 py-1 text-white text-[11px]">
+                      <span x-text="post.category"></span>
+                    </span>
+                  </a>
+
+                  <div class="p-5">
+                    <div class="flex items-center gap-3 text-[11px] text-gray-400">
+                      <span><i class="fa-regular fa-clock me-1"></i>۶ دقیقه</span>
+                      <span><i class="fa-regular fa-comment me-1"></i>۱۲</span>
+                    </div>
+
+                    <h3 class="mt-3 text-sm font-extrabold leading-7 text-gray-950 line-clamp-2">
+                      <span x-text="post.title"></span>
+                    </h3>
+
+                    <div class="mt-5 flex items-center justify-between">
+                      <a href="#" class="text-xs font-bold text-gray-950 hover:text-brand">ادامه مطلب</a>
+                      <img src="assets/images/avatar-man-1.jpg" onerror="this.remove()" class="size-8 rounded-full object-cover" alt="">
+                    </div>
+                  </div>
+                </article>
+              </template>
+            </div>
+          </section>
+
+          <!-- Comments -->
+          <section id="comments" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div>
+                <p class="text-xs text-brand font-bold mb-2">گفتگو و تعامل</p>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-950">بخش نظرات حرفه‌ای</h2>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  @click="commentTab = 'list'"
+                  class="h-10 px-4 rounded-2xl text-xs transition"
+                  :class="commentTab === 'list' ? 'bg-brand text-white' : 'bg-white border border-gray-100 text-gray-600'"
+                >
+                  نمایش نظرات
+                </button>
+                <button
+                  @click="commentTab = 'form'"
+                  class="h-10 px-4 rounded-2xl text-xs transition"
+                  :class="commentTab === 'form' ? 'bg-brand text-white' : 'bg-white border border-gray-100 text-gray-600'"
+                >
+                  ثبت نظر
+                </button>
+              </div>
+            </div>
+
+            <!-- Comment form -->
+            <div x-show="commentTab === 'form'" x-transition class="card-box p-5 sm:p-7">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="mb-2 block text-sm font-bold text-gray-800">نام و نام خانوادگی</label>
+                  <input type="text" class="comment-input" placeholder="مثلاً علی رضایی">
+                </div>
+                <div>
+                  <label class="mb-2 block text-sm font-bold text-gray-800">ایمیل</label>
+                  <input type="email" class="comment-input" placeholder="example@gmail.com">
+                </div>
+                <div class="md:col-span-2">
+                  <label class="mb-2 block text-sm font-bold text-gray-800">عنوان نظر</label>
+                  <input type="text" class="comment-input" placeholder="عنوان کوتاه برای نظر شما">
+                </div>
+                <div class="md:col-span-2">
+                  <label class="mb-2 block text-sm font-bold text-gray-800">متن نظر</label>
+                  <textarea class="comment-textarea" placeholder="نظر، تجربه یا پیشنهاد خود را بنویسید..."></textarea>
+                </div>
+              </div>
+
+              <!-- Upload zone -->
+              <div class="mt-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                  <div>
+                    <h3 class="text-base font-black text-gray-950">آپلود فایل همراه نظر</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                      می‌توانید تصویر، ویدیو، صوت یا فایل ضمیمه ارسال کنید.
+                    </p>
+                  </div>
+
+                  <div class="rounded-full bg-brand/10 text-brand px-4 py-2 text-[11px] font-bold">
+                    حداکثر ۵ فایل
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept="image/*" @change="handleFiles($event, 'image')">
+                    <div class="size-12 mx-auto rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                      <i class="fa-regular fa-image text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">آپلود تصویر</p>
+                    <p class="mt-1 text-[11px] text-gray-500">PNG / JPG / WEBP</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept="video/*" @change="handleFiles($event, 'video')">
+                    <div class="size-12 mx-auto rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                      <i class="fa-solid fa-video text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">آپلود ویدیو</p>
+                    <p class="mt-1 text-[11px] text-gray-500">MP4 / MOV / WEBM</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" accept="audio/*" @change="handleFiles($event, 'audio')">
+                    <div class="size-12 mx-auto rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                      <i class="fa-solid fa-microphone-lines text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">آپلود صوت</p>
+                    <p class="mt-1 text-[11px] text-gray-500">MP3 / WAV / M4A</p>
+                  </label>
+
+                  <label class="upload-tile">
+                    <input type="file" class="hidden" @change="handleFiles($event, 'file')">
+                    <div class="size-12 mx-auto rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                      <i class="fa-solid fa-paperclip text-lg"></i>
+                    </div>
+                    <p class="mt-3 text-sm font-bold text-gray-900">فایل ضمیمه</p>
+                    <p class="mt-1 text-[11px] text-gray-500">ZIP / PDF / DOC</p>
+                  </label>
+                </div>
+
+                <!-- Preview list -->
+                <div class="mt-5" x-show="uploads.length">
+                  <div class="rounded-[28px] border border-gray-100 bg-gray-50 p-4 sm:p-5">
+                    <div class="flex items-center justify-between mb-4">
+                      <h4 class="text-sm font-black text-gray-900">فایل‌های انتخاب شده</h4>
+                      <button
+                        type="button"
+                        @click="uploads = []"
+                        class="text-xs text-red-500 hover:text-red-600"
+                      >
+                        حذف همه
+                      </button>
+                    </div>
+
+                    <div class="space-y-3">
+                      <template x-for="(file, index) in uploads" :key="index">
+                        <div class="rounded-2xl bg-white border border-gray-100 p-3 flex items-center gap-3">
+                          <div class="size-12 rounded-2xl flex items-center justify-center shrink-0"
+                               :class="file.type === 'image' ? 'bg-pink-50 text-pink-500' :
+                                       file.type === 'video' ? 'bg-blue-50 text-blue-500' :
+                                       file.type === 'audio' ? 'bg-emerald-50 text-emerald-500' :
+                                       'bg-amber-50 text-amber-500'">
+                            <i class="fa-solid"
+                               :class="file.type === 'image' ? 'fa-image' :
+                                       file.type === 'video' ? 'fa-video' :
+                                       file.type === 'audio' ? 'fa-wave-square' :
+                                       'fa-file'"></i>
+                          </div>
+
+                          <div class="min-w-0 flex-1">
+                            <p class="text-sm font-bold text-gray-900 truncate" x-text="file.name"></p>
+                            <p class="text-[11px] text-gray-400 mt-1" x-text="file.size"></p>
+                          </div>
+
+                          <button
+                            type="button"
+                            @click="uploads.splice(index,1)"
+                            class="size-9 rounded-full hover:bg-red-50 text-gray-400 hover:text-red-500 transition" aria-label="حذف">
+                            <i class="fa-solid fa-trash-can text-sm"></i>
+                          </button>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- settings -->
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label class="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-4 cursor-pointer">
+                  <input type="checkbox" class="mt-1 accent-red-500">
+                  <div>
+                    <p class="text-sm font-bold text-gray-900">ذخیره اطلاعات من</p>
+                    <p class="text-xs leading-6 text-gray-500 mt-1">برای ارسال نظرهای بعدی نام و ایمیل من ذخیره شود.</p>
+                  </div>
+                </label>
+
+                <label class="flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-4 cursor-pointer">
+                  <input type="checkbox" class="mt-1 accent-red-500">
+                  <div>
+                    <p class="text-sm font-bold text-gray-900">اعلان پاسخ‌ها</p>
+                    <p class="text-xs leading-6 text-gray-500 mt-1">اگر کسی به نظر من پاسخ داد از طریق ایمیل مطلع شوم.</p>
+                  </div>
+                </label>
+              </div>
+
+              <div class="mt-6 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  class="h-12 px-6 rounded-2xl bg-brand text-white text-sm font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition"
+                >
+                  ارسال نظر
+                </button>
+                <button
+                  type="button"
+                  class="h-12 px-6 rounded-2xl bg-white border border-gray-100 text-sm font-bold text-gray-700 hover:bg-gray-50 transition"
+                >
+                  پیش‌نمایش نظر
+                </button>
+              </div>
+            </div>
+
+            <!-- Comment list -->
+            <div x-show="commentTab === 'list'" x-transition class="space-y-4">
+              <template x-for="comment in comments" :key="comment.id">
+                <div class="card-box p-5 sm:p-6">
+                  <div class="flex gap-4">
+                    <img :src="comment.avatar" onerror="this.remove()" class="size-12 sm:size-14 rounded-2xl object-cover shrink-0" alt="">
+
+                    <div class="min-w-0 flex-1">
+                      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <div>
+                          <div class="flex flex-wrap items-center gap-2">
+                            <h4 class="text-sm sm:text-base font-black text-gray-950" x-text="comment.name"></h4>
+                            <span
+                              x-show="comment.badge"
+                              class="rounded-full bg-brand/10 text-brand px-3 py-1 text-[10px] font-bold"
+                              x-text="comment.badge"
+                            ></span>
+                          </div>
+                          <p class="text-[11px] text-gray-400 mt-1" x-text="comment.time"></p>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                          <button class="tag-chip !py-1.5 !px-3 !text-[11px]"><i class="fa-regular fa-heart"></i> پسندیدن</button>
+                          <button class="tag-chip !py-1.5 !px-3 !text-[11px]"><i class="fa-solid fa-reply"></i> پاسخ</button>
+                        </div>
+                      </div>
+
+                      <p class="mt-4 text-sm leading-8 text-gray-600" x-text="comment.text"></p>
+
+                      <!-- attachments -->
+                      <div x-show="comment.attachments?.length" class="mt-4 flex flex-wrap gap-3">
+                        <template x-for="item in comment.attachments" :key="item.name">
+                          <div class="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3 flex items-center gap-3">
+                            <span class="size-10 rounded-xl flex items-center justify-center"
+                                  :class="item.type === 'image' ? 'bg-pink-50 text-pink-500' :
+                                          item.type === 'video' ? 'bg-blue-50 text-blue-500' :
+                                          item.type === 'audio' ? 'bg-emerald-50 text-emerald-500' :
+                                          'bg-amber-50 text-amber-500'">
+                              <i class="fa-solid"
+                                 :class="item.type === 'image' ? 'fa-image' :
+                                         item.type === 'video' ? 'fa-video' :
+                                         item.type === 'audio' ? 'fa-wave-square' :
+                                         'fa-file'"></i>
+                            </span>
+                            <div>
+                              <p class="text-xs font-bold text-gray-900" x-text="item.name"></p>
+                              <p class="text-[10px] text-gray-400" x-text="item.label"></p>
+                            </div>
+                          </div>
+                        </template>
+                      </div>
+
+                      <!-- nested reply -->
+                      <div x-show="comment.reply" class="mt-5 rounded-[24px] border border-gray-100 bg-gray-50 p-4 sm:p-5">
+                        <div class="flex gap-3">
+                          <img :src="comment.reply.avatar" onerror="this.remove()" class="size-10 rounded-xl object-cover shrink-0" alt="">
+                          <div class="flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                              <h5 class="text-sm font-black text-gray-950" x-text="comment.reply.name"></h5>
+                              <span class="rounded-full bg-emerald-50 text-emerald-600 px-3 py-1 text-[10px] font-bold">
+                                مدیر سایت
+                              </span>
+                            </div>
+                            <p class="text-[11px] text-gray-400 mt-1" x-text="comment.reply.time"></p>
+                            <p class="mt-3 text-sm leading-8 text-gray-600" x-text="comment.reply.text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="xl:col-span-4 space-y-5 xl:sticky xl:top-[92px]">
+          <!-- TOC -->
+          <div class="sidebar-box hidden xl:block">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-black text-gray-950">فهرست مقاله</h3>
+              <span class="rounded-full bg-brand/10 text-brand px-3 py-1 text-[11px] font-bold">راهنما</span>
+            </div>
+
+            <div class="mt-5 space-y-2">
+              <template x-for="item in tocItems" :key="item.id">
+                <a
+                  :href="'#' + item.id"
+                  class="flex items-center justify-between rounded-2xl bg-gray-50 hover:bg-brand/5 px-4 py-3 text-sm text-gray-600 hover:text-brand transition"
+                >
+                  <span x-text="item.label"></span>
+                  <i class="fa-solid fa-angle-left text-xs text-gray-300"></i>
+                </a>
+              </template>
+            </div>
+          </div>
+
+          <!-- Author widget -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-a p-5">
+              <div class="flex items-center gap-3">
+                <img
+                  src="assets/images/avatar-maryam.jpg" onerror="this.remove()"
+                  class="size-16 rounded-[20px] object-cover ring-4 ring-white/40"
+                  alt=""
+                />
+                <div>
+                  <p class="text-lg font-black text-gray-950">مریم فراهانی</p>
+                  <p class="text-xs text-gray-600 mt-1">نویسنده ارشد و استراتژیست محتوا</p>
+                </div>
+              </div>
+
+              <p class="mt-4 text-sm leading-8 text-gray-700">
+                عاشق طراحی تجربه‌های خواندنی، تایپوگرافی تمیز و ساخت صفحات مدرن برای وبلاگ‌های حرفه‌ای.
+              </p>
+
+              <div class="mt-4 grid grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-white/70 backdrop-blur-sm p-3 text-center">
+                  <p class="text-lg font-black text-gray-950">۱۲۸</p>
+                  <p class="text-[11px] text-gray-500">مقاله</p>
+                </div>
+                <div class="rounded-2xl bg-white/70 backdrop-blur-sm p-3 text-center">
+                  <p class="text-lg font-black text-gray-950">۹.۸k</p>
+                  <p class="text-[11px] text-gray-500">فالوور</p>
+                </div>
+                <div class="rounded-2xl bg-white/70 backdrop-blur-sm p-3 text-center">
+                  <p class="text-lg font-black text-gray-950">۳۲۰</p>
+                  <p class="text-[11px] text-gray-500">نظر</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center gap-2">
+                <a href="#" class="icon-btn !bg-white/90" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="icon-btn !bg-white/90" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="icon-btn !bg-white/90" aria-label="وب‌سایت"><i class="fa-solid fa-globe"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search -->
+          <div class="sidebar-box">
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="جستجو در مقاله‌ها..."
+                class="w-full h-12 rounded-2xl bg-gray-50 border border-gray-100 ps-11 pe-4 text-xs outline-none focus:border-brand/30"
+              />
+              <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+            </div>
+          </div>
+
+          <!-- Popular posts -->
+          <div class="sidebar-box">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-black text-gray-950">مطالب محبوب</h3>
+              <i class="fa-solid fa-fire text-orange-400"></i>
+            </div>
+
+            <div class="mt-5 space-y-4">
+              <template x-for="post in popularPosts" :key="post.id">
+                <a href="#" class="flex gap-3 group">
+                  <div class="size-20 rounded-[22px] shrink-0 overflow-hidden">
+                    <div class="w-full h-full" :class="post.bg"></div>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-bold leading-7 text-gray-800 line-clamp-2 group-hover:text-brand transition" x-text="post.title"></p>
+                    <div class="mt-2 flex items-center gap-3 text-[11px] text-gray-400">
+                      <span><i class="fa-regular fa-eye me-1"></i><span x-text="post.views"></span></span>
+                      <span><i class="fa-regular fa-clock me-1"></i><span x-text="post.time"></span></span>
+                    </div>
+                  </div>
+                </a>
+              </template>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-b p-5">
+              <div class="size-14 rounded-2xl bg-white/80 text-brand flex items-center justify-center">
+                <i class="fa-regular fa-envelope text-xl"></i>
+              </div>
+              <h3 class="mt-4 text-lg font-black text-gray-950">عضویت در خبرنامه</h3>
+              <p class="mt-2 text-sm leading-8 text-gray-700">
+                جدیدترین مقاله‌ها، نکات طراحی و محتوای ویژه را مستقیم در ایمیل دریافت کنید.
+              </p>
+
+              <div class="mt-4 space-y-3">
+                <input type="email" placeholder="ایمیل شما" class="w-full h-12 rounded-2xl border border-white/60 bg-white/80 px-4 text-sm outline-none">
+                <button class="w-full h-12 rounded-2xl bg-gray-950 text-white text-sm font-bold hover:bg-brand transition">
+                  عضویت رایگان
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="sidebar-box">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-black text-gray-950">دسته‌بندی‌ها</h3>
+              <i class="fa-solid fa-layer-group text-gray-300"></i>
+            </div>
+
+            <div class="mt-5 space-y-3">
+              <template x-for="cat in categories" :key="cat.name">
+                <a href="#" class="flex items-center justify-between rounded-2xl bg-gray-50 px-4 py-3 hover:bg-brand/5 transition">
+                  <div class="flex items-center gap-3">
+                    <span class="size-10 rounded-xl bg-white flex items-center justify-center text-brand border border-gray-100">
+                      <i class="fa-regular fa-folder-open"></i>
+                    </span>
+                    <span class="text-sm font-bold text-gray-800" x-text="cat.name"></span>
+                  </div>
+                  <span class="text-xs text-gray-400" x-text="cat.count"></span>
+                </a>
+              </template>
+            </div>
+          </div>
+
+          <!-- Audio widget -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-c p-5 text-white">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-black">نسخه صوتی مقاله</h3>
+                <i class="fa-solid fa-headphones text-white/90"></i>
+              </div>
+
+              <p class="mt-3 text-sm leading-8 text-white/85">
+                اگر فرصت مطالعه ندارید، نسخه صوتی خلاصه مقاله را گوش کنید.
+              </p>
+
+              <div class="mt-5 rounded-2xl bg-white/15 backdrop-blur-md border border-white/15 p-4">
+                <div class="flex items-center gap-3">
+                  <button class="size-12 rounded-full bg-white text-indigo-600 flex items-center justify-center" aria-label="پخش">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                  <div class="flex-1">
+                    <div class="h-2 rounded-full bg-white/20 overflow-hidden">
+                      <div class="h-full w-1/2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="mt-2 flex justify-between text-[11px] text-white/80">
+                      <span>02:14</span>
+                      <span>05:40</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="sidebar-box">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-black text-gray-950">برچسب‌ها</h3>
+              <i class="fa-solid fa-hashtag text-gray-300"></i>
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              <template x-for="tag in tags" :key="tag">
+                <a href="#" class="tag-chip" x-text="'# ' + tag"></a>
+              </template>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-d p-5">
+              <div class="size-14 rounded-2xl bg-white/80 text-brand flex items-center justify-center">
+                <i class="fa-solid fa-pen-ruler text-xl"></i>
+              </div>
+              <h3 class="mt-4 text-lg font-black text-gray-950">نیاز به طراحی اختصاصی داری؟</h3>
+              <p class="mt-2 text-sm leading-8 text-gray-700">
+                اگر برای وبلاگ، صفحه محصول یا رابط کاربری سایتت طراحی حرفه‌ای می‌خواهی، با ما در تماس باش.
+              </p>
+              <a href="#" class="mt-5 h-12 rounded-2xl bg-white text-gray-950 text-sm font-bold flex items-center justify-center gap-2 hover:bg-gray-950 hover:text-white transition">
+                شروع همکاری
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-100 bg-white py-8">
+    <div class="container-page flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      <div class="flex items-center gap-2">
+        <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#" class="icon-btn" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING: demo switcher ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function singlePostPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-brand', current: true },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+        tocMobile: true,
+        commentTab: 'list',
+        uploads: [],
+
+        tocItems: [
+          { id: 'intro', label: 'چرا طراحی مینیمال مهم است؟' },
+          { id: 'typography', label: 'تایپوگرافی و فاصله‌گذاری' },
+          { id: 'cards', label: 'ساختار کارت‌ها و سایدبار' },
+          { id: 'widgets', label: 'ویجت‌های پیشنهادی سایدبار' },
+          { id: 'experience', label: 'تجربه کاربری در نظرات' },
+          { id: 'final', label: 'جمع‌بندی نهایی' }
+        ],
+
+        relatedPosts: [
+          { id: 1, title: 'چطور برای کارت‌های وبلاگ یک هویت بصری حرفه‌ای طراحی کنیم؟', category: 'طراحی', bg: 'gradient-a' },
+          { id: 2, title: 'اصول طراحی صفحه مقاله برای موبایل با تمرکز روی خوانایی', category: 'موبایل فرست', bg: 'gradient-b' },
+          { id: 3, title: 'نقش فضای خالی در رابط کاربری مدرن و مینیمال', category: 'UI / UX', bg: 'gradient-d' }
+        ],
+
+        popularPosts: [
+          { id: 1, title: 'بهترین الگوهای طراحی بلاگ در سال جدید', views: '3.8k', time: '۵ دقیقه', bg: 'gradient-a' },
+          { id: 2, title: 'چطور یک هدر تمیز و حرفه‌ای برای سایت طراحی کنیم؟', views: '2.1k', time: '۷ دقیقه', bg: 'gradient-b' },
+          { id: 3, title: 'افکت‌های hover جذاب برای کارت‌ها بدون شلوغی بصری', views: '1.7k', time: '۴ دقیقه', bg: 'gradient-c' }
+        ],
+
+        categories: [
+          { name: 'طراحی رابط کاربری', count: '24' },
+          { name: 'تجربه کاربری', count: '18' },
+          { name: 'مینیمالیسم', count: '12' },
+          { name: 'وبلاگ و محتوا', count: '31' }
+        ],
+
+        tags: ['طراحی', 'وبلاگ', 'RTL', 'Tailwind', 'Alpine', 'UX', 'مینیمال', 'محتوا'],
+
+        comments: [
+          {
+            id: 1,
+            name: 'علی رضایی',
+            badge: 'کاربر ویژه',
+            time: '۳ ساعت پیش',
+            avatar: 'assets/images/avatar-man-1.jpg',
+            text: 'طراحی این صفحه واقعاً تمیز و حرفه‌ایه. مخصوصاً اینکه سایدبار فقط تزئینی نیست و واقعاً به کاربر کمک می‌کنه سریع بین بخش‌ها جابه‌جا بشه. بخش فهرست مقاله و خبرنامه خیلی خوب دراومده.',
+            attachments: [
+              { type: 'image', name: 'screenshot-ui.jpg', label: 'تصویر ضمیمه شده' },
+              { type: 'audio', name: 'voice-feedback.mp3', label: 'فایل صوتی' }
+            ],
+            reply: {
+              name: 'تیم SEVI',
+              time: '۱ ساعت پیش',
+              avatar: 'assets/images/avatar-woman-2.jpg',
+              text: 'خیلی خوشحالیم که صفحه برات مفید بوده. اگر خواستی نسخه وردپرسی و داینامیک همین ساختار رو هم برات پیاده می‌کنیم.'
+            }
+          },
+          {
+            id: 2,
+            name: 'ندا محمدی',
+            badge: '',
+            time: 'دیروز',
+            avatar: 'assets/images/avatar-woman-3.jpg',
+            text: 'امکان آپلود تصویر و ویدیو در بخش کامنت‌ها فوق‌العاده است. برای سایت‌های آموزش طراحی خیلی کاربردی می‌شود چون کاربر می‌تواند نمونه و مشکلش را دقیق بفرستد.',
+            attachments: [
+              { type: 'video', name: 'review-demo.mp4', label: 'ویدیوی ضمیمه شده' }
+            ]
+          }
+        ],
+
+        handleFiles(event, type) {
+          const files = Array.from(event.target.files || []);
+          files.forEach(file => {
+            if (this.uploads.length < 5) {
+              this.uploads.push({
+                name: file.name,
+                type,
+                size: this.formatBytes(file.size)
+              });
+            }
+          });
+          event.target.value = '';
+        },
+
+        formatBytes(bytes) {
+          if (bytes === 0) return '0 بایت';
+          const k = 1024;
+          const sizes = ['بایت', 'کیلوبایت', 'مگابایت', 'گیگابایت'];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+      }
+    }
+  </script>
+</body>
+</html>

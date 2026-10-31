@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عضویت و حمایت | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه پلن‌های عضویت با تغییر ماهانه/سالانه، جدول مقایسه، سوالات متداول و نظر اعضا." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="pricingPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="pricing.html" class="nav-link text-gray-950 font-bold">عضویت</a>
+          <a href="podcast-show.html" class="nav-link">پادکست</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="login.html" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+            <i class="fa-regular fa-user text-[10px]"></i>
+            ورود
+          </a>
+          <a href="register.html" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-brand text-white text-xs font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition">
+            ثبت‌نام
+          </a>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="باز کردن منو">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن منو"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="pricing.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">عضویت <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="account.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">حساب کاربری <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="login.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">ورود <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="register.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">ثبت‌نام <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main id="main" class="pb-6">
+
+    <!-- ===================== HERO + TOGGLE ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-a opacity-40"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/88 to-white"></div>
+      <div class="pointer-events-none absolute -top-24 start-1/4 size-80 brand-glow blur-3xl animate-floaty"></div>
+
+      <div class="container-page relative z-10 py-14 sm:py-20 text-center">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 text-[11px] text-gray-600 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <i class="fa-solid fa-heart text-brand text-[10px]"></i>
+          بیش از ۴٬۲۰۰ عضو فعال
+        </span>
+
+        <h1 class="mt-6 text-[30px] sm:text-[46px] font-black leading-[1.45] text-gray-950">
+          از ما حمایت کنید،
+          <span class="text-brand">بیشتر بشنوید</span>
+        </h1>
+
+        <p class="mt-5 mx-auto max-w-[560px] text-sm sm:text-[15px] leading-9 text-gray-600">
+          محتوای اصلی همیشه رایگان می‌ماند. عضویت برای کسانی است که می‌خواهند
+          زودتر بشنوند، بدون تبلیغ گوش کنند و ما را سرپا نگه دارند.
+        </p>
+
+        <!-- billing toggle -->
+        <div class="mt-10 inline-flex items-center gap-4">
+          <button
+            @click="billing = 'monthly'"
+            class="text-xs font-bold transition"
+            :class="billing === 'monthly' ? 'text-gray-950' : 'text-gray-400 hover:text-gray-700'"
+          >
+            ماهانه
+          </button>
+
+          <button
+            @click="billing = billing === 'monthly' ? 'yearly' : 'monthly'"
+            class="relative h-7 w-14 rounded-full transition shrink-0"
+            :class="billing === 'yearly' ? 'bg-brand' : 'bg-gray-200'"
+            role="switch"
+            :aria-checked="billing === 'yearly'"
+            aria-label="تغییر دوره پرداخت"
+          >
+            <span
+              class="absolute top-1 size-5 rounded-full bg-white shadow transition-all duration-300"
+              :class="billing === 'yearly' ? 'start-1' : 'start-8'"
+            ></span>
+          </button>
+
+          <button
+            @click="billing = 'yearly'"
+            class="flex items-center gap-2 text-xs font-bold transition"
+            :class="billing === 'yearly' ? 'text-gray-950' : 'text-gray-400 hover:text-gray-700'"
+          >
+            سالانه
+            <span class="rounded-lg bg-emerald-50 px-2 py-0.5 text-[10px] font-black text-emerald-600">
+              <span x-text="toFa(yearlyDiscount)"></span>٪ تخفیف
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PLANS ===================== -->
+    <section class="container-page -mt-4 sm:-mt-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+        <template x-for="plan in plans" :key="plan.key">
+          <article
+            class="plan-card"
+            :class="plan.featured
+              ? 'border-brand/30 shadow-[0_30px_70px_rgba(239,75,75,0.14)] md:-translate-y-3'
+              : 'border-gray-100 shadow-[0_16px_45px_rgba(15,23,42,0.05)] hover:border-gray-200'"
+          >
+            <span
+              x-show="plan.featured"
+              class="absolute -top-3.5 right-1/2 translate-x-1/2 rounded-full bg-brand px-4 py-1.5 text-[10px] font-black text-white shadow-lg shadow-brand/30 whitespace-nowrap"
+              style="display:none"
+            >
+              محبوب‌ترین
+            </span>
+
+            <span class="icon-tile" :class="plan.tile">
+              <i class="fa-solid" :class="plan.icon"></i>
+            </span>
+
+            <h2 class="mt-5 text-lg font-black text-gray-950" x-text="plan.name"></h2>
+            <p class="mt-2 text-xs leading-7 text-gray-500" x-text="plan.tagline"></p>
+
+            <!-- price -->
+            <div class="mt-6 pb-6 border-b border-gray-100">
+              <div class="flex items-end gap-2">
+                <span class="text-[34px] font-black leading-none text-gray-950 tabular-nums" x-text="priceLabel(plan)"></span>
+                <span class="text-[11px] text-gray-500 pb-1.5" x-text="plan.price ? periodLabel() : ''"></span>
+              </div>
+
+              <p x-show="plan.price && billing === 'yearly'" class="mt-2.5 text-[11px] text-emerald-600 font-bold" style="display:none">
+                <i class="fa-solid fa-tag text-[9px] me-1"></i>
+                سالی <span x-text="toFa(savingFor(plan))"></span> هزار تومان کمتر
+              </p>
+
+              <p x-show="plan.price && billing === 'monthly'" class="mt-2.5 text-[11px] text-gray-400" style="display:none">
+                یا سالانه <span class="font-bold text-gray-600" x-text="toFa(plan.price * 12 * (100 - yearlyDiscount) / 100)"></span> هزار تومان
+              </p>
+
+              <p x-show="!plan.price" class="mt-2.5 text-[11px] text-gray-400" style="display:none">
+                همیشه رایگان، بدون نیاز به کارت
+              </p>
+            </div>
+
+            <!-- features -->
+            <ul class="mt-6 space-y-3 flex-1">
+              <template x-for="feature in plan.features" :key="feature.text">
+                <li class="plan-feature">
+                  <span class="plan-check" :class="feature.on ? 'bg-brand/10 text-brand' : 'bg-gray-100 text-gray-300'">
+                    <i class="fa-solid" :class="feature.on ? 'fa-check' : 'fa-minus'"></i>
+                  </span>
+                  <span :class="feature.on ? 'text-gray-600' : 'text-gray-300 line-through'" x-text="feature.text"></span>
+                </li>
+              </template>
+            </ul>
+
+            <a
+              :href="plan.href"
+              class="mt-7 h-12 rounded-2xl text-sm font-bold flex items-center justify-center gap-2 transition"
+              :class="plan.featured
+                ? 'bg-brand text-white shadow-lg shadow-brand/25 hover:bg-brand-dark'
+                : 'bg-gray-50 text-gray-700 hover:bg-gray-950 hover:text-white'"
+            >
+              <span x-text="plan.cta"></span>
+              <i class="fa-solid fa-arrow-left text-xs"></i>
+            </a>
+
+            <p class="mt-3 text-center text-[10px] text-gray-400" x-text="plan.note"></p>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== COMPARISON ===================== -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="text-center max-w-[560px] mx-auto">
+        <p class="eyebrow justify-center"><i class="fa-solid fa-table-list"></i> مقایسه</p>
+        <h2 class="mt-3 section-title">جدول کامل امکانات</h2>
+      </div>
+
+      <div class="mt-9 rounded-[28px] border border-gray-100 bg-white overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[620px]">
+            <thead>
+              <tr class="border-b border-gray-100">
+                <th class="bg-gray-50 px-5 py-4 text-start text-[12px] font-black text-gray-950">امکانات</th>
+                <template x-for="plan in plans" :key="'h-' + plan.key">
+                  <th class="px-5 py-4 text-center" :class="plan.featured ? 'bg-brand/5' : 'bg-gray-50'">
+                    <span class="block text-[12px] font-black" :class="plan.featured ? 'text-brand' : 'text-gray-950'" x-text="plan.name"></span>
+                    <span class="block mt-1 text-[10px] text-gray-400 tabular-nums" x-text="priceLabel(plan)"></span>
+                  </th>
+                </template>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in comparison" :key="row.label">
+                <tr class="border-b border-gray-100 last:border-0 hover:bg-gray-50/60 transition">
+                  <td class="px-5 py-3.5">
+                    <span class="text-[12px] text-gray-700" x-text="row.label"></span>
+                    <span x-show="row.hint" class="block text-[10px] text-gray-400 mt-0.5" x-text="row.hint" style="display:none"></span>
+                  </td>
+                  <template x-for="plan in plans" :key="row.label + plan.key">
+                    <td class="px-5 py-3.5 text-center" :class="plan.featured ? 'bg-brand/[0.03]' : ''">
+                      <template x-if="typeof row[plan.key] === 'boolean'">
+                        <span
+                          class="inline-flex size-6 rounded-full items-center justify-center text-[10px]"
+                          :class="row[plan.key] ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-300'"
+                        >
+                          <i class="fa-solid" :class="row[plan.key] ? 'fa-check' : 'fa-xmark'"></i>
+                        </span>
+                      </template>
+                      <template x-if="typeof row[plan.key] !== 'boolean'">
+                        <span class="text-[11px] font-bold text-gray-700" x-text="row[plan.key]"></span>
+                      </template>
+                    </td>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="mt-16 sm:mt-24 bg-[#fafafa] border-y border-gray-100 py-14 sm:py-20">
+      <div class="container-page">
+        <div class="text-center max-w-[560px] mx-auto mb-10">
+          <p class="eyebrow justify-center"><i class="fa-regular fa-comment-dots"></i> اعضا</p>
+          <h2 class="mt-3 section-title">چرا حمایت می‌کنند</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <template x-for="item in testimonials" :key="item.name">
+            <div class="rounded-[26px] bg-white border border-gray-100 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.04)]">
+              <div class="star-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="mt-4 text-xs leading-8 text-gray-600" x-text="item.text"></p>
+              <div class="mt-5 pt-4 border-t border-gray-100 flex items-center gap-3">
+                <span class="size-10 rounded-2xl flex items-center justify-center text-[12px] font-black text-white/90" :class="item.bg" x-text="item.name.charAt(0)"></span>
+                <span class="min-w-0">
+                  <span class="block text-[12px] font-black text-gray-950 truncate" x-text="item.name"></span>
+                  <span class="block text-[10px] text-gray-400 truncate" x-text="item.plan"></span>
+                </span>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-9">
+        <div class="lg:col-span-4">
+          <p class="eyebrow"><i class="fa-regular fa-circle-question"></i> سوالات متداول</p>
+          <h2 class="mt-3 rule-title">قبل از عضویت</h2>
+          <p class="section-sub">اگر جوابتان اینجا نبود، از صفحه تماس بپرسید.</p>
+
+          <a href="contact.html" class="mt-6 inline-flex btn-ghost">
+            پرسیدن سوال
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+          </a>
+        </div>
+
+        <div class="lg:col-span-8 space-y-3">
+          <template x-for="(item, index) in faqs" :key="item.q">
+            <div
+              class="rounded-[24px] border bg-white overflow-hidden transition"
+              :class="openFaq === index ? 'border-brand/25 shadow-[0_20px_50px_rgba(15,23,42,0.07)]' : 'border-gray-100 hover:border-gray-200'"
+            >
+              <button
+                type="button"
+                @click="openFaq = openFaq === index ? null : index"
+                class="w-full flex items-center gap-4 p-5 text-start"
+                :aria-expanded="openFaq === index"
+              >
+                <span class="size-9 rounded-xl flex items-center justify-center shrink-0 transition" :class="openFaq === index ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400'">
+                  <i class="fa-solid text-[11px]" :class="openFaq === index ? 'fa-minus' : 'fa-plus'"></i>
+                </span>
+                <span class="flex-1 text-sm font-bold" :class="openFaq === index ? 'text-brand' : 'text-gray-950'" x-text="item.q"></span>
+              </button>
+
+              <div class="grid transition-all duration-300 ease-out" :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+                <div class="overflow-hidden">
+                  <p class="px-5 pb-5 ps-[72px] text-xs leading-8 text-gray-500" x-text="item.a"></p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[36px] gradient-b">
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="pointer-events-none absolute -bottom-24 -end-12 size-72 bg-white/40 blur-3xl rounded-full"></div>
+
+        <div class="relative z-10 p-8 sm:p-14 text-center">
+          <h2 class="text-2xl sm:text-[34px] font-black leading-[1.6] text-gray-950">
+            هنوز مطمئن نیستید؟
+          </h2>
+          <p class="mt-4 mx-auto max-w-[520px] text-sm leading-8 text-gray-700">
+            هفت روز اول رایگان است و هر زمان بخواهید با یک کلیک لغو می‌شود —
+            بدون تماس، بدون فرم، بدون سوال.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href="register.html" class="btn-dark">شروع دوره رایگان <i class="fa-solid fa-arrow-left text-xs"></i></a>
+            <a href="podcast-show.html" class="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-white/85 backdrop-blur text-sm font-bold text-gray-900 hover:bg-white transition">
+              <i class="fa-solid fa-play text-xs"></i>
+              شنیدن رایگان
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-16 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="account.html" class="hover:text-brand transition">حساب کاربری</a>
+          <a href="login.html" class="hover:text-brand transition">ورود</a>
+          <a href="register.html" class="hover:text-brand transition">ثبت‌نام</a>
+          <a href="page.html" class="hover:text-brand transition">قوانین</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function pricingPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        billing: 'monthly',
+        yearlyDiscount: 20,
+        openFaq: 0,
+
+        toFa: toFaDigits,
+
+        plans: [
+          {
+            key: 'free', name: 'شنونده', tagline: 'برای کسانی که تازه با ما آشنا شده‌اند.',
+            price: 0, icon: 'fa-headphones', tile: 'bg-gray-100 text-gray-500', featured: false,
+            cta: 'شروع رایگان', href: 'register.html', note: 'نیازی به کارت بانکی نیست',
+            features: [
+              { text: 'همه قسمت‌های پادکست', on: true },
+              { text: 'همه مقالات وبلاگ', on: true },
+              { text: 'خبرنامه هفتگی', on: true },
+              { text: 'پخش بدون تبلیغ', on: false },
+              { text: 'دسترسی زودهنگام', on: false },
+              { text: 'متن کامل گفتگو', on: false }
+            ]
+          },
+          {
+            key: 'member', name: 'عضو', tagline: 'برای شنونده‌های همیشگی که می‌خواهند بیشتر داشته باشند.',
+            price: 89, icon: 'fa-star', tile: 'bg-brand/10 text-brand', featured: true,
+            cta: 'عضویت', href: 'register.html', note: 'هفت روز اول رایگان',
+            features: [
+              { text: 'همه امکانات پلن شنونده', on: true },
+              { text: 'پخش کاملاً بدون تبلیغ', on: true },
+              { text: 'دسترسی ۴۸ ساعت زودتر', on: true },
+              { text: 'متن کامل همه قسمت‌ها', on: true },
+              { text: 'قسمت‌های ویژه اعضا', on: true },
+              { text: 'جلسه پرسش و پاسخ ماهانه', on: false }
+            ]
+          },
+          {
+            key: 'patron', name: 'حامی', tagline: 'برای کسانی که می‌خواهند در ساختن سهیم باشند.',
+            price: 249, icon: 'fa-crown', tile: 'bg-amber-50 text-amber-500', featured: false,
+            cta: 'حمایت کنید', href: 'register.html', note: 'قابل لغو در هر زمان',
+            features: [
+              { text: 'همه امکانات پلن عضو', on: true },
+              { text: 'جلسه پرسش و پاسخ ماهانه', on: true },
+              { text: 'نام شما در تیتراژ قسمت', on: true },
+              { text: 'دسترسی به نسخه خام گفتگو', on: true },
+              { text: 'اولویت در پیشنهاد موضوع', on: true },
+              { text: 'کانال خصوصی حامیان', on: true }
+            ]
+          }
+        ],
+
+        comparison: [
+          { label: 'قسمت‌های پادکست',      hint: 'همه فصل‌ها',            free: true,  member: true,  patron: true },
+          { label: 'مقالات وبلاگ',         hint: '',                      free: true,  member: true,  patron: true },
+          { label: 'پخش بدون تبلیغ',       hint: '',                      free: false, member: true,  patron: true },
+          { label: 'دسترسی زودهنگام',      hint: 'قبل از انتشار عمومی',   free: '—',   member: '۴۸ ساعت', patron: '۷۲ ساعت' },
+          { label: 'متن کامل گفتگو',       hint: 'قابل جستجو',            free: false, member: true,  patron: true },
+          { label: 'قسمت‌های ویژه',        hint: '',                      free: false, member: true,  patron: true },
+          { label: 'جلسه پرسش و پاسخ',     hint: 'زنده و ماهانه',         free: false, member: false, patron: true },
+          { label: 'نام در تیتراژ',        hint: '',                      free: false, member: false, patron: true },
+          { label: 'کانال خصوصی',          hint: 'تلگرام',                free: false, member: false, patron: true },
+          { label: 'تعداد دستگاه',         hint: 'پخش هم‌زمان',           free: '۱',   member: '۳',   patron: '۵' }
+        ],
+
+        testimonials: [
+          { name: 'الهام کاظمی', plan: 'عضو · ۱۴ ماه', bg: 'gradient-thumb-9', text: 'متن کامل گفتگوها تنها دلیلی بود که عضو شدم و ارزشش را داشت. حالا می‌توانم مستقیم بروم سراغ بخشی که لازم دارم.' },
+          { name: 'بهزاد نوری', plan: 'حامی · ۸ ماه', bg: 'gradient-thumb-4', text: 'جلسه پرسش و پاسخ ماهانه از خیلی دوره‌های پولی که رفته‌ام مفیدتر بوده. سوال می‌پرسی و جواب واقعی می‌گیری.' },
+          { name: 'سمیرا احمدی', plan: 'عضو · ۶ ماه', bg: 'gradient-thumb-6', text: 'حذف تبلیغ‌ها تجربه شنیدن را کاملاً عوض کرد. ضمناً خوشحالم که هزینه ساخت چیزی را می‌دهم که واقعاً استفاده می‌کنم.' }
+        ],
+
+        faqs: [
+          { q: 'آیا محتوای رایگان محدود می‌شود؟', a: 'خیر. همه قسمت‌های پادکست و مقالات وبلاگ برای همیشه رایگان می‌مانند. عضویت فقط امکانات اضافه می‌کند و چیزی را از نسخه رایگان کم نمی‌کند.' },
+          { q: 'چطور لغو کنم؟', a: 'از صفحه حساب کاربری، بخش اشتراک، با یک کلیک. نیازی به تماس یا پر کردن فرم نیست و تا پایان دوره پرداخت‌شده دسترسی‌تان باقی می‌ماند.' },
+          { q: 'تفاوت پرداخت ماهانه و سالانه چیست؟', a: 'محتوا و امکانات دقیقاً یکسان است. پرداخت سالانه بیست درصد ارزان‌تر تمام می‌شود چون هزینه تراکنش کمتری دارد.' },
+          { q: 'آیا می‌توانم پلن را عوض کنم؟', a: 'بله، هر زمان. اگر ارتقا دهید تفاوت به‌صورت نسبی محاسبه می‌شود و اگر پایین بیایید از دوره بعد اعمال می‌شود.' },
+          { q: 'روش‌های پرداخت چیست؟', a: 'همه کارت‌های بانکی عضو شتاب پذیرفته می‌شوند. پرداخت از طریق درگاه امن انجام می‌شود و ما اطلاعات کارت شما را ذخیره نمی‌کنیم.' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-brand', current: true },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        periodLabel() {
+          return this.billing === 'monthly' ? 'هزار تومان / ماه' : 'هزار تومان / ماه';
+        },
+
+        /* monthly price, with the yearly discount folded in when billed annually */
+        monthlyPrice(plan) {
+          if (!plan.price) return 0;
+          if (this.billing === 'monthly') return plan.price;
+          return Math.round(plan.price * (100 - this.yearlyDiscount) / 100);
+        },
+
+        priceLabel(plan) {
+          if (!plan.price) return 'رایگان';
+          return toFaDigits(this.monthlyPrice(plan));
+        },
+
+        /* how much a year of the annual plan saves against paying monthly */
+        savingFor(plan) {
+          if (!plan.price) return 0;
+          return plan.price * 12 - this.monthlyPrice(plan) * 12;
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

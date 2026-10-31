@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حریم خصوصی | SEVI</title>
+  <meta name="description" content="قالب SEVI — قالب صفحه ساده (page.php) با فهرست شناور، محتوای غنی، اشتراک‌گذاری و بخش نظرات." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="simplePage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white"
+>
+
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="archive.html" class="nav-link">آرشیو</a>
+          <a href="index-6.html" class="nav-link">پادکست</a>
+          <a href="about.html" class="nav-link">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-[240px] relative">
+          <form action="search.html">
+            <input type="text" name="s" placeholder="جستجو..." class="w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 ps-10 pe-4 text-xs outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand/30 transition" />
+          </form>
+          <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn" aria-label="ذخیره"><i class="fa-regular fa-bookmark text-sm"></i></button>
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 z-[80] bg-black/40 lg:hidden" @click.self="mobileMenu = false" style="display:none">
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <nav class="mt-7 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="archive.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">آرشیو <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="page.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">صفحه ساده <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="author.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">نویسنده <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">تماس <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+    </aside>
+  </div>
+
+  <main class="pb-6">
+
+    <!-- ===================== PAGE HEADER ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-a opacity-35"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/90 to-white"></div>
+
+      <div class="container-page relative z-10 py-12 sm:py-16">
+        <nav class="flex items-center gap-2 text-[11px] text-gray-500">
+          <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+          <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+          <span class="text-gray-950 font-bold">حریم خصوصی</span>
+        </nav>
+
+        <span class="mt-6 inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 text-[11px] text-gray-600 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+          <i class="fa-solid fa-shield-halved text-brand text-[10px]"></i>
+          سند رسمی
+        </span>
+
+        <h1 class="mt-5 text-[28px] sm:text-[42px] font-black leading-[1.45] text-gray-950">
+          سیاست حریم خصوصی
+        </h1>
+
+        <p class="mt-5 max-w-[620px] text-sm sm:text-[15px] leading-9 text-gray-600">
+          این سند توضیح می‌دهد چه اطلاعاتی از شما جمع‌آوری می‌کنیم، چرا، و چطور
+          می‌توانید آن را کنترل کنید. سعی کرده‌ایم بدون زبان حقوقی پیچیده بنویسیمش.
+        </p>
+
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] text-gray-500">
+          <span><i class="fa-regular fa-calendar me-1.5 text-gray-300"></i>آخرین به‌روزرسانی: ۰۱ شهریور ۱۴۰۵</span>
+          <span class="w-px h-4 bg-gray-200"></span>
+          <span><i class="fa-regular fa-clock me-1.5 text-gray-300"></i>۶ دقیقه مطالعه</span>
+          <span class="w-px h-4 bg-gray-200"></span>
+          <span><i class="fa-solid fa-code-branch me-1.5 text-gray-300"></i>نسخه ۲٫۱</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTENT + TOC ===================== -->
+    <section class="container-page mt-10 sm:mt-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+        <!-- TOC (mobile) -->
+        <div class="lg:hidden card-box p-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-black text-gray-950">فهرست این صفحه</h2>
+            <button @click="tocOpen = !tocOpen" class="icon-btn size-9" :aria-expanded="tocOpen" aria-label="کاهش">
+              <i class="fa-solid text-[11px]" :class="tocOpen ? 'fa-minus' : 'fa-plus'"></i>
+            </button>
+          </div>
+
+          <div class="grid transition-all duration-300 ease-out" :class="tocOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+            <div class="overflow-hidden">
+              <div class="mt-4 space-y-1.5">
+                <template x-for="item in toc" :key="'m-' + item.id">
+                  <a :href="'#' + item.id" class="toc-link bg-gray-50 text-gray-600 hover:text-brand">
+                    <span x-text="item.label"></span>
+                    <i class="fa-solid fa-angle-left text-[10px] text-gray-300"></i>
+                  </a>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- article -->
+        <article class="lg:col-span-8">
+          <div class="card-box p-5 sm:p-8 lg:p-10">
+
+            <!-- intro callout -->
+            <div class="rounded-[22px] border border-brand/15 bg-brand/5 p-5 flex items-start gap-4">
+              <span class="size-10 rounded-2xl bg-brand text-white flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-circle-info text-sm"></i>
+              </span>
+              <div>
+                <p class="text-sm font-black text-gray-950">خلاصه در یک پاراگراف</p>
+                <p class="mt-2 text-xs leading-7 text-gray-600">
+                  ما فقط اطلاعاتی را نگه می‌داریم که برای کارکرد سایت لازم است. چیزی را
+                  نمی‌فروشیم، به شخص ثالث نمی‌دهیم، و هر زمان بخواهید حسابتان و داده‌هایتان
+                  را کاملاً حذف می‌کنیم.
+                </p>
+              </div>
+            </div>
+
+            <div class="article-content mt-8">
+              <h2 id="collect">چه اطلاعاتی جمع‌آوری می‌کنیم</h2>
+              <p>
+                وقتی در خبرنامه عضو می‌شوید یا نظری می‌گذارید، نام و ایمیل شما را ذخیره
+                می‌کنیم. اگر حساب کاربری بسازید، تاریخ عضویت و تنظیمات شما هم نگهداری
+                می‌شود. بازدید از صفحه‌ها به‌صورت ناشناس شمرده می‌شود تا بدانیم کدام مطالب
+                مفیدتر بوده‌اند.
+              </p>
+
+              <ul>
+                <li>نام و نشانی ایمیل، در صورت عضویت یا ثبت نظر</li>
+                <li>آمار ناشناس بازدید صفحه‌ها و زمان مطالعه</li>
+                <li>تنظیمات شما مثل موضوعات دنبال‌شده و مطالب ذخیره‌شده</li>
+                <li>در صورت ارسال فایل در فرم تماس، همان فایل تا پایان بررسی</li>
+              </ul>
+
+              <h2 id="use">چطور از آن استفاده می‌کنیم</h2>
+              <p>
+                هدف اصلی، بهتر کردن چیزی است که می‌خوانید. اگر بدانیم کدام مقاله تا انتها
+                خوانده می‌شود و کدام رها می‌شود، بهتر می‌توانیم تصمیم بگیریم چه بنویسیم.
+                ایمیل شما فقط برای ارسال خبرنامه و پاسخ به پیام خودتان استفاده می‌شود.
+              </p>
+
+              <blockquote>
+                هیچ‌وقت اطلاعات شما را نمی‌فروشیم و در اختیار تبلیغ‌کننده قرار نمی‌دهیم.
+                این تنها قولی است که در این سند بدون هیچ استثنایی داده شده است.
+              </blockquote>
+
+              <h2 id="cookies">کوکی‌ها</h2>
+              <p>
+                از کوکی‌های ضروری برای نگه‌داشتن وضعیت ورود و تنظیمات شما استفاده می‌کنیم.
+                کوکی تبلیغاتی و ردیاب شخص ثالث روی این سایت وجود ندارد. اگر کوکی‌ها را در
+                مرورگر غیرفعال کنید، سایت همچنان کار می‌کند اما تنظیماتتان بین بازدیدها
+                حفظ نمی‌شود.
+              </p>
+
+              <h3 id="cookie-types">انواع کوکی‌هایی که استفاده می‌کنیم</h3>
+              <p>
+                کوکی‌های ضروری برای ورود به حساب، کوکی تنظیمات برای به‌خاطر سپردن موضوعات
+                دنبال‌شده، و کوکی آمار ناشناس که هویت شما را ثبت نمی‌کند.
+              </p>
+
+              <h2 id="rights">حقوق شما</h2>
+              <p>
+                هر زمان می‌توانید درخواست کنید اطلاعاتتان را ببینید، اصلاح کنید یا کاملاً
+                حذف کنیم. برای این کار کافی است از صفحه تماس پیام بگذارید؛ حداکثر تا هفت
+                روز کاری درخواست شما انجام می‌شود.
+              </p>
+
+              <ul>
+                <li>دسترسی به نسخه‌ای از اطلاعات ذخیره‌شده</li>
+                <li>اصلاح اطلاعات نادرست</li>
+                <li>حذف کامل حساب و داده‌های مرتبط</li>
+                <li>لغو عضویت در خبرنامه با یک کلیک</li>
+              </ul>
+
+              <h2 id="contact">تماس با ما</h2>
+              <p>
+                اگر درباره این سند سوالی دارید یا فکر می‌کنید جایی اشتباه عمل کرده‌ایم،
+                از طریق <code>privacy@sevi.ir</code> یا صفحه تماس بنویسید. پاسخ را
+                معمولاً همان روز کاری می‌دهیم.
+              </p>
+            </div>
+
+            <!-- page footer -->
+            <div class="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] text-gray-400 me-1">اشتراک‌گذاری:</span>
+                <button class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram text-xs"></i></button>
+                <button class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter text-xs"></i></button>
+                <button class="icon-btn" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in text-xs"></i></button>
+                <button @click="copyLink()" class="icon-btn" :class="copied ? '!bg-emerald-500 !text-white !border-emerald-500' : ''" aria-label="کپی لینک">
+                  <i class="fa-solid text-xs" :class="copied ? 'fa-check' : 'fa-link'"></i>
+                </button>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] text-gray-400">این صفحه مفید بود؟</span>
+                <button
+                  @click="vote('yes')"
+                  class="h-9 px-4 rounded-xl text-[11px] font-bold transition flex items-center gap-2"
+                  :class="voted === 'yes' ? 'bg-emerald-500 text-white' : 'bg-gray-50 text-gray-600 hover:bg-emerald-50 hover:text-emerald-600'"
+                >
+                  <i class="fa-regular fa-thumbs-up text-[10px]"></i>
+                  بله
+                </button>
+                <button
+                  @click="vote('no')"
+                  class="h-9 px-4 rounded-xl text-[11px] font-bold transition flex items-center gap-2"
+                  :class="voted === 'no' ? 'bg-brand text-white' : 'bg-gray-50 text-gray-600 hover:bg-brand/10 hover:text-brand'"
+                >
+                  <i class="fa-regular fa-thumbs-down text-[10px]"></i>
+                  خیر
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- related pages -->
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <template x-for="rel in relatedPages" :key="rel.label">
+              <a :href="rel.href" class="group rounded-[24px] bg-white border border-gray-100 p-5 shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+                <span class="icon-tile size-11 rounded-2xl" :class="rel.tile">
+                  <i class="fa-solid text-sm" :class="rel.icon"></i>
+                </span>
+                <p class="mt-4 text-sm font-black text-gray-950 group-hover:text-brand transition" x-text="rel.label"></p>
+                <p class="mt-1.5 text-[11px] text-gray-500 leading-6" x-text="rel.note"></p>
+              </a>
+            </template>
+          </div>
+        </article>
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="lg:col-span-4 space-y-5 lg:sticky lg:top-[92px]">
+
+          <!-- TOC -->
+          <div class="sidebar-box hidden lg:block">
+            <p class="widget-title">فهرست این صفحه <i class="fa-solid fa-list-ul text-gray-300"></i></p>
+            <div class="mt-4 space-y-1.5">
+              <template x-for="item in toc" :key="item.id">
+                <a
+                  :href="'#' + item.id"
+                  @click="activeSection = item.id"
+                  class="toc-link"
+                  :class="[
+                    activeSection === item.id ? 'bg-brand/10 text-brand font-bold' : 'bg-gray-50 text-gray-600 hover:text-brand',
+                    item.sub ? 'ps-7' : ''
+                  ]"
+                >
+                  <span x-text="item.label"></span>
+                  <i class="fa-solid fa-angle-left text-[10px] opacity-40"></i>
+                </a>
+              </template>
+            </div>
+          </div>
+
+          <!-- document meta -->
+          <div class="sidebar-box">
+            <p class="widget-title">اطلاعات سند <i class="fa-regular fa-file-lines text-gray-300"></i></p>
+            <div class="mt-4 space-y-2">
+              <template x-for="row in docMeta" :key="row.label">
+                <div class="flex items-center justify-between rounded-2xl bg-gray-50 px-4 py-3">
+                  <span class="text-[11px] text-gray-500" x-text="row.label"></span>
+                  <span class="text-[11px] font-bold text-gray-950" x-text="row.value"></span>
+                </div>
+              </template>
+            </div>
+
+            <button class="mt-4 w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 text-[11px] font-bold text-gray-700 flex items-center justify-center gap-2 hover:bg-brand hover:text-white hover:border-brand transition">
+              <i class="fa-solid fa-download text-[10px]"></i>
+              دانلود نسخه PDF
+            </button>
+          </div>
+
+          <!-- help -->
+          <div class="sidebar-box overflow-hidden">
+            <div class="rounded-[24px] gradient-b p-5">
+              <span class="size-12 rounded-2xl bg-white/80 text-brand flex items-center justify-center">
+                <i class="fa-solid fa-headset text-lg"></i>
+              </span>
+              <h3 class="mt-4 text-base font-black text-gray-950">سوالی دارید؟</h3>
+              <p class="mt-2 text-xs leading-7 text-gray-700">
+                اگر بخشی از این سند برایتان روشن نیست، بپرسید. به زبان ساده توضیح می‌دهیم.
+              </p>
+              <a href="contact.html" class="mt-4 h-11 rounded-2xl bg-gray-950 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-brand transition">
+                پرسیدن سوال
+                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== COMMENTS ===================== -->
+    <section class="container-page mt-12 sm:mt-16">
+      <div class="lg:max-w-[calc(66.666%-14px)]">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <div>
+            <p class="eyebrow"><i class="fa-regular fa-comment-dots"></i> گفتگو</p>
+            <h2 class="mt-3 rule-title"><span x-text="toFa(comments.length)"></span> نظر</h2>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <template x-for="comment in comments" :key="comment.id">
+            <div class="card-box p-5">
+              <div class="flex gap-4">
+                <span class="size-11 rounded-2xl shrink-0 relative overflow-hidden flex items-center justify-center text-sm font-black text-white/90" :class="comment.bg">
+                  <span x-text="comment.name.charAt(0)"></span>
+                  <img :src="comment.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                </span>
+
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="text-sm font-black text-gray-950" x-text="comment.name"></h3>
+                    <span x-show="comment.badge" class="rounded-full bg-brand/10 text-brand px-2.5 py-0.5 text-[10px] font-bold" x-text="comment.badge" style="display:none"></span>
+                    <span class="text-[10px] text-gray-400" x-text="comment.time"></span>
+                  </div>
+
+                  <p class="mt-3 text-xs leading-8 text-gray-600" x-text="comment.text"></p>
+
+                  <div class="mt-3 flex items-center gap-2">
+                    <button class="tag-chip !py-1 !px-3 !text-[10px]"><i class="fa-regular fa-heart"></i> <span x-text="toFa(comment.likes)"></span></button>
+                    <button class="tag-chip !py-1 !px-3 !text-[10px]"><i class="fa-solid fa-reply"></i> پاسخ</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- comment form -->
+        <div class="card-box p-5 sm:p-7 mt-5">
+          <h3 class="text-base font-black text-gray-950">نظر خود را بنویسید</h3>
+          <p class="mt-2 text-xs text-gray-500">نشانی ایمیل شما منتشر نخواهد شد.</p>
+
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label">نام</label>
+              <input type="text" class="comment-input" placeholder="مثلاً علی رضایی" />
+            </div>
+            <div>
+              <label class="field-label">ایمیل</label>
+              <input type="email" dir="ltr" class="comment-input text-end" placeholder="you@example.com" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="field-label">متن نظر</label>
+              <textarea class="comment-textarea" placeholder="نظر یا سوال خود را بنویسید..."></textarea>
+            </div>
+          </div>
+
+          <label class="mt-5 flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50 p-4 cursor-pointer">
+            <input type="checkbox" class="mt-1 accent-red-500 size-4" />
+            <span>
+              <span class="block text-sm font-bold text-gray-900">ذخیره اطلاعات من</span>
+              <span class="block text-xs leading-6 text-gray-500 mt-1">برای نظرهای بعدی نام و ایمیل من ذخیره شود.</span>
+            </span>
+          </label>
+
+          <button class="mt-6 btn-primary">
+            ارسال نظر
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center"><i class="fa-solid fa-bolt text-brand"></i></span>
+          <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] text-gray-500">
+          <a href="archive.html" class="hover:text-brand transition">آرشیو</a>
+          <a href="search.html" class="hover:text-brand transition">جستجو</a>
+          <a href="author.html" class="hover:text-brand transition">نویسنده</a>
+          <a href="404.html" class="hover:text-brand transition">۴۰۴</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 text-center">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function simplePage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        tocOpen: true,
+        activeSection: 'collect',
+        copied: false,
+        copyTimer: null,
+        voted: null,
+
+        toFa: toFaDigits,
+
+        toc: [
+          { id: 'collect',      label: 'چه اطلاعاتی جمع‌آوری می‌کنیم', sub: false },
+          { id: 'use',          label: 'چطور از آن استفاده می‌کنیم',   sub: false },
+          { id: 'cookies',      label: 'کوکی‌ها',                      sub: false },
+          { id: 'cookie-types', label: 'انواع کوکی‌ها',                sub: true },
+          { id: 'rights',       label: 'حقوق شما',                     sub: false },
+          { id: 'contact',      label: 'تماس با ما',                   sub: false }
+        ],
+
+        docMeta: [
+          { label: 'آخرین به‌روزرسانی', value: '۰۱ شهریور ۱۴۰۵' },
+          { label: 'نسخه', value: '۲٫۱' },
+          { label: 'زمان مطالعه', value: '۶ دقیقه' },
+          { label: 'وضعیت', value: 'فعال' }
+        ],
+
+        relatedPages: [
+          { label: 'قوانین و مقررات', note: 'شرایط استفاده از سایت', href: 'page.html', icon: 'fa-scale-balanced', tile: 'bg-brand/10 text-brand' },
+          { label: 'سوالات متداول', note: 'پاسخ پرسش‌های پرتکرار', href: 'contact.html', icon: 'fa-circle-question', tile: 'bg-blue-50 text-blue-500' },
+          { label: 'تماس با ما', note: 'ارسال پیام به تیم', href: 'contact.html', icon: 'fa-paper-plane', tile: 'bg-emerald-50 text-emerald-500' }
+        ],
+
+        comments: [
+          { id: 1, name: 'علی رضایی', badge: 'کاربر ویژه', time: '۳ ساعت پیش', likes: 12, text: 'ممنون که این سند را به زبان ساده نوشتید. معمولاً این صفحه‌ها آن‌قدر پیچیده‌اند که کسی نمی‌خواندشان.', bg: 'gradient-thumb-1', photo: 'assets/images/avatar-man-1.jpg' },
+          { id: 2, name: 'ندا محمدی', badge: '', time: 'دیروز', likes: 5, text: 'یک سوال: اگر حسابم را حذف کنم، نظرهایی که قبلاً گذاشته‌ام هم حذف می‌شوند یا باقی می‌مانند؟', bg: 'gradient-thumb-6', photo: 'assets/images/avatar-woman-3.jpg' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-brand', current: true },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        copyLink() {
+          const done = () => {
+            this.copied = true;
+            clearTimeout(this.copyTimer);
+            this.copyTimer = setTimeout(() => (this.copied = false), 2000);
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(window.location.href).then(done).catch(done);
+          } else {
+            done();
+          }
+        },
+
+        vote(value) {
+          this.voted = this.voted === value ? null : value;
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+
+          /* highlight the heading currently nearest the top of the viewport */
+          let current = this.toc[0].id;
+          this.toc.forEach(item => {
+            const el = document.getElementById(item.id);
+            if (el && el.getBoundingClientRect().top <= 140) current = item.id;
+          });
+          this.activeSection = current;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

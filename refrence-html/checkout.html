@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسویه حساب | SEVI</title>
+  <meta name="description" content="قالب SEVI — صفحه تسویه حساب سه‌مرحله‌ای با اعتبارسنجی فرم، انتخاب روش ارسال و پرداخت، کد تخفیف و خلاصه سفارش." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="checkoutPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-[#fafafa] selection:bg-brand selection:text-white"
+>
+
+  <a href="#main" class="screen-reader-text">پرش به محتوای اصلی</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <!-- step indicator -->
+        <div class="hidden sm:flex items-center gap-3 lg:gap-4">
+          <template x-for="(item, index) in steps" :key="item.key">
+            <span class="flex items-center gap-3 lg:gap-4">
+              <button
+                @click="goToStep(index + 1)"
+                class="checkout-step transition"
+                :class="stepClass(index + 1)"
+                :aria-current="step === index + 1"
+              >
+                <span class="step-bullet" :class="bulletClass(index + 1)">
+                  <i x-show="step > index + 1" class="fa-solid fa-check text-[8px]" style="display:none"></i>
+                  <span x-show="step <= index + 1" x-text="toFa(index + 1)"></span>
+                </span>
+                <span x-text="item.label"></span>
+              </button>
+              <span x-show="index < steps.length - 1" class="w-6 lg:w-10 h-px bg-gray-200" style="display:none"></span>
+            </span>
+          </template>
+        </div>
+
+        <a href="cart.html" class="inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs font-bold text-gray-700 hover:text-brand hover:border-brand/30 transition">
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          <span class="hidden sm:inline">بازگشت به سبد</span>
+          <span class="sm:hidden">سبد</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="pb-10">
+
+    <!-- ===================== SUCCESS ===================== -->
+    <section x-show="placed" class="container-page py-16 sm:py-24" style="display:none">
+      <div class="mx-auto max-w-[620px] card-box p-8 sm:p-12 text-center">
+        <span class="mx-auto size-20 rounded-full bg-emerald-50 flex items-center justify-center animate-pop">
+          <i class="fa-solid fa-check text-2xl text-emerald-500"></i>
+        </span>
+
+        <h1 class="mt-7 text-2xl sm:text-[30px] font-black leading-[1.5] text-gray-950">سفارش شما ثبت شد</h1>
+        <p class="mt-4 text-sm leading-8 text-gray-600">
+          یک ایمیل تأیید به
+          <span class="font-bold text-gray-950" dir="ltr" x-text="form.email"></span>
+          فرستادیم. محصولات دانلودی همین حالا در حساب کاربری شما فعال هستند.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="rounded-2xl border border-gray-100 bg-gray-50/60 p-4">
+            <p class="text-[10px] text-gray-400">شماره سفارش</p>
+            <p class="mt-1.5 text-sm font-black text-gray-950" dir="ltr" x-text="orderNumber"></p>
+          </div>
+          <div class="rounded-2xl border border-gray-100 bg-gray-50/60 p-4">
+            <p class="text-[10px] text-gray-400">مبلغ پرداختی</p>
+            <p class="mt-1.5 text-sm font-black text-gray-950"><span x-text="money(total())"></span> تومان</p>
+          </div>
+          <div class="rounded-2xl border border-gray-100 bg-gray-50/60 p-4">
+            <p class="text-[10px] text-gray-400">روش پرداخت</p>
+            <p class="mt-1.5 text-sm font-black text-gray-950" x-text="paymentLabel()"></p>
+          </div>
+        </div>
+
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <a href="account.html" class="btn-primary">
+            <i class="fa-solid fa-gauge text-xs"></i>
+            رفتن به حساب کاربری
+          </a>
+          <a href="shop.html" class="btn-ghost">
+            ادامه خرید
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CHECKOUT ===================== -->
+    <section x-show="!placed" class="container-page pt-8 sm:pt-12">
+      <h1 class="text-[26px] sm:text-[34px] font-black leading-[1.5] text-gray-950">تسویه حساب</h1>
+      <p class="mt-3 text-sm text-gray-500">اطلاعات را کامل کنید تا سفارش ثبت شود.</p>
+
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- ---------- FORM ---------- -->
+        <div class="lg:col-span-7 xl:col-span-8 space-y-5">
+
+          <!-- STEP 1 — details -->
+          <div x-show="step === 1" class="card-box p-5 sm:p-7">
+            <div class="flex items-center gap-3">
+              <span class="icon-tile bg-brand/10 text-brand"><i class="fa-solid fa-user"></i></span>
+              <div>
+                <p class="text-sm font-black text-gray-950">اطلاعات خریدار</p>
+                <p class="mt-1 text-[11px] text-gray-500">این اطلاعات روی فاکتور درج می‌شود.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="field-label text-[12px]" for="first-name">نام</label>
+                <input id="first-name" type="text" x-model="form.firstName" @input="clearError('firstName')" class="comment-input" placeholder="مریم" />
+                <p x-show="errors.firstName" class="field-error" x-text="errors.firstName" style="display:none"></p>
+              </div>
+              <div>
+                <label class="field-label text-[12px]" for="last-name">نام خانوادگی</label>
+                <input id="last-name" type="text" x-model="form.lastName" @input="clearError('lastName')" class="comment-input" placeholder="فراهانی" />
+                <p x-show="errors.lastName" class="field-error" x-text="errors.lastName" style="display:none"></p>
+              </div>
+              <div>
+                <label class="field-label text-[12px]" for="email">ایمیل</label>
+                <input id="email" type="email" dir="ltr" x-model="form.email" @input="clearError('email')" class="comment-input" placeholder="name@example.com" />
+                <p x-show="errors.email" class="field-error" x-text="errors.email" style="display:none"></p>
+                <p class="field-hint">لینک دانلود و فاکتور به این نشانی ارسال می‌شود.</p>
+              </div>
+              <div>
+                <label class="field-label text-[12px]" for="phone">شماره موبایل</label>
+                <input id="phone" type="tel" dir="ltr" x-model="form.phone" @input="clearError('phone')" class="comment-input" placeholder="09121234567" />
+                <p x-show="errors.phone" class="field-error" x-text="errors.phone" style="display:none"></p>
+              </div>
+            </div>
+
+            <div class="mt-7 flex items-center justify-between gap-4">
+              <a href="cart.html" class="inline-flex items-center gap-2 text-[11px] font-bold text-gray-500 transition hover:text-brand">
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                بازگشت به سبد
+              </a>
+              <button @click="nextStep()" class="btn-primary">
+                ادامه
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2 — shipping -->
+          <div x-show="step === 2" class="card-box p-5 sm:p-7" style="display:none">
+            <div class="flex items-center gap-3">
+              <span class="icon-tile bg-blue-50 text-blue-500"><i class="fa-solid fa-truck-fast"></i></span>
+              <div>
+                <p class="text-sm font-black text-gray-950">نشانی و ارسال</p>
+                <p class="mt-1 text-[11px] text-gray-500" x-text="needsShipping() ? 'کالاهای فیزیکی به این نشانی فرستاده می‌شوند.' : 'سبد شما فقط محصول دانلودی دارد.'"></p>
+              </div>
+            </div>
+
+            <!-- digital-only cart: nothing to ship -->
+            <div x-show="!needsShipping()" class="mt-6 notice" style="display:none">
+              <span class="notice-icon bg-emerald-50 text-emerald-500"><i class="fa-solid fa-cloud-arrow-down"></i></span>
+              <span class="text-[12px] leading-7 text-gray-600">
+                همه کالاهای سبد دانلودی هستند، بنابراین نیازی به نشانی پستی نیست. می‌توانید به مرحله پرداخت بروید.
+              </span>
+            </div>
+
+            <div x-show="needsShipping()" style="display:none">
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="field-label text-[12px]" for="province">استان</label>
+                  <div class="relative">
+                    <select id="province" x-model="form.province" @change="clearError('province')" class="comment-input appearance-none cursor-pointer">
+                      <option value="">انتخاب کنید</option>
+                      <template x-for="name in provinces" :key="name">
+                        <option :value="name" x-text="name"></option>
+                      </template>
+                    </select>
+                    <i class="fa-solid fa-chevron-down absolute end-4 top-1/2 -translate-y-1/2 text-gray-300 text-[10px] pointer-events-none"></i>
+                  </div>
+                  <p x-show="errors.province" class="field-error" x-text="errors.province" style="display:none"></p>
+                </div>
+
+                <div>
+                  <label class="field-label text-[12px]" for="city">شهر</label>
+                  <input id="city" type="text" x-model="form.city" @input="clearError('city')" class="comment-input" placeholder="تهران" />
+                  <p x-show="errors.city" class="field-error" x-text="errors.city" style="display:none"></p>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <label class="field-label text-[12px]" for="address">نشانی کامل</label>
+                <textarea id="address" x-model="form.address" @input="clearError('address')" rows="3" class="comment-textarea" placeholder="خیابان، کوچه، پلاک، واحد"></textarea>
+                <p x-show="errors.address" class="field-error" x-text="errors.address" style="display:none"></p>
+              </div>
+
+              <div class="mt-4 sm:max-w-[240px]">
+                <label class="field-label text-[12px]" for="postcode">کد پستی</label>
+                <input id="postcode" type="text" dir="ltr" x-model="form.postcode" @input="clearError('postcode')" class="comment-input" placeholder="1234567890" />
+                <p x-show="errors.postcode" class="field-error" x-text="errors.postcode" style="display:none"></p>
+                <p class="field-hint">ده رقم، بدون خط تیره.</p>
+              </div>
+
+              <p class="widget-title mt-8">روش ارسال</p>
+              <div class="mt-3 space-y-2.5">
+                <template x-for="option in shippingOptions" :key="option.key">
+                  <button
+                    @click="shipping = option.key"
+                    class="ship-option"
+                    :class="shipping === option.key ? 'border-brand bg-brand/5' : 'border-gray-100 bg-white hover:border-gray-200'"
+                    :aria-pressed="shipping === option.key"
+                  >
+                    <span class="size-5 rounded-full border-2 flex items-center justify-center shrink-0" :class="shipping === option.key ? 'border-brand' : 'border-gray-300'">
+                      <span x-show="shipping === option.key" class="size-2.5 rounded-full bg-brand" style="display:none"></span>
+                    </span>
+                    <span class="flex-1 min-w-0">
+                      <span class="block text-[12px] font-bold text-gray-950" x-text="option.label"></span>
+                      <span class="block mt-0.5 text-[10px] text-gray-500" x-text="option.note"></span>
+                    </span>
+                    <span class="text-[11px] font-black shrink-0" :class="shippingCostOf(option) ? 'text-gray-950' : 'text-emerald-600'">
+                      <span x-text="shippingCostOf(option) ? money(shippingCostOf(option)) + ' تومان' : 'رایگان'"></span>
+                    </span>
+                  </button>
+                </template>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <label class="field-label text-[12px]" for="note">یادداشت سفارش (اختیاری)</label>
+              <textarea id="note" x-model="form.note" rows="2" class="comment-textarea" placeholder="توضیح خاصی برای تحویل دارید؟"></textarea>
+            </div>
+
+            <div class="mt-7 flex items-center justify-between gap-4">
+              <button @click="prevStep()" class="btn-ghost">
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+                مرحله قبل
+              </button>
+              <button @click="nextStep()" class="btn-primary">
+                ادامه
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3 — payment -->
+          <div x-show="step === 3" class="card-box p-5 sm:p-7" style="display:none">
+            <div class="flex items-center gap-3">
+              <span class="icon-tile bg-emerald-50 text-emerald-500"><i class="fa-solid fa-credit-card"></i></span>
+              <div>
+                <p class="text-sm font-black text-gray-950">روش پرداخت</p>
+                <p class="mt-1 text-[11px] text-gray-500">پرداخت از طریق درگاه امن بانکی انجام می‌شود.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 space-y-2.5">
+              <template x-for="method in paymentMethods" :key="method.key">
+                <button
+                  @click="payment = method.key"
+                  class="pay-method"
+                  :class="payment === method.key ? 'border-brand bg-brand/5' : 'border-gray-100 bg-white hover:border-gray-200'"
+                  :aria-pressed="payment === method.key"
+                  x-show="methodAvailable(method)"
+                >
+                  <span class="size-5 rounded-full border-2 flex items-center justify-center shrink-0" :class="payment === method.key ? 'border-brand' : 'border-gray-300'">
+                    <span x-show="payment === method.key" class="size-2.5 rounded-full bg-brand" style="display:none"></span>
+                  </span>
+                  <span class="icon-tile size-10 shrink-0" :class="method.tile">
+                    <i class="fa-solid text-[13px]" :class="method.icon"></i>
+                  </span>
+                  <span class="flex-1 min-w-0">
+                    <span class="block text-[12px] font-bold text-gray-950" x-text="method.label"></span>
+                    <span class="block mt-0.5 text-[10px] leading-5 text-gray-500" x-text="method.note"></span>
+                  </span>
+                </button>
+              </template>
+            </div>
+
+            <!-- review of what was entered -->
+            <div class="mt-7 rounded-[22px] border border-gray-100 bg-gray-50/70 p-5">
+              <div class="flex items-center justify-between">
+                <p class="text-[12px] font-black text-gray-950">بازبینی اطلاعات</p>
+                <button @click="goToStep(1)" class="text-[10px] font-bold text-brand hover:underline">ویرایش</button>
+              </div>
+              <div class="mt-4 space-y-2 text-[11px]">
+                <div class="flex gap-3">
+                  <span class="text-gray-400 w-16 shrink-0">خریدار</span>
+                  <span class="text-gray-700" x-text="form.firstName + ' ' + form.lastName"></span>
+                </div>
+                <div class="flex gap-3">
+                  <span class="text-gray-400 w-16 shrink-0">ایمیل</span>
+                  <span class="text-gray-700" dir="ltr" x-text="form.email"></span>
+                </div>
+                <div class="flex gap-3">
+                  <span class="text-gray-400 w-16 shrink-0">موبایل</span>
+                  <span class="text-gray-700" dir="ltr" x-text="form.phone"></span>
+                </div>
+                <div x-show="needsShipping()" class="flex gap-3" style="display:none">
+                  <span class="text-gray-400 w-16 shrink-0">نشانی</span>
+                  <span class="text-gray-700 leading-6" x-text="form.province + '، ' + form.city + '، ' + form.address"></span>
+                </div>
+              </div>
+            </div>
+
+            <label class="mt-6 flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" x-model="form.terms" @change="clearError('terms')" class="mt-0.5 size-4 accent-[var(--color-brand)] cursor-pointer shrink-0" />
+              <span class="text-[11px] leading-6 text-gray-600">
+                <a href="page.html" class="text-brand hover:underline">شرایط و قوانین</a>
+                فروشگاه را خوانده‌ام و می‌پذیرم.
+              </span>
+            </label>
+            <p x-show="errors.terms" class="field-error" x-text="errors.terms" style="display:none"></p>
+
+            <div class="mt-7 flex items-center justify-between gap-4">
+              <button @click="prevStep()" class="btn-ghost">
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+                مرحله قبل
+              </button>
+              <button @click="placeOrder()" class="btn-primary" :disabled="submitting" :class="submitting ? 'opacity-60' : ''">
+                <i class="fa-solid" :class="submitting ? 'fa-circle-notch fa-spin' : 'fa-lock'"></i>
+                <span x-text="submitting ? 'در حال ثبت...' : 'ثبت سفارش و پرداخت'"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---------- SUMMARY ---------- -->
+        <aside class="lg:col-span-5 xl:col-span-4">
+          <div class="sticky top-[90px] space-y-4">
+            <div class="card-box p-5 sm:p-6">
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-black text-gray-950">سفارش شما</p>
+                <a href="cart.html" class="text-[10px] font-bold text-brand hover:underline">ویرایش سبد</a>
+              </div>
+
+              <div class="mt-5 space-y-4">
+                <template x-for="item in items" :key="item.key">
+                  <div class="flex items-center gap-3">
+                    <span class="relative size-14 shrink-0 overflow-hidden rounded-2xl" :class="item.bg">
+                      <img :src="item.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                      <span class="absolute -top-1 -end-1 min-w-[18px] h-[18px] px-1 rounded-full bg-gray-950 text-white text-[9px] font-black flex items-center justify-center" x-text="toFa(item.qty)"></span>
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[11px] font-bold leading-6 text-gray-950 line-clamp-2" x-text="item.title"></span>
+                      <span x-show="item.variant" class="block mt-0.5 text-[10px] text-gray-400" x-text="item.variant" style="display:none"></span>
+                    </span>
+                    <span class="price text-[11px] shrink-0">
+                      <span x-text="money(item.price * item.qty)"></span>
+                      <span class="price-unit">تومان</span>
+                    </span>
+                  </div>
+                </template>
+              </div>
+
+              <!-- coupon -->
+              <div class="mt-5 pt-5 border-t border-gray-100">
+                <div class="flex items-center gap-2">
+                  <input
+                    type="text"
+                    x-model="coupon"
+                    @keydown.enter="applyCoupon()"
+                    dir="ltr"
+                    class="flex-1 h-11 rounded-2xl bg-gray-50 border border-gray-100 px-4 text-xs outline-none transition focus:border-brand/30 focus:ring-4 focus:ring-brand/10"
+                    placeholder="کد تخفیف"
+                    aria-label="کد تخفیف"
+                  />
+                  <button @click="applyCoupon()" class="h-11 px-4 rounded-2xl bg-gray-950 text-white text-[11px] font-bold transition hover:bg-brand">
+                    اعمال
+                  </button>
+                </div>
+                <p x-show="couponError" class="field-error" x-text="couponError" style="display:none"></p>
+                <div x-show="appliedCoupon" class="mt-3 flex items-center justify-between rounded-2xl bg-emerald-50 border border-emerald-100 px-3.5 py-2.5" style="display:none">
+                  <span class="flex items-center gap-2 text-[11px] font-bold text-emerald-700">
+                    <i class="fa-solid fa-circle-check text-[10px]"></i>
+                    <span x-text="couponNote()"></span>
+                  </span>
+                  <button @click="removeCoupon()" class="text-emerald-600 transition hover:text-emerald-800" aria-label="حذف کد تخفیف">
+                    <i class="fa-solid fa-xmark text-[11px]"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- totals -->
+              <div class="mt-5 pt-3 border-t border-gray-100 divide-y divide-gray-100">
+                <div class="summary-line">
+                  <span class="text-gray-500">جمع کالاها</span>
+                  <span class="font-bold text-gray-950"><span x-text="money(subtotal())"></span> تومان</span>
+                </div>
+                <div x-show="couponValue()" class="summary-line" style="display:none">
+                  <span class="text-gray-500">تخفیف</span>
+                  <span class="font-bold text-emerald-600">− <span x-text="money(couponValue())"></span> تومان</span>
+                </div>
+                <div x-show="needsShipping()" class="summary-line" style="display:none">
+                  <span class="text-gray-500">ارسال</span>
+                  <span class="font-bold" :class="shippingCost() ? 'text-gray-950' : 'text-emerald-600'">
+                    <span x-text="shippingCost() ? money(shippingCost()) + ' تومان' : 'رایگان'"></span>
+                  </span>
+                </div>
+                <div class="summary-line">
+                  <span class="text-gray-500">مالیات (٪۹)</span>
+                  <span class="font-bold text-gray-950"><span x-text="money(tax())"></span> تومان</span>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-4 border-t border-gray-200 flex items-end justify-between">
+                <span class="text-[12px] font-bold text-gray-700">قابل پرداخت</span>
+                <span class="inline-flex items-baseline gap-1.5">
+                  <span class="text-xl font-black text-gray-950" x-text="money(total())"></span>
+                  <span class="text-[10px] font-bold text-gray-400">تومان</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="rounded-[24px] border border-gray-100 bg-white p-5">
+              <div class="flex items-center gap-3">
+                <span class="icon-tile size-10 bg-emerald-50 text-emerald-500"><i class="fa-solid fa-shield-halved text-[13px]"></i></span>
+                <div>
+                  <p class="text-[11px] font-black text-gray-950">خرید شما بیمه است</p>
+                  <p class="mt-1 text-[10px] leading-5 text-gray-500">تا هفت روز امکان بازگشت کالا و مبلغ وجود دارد.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="mt-14 border-t border-gray-100 bg-white">
+    <div class="container-page">
+      <div class="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] text-gray-500">
+          <a href="page.html" class="hover:text-brand transition">شرایط و قوانین</a>
+          <a href="page.html" class="hover:text-brand transition">حریم خصوصی</a>
+          <a href="contact.html" class="hover:text-brand transition">تماس با ما</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button x-show="scrolled" x-transition @click="toTop()" class="size-12 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition" aria-label="بازگشت به بالا" style="display:none">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function toMoney(value) {
+      return toFaDigits(String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, '٬'));
+    }
+
+    /* people paste Persian digits into phone and postcode fields all the time */
+    function toLatinDigits(value) {
+      return String(value)
+        .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+        .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+    }
+
+    function checkoutPage() {
+      return {
+        demoPanel: false,
+        scrolled: false,
+
+        step: 1,
+        placed: false,
+        submitting: false,
+        orderNumber: '',
+        errors: {},
+
+        coupon: '',
+        appliedCoupon: '',
+        couponError: '',
+        shipping: 'standard',
+        payment: 'gateway',
+
+        taxRate: 0.09,
+        freeShippingAt: 500000,
+
+        toFa: toFaDigits,
+        money: toMoney,
+
+        form: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          province: '',
+          city: '',
+          address: '',
+          postcode: '',
+          note: '',
+          terms: false
+        },
+
+        steps: [
+          { key: 'details',  label: 'اطلاعات' },
+          { key: 'shipping', label: 'ارسال' },
+          { key: 'payment',  label: 'پرداخت' }
+        ],
+
+        provinces: [
+          'تهران', 'البرز', 'اصفهان', 'فارس', 'خراسان رضوی', 'آذربایجان شرقی',
+          'گیلان', 'مازندران', 'یزد', 'کرمان', 'خوزستان', 'قم'
+        ],
+
+        items: [
+          { key: 'p1-business', title: 'قالب وبلاگ سوی — نسخه کامل', variant: 'نسخه تجاری', price: 2350000, qty: 1, digital: true,  bg: 'gradient-thumb-1', photo: 'assets/images/hero-laptop.jpg' },
+          { key: 'p3-black',    title: 'میکروفون استودیویی آوا پرو',  variant: 'مشکی',       price: 3200000, qty: 1, digital: false, bg: 'gradient-thumb-3', photo: 'assets/images/forest.jpg' },
+          { key: 'p4',          title: 'کتاب تایپوگرافی فارسی در وب', variant: '',           price: 320000,  qty: 2, digital: false, bg: 'gradient-thumb-4', photo: 'assets/images/lake.jpg' }
+        ],
+
+        shippingOptions: [
+          { key: 'standard', label: 'پست پیشتاز', note: 'تحویل سه تا پنج روز کاری', cost: 65000 },
+          { key: 'express',  label: 'ارسال فوری',  note: 'تحویل یک روز کاری',        cost: 145000 },
+          { key: 'pickup',   label: 'تحویل حضوری', note: 'دریافت از دفتر تهران',      cost: 0 }
+        ],
+
+        paymentMethods: [
+          { key: 'gateway', label: 'درگاه بانکی',      note: 'انتقال به صفحه امن بانک برای پرداخت.',      icon: 'fa-credit-card',   tile: 'bg-brand/10 text-brand',       physicalOnly: false },
+          { key: 'wallet',  label: 'کیف پول سوی',      note: 'موجودی فعلی: ۱٬۲۰۰٬۰۰۰ تومان.',            icon: 'fa-wallet',        tile: 'bg-violet-50 text-violet-500', physicalOnly: false },
+          { key: 'cod',     label: 'پرداخت در محل',    note: 'فقط برای سفارش‌های فیزیکی داخل تهران.',     icon: 'fa-money-bill-wave', tile: 'bg-emerald-50 text-emerald-500', physicalOnly: true }
+        ],
+
+        coupons: [
+          { code: 'SEVI20',   type: 'percent',  value: 20,     note: '٪۲۰ تخفیف روی کل سبد' },
+          { code: 'WELCOME',  type: 'fixed',    value: 300000, note: '۳۰۰٬۰۰۰ تومان تخفیف' },
+          { code: 'FREESHIP', type: 'shipping', value: 0,      note: 'ارسال رایگان' }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-brand', current: true },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        /* ---------- steps ---------- */
+        stepClass(n) {
+          if (this.step === n) return 'text-brand';
+          if (this.step > n) return 'text-gray-700';
+          return 'text-gray-400';
+        },
+
+        bulletClass(n) {
+          if (this.step === n) return 'bg-brand text-white';
+          if (this.step > n) return 'bg-emerald-500 text-white';
+          return 'bg-gray-100 text-gray-400';
+        },
+
+        nextStep() {
+          if (!this.validateStep(this.step)) return false;
+          this.step = Math.min(this.step + 1, this.steps.length);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return true;
+        },
+
+        prevStep() {
+          this.step = Math.max(1, this.step - 1);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        goToStep(n) {
+          /* going back is always allowed; going forward has to earn it */
+          if (n < this.step) {
+            this.step = n;
+            return true;
+          }
+          for (let i = this.step; i < n; i++) {
+            if (!this.validateStep(i)) return false;
+          }
+          this.step = n;
+          return true;
+        },
+
+        /* ---------- validation ---------- */
+        clearError(field) {
+          if (this.errors[field]) delete this.errors[field];
+        },
+
+        validateStep(n) {
+          const errors = {};
+
+          if (n === 1) {
+            if (!this.form.firstName.trim()) errors.firstName = 'نام را وارد کنید.';
+            if (!this.form.lastName.trim()) errors.lastName = 'نام خانوادگی را وارد کنید.';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.form.email.trim())) errors.email = 'ایمیل معتبر وارد کنید.';
+            if (!/^09\d{9}$/.test(toLatinDigits(this.form.phone).trim())) errors.phone = 'شماره موبایل باید با ۰۹ شروع شود و یازده رقم باشد.';
+          }
+
+          if (n === 2 && this.needsShipping()) {
+            if (!this.form.province) errors.province = 'استان را انتخاب کنید.';
+            if (!this.form.city.trim()) errors.city = 'شهر را وارد کنید.';
+            if (this.form.address.trim().length < 10) errors.address = 'نشانی را کامل‌تر بنویسید.';
+            if (!/^\d{10}$/.test(toLatinDigits(this.form.postcode).trim())) errors.postcode = 'کد پستی باید ده رقم باشد.';
+          }
+
+          if (n === 3) {
+            if (!this.form.terms) errors.terms = 'پذیرش شرایط و قوانین لازم است.';
+          }
+
+          this.errors = errors;
+          return Object.keys(errors).length === 0;
+        },
+
+        /* ---------- payment ---------- */
+        methodAvailable(method) {
+          /* cash on delivery makes no sense for a download-only cart */
+          return !method.physicalOnly || this.needsShipping();
+        },
+
+        paymentLabel() {
+          const method = this.paymentMethods.find(m => m.key === this.payment);
+          return method ? method.label : '';
+        },
+
+        placeOrder() {
+          if (!this.validateStep(3)) return false;
+          this.submitting = true;
+
+          setTimeout(() => {
+            this.submitting = false;
+            this.placed = true;
+            this.orderNumber = this.makeOrderNumber();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 900);
+
+          return true;
+        },
+
+        makeOrderNumber() {
+          const stamp = String(Date.now()).slice(-6);
+          return 'SEVI-' + stamp;
+        },
+
+        /* ---------- money ---------- */
+        subtotal() {
+          return this.items.reduce((sum, item) => sum + item.price * item.qty, 0);
+        },
+
+        activeCoupon() {
+          return this.coupons.find(c => c.code === this.appliedCoupon) || null;
+        },
+
+        couponValue() {
+          const coupon = this.activeCoupon();
+          if (!coupon) return 0;
+          if (coupon.type === 'percent') return Math.round(this.subtotal() * coupon.value / 100);
+          if (coupon.type === 'fixed') return Math.min(coupon.value, this.subtotal());
+          return 0;
+        },
+
+        couponNote() {
+          const coupon = this.activeCoupon();
+          return coupon ? coupon.note : '';
+        },
+
+        applyCoupon() {
+          const code = this.coupon.trim().toUpperCase();
+          if (!code) {
+            this.couponError = 'کد تخفیف را وارد کنید.';
+            return false;
+          }
+          const found = this.coupons.find(c => c.code === code);
+          if (!found) {
+            this.couponError = 'این کد معتبر نیست یا منقضی شده است.';
+            return false;
+          }
+          if (this.appliedCoupon === code) {
+            this.couponError = 'این کد از قبل اعمال شده است.';
+            return false;
+          }
+          this.appliedCoupon = code;
+          this.couponError = '';
+          this.coupon = '';
+          return true;
+        },
+
+        removeCoupon() {
+          this.appliedCoupon = '';
+          this.couponError = '';
+        },
+
+        needsShipping() {
+          return this.items.some(item => !item.digital);
+        },
+
+        freeShipping() {
+          if (!this.needsShipping()) return true;
+          const coupon = this.activeCoupon();
+          if (coupon && coupon.type === 'shipping') return true;
+          return this.subtotal() - this.couponValue() >= this.freeShippingAt;
+        },
+
+        shippingCostOf(option) {
+          if (!this.needsShipping()) return 0;
+          if (option.key === 'pickup') return 0;
+          return this.freeShipping() ? 0 : option.cost;
+        },
+
+        shippingCost() {
+          const option = this.shippingOptions.find(o => o.key === this.shipping);
+          return option ? this.shippingCostOf(option) : 0;
+        },
+
+        taxableBase() {
+          return Math.max(0, this.subtotal() - this.couponValue());
+        },
+
+        tax() {
+          return Math.round(this.taxableBase() * this.taxRate);
+        },
+
+        total() {
+          return this.taxableBase() + this.tax() + this.shippingCost();
+        },
+
+        /* ---------- misc ---------- */
+        onScroll() {
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+
+        init() {
+          /* a download-only cart must not sit on an unavailable payment method */
+          this.$watch('items', () => {
+            const method = this.paymentMethods.find(m => m.key === this.payment);
+            if (method && !this.methodAvailable(method)) this.payment = 'gateway';
+          });
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

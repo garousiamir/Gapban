@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEVI | دمو ۶ — پادکست</title>
+  <meta name="description" content="قالب وبلاگ SEVI — نسخه کامل پادکست با پخش‌کننده ثابت، فصل‌بندی قسمت‌ها، سرفصل‌های زمان‌دار و نظرات شنوندگان." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body
+  x-data="podcastPage()"
+  @scroll.window="onScroll()"
+  class="font-estedad bg-white selection:bg-brand selection:text-white pb-[112px] lg:pb-[96px]"
+>
+
+  <!-- Reading progress -->
+  <div class="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none">
+    <div class="h-full bg-brand" :style="'width:' + progress + '%'"></div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+          <span class="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-2.5 py-1 text-[9px] font-bold text-brand">
+            <i class="fa-solid fa-microphone-lines text-[8px]"></i>
+            پادکست
+          </span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-6.html" class="nav-link text-gray-950 font-bold">خانه</a>
+          <a href="#episodes" class="nav-link">قسمت‌ها</a>
+          <a href="#guests" class="nav-link">مهمان‌ها</a>
+          <a href="#reviews" class="nav-link">نظرات</a>
+          <a href="#listen" class="nav-link">چطور گوش کنیم</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-[240px] relative">
+          <input
+            type="text"
+            x-model="search"
+            placeholder="جستجوی قسمت..."
+            class="w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 ps-10 pe-4 text-xs outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand/30 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn" aria-label="افزودن به علاقه‌مندی‌ها"><i class="fa-regular fa-heart text-sm"></i></button>
+
+          <a href="#listen" class="hidden sm:inline-flex items-center gap-2 h-10 px-4 rounded-2xl bg-brand text-white text-xs font-bold shadow-lg shadow-brand/20 hover:bg-brand-dark transition">
+            <i class="fa-solid fa-plus text-[10px]"></i>
+            دنبال کردن
+          </a>
+
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div
+    x-show="mobileMenu"
+    x-transition.opacity
+    class="fixed inset-0 z-[80] bg-black/40 lg:hidden"
+    @click.self="mobileMenu = false"
+    style="display:none"
+  >
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand"></i>
+          </span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="mt-6 relative">
+        <input type="text" x-model="search" placeholder="جستجوی قسمت..." class="w-full h-12 rounded-2xl bg-gray-50 border border-gray-100 ps-11 pe-4 text-sm outline-none" />
+        <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      </div>
+
+      <nav class="mt-6 space-y-2">
+        <a href="index-6.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">خانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="#episodes" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">قسمت‌ها <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="#guests" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">مهمان‌ها <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="#reviews" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">نظرات <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="index-5.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">دمو رسانه <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">دمو کلاسیک <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">تماس <i class="fa-solid fa-angle-left text-gray-400"></i></a>
+      </nav>
+
+      <div class="mt-8 p-4 rounded-3xl bg-gray-50 border border-gray-100">
+        <p class="text-sm font-bold">شنیدن در</p>
+        <div class="mt-4 grid grid-cols-4 gap-2">
+          <a href="#" class="icon-btn" aria-label="اسپاتیفای"><i class="fa-brands fa-spotify"></i></a>
+          <a href="#" class="icon-btn" aria-label="اپل پادکست"><i class="fa-brands fa-apple"></i></a>
+          <a href="#" class="icon-btn" aria-label="یوتیوب"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="icon-btn" aria-label="فید آر‌اس‌اس"><i class="fa-solid fa-rss"></i></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <main>
+
+    <!-- ===================== SHOW HERO ===================== -->
+    <section class="relative overflow-hidden border-b border-gray-100">
+      <div class="absolute inset-0 gradient-a opacity-50"></div>
+      <div class="absolute inset-0 dot-grid opacity-40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/85 to-white"></div>
+      <div class="pointer-events-none absolute -top-24 end-1/4 size-80 brand-glow blur-3xl"></div>
+
+      <div class="container-page relative z-10 py-12 sm:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-9 lg:gap-12 items-center">
+
+          <!-- cover art -->
+          <div class="lg:col-span-4">
+            <div class="relative max-w-[320px] mx-auto lg:mx-0">
+              <div class="relative aspect-square rounded-[32px] overflow-hidden gradient-thumb-2 shadow-[0_35px_80px_rgba(15,23,42,0.22)]">
+                <img src="assets/images/hero-laptop.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                <div class="absolute inset-0 bg-gray-950/25"></div>
+
+                <div class="absolute inset-0 p-6 flex flex-col justify-between text-white">
+                  <span class="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md border border-white/25 px-3 py-1.5 text-[10px] font-bold w-max">
+                    <i class="fa-solid fa-microphone-lines text-[9px]"></i>
+                    فصل ۳
+                  </span>
+
+                  <div>
+                    <p class="text-2xl font-black tracking-[0.12em] uppercase">SEVI</p>
+                    <p class="text-[11px] text-white/75 mt-1">پادکست طراحی و محصول</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- floating play -->
+              <button
+                @click="loadEpisode(0)"
+                class="absolute -bottom-6 end-6 size-[68px] rounded-full bg-brand text-white flex items-center justify-center shadow-[0_20px_45px_rgba(239,75,75,0.45)] hover:scale-105 transition"
+                aria-label="پخش آخرین قسمت"
+              >
+                <i class="fa-solid text-lg" :class="isPlaying(0) ? 'fa-pause' : 'fa-play'"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- show info -->
+          <div class="lg:col-span-8">
+            <p class="eyebrow">
+              <span class="relative flex size-2">
+                <span class="absolute inset-0 rounded-full bg-brand animate-ping-ring"></span>
+                <span class="relative size-2 rounded-full bg-brand"></span>
+              </span>
+              قسمت تازه هر پنجشنبه
+            </p>
+
+            <h1 class="mt-5 text-[30px] sm:text-[44px] font-black leading-[1.45] text-gray-950">
+              گفتگوهای <span class="text-brand">ساختن</span>
+            </h1>
+
+            <p class="mt-5 max-w-[560px] text-sm sm:text-[15px] leading-9 text-gray-600">
+              هر هفته با یک طراح، توسعه‌دهنده یا مدیر محصول می‌نشینیم و درباره چیزی که
+              واقعاً ساخته‌اند حرف می‌زنیم — نه درباره چیزی که باید ساخته شود. بدون شعار،
+              با جزئیات.
+            </p>
+
+            <!-- meta -->
+            <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-[12px] text-gray-500">
+              <span class="flex items-center gap-2">
+                <span class="size-8 rounded-full gradient-thumb-2 relative overflow-hidden flex items-center justify-center text-[10px] font-black text-white/90">
+                  م
+                  <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                </span>
+                میزبان: <span class="font-bold text-gray-800">مریم فراهانی</span>
+              </span>
+
+              <span class="w-px h-4 bg-gray-200"></span>
+
+              <span class="flex items-center gap-2">
+                <span class="star-row">
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </span>
+                ۴٫۹ از ۵
+              </span>
+
+              <span class="w-px h-4 bg-gray-200"></span>
+              <span><i class="fa-solid fa-compact-disc me-1.5 text-gray-300"></i>۶۴ قسمت</span>
+              <span class="w-px h-4 bg-gray-200"></span>
+              <span><i class="fa-regular fa-clock me-1.5 text-gray-300"></i>۴۸ ساعت</span>
+            </div>
+
+            <!-- actions -->
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <button @click="loadEpisode(0)" class="btn-primary">
+                <i class="fa-solid text-xs" :class="isPlaying(0) ? 'fa-pause' : 'fa-play'"></i>
+                <span x-text="isPlaying(0) ? 'در حال پخش' : 'پخش آخرین قسمت'"></span>
+              </button>
+
+              <button
+                @click="following = !following"
+                class="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl text-sm font-bold transition"
+                :class="following
+                  ? 'bg-gray-950 text-white'
+                  : 'bg-white border border-gray-100 text-gray-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] hover:text-brand hover:border-brand/30'"
+              >
+                <i class="fa-solid text-xs" :class="following ? 'fa-check' : 'fa-plus'"></i>
+                <span x-text="following ? 'دنبال می‌کنید' : 'دنبال کردن'"></span>
+              </button>
+
+              <button class="icon-btn size-12 rounded-2xl" aria-label="اشتراک‌گذاری"><i class="fa-solid fa-share-nodes text-sm"></i></button>
+            </div>
+
+            <!-- platforms -->
+            <div class="mt-8 flex flex-wrap items-center gap-2">
+              <span class="text-[11px] text-gray-400 me-2">شنیدن در:</span>
+              <template x-for="platform in platforms" :key="platform.label">
+                <a :href="platform.href" class="inline-flex items-center gap-2 h-9 px-3.5 rounded-xl bg-white border border-gray-100 text-[11px] font-bold text-gray-600 hover:border-brand/30 hover:text-brand transition">
+                  <i :class="platform.icon"></i>
+                  <span x-text="platform.label"></span>
+                </a>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS ===================== -->
+    <section class="container-page mt-10 sm:mt-14">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <template x-for="stat in stats" :key="stat.label">
+          <div class="stat-tile lift-card">
+            <span class="icon-tile mx-auto bg-brand/10 text-brand">
+              <i class="fa-solid" :class="stat.icon"></i>
+            </span>
+            <p class="mt-4 text-[26px] sm:text-[30px] font-black text-gray-950 leading-none" x-text="stat.value"></p>
+            <p class="mt-2 text-xs text-gray-500" x-text="stat.label"></p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== EPISODES ===================== -->
+    <section id="episodes" class="container-page mt-14 sm:mt-20 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-7">
+        <div>
+          <p class="eyebrow"><i class="fa-solid fa-list-ol"></i> آرشیو</p>
+          <h2 class="mt-3 rule-title">همه قسمت‌ها</h2>
+          <p class="section-sub">
+            روی هر قسمت بزنید تا توضیحات، سرفصل‌های زمان‌دار و لینک‌های مرتبط باز شود.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1">
+          <template x-for="season in seasons" :key="season">
+            <button
+              @click="activeSeason = season"
+              class="shrink-0 h-10 px-4 rounded-2xl text-[11px] transition"
+              :class="activeSeason === season
+                ? 'bg-brand/10 text-brand font-bold'
+                : 'bg-gray-50 text-gray-500 hover:text-gray-950'"
+              x-text="season"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- result count -->
+      <p class="mb-4 text-[11px] text-gray-400">
+        <span x-text="toFa(filteredEpisodes().length)"></span> قسمت
+        <span x-show="search.trim()" style="display:none">برای «<span x-text="search"></span>»</span>
+      </p>
+
+      <div class="space-y-3">
+        <template x-for="ep in filteredEpisodes()" :key="ep.id">
+          <article
+            class="rounded-[26px] border bg-white transition"
+            :class="player.episodeId === ep.id
+              ? 'border-brand/30 shadow-[0_20px_50px_rgba(239,75,75,0.10)]'
+              : 'border-gray-100 hover:border-gray-200 hover:shadow-[0_18px_45px_rgba(15,23,42,0.06)]'"
+          >
+            <!-- row -->
+            <div class="p-4 sm:p-5 flex items-center gap-4">
+              <!-- cover + play -->
+              <button
+                @click="loadEpisodeById(ep.id)"
+                class="relative size-16 sm:size-20 rounded-2xl shrink-0 overflow-hidden group"
+                :class="ep.bg"
+                :aria-label="'پخش قسمت ' + ep.number"
+              >
+                <img :src="ep.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                <span class="absolute inset-0 bg-gray-950/40 group-hover:bg-gray-950/25 transition flex items-center justify-center text-white">
+                  <i class="fa-solid text-sm" :class="isPlayingId(ep.id) ? 'fa-pause' : 'fa-play'"></i>
+                </span>
+              </button>
+
+              <!-- meta -->
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2.5 mb-1.5">
+                  <span class="text-[10px] font-black text-brand">قسمت <span x-text="ep.number"></span></span>
+
+                  <span x-show="isPlayingId(ep.id)" class="flex items-end gap-[2px] h-3" style="display:none">
+                    <span class="eq-bar h-full"></span>
+                    <span class="eq-bar h-full" style="animation-delay:0.15s"></span>
+                    <span class="eq-bar h-full" style="animation-delay:0.3s"></span>
+                  </span>
+
+                  <span class="w-px h-3 bg-gray-200"></span>
+                  <span class="text-[10px] text-gray-400" x-text="ep.date"></span>
+                  <span class="hidden sm:block w-px h-3 bg-gray-200"></span>
+                  <span class="hidden sm:inline text-[10px] text-gray-400" x-text="formatTime(ep.seconds)"></span>
+                </div>
+
+                <h3
+                  class="text-sm sm:text-[15px] font-extrabold leading-7 line-clamp-2 transition"
+                  :class="player.episodeId === ep.id ? 'text-brand' : 'text-gray-950'"
+                  x-text="ep.title"
+                ></h3>
+
+                <div class="mt-2 flex items-center gap-2 text-[10px] text-gray-400">
+                  <span class="size-5 rounded-full relative overflow-hidden flex items-center justify-center text-[8px] font-black text-white/90" :class="ep.guestBg">
+                    <span x-text="ep.guest.charAt(0)"></span>
+                    <img :src="ep.guestPhoto" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                  </span>
+                  <span x-text="ep.guest"></span>
+                  <span class="hidden sm:block w-px h-3 bg-gray-200"></span>
+                  <span class="hidden sm:inline"><i class="fa-solid fa-headphones me-1"></i><span x-text="ep.plays"></span></span>
+                </div>
+              </div>
+
+              <!-- actions -->
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button class="icon-btn size-9 hidden sm:flex" aria-label="ذخیره"><i class="fa-regular fa-bookmark text-[11px]"></i></button>
+                <button class="icon-btn size-9 hidden sm:flex" aria-label="دانلود"><i class="fa-solid fa-download text-[11px]"></i></button>
+
+                <button
+                  @click="openEpisode = openEpisode === ep.id ? null : ep.id"
+                  class="icon-btn size-9"
+                  :class="openEpisode === ep.id ? '!bg-brand !text-white !border-brand' : ''"
+                  :aria-expanded="openEpisode === ep.id"
+                  aria-label="جزئیات قسمت"
+                >
+                  <i class="fa-solid text-[11px]" :class="openEpisode === ep.id ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- expandable notes -->
+            <div
+              class="grid transition-all duration-300 ease-out"
+              :class="openEpisode === ep.id ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+            >
+              <div class="overflow-hidden">
+                <div class="px-4 sm:px-5 pb-5 pt-1">
+                  <div class="rounded-[22px] bg-[#fafafa] border border-gray-100 p-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+
+                      <!-- description + links -->
+                      <div class="lg:col-span-7">
+                        <p class="kicker text-gray-400">درباره این قسمت</p>
+                        <p class="mt-3 text-xs leading-8 text-gray-600" x-text="ep.notes"></p>
+
+                        <p class="kicker text-gray-400 mt-6">لینک‌های مرتبط</p>
+                        <div class="mt-3 space-y-2">
+                          <template x-for="link in ep.links" :key="link">
+                            <a href="#" class="flex items-center gap-2.5 text-[11px] text-gray-600 hover:text-brand transition group">
+                              <span class="size-6 rounded-lg bg-white border border-gray-100 flex items-center justify-center shrink-0 group-hover:border-brand/30 transition">
+                                <i class="fa-solid fa-link text-[8px]"></i>
+                              </span>
+                              <span x-text="link"></span>
+                            </a>
+                          </template>
+                        </div>
+
+                        <div class="mt-6 flex flex-wrap items-center gap-2">
+                          <button class="tag-chip !py-1.5 !text-[11px]"><i class="fa-solid fa-share-nodes"></i> اشتراک‌گذاری</button>
+                          <button class="tag-chip !py-1.5 !text-[11px]"><i class="fa-solid fa-download"></i> دانلود MP3</button>
+                          <button class="tag-chip !py-1.5 !text-[11px]"><i class="fa-regular fa-file-lines"></i> متن کامل</button>
+                        </div>
+                      </div>
+
+                      <!-- chapters -->
+                      <div class="lg:col-span-5">
+                        <div class="flex items-center justify-between">
+                          <p class="kicker text-gray-400">سرفصل‌ها</p>
+                          <span class="text-[10px] text-gray-400"><span x-text="toFa(ep.chapters.length)"></span> بخش</span>
+                        </div>
+
+                        <div class="mt-3 space-y-1">
+                          <template x-for="chapter in ep.chapters" :key="chapter.at">
+                            <button
+                              @click="jumpToChapter(ep.id, chapter.at)"
+                              class="chapter-row group"
+                              :class="isCurrentChapter(ep.id, chapter.at) ? 'bg-brand/10' : 'hover:bg-white'"
+                            >
+                              <span
+                                class="shrink-0 rounded-lg px-2 py-1 text-[10px] font-bold tabular-nums transition"
+                                :class="isCurrentChapter(ep.id, chapter.at)
+                                  ? 'bg-brand text-white'
+                                  : 'bg-white border border-gray-100 text-gray-500 group-hover:text-brand'"
+                                x-text="formatTime(chapter.at)"
+                              ></span>
+
+                              <span
+                                class="min-w-0 flex-1 text-[11px] leading-6 transition"
+                                :class="isCurrentChapter(ep.id, chapter.at) ? 'text-brand font-bold' : 'text-gray-600'"
+                                x-text="chapter.label"
+                              ></span>
+
+                              <i class="fa-solid fa-play text-[8px] text-gray-300 group-hover:text-brand transition shrink-0"></i>
+                            </button>
+                          </template>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+
+      <!-- empty state -->
+      <div x-show="!filteredEpisodes().length" class="py-16 text-center" style="display:none">
+        <span class="mx-auto size-16 rounded-[24px] bg-gray-50 text-gray-300 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <p class="mt-5 text-sm font-bold text-gray-950">قسمتی پیدا نشد</p>
+        <p class="mt-2 text-xs text-gray-500">عبارت دیگری را امتحان کنید یا فصل را تغییر دهید.</p>
+        <button @click="search = ''; activeSeason = 'همه'" class="mt-6 btn-ghost">
+          <i class="fa-solid fa-rotate-right text-xs"></i>
+          پاک کردن فیلترها
+        </button>
+      </div>
+
+      <div x-show="filteredEpisodes().length" class="mt-9 flex justify-center">
+        <button class="btn-ghost">
+          <i class="fa-solid fa-rotate text-xs"></i>
+          قسمت‌های قدیمی‌تر
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================== TOP EPISODES ===================== -->
+    <section class="mt-14 sm:mt-20 bg-[#fafafa] border-y border-gray-100 py-14 sm:py-20">
+      <div class="container-page">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+
+          <div class="lg:col-span-7">
+            <p class="eyebrow"><i class="fa-solid fa-ranking-star"></i> پرشنونده‌ترین‌ها</p>
+            <h2 class="mt-3 rule-title">قسمت‌هایی که بیشترین شنونده را داشتند</h2>
+
+            <div class="mt-7 rounded-[26px] bg-white border border-gray-100 p-5 sm:p-6">
+              <template x-for="(ep, index) in topEpisodes()" :key="'top-' + ep.id">
+                <button
+                  @click="loadEpisodeById(ep.id)"
+                  class="group w-full flex items-center gap-4 py-3.5 border-b border-dashed border-gray-100 last:border-0 text-start"
+                >
+                  <span
+                    class="size-9 rounded-xl shrink-0 flex items-center justify-center text-[12px] font-black transition"
+                    :class="index === 0 ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400 group-hover:bg-brand/10 group-hover:text-brand'"
+                    x-text="toFa(index + 1)"
+                  ></span>
+
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[13px] font-extrabold leading-7 text-gray-950 line-clamp-1 group-hover:text-brand transition" x-text="ep.title"></span>
+                    <span class="mt-1 flex items-center gap-3 text-[10px] text-gray-400">
+                      <span>قسمت <span x-text="ep.number"></span></span>
+                      <span class="w-px h-3 bg-gray-200"></span>
+                      <span x-text="ep.plays"></span>
+                      <span class="w-px h-3 bg-gray-200"></span>
+                      <span x-text="formatTime(ep.seconds)"></span>
+                    </span>
+                  </span>
+
+                  <span class="shrink-0 size-9 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center group-hover:bg-brand group-hover:text-white transition">
+                    <i class="fa-solid text-[10px]" :class="isPlayingId(ep.id) ? 'fa-pause' : 'fa-play'"></i>
+                  </span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <!-- rating breakdown -->
+          <div class="lg:col-span-5">
+            <div class="rounded-[26px] bg-white border border-gray-100 p-6 h-full">
+              <p class="kicker text-brand"><i class="fa-solid fa-star"></i> امتیاز شنوندگان</p>
+
+              <div class="mt-5 flex items-center gap-5">
+                <div class="text-center shrink-0">
+                  <p class="text-[44px] font-black text-gray-950 leading-none">۴٫۹</p>
+                  <div class="star-row justify-center mt-2">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                  </div>
+                  <p class="mt-2 text-[10px] text-gray-400">۱٬۲۴۰ رأی</p>
+                </div>
+
+                <div class="flex-1 space-y-2">
+                  <template x-for="row in ratingBreakdown" :key="row.stars">
+                    <div class="flex items-center gap-2.5">
+                      <span class="text-[10px] text-gray-400 w-6 shrink-0 text-end"><span x-text="toFa(row.stars)"></span>★</span>
+                      <span class="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                        <span class="block h-full rounded-full bg-brand" :style="'width:' + row.percent + '%'"></span>
+                      </span>
+                      <span class="text-[10px] text-gray-400 w-8 shrink-0" x-text="toFa(row.percent) + '٪'"></span>
+                    </div>
+                  </template>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-5 border-t border-gray-100">
+                <p class="text-xs leading-7 text-gray-500">
+                  اگر از شنیدن لذت بردید، امتیاز دادن در اپلیکیشن پادکست‌تان بیشترین کمک را
+                  به دیده‌شدن ما می‌کند.
+                </p>
+                <a href="#reviews" class="mt-4 h-11 rounded-2xl bg-gray-950 text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-brand transition">
+                  ثبت امتیاز
+                  <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GUESTS ===================== -->
+    <section id="guests" class="container-page mt-14 sm:mt-20 scroll-mt-24">
+      <div class="flex items-end justify-between gap-4 mb-7">
+        <div>
+          <p class="eyebrow"><i class="fa-solid fa-microphone-lines"></i> مهمان‌ها</p>
+          <h2 class="mt-3 rule-title">کسانی که پای گفتگو نشسته‌اند</h2>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <button @click="scrollRail(-1)" class="icon-btn size-10" aria-label="قبلی"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+          <button @click="scrollRail(1)" class="icon-btn size-10" aria-label="بعدی"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+        </div>
+      </div>
+
+      <div x-ref="rail" class="flex gap-4 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-2">
+        <template x-for="person in guests" :key="person.name">
+          <article class="snap-start shrink-0 w-[235px] rounded-[26px] bg-white border border-gray-100 p-5 text-center shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+            <span class="mx-auto size-[68px] rounded-full flex items-center justify-center text-xl font-black text-white/90 relative overflow-hidden" :class="person.bg">
+              <span x-text="person.name.charAt(0)"></span>
+              <img :src="person.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+            </span>
+
+            <h3 class="mt-4 text-sm font-black text-gray-950" x-text="person.name"></h3>
+            <p class="mt-1.5 text-[11px] text-gray-500 line-clamp-1" x-text="person.role"></p>
+
+            <p class="mt-3 text-[11px] leading-6 text-gray-400 line-clamp-2" x-text="person.topic"></p>
+
+            <span
+              class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold"
+              :class="person.host ? 'bg-brand/10 text-brand' : 'bg-gray-50 text-gray-500'"
+            >
+              <i class="fa-solid text-[8px]" :class="person.host ? 'fa-microphone' : 'fa-headphones'"></i>
+              <span x-text="person.host ? 'میزبان' : ('قسمت ' + person.episode)"></span>
+            </span>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== REVIEWS ===================== -->
+    <section id="reviews" class="container-page mt-14 sm:mt-20 scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-7">
+        <div>
+          <p class="eyebrow"><i class="fa-regular fa-comment-dots"></i> نظرات</p>
+          <h2 class="mt-3 rule-title">شنوندگان چه می‌گویند</h2>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <template x-for="(_, index) in reviews" :key="'dot-' + index">
+            <button
+              @click="activeReview = index"
+              class="h-2 rounded-full transition-all"
+              :class="activeReview === index ? 'w-7 bg-brand' : 'w-2 bg-gray-200'"
+              :aria-label="'نظر ' + toFa(index + 1)"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <div class="relative min-h-[240px] sm:min-h-[210px]">
+        <template x-for="(review, index) in reviews" :key="review.name">
+          <div
+            x-show="activeReview === index"
+            x-transition:enter="transition ease-out duration-400"
+            x-transition:enter-start="opacity-0 translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            class="relative overflow-hidden rounded-[30px] bg-white border border-gray-100 p-6 sm:p-9 shadow-[0_20px_55px_rgba(15,23,42,0.06)]"
+            style="display:none"
+          >
+            <span class="pointer-events-none absolute -top-10 -end-10 size-40 brand-glow blur-3xl opacity-60"></span>
+            <i class="fa-solid fa-quote-left absolute top-6 end-7 text-4xl text-gray-50"></i>
+
+            <div class="relative z-10">
+              <div class="star-row">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+
+              <p class="mt-5 text-sm sm:text-[15px] leading-9 text-gray-700" x-text="review.text"></p>
+
+              <div class="mt-7 pt-5 border-t border-gray-100 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <span class="size-11 rounded-2xl flex items-center justify-center text-sm font-black text-white/90 relative overflow-hidden" :class="review.bg">
+                    <span x-text="review.name.charAt(0)"></span>
+                  </span>
+                  <div>
+                    <p class="text-sm font-black text-gray-950" x-text="review.name"></p>
+                    <p class="text-[11px] text-gray-500 mt-0.5" x-text="review.meta"></p>
+                  </div>
+                </div>
+
+                <span class="hidden sm:inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] text-gray-500">
+                  <i :class="review.platformIcon"></i>
+                  <span x-text="review.platform"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- ===================== SPONSORS ===================== -->
+    <section class="container-page mt-14 sm:mt-20">
+      <div class="rounded-[28px] bg-[#fafafa] border border-gray-100 p-6 sm:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
+          <div class="lg:max-w-[300px]">
+            <p class="eyebrow"><i class="fa-solid fa-handshake"></i> حامیان</p>
+            <h2 class="mt-3 text-lg font-black text-gray-950">با پشتیبانی این تیم‌ها ساخته می‌شود</h2>
+            <a href="contact.html" class="mt-4 inline-flex items-center gap-2 text-[11px] font-bold text-brand hover:underline">
+              حمایت از پادکست
+              <i class="fa-solid fa-arrow-left text-[9px]"></i>
+            </a>
+          </div>
+
+          <div class="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <template x-for="sponsor in sponsors" :key="sponsor.name">
+              <div class="group rounded-2xl bg-white border border-gray-100 h-[76px] flex flex-col items-center justify-center gap-1.5 hover:border-brand/25 transition">
+                <span class="size-8 rounded-xl flex items-center justify-center text-white text-xs" :class="sponsor.bg">
+                  <i class="fa-solid" :class="sponsor.icon"></i>
+                </span>
+                <span class="text-[11px] font-black text-gray-500 group-hover:text-gray-950 transition" x-text="sponsor.name"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW TO LISTEN ===================== -->
+    <section id="listen" class="container-page mt-14 sm:mt-20 scroll-mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-9">
+        <div class="lg:col-span-5">
+          <p class="eyebrow"><i class="fa-regular fa-circle-question"></i> راهنما</p>
+          <h2 class="mt-3 rule-title">چطور گوش کنیم؟</h2>
+          <p class="section-sub">
+            روی هر پلتفرمی که راحت‌ترید ما را دنبال کنید؛ قسمت‌های تازه خودکار می‌رسند.
+          </p>
+
+          <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5">
+            <template x-for="platform in platforms" :key="'listen-' + platform.label">
+              <a :href="platform.href" class="platform-btn !justify-start">
+                <i :class="platform.icon"></i>
+                <span x-text="platform.label"></span>
+                <i class="fa-solid fa-arrow-left text-[9px] text-gray-300 ms-auto"></i>
+              </a>
+            </template>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-3">
+          <template x-for="(item, index) in faqs" :key="item.q">
+            <div
+              class="rounded-[24px] border bg-white overflow-hidden transition"
+              :class="openFaq === index ? 'border-brand/25 shadow-[0_20px_50px_rgba(15,23,42,0.07)]' : 'border-gray-100 hover:border-gray-200'"
+            >
+              <button
+                type="button"
+                @click="openFaq = openFaq === index ? null : index"
+                class="w-full flex items-center gap-4 p-5 text-start"
+                :aria-expanded="openFaq === index"
+              >
+                <span
+                  class="size-9 rounded-xl flex items-center justify-center shrink-0 transition"
+                  :class="openFaq === index ? 'bg-brand text-white' : 'bg-gray-50 text-gray-400'"
+                >
+                  <i class="fa-solid text-[11px]" :class="openFaq === index ? 'fa-minus' : 'fa-plus'"></i>
+                </span>
+
+                <span
+                  class="flex-1 text-sm font-bold transition"
+                  :class="openFaq === index ? 'text-brand' : 'text-gray-950'"
+                  x-text="item.q"
+                ></span>
+              </button>
+
+              <div
+                class="grid transition-all duration-300 ease-out"
+                :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+              >
+                <div class="overflow-hidden">
+                  <p class="px-5 pb-5 ps-[72px] text-xs leading-8 text-gray-500" x-text="item.a"></p>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEWSLETTER CTA ===================== -->
+    <section class="container-page mt-14 sm:mt-20 mb-14 sm:mb-20">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[36px] gradient-b">
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="pointer-events-none absolute -bottom-24 -end-12 size-72 bg-white/40 blur-3xl rounded-full"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 p-8 sm:p-12 lg:p-14">
+          <div class="lg:col-span-7">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-4 py-2 text-[11px] font-bold text-gray-800">
+              <i class="fa-regular fa-envelope-open text-brand"></i>
+              خبرنامه قسمت‌ها
+            </span>
+
+            <h2 class="mt-5 text-2xl sm:text-[34px] font-black leading-[1.6] text-gray-950">
+              قسمت تازه را زودتر از همه بشنوید
+            </h2>
+
+            <p class="mt-4 max-w-[520px] text-sm leading-8 text-gray-700">
+              هر پنجشنبه یک ایمیل کوتاه: لینک قسمت جدید، سرفصل‌ها و چند نکته‌ای که
+              در ضبط جا نشد.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5 w-full">
+            <div class="rounded-[26px] bg-white/70 backdrop-blur-md border border-white/60 p-5">
+              <div class="relative">
+                <input
+                  type="email"
+                  x-model="newsletterEmail"
+                  dir="ltr"
+                  placeholder="you@example.com"
+                  class="w-full h-12 rounded-2xl bg-white border border-gray-100 ps-4 pe-11 text-sm text-gray-800 outline-none focus:border-brand/30 focus:ring-4 focus:ring-brand/10 transition placeholder:text-gray-400"
+                />
+                <i class="fa-regular fa-envelope absolute end-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              </div>
+
+              <button type="button" @click="subscribe()" class="mt-3 w-full h-12 rounded-2xl bg-gray-950 text-white text-sm font-bold hover:bg-brand transition flex items-center justify-center gap-2">
+                <template x-if="!subscribed">
+                  <span class="inline-flex items-center gap-2">عضویت رایگان <i class="fa-solid fa-arrow-left text-xs"></i></span>
+                </template>
+                <template x-if="subscribed">
+                  <span class="inline-flex items-center gap-2"><i class="fa-solid fa-check text-xs"></i> عضو شدید!</span>
+                </template>
+              </button>
+
+              <p class="mt-3 text-[11px] text-gray-500 text-center">۴٬۲۰۰+ شنونده عضو هستند.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-gray-100 bg-[#fafafa]">
+    <div class="container-page">
+      <div class="py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <a href="index-1.html" class="flex items-center gap-2">
+            <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center">
+              <i class="fa-solid fa-bolt text-brand"></i>
+            </span>
+            <span class="text-xl font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+          </a>
+
+          <p class="mt-5 text-xs leading-8 text-gray-500 max-w-[320px]">
+            «گفتگوهای ساختن» — پادکستی درباره طراحی، توسعه و محصول.
+            هر پنجشنبه یک قسمت تازه، کاملاً رایگان.
+          </p>
+
+          <div class="mt-6 flex items-center gap-2">
+            <a href="#" class="icon-btn" aria-label="اسپاتیفای"><i class="fa-brands fa-spotify"></i></a>
+            <a href="#" class="icon-btn" aria-label="اپل پادکست"><i class="fa-brands fa-apple"></i></a>
+            <a href="#" class="icon-btn" aria-label="یوتیوب"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="icon-btn" aria-label="فید آر‌اس‌اس"><i class="fa-solid fa-rss"></i></a>
+          </div>
+        </div>
+
+        <template x-for="col in footerColumns" :key="col.title">
+          <div class="lg:col-span-2">
+            <p class="kicker text-gray-400 pb-3 border-b border-gray-200" x-text="col.title"></p>
+            <div class="mt-4 space-y-2.5">
+              <template x-for="link in col.links" :key="link.label">
+                <a :href="link.href" class="block text-[12px] text-gray-500 hover:text-brand transition" x-text="link.label"></a>
+              </template>
+            </div>
+          </div>
+        </template>
+
+        <div class="lg:col-span-4">
+          <p class="kicker text-gray-400 pb-3 border-b border-gray-200">تماس</p>
+          <div class="mt-4 space-y-3 text-[12px] text-gray-500">
+            <p class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot mt-1 text-brand text-[10px]"></i>
+              تهران، سعادت‌آباد، بلوار فرهنگ، پلاک ۱۲۴
+            </p>
+            <p class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-brand text-[10px]"></i>
+              ۰۲۱-۹۱۰۰۱۰۰۰
+            </p>
+            <p class="flex items-center gap-2" dir="ltr">
+              <i class="fa-regular fa-envelope text-brand text-[10px]"></i>
+              podcast@sevi.ir
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-200 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-gray-400">© ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.</p>
+
+        <div class="flex items-center gap-5 text-[11px] text-gray-400">
+          <a href="#" class="hover:text-brand transition">حریم خصوصی</a>
+          <a href="#" class="hover:text-brand transition">قوانین</a>
+          <a href="contact.html" class="hover:text-brand transition">حمایت</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== STICKY PLAYER ===================== -->
+  <div class="fixed bottom-0 inset-x-0 z-[75] player-bar">
+    <!-- seek bar -->
+    <div
+      @click="seekFromEvent($event)"
+      @keydown.arrow-left.prevent="skip(5)"
+      @keydown.arrow-right.prevent="skip(-5)"
+      tabindex="0"
+      class="group relative h-1.5 bg-gray-100 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+      role="slider"
+      aria-label="نوار پیشرفت"
+      :aria-valuenow="Math.round(playedPercent())"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <span class="absolute inset-y-0 start-0 bg-brand transition-[width] duration-200" :style="'width:' + playedPercent() + '%'"></span>
+      <span
+        class="absolute top-1/2 -translate-y-1/2 translate-x-1/2 size-3 rounded-full bg-brand shadow opacity-0 group-hover:opacity-100 transition-opacity"
+        :style="'right:' + playedPercent() + '%'"
+      ></span>
+    </div>
+
+    <div class="container-page">
+      <div class="h-[100px] lg:h-[88px] flex items-center gap-4">
+
+        <!-- now playing -->
+        <div class="flex items-center gap-3 min-w-0 lg:w-[290px] shrink-0">
+          <span class="relative size-12 sm:size-14 rounded-2xl shrink-0 overflow-hidden" :class="current().bg">
+            <img :src="current().photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+            <span x-show="player.playing" class="absolute inset-0 bg-gray-950/45 flex items-end justify-center gap-[2px] pb-2 h-full" style="display:none">
+              <span class="eq-bar h-4 !bg-white"></span>
+              <span class="eq-bar h-4 !bg-white" style="animation-delay:0.15s"></span>
+              <span class="eq-bar h-4 !bg-white" style="animation-delay:0.3s"></span>
+            </span>
+          </span>
+
+          <div class="min-w-0">
+            <p class="text-[10px] text-brand font-bold">قسمت <span x-text="current().number"></span></p>
+            <p class="mt-0.5 text-[12px] font-bold text-gray-950 truncate" x-text="current().title"></p>
+            <p class="mt-0.5 text-[10px] text-gray-400 truncate hidden sm:block" x-text="current().guest"></p>
+          </div>
+        </div>
+
+        <!-- transport -->
+        <div class="flex items-center gap-1 sm:gap-2 mx-auto shrink-0">
+          <button @click="prevEpisode()" class="ctrl-btn hidden sm:flex" aria-label="قسمت قبلی">
+            <i class="fa-solid fa-backward-step text-sm"></i>
+          </button>
+
+          <button @click="skip(-15)" class="ctrl-btn" aria-label="۱۵ ثانیه عقب">
+            <i class="fa-solid fa-rotate-right text-sm"></i>
+          </button>
+
+          <button
+            @click="togglePlay()"
+            class="size-12 sm:size-14 rounded-full bg-brand text-white flex items-center justify-center shadow-lg shadow-brand/25 hover:bg-brand-dark transition shrink-0"
+            :aria-label="player.playing ? 'توقف' : 'پخش'"
+          >
+            <i class="fa-solid text-base" :class="player.playing ? 'fa-pause' : 'fa-play'"></i>
+          </button>
+
+          <button @click="skip(15)" class="ctrl-btn" aria-label="۱۵ ثانیه جلو">
+            <i class="fa-solid fa-rotate-left text-sm"></i>
+          </button>
+
+          <button @click="nextEpisode()" class="ctrl-btn hidden sm:flex" aria-label="قسمت بعدی">
+            <i class="fa-solid fa-forward-step text-sm"></i>
+          </button>
+        </div>
+
+        <!-- time + options -->
+        <div class="hidden lg:flex items-center gap-5 w-[290px] justify-end shrink-0">
+          <span class="text-[11px] text-gray-500 tabular-nums">
+            <span class="text-gray-950 font-bold" x-text="formatTime(player.currentTime)"></span>
+            <span class="text-gray-300 mx-1">/</span>
+            <span x-text="formatTime(current().seconds)"></span>
+          </span>
+
+          <button
+            @click="cycleSpeed()"
+            class="h-9 px-3 rounded-xl bg-gray-50 border border-gray-100 text-[11px] font-bold text-gray-600 hover:text-brand hover:border-brand/30 transition tabular-nums"
+            aria-label="سرعت پخش"
+          >
+            <span x-text="speedLabel()"></span>×
+          </button>
+
+          <div class="flex items-center gap-2">
+            <button @click="toggleMute()" class="ctrl-btn size-9" :aria-label="player.muted ? 'صدادار' : 'بی‌صدا'">
+              <i class="fa-solid text-xs" :class="player.muted || player.volume === 0 ? 'fa-volume-xmark' : 'fa-volume-high'"></i>
+            </button>
+            <input
+              type="range"
+              min="0" max="1" step="0.05"
+              dir="ltr"
+              x-model.number="player.volume"
+              @input="player.muted = false"
+              class="range-brand w-[76px]"
+              aria-label="میزان صدا"
+            />
+          </div>
+        </div>
+
+        <!-- mobile time -->
+        <span class="lg:hidden text-[10px] text-gray-400 tabular-nums shrink-0" x-text="formatTime(player.currentTime)"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FLOATING (raised above player) ===================== -->
+  <div class="fixed bottom-[124px] lg:bottom-[112px] end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        @click="demoPanel = !demoPanel"
+        class="h-11 px-4 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2"
+      >
+        <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+        دموها
+      </button>
+
+      <button
+        x-show="scrolled"
+        x-transition
+        @click="toTop()"
+        class="size-11 rounded-2xl bg-white border border-gray-100 text-gray-600 shadow-[0_18px_40px_rgba(15,23,42,0.12)] hover:bg-brand hover:text-white hover:border-brand transition"
+        aria-label="بازگشت به بالا"
+        style="display:none"
+      >
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function podcastPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+        scrolled: false,
+        progress: 0,
+        following: false,
+        search: '',
+        activeSeason: 'همه',
+        openEpisode: null,
+        openFaq: 0,
+        activeReview: 0,
+        reviewTimer: null,
+        tickTimer: null,
+        newsletterEmail: '',
+        subscribed: false,
+
+        toFa: toFaDigits,
+
+        player: {
+          episodeId: 24,
+          playing: false,
+          currentTime: 0,
+          speed: 1,
+          volume: 0.8,
+          muted: false
+        },
+
+        speeds: [1, 1.25, 1.5, 2],
+
+        seasons: ['همه', 'فصل ۳', 'فصل ۲', 'فصل ۱'],
+
+        episodes: [
+          {
+            id: 24, number: '۲۴', season: 'فصل ۳',
+            title: 'چرا دیزاین‌سیستم‌ها شکست می‌خورند؟',
+            date: '۲۸ شهریور ۱۴۰۵', seconds: 2530, plays: '۸٫۴k',
+            guest: 'آرمان عظیمی', guestBg: 'gradient-thumb-1', guestPhoto: 'assets/images/avatar-man-1.jpg',
+            bg: 'gradient-thumb-2', photo: 'assets/images/hero-office.jpg',
+            notes: 'با سه تیمی که دیزاین‌سیستم ساختند و دو تایشان کنارش گذاشتند صحبت کردیم. درباره اینکه چرا مستندسازی مهم‌تر از کامپوننت است، چطور بفهمیم سیستم دارد می‌میرد، و اینکه چه زمانی اصلاً نباید سراغش رفت.',
+            links: ['مقاله: معماری یک دیزاین‌سیستم راست‌چین', 'ابزار: مستندساز کامپوننت‌ها', 'کتاب: Design Systems — Alla Kholmatova'],
+            chapters: [
+              { at: 0, label: 'مقدمه و معرفی مهمان' },
+              { at: 215, label: 'دیزاین‌سیستم دقیقاً چیست؟' },
+              { at: 640, label: 'اولین نشانه‌های شکست' },
+              { at: 1180, label: 'مستندسازی؛ حلقه گمشده' },
+              { at: 1720, label: 'چه زمانی نباید سیستم ساخت' },
+              { at: 2210, label: 'جمع‌بندی و توصیه پایانی' }
+            ]
+          },
+          {
+            id: 23, number: '۲۳', season: 'فصل ۳',
+            title: 'گفتگو با یک طراح تایپ‌فیس فارسی',
+            date: '۲۱ شهریور ۱۴۰۵', seconds: 3362, plays: '۶٫۱k',
+            guest: 'مریم فراهانی', guestBg: 'gradient-thumb-2', guestPhoto: 'assets/images/avatar-maryam.jpg',
+            bg: 'gradient-thumb-9', photo: 'assets/images/hero-laptop.jpg',
+            notes: 'از اولین طرح دستی تا انتشار یک خانواده فونت کامل؛ چهار سال کار روی چیزی که کسی متوجه‌اش نمی‌شود اما همه از آن استفاده می‌کنند. درباره کشیدن حروف، تست خوانایی و اقتصاد فونت فارسی.',
+            links: ['نمونه‌کار: خانواده فونت استعداد', 'مقاله: تایپوگرافی فارسی در وب', 'ابزار: Glyphs برای طراحی فونت'],
+            chapters: [
+              { at: 0, label: 'چطور وارد طراحی فونت شدم' },
+              { at: 420, label: 'آناتومی حروف فارسی' },
+              { at: 1050, label: 'چالش اتصال حروف' },
+              { at: 1880, label: 'تست خوانایی در اندازه‌های کوچک' },
+              { at: 2610, label: 'اقتصاد فونت فارسی' },
+              { at: 3050, label: 'توصیه به شروع‌کنندگان' }
+            ]
+          },
+          {
+            id: 22, number: '۲۲', season: 'فصل ۳',
+            title: 'سئو برای سایت‌های محتوایی فارسی',
+            date: '۱۴ شهریور ۱۴۰۵', seconds: 2325, plays: '۵٫۳k',
+            guest: 'نیما شریفی', guestBg: 'gradient-thumb-8', guestPhoto: 'assets/images/avatar-man-3.jpg',
+            bg: 'gradient-thumb-4', photo: 'assets/images/mountains.jpg',
+            notes: 'چه چیزی واقعاً جواب می‌دهد و چه چیزی فقط افسانه است. بر اساس داده‌های دو سال گذشته از ۱۲۰ سایت فارسی، سراغ چیزهایی می‌رویم که بیشترین اثر را داشته‌اند.',
+            links: ['گزارش: وضعیت سئوی فارسی ۱۴۰۵', 'چک‌لیست سئوی تکنیکال', 'ابزار: بررسی Core Web Vitals'],
+            chapters: [
+              { at: 0, label: 'افسانه‌های رایج سئو' },
+              { at: 380, label: 'سئوی تکنیکال از کجا شروع می‌شود' },
+              { at: 910, label: 'کلمات کلیدی فارسی و نیم‌فاصله' },
+              { at: 1520, label: 'سرعت و رتبه؛ رابطه واقعی' },
+              { at: 2010, label: 'جمع‌بندی' }
+            ]
+          },
+          {
+            id: 21, number: '۲۱', season: 'فصل ۲',
+            title: 'قیمت‌گذاری پروژه‌های طراحی',
+            date: '۳۱ مرداد ۱۴۰۵', seconds: 3078, plays: '۹٫۸k',
+            guest: 'کاوه رستمی', guestBg: 'gradient-thumb-4', guestPhoto: 'assets/images/avatar-man-2.jpg',
+            bg: 'gradient-thumb-5', photo: 'assets/images/lake.jpg',
+            notes: 'از ساعتی تا ارزش‌محور؛ چهار مدل رایج، مزایا و معایب هرکدام، و اینکه چطور بدون معذب‌شدن درباره پول مذاکره کنیم.',
+            links: ['قالب: پیشنهاد پروژه', 'مقاله: قیمت‌گذاری ارزش‌محور', 'کتاب: Pricing Creativity'],
+            chapters: [
+              { at: 0, label: 'چرا قیمت‌گذاری سخت است' },
+              { at: 480, label: 'مدل ساعتی و مشکلاتش' },
+              { at: 1120, label: 'مدل ثابت و دامنه کار' },
+              { at: 1840, label: 'قیمت‌گذاری ارزش‌محور' },
+              { at: 2480, label: 'مذاکره بدون معذب‌شدن' },
+              { at: 2870, label: 'جمع‌بندی' }
+            ]
+          },
+          {
+            id: 20, number: '۲۰', season: 'فصل ۲',
+            title: 'ساختن تیم محصول از صفر',
+            date: '۲۴ مرداد ۱۴۰۵', seconds: 2673, plays: '۴٫۷k',
+            guest: 'سارا موسوی', guestBg: 'gradient-thumb-6', guestPhoto: 'assets/images/avatar-woman-2.jpg',
+            bg: 'gradient-thumb-6', photo: 'assets/images/office-interior.jpg',
+            notes: 'استخدام اول را چطور انجام دهیم، فرایند را کی رسمی کنیم و فرهنگ را چطور بدون شعار بسازیم. تجربه ساختن یک تیم هشت‌نفره در دو سال.',
+            links: ['قالب: فرایند مصاحبه', 'مقاله: اولین استخدام محصول', 'ابزار: مستند اصول تیم'],
+            chapters: [
+              { at: 0, label: 'اولین استخدام' },
+              { at: 520, label: 'کی باید فرایند رسمی شود' },
+              { at: 1240, label: 'فرهنگ بدون شعار' },
+              { at: 1960, label: 'اشتباهاتی که کردیم' },
+              { at: 2420, label: 'جمع‌بندی' }
+            ]
+          },
+          {
+            id: 19, number: '۱۹', season: 'فصل ۱',
+            title: 'دسترس‌پذیری؛ از کجا شروع کنیم؟',
+            date: '۱۷ مرداد ۱۴۰۵', seconds: 1787, plays: '۳٫۹k',
+            guest: 'نیما شریفی', guestBg: 'gradient-thumb-8', guestPhoto: 'assets/images/avatar-man-3.jpg',
+            bg: 'gradient-thumb-1', photo: 'assets/images/forest.jpg',
+            notes: 'یک چک‌لیست عملی که می‌توانید همین امروز روی پروژه فعلی‌تان اجرا کنید — بدون اینکه کل محصول را بازنویسی کنید.',
+            links: ['چک‌لیست دسترس‌پذیری', 'ابزار: بررسی کنتراست رنگ', 'راهنمای WCAG به فارسی'],
+            chapters: [
+              { at: 0, label: 'دسترس‌پذیری یعنی چه' },
+              { at: 340, label: 'کنتراست و رنگ' },
+              { at: 780, label: 'ناوبری با کیبورد' },
+              { at: 1260, label: 'اولین قدم‌های عملی' },
+              { at: 1610, label: 'جمع‌بندی' }
+            ]
+          }
+        ],
+
+        platforms: [
+          { label: 'اسپاتیفای', icon: 'fa-brands fa-spotify', href: '#' },
+          { label: 'اپل پادکست', icon: 'fa-brands fa-apple', href: '#' },
+          { label: 'یوتیوب', icon: 'fa-brands fa-youtube', href: '#' },
+          { label: 'کست‌باکس', icon: 'fa-solid fa-box-archive', href: '#' },
+          { label: 'RSS', icon: 'fa-solid fa-rss', href: '#' }
+        ],
+
+        stats: [
+          { value: '۶۴', label: 'قسمت منتشرشده', icon: 'fa-compact-disc' },
+          { value: '۴۸', label: 'ساعت گفتگو', icon: 'fa-clock' },
+          { value: '۲۱۰k', label: 'دفعه پخش', icon: 'fa-headphones' },
+          { value: '۱۹', label: 'کشور شنونده', icon: 'fa-globe' }
+        ],
+
+        ratingBreakdown: [
+          { stars: 5, percent: 88 },
+          { stars: 4, percent: 9 },
+          { stars: 3, percent: 2 },
+          { stars: 2, percent: 1 },
+          { stars: 1, percent: 0 }
+        ],
+
+        guests: [
+          { name: 'مریم فراهانی', role: 'میزبان و سردبیر', topic: 'طراحی تایپ‌فیس و استراتژی محتوا', host: true, episode: '—', bg: 'gradient-thumb-2', photo: 'assets/images/avatar-maryam.jpg' },
+          { name: 'آرمان عظیمی', role: 'مدیر هنری', topic: 'دیزاین‌سیستم و معماری کامپوننت', host: false, episode: '۲۴', bg: 'gradient-thumb-1', photo: 'assets/images/avatar-man-1.jpg' },
+          { name: 'نیما شریفی', role: 'کارشناس سئو', topic: 'سئوی تکنیکال و دسترس‌پذیری', host: false, episode: '۲۲', bg: 'gradient-thumb-8', photo: 'assets/images/avatar-man-3.jpg' },
+          { name: 'کاوه رستمی', role: 'مدیر محصول', topic: 'قیمت‌گذاری و مدیریت پروژه', host: false, episode: '۲۱', bg: 'gradient-thumb-4', photo: 'assets/images/avatar-man-2.jpg' },
+          { name: 'سارا موسوی', role: 'توسعه‌دهنده فرانت‌اند', topic: 'ساختن تیم و فرایند مهندسی', host: false, episode: '۲۰', bg: 'gradient-thumb-6', photo: 'assets/images/avatar-woman-2.jpg' }
+        ],
+
+        reviews: [
+          {
+            name: 'الهام کاظمی', meta: 'شنونده از اصفهان', platform: 'اسپاتیفای', platformIcon: 'fa-brands fa-spotify', bg: 'gradient-thumb-9',
+            text: 'تنها پادکست فارسی‌ای که بعد از هر قسمت یک یادداشت برمی‌دارم. سوال‌ها دقیق‌اند و مهمان را رها نمی‌کنند تا واقعاً جواب بدهد. قسمت دیزاین‌سیستم را سه بار گوش دادم.'
+          },
+          {
+            name: 'بهزاد نوری', meta: 'بنیان‌گذار استارتاپ', platform: 'اپل پادکست', platformIcon: 'fa-brands fa-apple', bg: 'gradient-thumb-4',
+            text: 'چیزی که این پادکست را متفاوت می‌کند، نبودِ شعار است. همه درباره «باید»ها حرف می‌زنند؛ اینجا درباره کاری که واقعاً انجام شده و نتیجه‌اش صحبت می‌شود — حتی وقتی نتیجه بد بوده.'
+          },
+          {
+            name: 'سمیرا احمدی', meta: 'طراح محصول', platform: 'کست‌باکس', platformIcon: 'fa-solid fa-box-archive', bg: 'gradient-thumb-6',
+            text: 'سرفصل‌های زمان‌دار هر قسمت عالی‌اند؛ می‌توانم مستقیم بروم سراغ بخشی که لازم دارم. کیفیت صدا هم در این چند فصل واقعاً بهتر شده است.'
+          }
+        ],
+
+        sponsors: [
+          { name: 'آوند', icon: 'fa-cube', bg: 'bg-brand' },
+          { name: 'رهنما', icon: 'fa-compass', bg: 'bg-blue-500' },
+          { name: 'دیجی‌رید', icon: 'fa-book-open', bg: 'bg-emerald-500' },
+          { name: 'نگین', icon: 'fa-gem', bg: 'bg-violet-500' }
+        ],
+
+        faqs: [
+          {
+            q: 'قسمت‌های جدید کی منتشر می‌شوند؟',
+            a: 'هر پنجشنبه ساعت ۹ صبح به وقت تهران. اگر ما را در یکی از اپلیکیشن‌های پادکست دنبال کنید، قسمت تازه به‌صورت خودکار برایتان دانلود می‌شود و نیازی به سر زدن به سایت نیست.'
+          },
+          {
+            q: 'آیا متن کامل قسمت‌ها منتشر می‌شود؟',
+            a: 'بله. برای همه قسمت‌های فصل سوم متن کامل و ویرایش‌شده در صفحه هر قسمت موجود است. قسمت‌های قدیمی‌تر را هم به‌تدریج اضافه می‌کنیم.'
+          },
+          {
+            q: 'چطور می‌توانم مهمان پادکست شوم؟',
+            a: 'از طریق فرم تماس برایمان بنویسید و کوتاه توضیح دهید درباره چه چیزی می‌خواهید صحبت کنید. ما دنبال تجربه‌های واقعی هستیم، نه رزومه؛ پس نمونه کاری که ساخته‌اید را حتماً بفرستید.'
+          },
+          {
+            q: 'شنیدن پادکست هزینه دارد؟',
+            a: 'خیر. همه قسمت‌ها کاملاً رایگان و بدون اشتراک منتشر می‌شوند. هزینه تولید از طریق حامیان تأمین می‌شود و تبلیغات هم حداکثر یک بار در هر قسمت و به‌صورت خوانده‌شده است.'
+          },
+          {
+            q: 'چطور می‌توانم حمایت کنم؟',
+            a: 'ساده‌ترین راه، امتیاز دادن در اپلیکیشن پادکست‌تان و معرفی به یک دوست است. اگر تیم یا کسب‌وکاری دارید، می‌توانید از طریق صفحه تماس درباره حمایت مالی با ما صحبت کنید.'
+          }
+        ],
+
+        footerColumns: [
+          {
+            title: 'پادکست',
+            links: [
+              { label: 'همه قسمت‌ها', href: '#episodes' },
+              { label: 'مهمان‌ها', href: '#guests' },
+              { label: 'نظرات شنوندگان', href: '#reviews' },
+              { label: 'چطور گوش کنیم', href: '#listen' }
+            ]
+          },
+          {
+            title: 'دموها',
+            links: [
+              { label: 'دمو کلاسیک', href: 'index-1.html' },
+              { label: 'دمو مجله', href: 'index-2.html' },
+              { label: 'دمو رسانه', href: 'index-5.html' },
+              { label: 'درباره ما', href: 'about.html' }
+            ]
+          }
+        ],
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-brand', current: true },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-teal-500', current: false },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+
+        /* ---------- derived ---------- */
+
+        current() {
+          return this.episodes.find(ep => ep.id === this.player.episodeId) || this.episodes[0];
+        },
+
+        currentIndex() {
+          const index = this.episodes.findIndex(ep => ep.id === this.player.episodeId);
+          return index === -1 ? 0 : index;
+        },
+
+        isPlayingId(id) {
+          return this.player.episodeId === id && this.player.playing;
+        },
+
+        isPlaying(index) {
+          return this.isPlayingId(this.episodes[index].id);
+        },
+
+        playedPercent() {
+          const total = this.current().seconds;
+          if (!total) return 0;
+          return Math.min((this.player.currentTime / total) * 100, 100);
+        },
+
+        formatTime(total) {
+          total = Math.max(0, Math.floor(total || 0));
+          const hours = Math.floor(total / 3600);
+          const minutes = Math.floor((total % 3600) / 60);
+          const seconds = total % 60;
+          const pad = n => String(n).padStart(2, '0');
+          const label = hours > 0
+            ? hours + ':' + pad(minutes) + ':' + pad(seconds)
+            : pad(minutes) + ':' + pad(seconds);
+          return toFaDigits(label);
+        },
+
+        filteredEpisodes() {
+          const term = this.search.trim().toLowerCase();
+
+          return this.episodes.filter(ep => {
+            const bySeason = this.activeSeason === 'همه' || ep.season === this.activeSeason;
+            if (!bySeason) return false;
+            if (!term) return true;
+            return (ep.title + ' ' + ep.guest + ' ' + ep.notes).toLowerCase().includes(term);
+          });
+        },
+
+        topEpisodes() {
+          const toNumber = value => parseFloat(
+            String(value)
+              .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+              .replace('٫', '.')
+          ) || 0;
+          return [...this.episodes]
+            .sort((a, b) => toNumber(b.plays) - toNumber(a.plays))
+            .slice(0, 5);
+        },
+
+        isCurrentChapter(episodeId, at) {
+          if (this.player.episodeId !== episodeId) return false;
+
+          const episode = this.episodes.find(ep => ep.id === episodeId);
+          const chapters = episode ? episode.chapters : [];
+          const next = chapters.find(chapter => chapter.at > at);
+          const end = next ? next.at : (episode ? episode.seconds : at);
+
+          return this.player.currentTime >= at && this.player.currentTime < end;
+        },
+
+        /* ---------- transport ---------- */
+
+        loadEpisodeById(id) {
+          if (this.player.episodeId === id) {
+            this.togglePlay();
+            return;
+          }
+          this.player.episodeId = id;
+          this.player.currentTime = 0;
+          this.player.playing = true;
+        },
+
+        loadEpisode(index) {
+          this.loadEpisodeById(this.episodes[index].id);
+        },
+
+        togglePlay() {
+          this.player.playing = !this.player.playing;
+        },
+
+        seekTo(ratio) {
+          this.player.currentTime = Math.round(this.current().seconds * Math.min(Math.max(ratio, 0), 1));
+        },
+
+        seekFromEvent(event) {
+          const rect = event.currentTarget.getBoundingClientRect();
+          if (!rect.width) return;
+          // RTL: the bar fills from the right edge, so measure inward from there
+          this.seekTo((rect.right - event.clientX) / rect.width);
+        },
+
+        skip(seconds) {
+          const total = this.current().seconds;
+          this.player.currentTime = Math.min(Math.max(this.player.currentTime + seconds, 0), total);
+        },
+
+        jumpToChapter(episodeId, at) {
+          if (this.player.episodeId !== episodeId) {
+            this.player.episodeId = episodeId;
+          }
+          this.player.currentTime = at;
+          this.player.playing = true;
+        },
+
+        nextEpisode() {
+          const next = (this.currentIndex() + 1) % this.episodes.length;
+          this.player.episodeId = this.episodes[next].id;
+          this.player.currentTime = 0;
+        },
+
+        prevEpisode() {
+          if (this.player.currentTime > 5) {
+            this.player.currentTime = 0;
+            return;
+          }
+          const index = this.currentIndex();
+          const prev = index === 0 ? this.episodes.length - 1 : index - 1;
+          this.player.episodeId = this.episodes[prev].id;
+          this.player.currentTime = 0;
+        },
+
+        speedLabel() {
+          return toFaDigits(this.player.speed).replace('.', '٫');
+        },
+
+        cycleSpeed() {
+          const index = this.speeds.indexOf(this.player.speed);
+          this.player.speed = this.speeds[(index + 1) % this.speeds.length];
+        },
+
+        toggleMute() {
+          this.player.muted = !this.player.muted;
+        },
+
+        /* ---------- page ---------- */
+
+        subscribe() {
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(this.newsletterEmail.trim())) return;
+          this.subscribed = true;
+        },
+
+        scrollRail(direction) {
+          this.$refs.rail.scrollBy({ left: direction * 255, behavior: 'smooth' });
+        },
+
+        onScroll() {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - doc.clientHeight;
+          this.progress = max > 0 ? Math.min((window.scrollY / max) * 100, 100) : 0;
+          this.scrolled = window.scrollY > 600;
+        },
+
+        toTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
+        init() {
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+
+          /* simulated playback — swap for a real <audio> element when wiring up a backend */
+          this.tickTimer = setInterval(() => {
+            if (!this.player.playing) return;
+
+            this.player.currentTime += this.player.speed;
+
+            if (this.player.currentTime >= this.current().seconds) {
+              this.nextEpisode();
+            }
+          }, 1000);
+
+          this.reviewTimer = setInterval(() => {
+            this.activeReview = (this.activeReview + 1) % this.reviews.length;
+          }, 8000);
+
+          this.onScroll();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/*
+ * Entry point for the WordPress theme stylesheet.
+ *
+ * Tailwind cannot see class names that only exist at runtime, so every class
+ * the theme or the companion plugin can emit has to live in a file listed
+ * here. Anything built conditionally in PHP belongs in src/safelist.txt.
+ */
+@import "tailwindcss" source(none);
+
+@source "../wordpress/sevi/**/*.php";
+@source "../wordpress/sevi-core/**/*.php";
+@source "../src/safelist.txt";
+
+@import "./_shared.css";

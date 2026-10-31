@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>درباره ما | SEVI Blog</title>
+  <meta name="description" content="آشنایی با تیم SEVI؛ استودیوی طراحی و تولید محتوای دیجیتال با تمرکز بر تجربه‌های خوانا، ساده و تاثیرگذار." />
+
+  <link rel="stylesheet" href="assets/css/output.css" />
+  <script defer src="assets/js/alpine.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css" />
+</head>
+
+<body x-data="aboutPage()" class="font-estedad selection:bg-brand selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+    <div class="container-page">
+      <div class="h-[74px] flex items-center justify-between gap-4">
+        <a href="index-1.html" class="flex items-center gap-2 shrink-0">
+          <span class="size-8 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand text-sm"></i>
+          </span>
+          <span class="text-lg font-black tracking-[0.18em] text-gray-950 uppercase">SEVI</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="index-1.html" class="nav-link">خانه</a>
+          <a href="index-1.html#latest" class="nav-link">وبلاگ‌ها</a>
+          <a href="single-post.html" class="nav-link">نمونه‌کار</a>
+          <a href="about.html" class="nav-link text-gray-950 font-bold">درباره ما</a>
+          <a href="contact.html" class="nav-link">تماس</a>
+        </nav>
+
+        <div class="hidden md:flex flex-1 max-w-[280px] relative">
+          <input
+            type="text"
+            placeholder="جستجو در وبلاگ..."
+            class="w-full h-11 rounded-2xl bg-gray-50 border border-gray-100 ps-10 pe-4 text-xs outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand/30 transition"
+          />
+          <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button class="hidden sm:flex icon-btn" aria-label="افزودن به علاقه‌مندی‌ها">
+            <i class="fa-regular fa-heart text-sm"></i>
+          </button>
+
+          <button class="hidden sm:flex icon-btn relative">
+            <i class="fa-regular fa-bell text-sm"></i>
+            <span class="absolute top-2 start-2 size-1.5 rounded-full bg-brand"></span>
+          </button>
+
+          <a
+            href="contact.html"
+            class="hidden sm:flex items-center gap-2 h-10 px-4 rounded-2xl bg-white border border-gray-100 text-xs text-gray-700 hover:bg-gray-50 transition"
+          >
+            <i class="fa-regular fa-paper-plane"></i>
+            شروع همکاری
+          </a>
+
+          <button @click="mobileMenu = true" class="lg:hidden icon-btn" aria-label="open menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div
+    x-show="mobileMenu"
+    x-transition.opacity
+    class="fixed inset-0 z-[80] bg-black/40 lg:hidden"
+    @click.self="mobileMenu = false"
+    style="display:none"
+  >
+    <aside
+      x-show="mobileMenu"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="drawer-hidden"
+      x-transition:enter-end="drawer-shown"
+      x-transition:leave="transition ease-in duration-250"
+      x-transition:leave-start="drawer-shown"
+      x-transition:leave-end="drawer-hidden"
+      class="absolute start-0 top-0 h-full w-[86%] max-w-[360px] bg-white p-5 shadow-2xl overflow-y-auto"
+    >
+      <div class="flex items-center justify-between">
+        <a href="index-1.html" class="flex items-center gap-2">
+          <span class="size-9 rounded-full bg-brand/10 flex items-center justify-center">
+            <i class="fa-solid fa-bolt text-brand"></i>
+          </span>
+          <span class="text-xl font-black tracking-[0.18em]">SEVI</span>
+        </a>
+
+        <button @click="mobileMenu = false" class="icon-btn" aria-label="بستن">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="mt-6 relative">
+        <input
+          type="text"
+          placeholder="جستجو..."
+          class="w-full h-12 rounded-2xl bg-gray-50 border border-gray-100 ps-11 pe-4 text-sm outline-none"
+        />
+        <i class="fa-solid fa-magnifying-glass absolute start-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      </div>
+
+      <nav class="mt-6 space-y-2">
+        <a href="index-1.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          خانه <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="index-1.html#latest" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          وبلاگ‌ها <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="single-post.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          نمونه‌کار <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="about.html" class="flex items-center justify-between p-4 rounded-2xl bg-gray-50 text-sm font-bold">
+          درباره ما <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+        <a href="contact.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-gray-50 text-sm">
+          تماس <i class="fa-solid fa-angle-left text-gray-400"></i>
+        </a>
+      </nav>
+
+      <div class="mt-8 p-4 rounded-3xl bg-gray-50 border border-gray-100">
+        <p class="text-sm font-bold">راه‌های ارتباطی</p>
+        <p class="mt-2 text-xs leading-6 text-gray-500">
+          برای مشاوره طراحی، تولید محتوا و همکاری با ما در ارتباط باشید.
+        </p>
+
+        <div class="mt-4 grid grid-cols-4 gap-2">
+          <a class="icon-btn" href="#" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+          <a class="icon-btn" href="#" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+          <a class="icon-btn" href="#" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="icon-btn" href="#" aria-label="لینکدین"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+
+        <a
+          href="tel:+982191001000"
+          class="mt-4 h-11 rounded-2xl bg-brand text-white flex items-center justify-center gap-2 text-xs font-bold"
+        >
+          <i class="fa-solid fa-phone"></i>
+          تماس سریع
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <main class="pb-4">
+
+    <!-- ============ HERO ============ -->
+    <section class="container-page pt-6 sm:pt-8">
+      <div class="relative overflow-hidden rounded-[30px] sm:rounded-[38px] bg-gray-50 border border-gray-100">
+        <!-- layered background -->
+        <div class="absolute inset-0 gradient-a opacity-[0.55]"></div>
+        <div class="absolute inset-0 dot-grid opacity-40"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-white via-white/80 to-white/35"></div>
+
+        <!-- floating blobs -->
+        <div class="pointer-events-none absolute -top-16 end-10 size-64 brand-glow blur-2xl animate-floaty"></div>
+        <div class="pointer-events-none absolute bottom-0 start-1/3 size-72 violet-glow blur-2xl animate-floaty-slow"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 p-6 sm:p-10 lg:p-14">
+          <!-- copy -->
+          <div class="lg:col-span-7">
+            <!-- breadcrumb -->
+            <nav class="flex items-center gap-2 text-[11px] text-gray-500">
+              <a href="index-1.html" class="hover:text-brand transition">خانه</a>
+              <i class="fa-solid fa-angle-left text-[9px] text-gray-300"></i>
+              <span class="text-gray-950 font-bold">درباره ما</span>
+            </nav>
+
+            <span class="mt-6 inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 text-[11px] text-gray-600 shadow-[0_10px_30px_rgba(15,23,42,0.05)]">
+              <span class="size-2 rounded-full bg-brand animate-pulse"></span>
+              از سال ۱۳۹۶ در کنار شما
+            </span>
+
+            <h1 class="mt-5 text-[28px] sm:text-[40px] lg:text-[50px] leading-[1.55] font-black text-gray-950">
+              ما محتوا را
+              <span class="relative inline-block">
+                <span class="relative z-10 text-brand">خواندنی</span>
+                <span class="absolute inset-x-0 bottom-1 h-3 bg-brand/15 rounded-full"></span>
+              </span>
+              می‌سازیم، نه فقط زیبا
+            </h1>
+
+            <p class="mt-6 max-w-[540px] text-sm sm:text-[15px] leading-9 text-gray-600">
+              SEVI یک استودیوی کوچک اما سرسخت است؛ جایی که طراح، نویسنده و توسعه‌دهنده
+              کنار هم می‌نشینند تا صفحه‌ای بسازند که کاربر تا انتها بخواند. ما به سادگی،
+              خوانایی و جزئیاتی که دیده نمی‌شوند اما حس می‌شوند اعتقاد داریم.
+            </p>
+
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a href="contact.html" class="btn-primary">
+                گفتگو با تیم ما
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+              </a>
+              <a href="#story" class="btn-ghost">
+                <i class="fa-solid fa-play text-[10px]"></i>
+                داستان ما
+              </a>
+            </div>
+
+            <!-- avatar stack -->
+            <div class="mt-9 flex items-center gap-4">
+              <div class="flex -space-x-3 space-x-reverse">
+                <template x-for="member in team.slice(0, 4)" :key="member.name">
+                  <span
+                    class="size-11 rounded-full ring-4 ring-white flex items-center justify-center text-sm font-black text-white/95 relative overflow-hidden"
+                    :class="member.bg"
+                  >
+                    <span x-text="member.initial"></span>
+                    <img :src="member.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                  </span>
+                </template>
+                <span class="size-11 rounded-full ring-4 ring-white bg-gray-950 text-white flex items-center justify-center text-[11px] font-bold">
+                  ۱۲+
+                </span>
+              </div>
+
+              <div class="text-xs leading-6 text-gray-500">
+                <p class="font-bold text-gray-950">تیمی از ۱۲ متخصص</p>
+                <p>طراحی، محتوا، توسعه و سئو</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- visual collage -->
+          <div class="lg:col-span-5">
+            <div class="relative h-[320px] sm:h-[400px] lg:h-full min-h-[340px]">
+              <!-- big tile -->
+              <div class="absolute top-0 start-0 w-[68%] h-[62%] rounded-[28px] gradient-thumb-1 shadow-[0_28px_70px_rgba(15,23,42,0.18)] overflow-hidden">
+                <img src="assets/images/hero-office.jpg" onerror="this.remove()" class="w-full h-full object-cover" alt="" />
+              </div>
+
+              <!-- small tile -->
+              <div class="absolute bottom-0 end-0 w-[58%] h-[46%] rounded-[26px] gradient-thumb-6 shadow-[0_24px_60px_rgba(15,23,42,0.16)] overflow-hidden animate-floaty-slow">
+                <img src="assets/images/hero-laptop.jpg" onerror="this.remove()" class="w-full h-full object-cover" alt="" />
+              </div>
+
+              <!-- glass stat chip -->
+              <div class="absolute top-[52%] end-0 glass-card rounded-[22px] px-4 py-3 animate-floaty">
+                <div class="flex items-center gap-3">
+                  <span class="size-10 rounded-2xl bg-brand/10 text-brand flex items-center justify-center">
+                    <i class="fa-solid fa-award"></i>
+                  </span>
+                  <div>
+                    <p class="text-sm font-black text-gray-950">۹۸٪ رضایت</p>
+                    <p class="text-[10px] text-gray-500">از ۲۴۰ پروژه تحویل‌شده</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- small badge -->
+              <div class="absolute bottom-[8%] start-[6%] glass-card rounded-2xl px-3 py-2 flex items-center gap-2">
+                <i class="fa-solid fa-code text-brand text-xs"></i>
+                <span class="text-[11px] font-bold text-gray-800">RTL / Tailwind</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="container-page mt-6 sm:mt-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <template x-for="stat in stats" :key="stat.label">
+          <div class="stat-tile lift-card">
+            <span class="icon-tile mx-auto bg-brand/10 text-brand">
+              <i class="fa-solid" :class="stat.icon"></i>
+            </span>
+            <p
+              class="mt-4 text-[28px] sm:text-[34px] font-black text-gray-950 leading-none"
+              :data-count-to="stat.value"
+              :data-count-suffix="stat.suffix"
+            >۰</p>
+            <p class="mt-2 text-xs text-gray-500" x-text="stat.label"></p>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section id="story" class="container-page mt-16 sm:mt-24 scroll-mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <!-- visual -->
+        <div class="lg:col-span-5">
+          <div class="relative">
+            <div class="rounded-[32px] overflow-hidden gradient-thumb-5 h-[300px] sm:h-[380px] shadow-[0_30px_70px_rgba(15,23,42,0.12)]">
+              <img src="assets/images/office-interior.jpg" onerror="this.remove()" class="w-full h-full object-cover" alt="" />
+            </div>
+
+            <div class="absolute -bottom-8 -end-2 sm:end-6 w-[62%] card-box p-5">
+              <div class="flex items-center gap-3">
+                <span class="size-12 rounded-2xl gradient-thumb-4 shrink-0"></span>
+                <div>
+                  <p class="text-sm font-black text-gray-950">۸ سال تجربه</p>
+                  <p class="text-[11px] text-gray-500 mt-0.5">از اولین وبلاگ تا امروز</p>
+                </div>
+              </div>
+
+              <div class="mt-4 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+                <div class="h-full w-[86%] rounded-full bg-brand"></div>
+              </div>
+            </div>
+
+            <span class="absolute -top-4 -start-3 size-20 rounded-full brand-glow blur-xl"></span>
+          </div>
+        </div>
+
+        <!-- copy -->
+        <div class="lg:col-span-7 mt-12 lg:mt-0">
+          <p class="eyebrow">
+            <i class="fa-regular fa-bookmark"></i>
+            داستان ما
+          </p>
+
+          <h2 class="mt-4 section-title">
+            از یک وبلاگ شخصی شروع شد، به یک استودیو رسید
+          </h2>
+
+          <p class="mt-5 text-sm leading-9 text-gray-600">
+            سال ۱۳۹۶ با یک وبلاگ ساده و چند مقاله درباره طراحی رابط کاربری شروع کردیم.
+            خیلی زود متوجه شدیم مشکل اصلی بیشتر سایت‌ها نبودِ محتوا نیست؛ نبودِ
+            <span class="font-bold text-gray-900">ساختاری است که محتوا را قابل خواندن کند</span>.
+            از همان‌جا تصمیم گرفتیم روی چیزی کار کنیم که کمتر دیده می‌شود: ریتم، فاصله، تایپوگرافی و آرامش بصری.
+          </p>
+
+          <p class="mt-4 text-sm leading-9 text-gray-600">
+            امروز تیم SEVI برای وبلاگ‌ها، رسانه‌ها و فروشگاه‌های آنلاین، تجربه‌های خواندنی
+            طراحی و پیاده‌سازی می‌کند؛ کاملاً راست‌چین، سریع و سازگار با موبایل.
+          </p>
+
+          <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <template x-for="point in storyPoints" :key="point">
+              <div class="flex items-start gap-3 rounded-2xl bg-gray-50 border border-gray-100 p-4">
+                <span class="size-7 rounded-full bg-brand/10 text-brand flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-check text-[10px]"></i>
+                </span>
+                <p class="text-xs leading-7 text-gray-600" x-text="point"></p>
+              </div>
+            </template>
+          </div>
+
+          <!-- signature -->
+          <div class="mt-8 flex items-center gap-4 border-t border-gray-100 pt-6">
+            <span class="size-12 rounded-2xl gradient-thumb-2 flex items-center justify-center text-white font-black relative overflow-hidden">
+              م
+              <img src="assets/images/avatar-maryam.jpg" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+            </span>
+            <div>
+              <p class="text-sm font-black text-gray-950">مریم فراهانی</p>
+              <p class="text-[11px] text-gray-500 mt-0.5">هم‌بنیان‌گذار و مدیر محتوا</p>
+            </div>
+            <i class="fa-solid fa-quote-left text-gray-100 text-3xl ms-auto"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VALUES ============ -->
+    <section class="mt-16 sm:mt-24 bg-[#fafafa] py-14 sm:py-20 border-y border-gray-100">
+      <div class="container-page">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+          <div>
+            <p class="eyebrow">
+              <i class="fa-solid fa-gem"></i>
+              ارزش‌های ما
+            </p>
+            <h2 class="mt-4 section-title">چیزهایی که سرشان کوتاه نمی‌آییم</h2>
+            <p class="section-sub">
+              این شش اصل، تصمیم‌های روزمره ما را می‌سازند؛ از انتخاب یک فونت تا تحویل نهایی پروژه.
+            </p>
+          </div>
+
+          <a href="contact.html" class="hidden sm:inline-flex btn-ghost shrink-0">
+            همکاری با ما
+            <i class="fa-solid fa-arrow-left text-xs"></i>
+          </a>
+        </div>
+
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <template x-for="value in values" :key="value.title">
+            <article class="group relative overflow-hidden rounded-[28px] bg-white border border-gray-100 p-6 shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+              <span
+                class="absolute -top-10 -end-10 size-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"
+                :class="value.glow"
+              ></span>
+
+              <div class="relative z-10">
+                <span class="icon-tile" :class="value.tile">
+                  <i class="fa-solid" :class="value.icon"></i>
+                </span>
+
+                <h3 class="mt-5 text-base font-black text-gray-950" x-text="value.title"></h3>
+                <p class="mt-3 text-xs leading-7 text-gray-500" x-text="value.desc"></p>
+
+                <span class="mt-5 inline-flex items-center gap-2 text-[11px] font-bold text-gray-300 group-hover:text-brand transition">
+                  <span x-text="value.tag"></span>
+                  <i class="fa-solid fa-arrow-left text-[9px]"></i>
+                </span>
+              </div>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE ============ -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="text-center max-w-[620px] mx-auto">
+        <p class="eyebrow justify-center">
+          <i class="fa-solid fa-route"></i>
+          مسیر ما
+        </p>
+        <h2 class="mt-4 section-title">هشت سال، قدم به قدم</h2>
+        <p class="section-sub mx-auto text-center">
+          نقاط عطفی که ما را از یک وبلاگ شخصی به تیم امروز رساند.
+        </p>
+      </div>
+
+      <div class="relative mt-12">
+        <!-- line -->
+        <span class="absolute top-0 bottom-0 start-4 lg:start-1/2 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent"></span>
+
+        <div class="space-y-6 lg:space-y-10">
+          <template x-for="(item, index) in milestones" :key="item.year">
+            <div class="relative ps-12 lg:ps-0 lg:grid lg:grid-cols-2 lg:gap-14">
+              <!-- node -->
+              <span class="absolute start-4 lg:start-1/2 top-8 -translate-y-1/2 shift-half-start z-10">
+                <span class="relative flex size-4">
+                  <span class="absolute inset-0 rounded-full bg-brand/40 animate-ping-ring"></span>
+                  <span class="relative size-4 rounded-full bg-white border-[3px] border-brand"></span>
+                </span>
+              </span>
+
+              <div :class="index % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-2'">
+                <article class="card-box p-5 sm:p-6 lift-card">
+                  <div class="flex items-center justify-between gap-4">
+                    <span
+                      class="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-black"
+                      :class="index % 2 === 0 ? 'bg-brand/10 text-brand' : 'bg-gray-950 text-white'"
+                      x-text="item.year"
+                    ></span>
+
+                    <span class="icon-tile size-10 rounded-2xl bg-gray-50 text-gray-400 text-sm">
+                      <i class="fa-solid" :class="item.icon"></i>
+                    </span>
+                  </div>
+
+                  <h3 class="mt-4 text-base font-black text-gray-950" x-text="item.title"></h3>
+                  <p class="mt-3 text-xs leading-7 text-gray-500" x-text="item.desc"></p>
+                </article>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEAM ============ -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <p class="eyebrow">
+            <i class="fa-solid fa-users"></i>
+            تیم ما
+          </p>
+          <h2 class="mt-4 section-title">آدم‌هایی که پشت این صفحه‌اند</h2>
+          <p class="section-sub">
+            کوچک ماندیم تا هر پروژه مستقیم زیر دست خودمان ساخته شود، نه یک خط تولید.
+          </p>
+        </div>
+
+        <a href="contact.html" class="hidden sm:inline-flex btn-ghost shrink-0">
+          به تیم بپیوندید
+          <i class="fa-solid fa-user-plus text-xs"></i>
+        </a>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <template x-for="member in team" :key="member.name">
+          <article class="group rounded-[28px] bg-white border border-gray-100 p-4 shadow-[0_16px_45px_rgba(15,23,42,0.04)] lift-card">
+            <div class="relative h-[230px] rounded-[22px] overflow-hidden flex items-center justify-center" :class="member.bg">
+              <span class="text-[64px] font-black text-white/70 select-none" x-text="member.initial"></span>
+
+              <img :src="member.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+
+              <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+              <!-- socials -->
+              <div class="absolute inset-x-0 bottom-0 p-3 flex items-center justify-center gap-2 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+                <a href="#" class="size-9 rounded-full bg-white/90 backdrop-blur text-gray-700 flex items-center justify-center hover:bg-brand hover:text-white transition" aria-label="لینکدین">
+                  <i class="fa-brands fa-linkedin-in text-xs"></i>
+                </a>
+                <a href="#" class="size-9 rounded-full bg-white/90 backdrop-blur text-gray-700 flex items-center justify-center hover:bg-brand hover:text-white transition" aria-label="اینستاگرام">
+                  <i class="fa-brands fa-instagram text-xs"></i>
+                </a>
+                <a href="#" class="size-9 rounded-full bg-white/90 backdrop-blur text-gray-700 flex items-center justify-center hover:bg-brand hover:text-white transition" aria-label="ایمیل">
+                  <i class="fa-solid fa-envelope text-xs"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-3 pt-4">
+              <h3 class="text-sm font-black text-gray-950" x-text="member.name"></h3>
+              <p class="mt-1.5 text-[11px] text-gray-500" x-text="member.role"></p>
+
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                <template x-for="skill in member.skills" :key="skill">
+                  <span class="rounded-full bg-gray-50 border border-gray-100 px-2.5 py-1 text-[10px] text-gray-500" x-text="skill"></span>
+                </template>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="mt-16 sm:mt-24 bg-[#fafafa] py-14 sm:py-20 border-y border-gray-100">
+      <div class="container-page">
+        <div class="text-center max-w-[620px] mx-auto">
+          <p class="eyebrow justify-center">
+            <i class="fa-solid fa-diagram-project"></i>
+            روش کار
+          </p>
+          <h2 class="mt-4 section-title">چطور یک پروژه را جلو می‌بریم</h2>
+          <p class="section-sub mx-auto text-center">
+            یک مسیر شفاف و چهار مرحله‌ای؛ از اولین جلسه تا تحویل و پشتیبانی.
+          </p>
+        </div>
+
+        <div class="relative mt-12">
+          <span class="hidden lg:block absolute top-9 start-[12%] end-[12%] h-px border-t-2 border-dashed border-gray-200"></span>
+
+          <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <template x-for="(step, index) in process" :key="step.title">
+              <div class="group text-center">
+                <span class="relative mx-auto size-[72px] rounded-[26px] bg-white border border-gray-100 shadow-[0_16px_40px_rgba(15,23,42,0.06)] flex items-center justify-center text-xl text-gray-400 group-hover:text-brand group-hover:border-brand/25 transition">
+                  <i class="fa-solid" :class="step.icon"></i>
+                  <span
+                    class="absolute -top-2 -start-2 size-7 rounded-full bg-brand text-white text-[11px] font-black flex items-center justify-center shadow-lg shadow-brand/25"
+                    x-text="toFa(index + 1)"
+                  ></span>
+                </span>
+
+                <h3 class="mt-5 text-sm font-black text-gray-950" x-text="step.title"></h3>
+                <p class="mt-3 text-xs leading-7 text-gray-500 max-w-[240px] mx-auto" x-text="step.desc"></p>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="container-page mt-16 sm:mt-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-4">
+          <p class="eyebrow">
+            <i class="fa-solid fa-comment-dots"></i>
+            نظر مشتریان
+          </p>
+          <h2 class="mt-4 section-title">حرف آخر را آن‌ها می‌زنند</h2>
+          <p class="section-sub">
+            بازخورد تیم‌هایی که با ما کار کرده‌اند، دقیق‌ترین معرفی‌نامه ماست.
+          </p>
+
+          <div class="mt-8 flex items-center gap-3">
+            <button
+              @click="prevTestimonial()"
+              class="size-11 rounded-full bg-white border border-gray-100 text-gray-500 hover:bg-brand hover:text-white hover:border-brand transition"
+              aria-label="قبلی"
+            >
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+            <button
+              @click="nextTestimonial()"
+              class="size-11 rounded-full bg-white border border-gray-100 text-gray-500 hover:bg-brand hover:text-white hover:border-brand transition"
+              aria-label="بعدی"
+            >
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+            </button>
+
+            <div class="flex items-center gap-1.5 ms-3">
+              <template x-for="(_, index) in testimonials" :key="index">
+                <button
+                  @click="activeTestimonial = index"
+                  class="h-2 rounded-full transition-all"
+                  :class="activeTestimonial === index ? 'w-7 bg-brand' : 'w-2 bg-gray-200'"
+                  :aria-label="'نظر ' + toFa(index + 1)"
+                ></button>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8">
+          <div class="relative min-h-[300px] sm:min-h-[270px]">
+            <template x-for="(item, index) in testimonials" :key="item.name">
+              <div
+                x-show="activeTestimonial === index"
+                x-transition:enter="transition ease-out duration-400"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                class="relative overflow-hidden rounded-[32px] bg-white border border-gray-100 p-6 sm:p-9 shadow-[0_22px_60px_rgba(15,23,42,0.06)]"
+                style="display:none"
+              >
+                <span class="absolute -top-8 -end-8 size-40 rounded-full brand-glow blur-2xl opacity-60"></span>
+                <i class="fa-solid fa-quote-left absolute top-6 end-7 text-4xl text-gray-50"></i>
+
+                <div class="relative z-10">
+                  <div class="flex text-yellow-400 text-xs gap-1">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+
+                  <p class="mt-5 text-sm sm:text-[15px] leading-9 text-gray-700" x-text="item.text"></p>
+
+                  <div class="mt-7 flex items-center justify-between gap-4 border-t border-gray-100 pt-5">
+                    <div class="flex items-center gap-3">
+                      <span
+                        class="size-12 rounded-2xl flex items-center justify-center text-white font-black relative overflow-hidden shrink-0"
+                        :class="item.bg"
+                      >
+                        <span x-text="item.initial"></span>
+                        <img :src="item.photo" onerror="this.remove()" class="absolute inset-0 w-full h-full object-cover" alt="" />
+                      </span>
+                      <div>
+                        <p class="text-sm font-black text-gray-950" x-text="item.name"></p>
+                        <p class="text-[11px] text-gray-500 mt-0.5" x-text="item.role"></p>
+                      </div>
+                    </div>
+
+                    <span class="hidden sm:inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-100 px-3 py-2 text-[11px] text-gray-500">
+                      <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                      پروژه تحویل‌شده
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="container-page mt-16 sm:mt-24 mb-16 sm:mb-20">
+      <div class="relative overflow-hidden rounded-[32px] sm:rounded-[38px] gradient-d">
+        <div class="absolute inset-0 dot-grid opacity-30"></div>
+        <div class="pointer-events-none absolute -bottom-20 -start-10 size-72 bg-white/30 blur-3xl rounded-full animate-floaty-slow"></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 p-8 sm:p-12 lg:p-14">
+          <div class="lg:col-span-8">
+            <span class="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur px-4 py-2 text-[11px] font-bold text-gray-800">
+              <i class="fa-solid fa-bolt text-brand"></i>
+              ظرفیت پروژه جدید داریم
+            </span>
+
+            <h2 class="mt-5 text-2xl sm:text-[34px] leading-[1.6] font-black text-gray-950">
+              ایده‌ای در سر دارید؟ بیایید با هم بسازیمش.
+            </h2>
+
+            <p class="mt-4 max-w-[560px] text-sm leading-8 text-gray-700">
+              یک جلسه مشاوره ۳۰ دقیقه‌ای رایگان رزرو کنید؛ درباره پروژه، بودجه و زمان‌بندی
+              صادقانه صحبت می‌کنیم — حتی اگر در نهایت با ما کار نکنید.
+            </p>
+          </div>
+
+          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <a href="contact.html" class="btn-dark w-full">
+              رزرو جلسه مشاوره
+              <i class="fa-solid fa-arrow-left text-xs"></i>
+            </a>
+            <a href="tel:+982191001000" class="w-full inline-flex items-center justify-center gap-2 h-12 px-6 rounded-2xl bg-white/85 backdrop-blur text-sm font-bold text-gray-900 hover:bg-white transition">
+              <i class="fa-solid fa-phone text-xs"></i>
+              ۰۲۱-۹۱۰۰۱۰۰۰
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-100 py-8">
+    <div class="container-page flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-gray-400">
+        © ۱۴۰۵ تمامی حقوق برای SEVI محفوظ است.
+      </p>
+
+      <div class="flex items-center gap-2">
+        <a href="#" class="icon-btn" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="icon-btn" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
+        <a href="#" class="icon-btn" aria-label="ایکس"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== FLOATING: demo switcher ===================== -->
+  <div class="fixed bottom-6 end-6 z-[70] flex flex-col items-start gap-3">
+    <div
+      x-show="demoPanel"
+      x-transition:enter="transition ease-out duration-250"
+      x-transition:enter-start="opacity-0 translate-y-3"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-end="opacity-0 translate-y-3"
+      class="w-[260px] rounded-[24px] bg-white border border-gray-100 shadow-[0_30px_70px_rgba(15,23,42,0.18)] p-4"
+      style="display:none"
+    >
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-gray-950">دموها و صفحات</p>
+        <button @click="demoPanel = false" class="icon-btn size-7" aria-label="بستن"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+      </div>
+
+      <div class="space-y-1.5 max-h-[340px] overflow-y-auto hide-scrollbar">
+        <template x-for="demo in demoLinks" :key="demo.href">
+          <a
+            :href="demo.href"
+            class="flex items-center gap-3 rounded-2xl p-2.5 transition"
+            :class="demo.current ? 'bg-brand/5 border border-brand/20' : 'hover:bg-gray-50 border border-transparent'"
+          >
+            <span class="size-9 rounded-xl shrink-0 flex items-center justify-center text-white text-xs" :class="demo.bg">
+              <i class="fa-solid" :class="demo.icon"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-bold text-gray-950 truncate" x-text="demo.label"></span>
+              <span class="block text-[10px] text-gray-400 truncate" x-text="demo.note"></span>
+            </span>
+            <i x-show="demo.current" class="fa-solid fa-circle-check text-brand text-[10px] ms-auto" style="display:none"></i>
+          </a>
+        </template>
+      </div>
+    </div>
+
+    <button @click="demoPanel = !demoPanel" class="h-12 px-5 rounded-2xl bg-gray-950 text-white text-xs font-bold shadow-[0_18px_40px_rgba(15,23,42,0.25)] hover:bg-brand transition flex items-center gap-2">
+      <i class="fa-solid" :class="demoPanel ? 'fa-xmark' : 'fa-layer-group'"></i>
+      دموها
+    </button>
+  </div>
+
+  <script>
+    function toFaDigits(value) {
+      return String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function aboutPage() {
+      return {
+        mobileMenu: false,
+        demoPanel: false,
+
+        demoLinks: [
+          { label: 'دمو کلاسیک', note: 'وبلاگ با اسلایدر', href: 'index-1.html', icon: 'fa-house', bg: 'bg-gray-950', current: false },
+          { label: 'دمو مجله', note: 'چیدمان خبری', href: 'index-2.html', icon: 'fa-newspaper', bg: 'bg-blue-500', current: false },
+          { label: 'دمو کاوش', note: 'میسونری', href: 'index-3.html', icon: 'fa-compass', bg: 'bg-violet-500', current: false },
+          { label: 'دمو مینیمال', note: 'تایپوگرافی‌محور', href: 'index-4.html', icon: 'fa-feather', bg: 'bg-cyan-500', current: false },
+          { label: 'دمو رسانه', note: 'ویدیو و پادکست', href: 'index-5.html', icon: 'fa-play', bg: 'bg-emerald-500', current: false },
+          { label: 'دمو پادکست', note: 'پخش‌کننده کامل', href: 'index-6.html', icon: 'fa-microphone-lines', bg: 'bg-orange-500', current: false },
+          { label: 'شبکه پادکست', note: 'نمای شبکه‌ای', href: 'index-7.html', icon: 'fa-grip', bg: 'bg-indigo-500', current: false },
+          { label: 'پادکست پاپ‌آپ', note: 'پنجره بازشو', href: 'index-8.html', icon: 'fa-window-restore', bg: 'bg-fuchsia-500', current: false },
+          { label: 'صفحه مقاله', note: 'single.php', href: 'single-post.html', icon: 'fa-file-lines', bg: 'bg-amber-500', current: false },
+          { label: 'آرشیو', note: 'archive.php', href: 'archive.html', icon: 'fa-box-archive', bg: 'bg-slate-500', current: false },
+          { label: 'نتایج جستجو', note: 'search.php', href: 'search.html', icon: 'fa-magnifying-glass', bg: 'bg-sky-500', current: false },
+          { label: 'نویسنده', note: 'author.php', href: 'author.html', icon: 'fa-user-pen', bg: 'bg-rose-500', current: false },
+          { label: 'صفحه ساده', note: 'page.php', href: 'page.html', icon: 'fa-file', bg: 'bg-stone-500', current: false },
+          { label: 'صفحه ۴۰۴', note: '404.php', href: '404.html', icon: 'fa-triangle-exclamation', bg: 'bg-zinc-500', current: false },
+          { label: 'تک‌قسمت پادکست', note: 'single-podcast.php', href: 'podcast-single.html', icon: 'fa-headphones', bg: 'bg-lime-600', current: false },
+          { label: 'آرشیو قسمت‌ها', note: 'archive-podcast.php', href: 'podcast-archive.html', icon: 'fa-compact-disc', bg: 'bg-yellow-500', current: false },
+          { label: 'صفحه پادکست', note: 'taxonomy-series.php', href: 'podcast-show.html', icon: 'fa-podcast', bg: 'bg-green-600', current: false },
+          { label: 'پروفایل میزبان', note: 'single-host.php', href: 'podcast-host.html', icon: 'fa-user-tie', bg: 'bg-purple-500', current: false },
+          { label: 'فروشگاه', note: 'archive-product.php', href: 'shop.html', icon: 'fa-store', bg: 'bg-orange-700', current: false },
+          { label: 'یک محصول', note: 'single-product.php', href: 'product-single.html', icon: 'fa-box', bg: 'bg-cyan-600', current: false },
+          { label: 'سبد خرید', note: 'cart', href: 'cart.html', icon: 'fa-bag-shopping', bg: 'bg-pink-600', current: false },
+          { label: 'تسویه حساب', note: 'checkout', href: 'checkout.html', icon: 'fa-credit-card', bg: 'bg-slate-600', current: false },
+          { label: 'همه دموها', note: 'نمای کلی', href: 'demos.html', icon: 'fa-layer-group', bg: 'bg-red-400', current: false },
+          { label: 'عناصر', note: 'استایل‌گاید', href: 'elements.html', icon: 'fa-cubes', bg: 'bg-gray-700', current: false },
+          { label: 'فرمت‌های نوشته', note: 'post formats', href: 'post-formats.html', icon: 'fa-shapes', bg: 'bg-orange-600', current: false },
+          { label: 'دسته‌بندی‌ها', note: 'نقشه محتوا', href: 'categories.html', icon: 'fa-sitemap', bg: 'bg-teal-600', current: false },
+          { label: 'عضویت و پلن‌ها', note: 'pricing', href: 'pricing.html', icon: 'fa-crown', bg: 'bg-amber-600', current: false },
+          { label: 'ورود', note: 'login', href: 'login.html', icon: 'fa-right-to-bracket', bg: 'bg-blue-600', current: false },
+          { label: 'ثبت‌نام', note: 'register', href: 'register.html', icon: 'fa-user-plus', bg: 'bg-violet-600', current: false },
+          { label: 'حساب کاربری', note: 'dashboard', href: 'account.html', icon: 'fa-gauge', bg: 'bg-sky-600', current: false },
+          { label: 'به‌زودی', note: 'coming soon', href: 'coming-soon.html', icon: 'fa-rocket', bg: 'bg-rose-600', current: false },
+          { label: 'خدمات', note: 'services', href: 'services.html', icon: 'fa-pen-ruler', bg: 'bg-lime-700', current: false },
+          { label: 'نمونه‌کارها', note: 'portfolio', href: 'portfolio.html', icon: 'fa-briefcase', bg: 'bg-indigo-600', current: false },
+          { label: 'مطالعه موردی', note: 'case study', href: 'portfolio-single.html', icon: 'fa-chart-line', bg: 'bg-emerald-600', current: false },
+          { label: 'خبرنامه', note: 'newsletter', href: 'newsletter.html', icon: 'fa-envelope-open-text', bg: 'bg-fuchsia-600', current: false },
+          { label: 'درباره ما', note: 'تیم و داستان', href: 'about.html', icon: 'fa-users', bg: 'bg-brand', current: true },
+          { label: 'تماس با ما', note: 'فرم و نقشه', href: 'contact.html', icon: 'fa-paper-plane', bg: 'bg-pink-500', current: false }
+        ],
+        activeTestimonial: 0,
+        testimonialTimer: null,
+
+        toFa: toFaDigits,
+
+        stats: [
+          { label: 'پروژه تحویل‌شده', value: 240, suffix: '+', icon: 'fa-rocket' },
+          { label: 'مقاله منتشرشده', value: 860, suffix: '+', icon: 'fa-feather' },
+          { label: 'مشتری فعال', value: 64, suffix: '', icon: 'fa-handshake' },
+          { label: 'رضایت مشتریان', value: 98, suffix: '٪', icon: 'fa-heart' }
+        ],
+
+        storyPoints: [
+          'طراحی کاملاً راست‌چین و بومی‌سازی‌شده برای زبان فارسی',
+          'سرعت بالا و نمره سبز در Core Web Vitals',
+          'ساختار محتوایی سئو‌محور و قابل توسعه',
+          'تحویل کد تمیز، مستند و قابل نگهداری'
+        ],
+
+        values: [
+          {
+            title: 'سادگی، نه سادگیِ ناقص',
+            desc: 'هر عنصری که کاری انجام نمی‌دهد حذف می‌شود؛ اما شخصیت طراحی حفظ می‌ماند.',
+            icon: 'fa-wand-magic-sparkles',
+            tile: 'bg-brand/10 text-brand',
+            glow: 'bg-brand/25',
+            tag: 'مینیمالیسم کاربردی'
+          },
+          {
+            title: 'خوانایی قبل از زیبایی',
+            desc: 'اگر متن خوانده نشود، هیچ طراحی‌ای موفق نیست. تایپوگرافی اولویت اول ماست.',
+            icon: 'fa-book-open-reader',
+            tile: 'bg-blue-50 text-blue-500',
+            glow: 'bg-blue-300/40',
+            tag: 'تایپوگرافی فارسی'
+          },
+          {
+            title: 'سرعت یک ویژگی است',
+            desc: 'صفحه‌ای که دیر باز شود، خوانده نمی‌شود. بهینه‌سازی از روز اول انجام می‌شود.',
+            icon: 'fa-gauge-high',
+            tile: 'bg-emerald-50 text-emerald-500',
+            glow: 'bg-emerald-300/40',
+            tag: 'عملکرد و بهینه‌سازی'
+          },
+          {
+            title: 'موبایل، نه نسخه دوم',
+            desc: 'بیش از ۷۰٪ مخاطب شما موبایلی است؛ پس طراحی از موبایل شروع می‌شود.',
+            icon: 'fa-mobile-screen',
+            tile: 'bg-violet-50 text-violet-500',
+            glow: 'bg-violet-300/40',
+            tag: 'Mobile First'
+          },
+          {
+            title: 'شفافیت در گفتگو',
+            desc: 'زمان‌بندی، هزینه و محدودیت‌ها را از ابتدا صریح می‌گوییم؛ بدون سورپرایز.',
+            icon: 'fa-handshake-angle',
+            tile: 'bg-amber-50 text-amber-500',
+            glow: 'bg-amber-300/40',
+            tag: 'همکاری بلندمدت'
+          },
+          {
+            title: 'یادگیری بی‌وقفه',
+            desc: 'هر پروژه با یک مستند داخلی تمام می‌شود تا دفعه بعد بهتر عمل کنیم.',
+            icon: 'fa-lightbulb',
+            tile: 'bg-pink-50 text-pink-500',
+            glow: 'bg-pink-300/40',
+            tag: 'فرهنگ تیمی'
+          }
+        ],
+
+        milestones: [
+          {
+            year: '۱۳۹۶',
+            title: 'شروع با یک وبلاگ شخصی',
+            desc: 'اولین مقاله‌ها درباره طراحی رابط کاربری منتشر شد؛ بدون تیم، بدون بودجه، فقط کنجکاوی.',
+            icon: 'fa-seedling'
+          },
+          {
+            year: '۱۳۹۸',
+            title: 'اولین پروژه سفارشی',
+            desc: 'طراحی و پیاده‌سازی یک مجله آنلاین راست‌چین که هنوز هم فعال است و ماهانه صدها هزار بازدید دارد.',
+            icon: 'fa-pen-ruler'
+          },
+          {
+            year: '۱۴۰۰',
+            title: 'تشکیل تیم اصلی',
+            desc: 'طراح، توسعه‌دهنده و نویسنده به جمع اضافه شدند و SEVI از یک نفر به یک استودیو تبدیل شد.',
+            icon: 'fa-users-gear'
+          },
+          {
+            year: '۱۴۰۲',
+            title: 'ساخت سیستم طراحی داخلی',
+            desc: 'کامپوننت‌های راست‌چین، مستند و قابل استفاده مجدد که زمان تحویل پروژه‌ها را نصف کرد.',
+            icon: 'fa-cubes'
+          },
+          {
+            year: '۱۴۰۵',
+            title: 'بیش از ۲۴۰ پروژه',
+            desc: 'امروز با تیمی ۱۲ نفره روی محصولات محتوایی، فروشگاهی و رسانه‌ای کار می‌کنیم.',
+            icon: 'fa-trophy'
+          }
+        ],
+
+        team: [
+          {
+            name: 'مریم فراهانی',
+            initial: 'م',
+            role: 'هم‌بنیان‌گذار و مدیر محتوا',
+            bg: 'gradient-thumb-2',
+            photo: 'assets/images/avatar-maryam.jpg',
+            skills: ['استراتژی محتوا', 'سئو']
+          },
+          {
+            name: 'آرمان عظیمی',
+            initial: 'آ',
+            role: 'مدیر هنری و طراح ارشد',
+            bg: 'gradient-thumb-1',
+            photo: 'assets/images/avatar-man-1.jpg',
+            skills: ['UI / UX', 'دیزاین سیستم']
+          },
+          {
+            name: 'سارا موسوی',
+            initial: 'س',
+            role: 'توسعه‌دهنده فرانت‌اند',
+            bg: 'gradient-thumb-6',
+            photo: 'assets/images/avatar-woman-2.jpg',
+            skills: ['Tailwind', 'Alpine.js']
+          },
+          {
+            name: 'کاوه رستمی',
+            initial: 'ک',
+            role: 'مدیر پروژه و ارتباط با مشتری',
+            bg: 'gradient-thumb-4',
+            photo: 'assets/images/avatar-man-2.jpg',
+            skills: ['مدیریت پروژه', 'تحلیل داده']
+          }
+        ],
+
+        process: [
+          {
+            title: 'شنیدن و کشف',
+            desc: 'یک جلسه عمیق درباره مخاطب، هدف و محدودیت‌های شما؛ قبل از هر خط کد.',
+            icon: 'fa-comments'
+          },
+          {
+            title: 'ساختار و طرح',
+            desc: 'وایرفریم، معماری محتوا و طراحی بصری تا وقتی دقیقاً همان چیزی شود که می‌خواهید.',
+            icon: 'fa-compass-drafting'
+          },
+          {
+            title: 'پیاده‌سازی',
+            desc: 'کدنویسی تمیز، ریسپانسیو و راست‌چین همراه با تست روی دستگاه‌های واقعی.',
+            icon: 'fa-code'
+          },
+          {
+            title: 'تحویل و پشتیبانی',
+            desc: 'آموزش تیم شما، مستندسازی و سه ماه پشتیبانی رایگان پس از انتشار.',
+            icon: 'fa-shield-heart'
+          }
+        ],
+
+        testimonials: [
+          {
+            name: 'نیما شریفی',
+            initial: 'ن',
+            role: 'مدیر محصول، مجله دیجی‌رید',
+            bg: 'gradient-thumb-5',
+            photo: 'assets/images/avatar-man-3.jpg',
+            text: 'چیزی که تیم SEVI را متفاوت می‌کند، وسواسشان روی جزئیات فارسی است. فاصله‌گذاری، شکستن خطوط و رفتار راست‌چین در همه بخش‌ها دقیق درآمده بود. بعد از بازطراحی، میانگین زمان ماندگاری کاربران ما ۴۰٪ بیشتر شد.'
+          },
+          {
+            name: 'الهام کاظمی',
+            initial: 'ا',
+            role: 'مدیر بازاریابی، فروشگاه آوند',
+            bg: 'gradient-thumb-9',
+            photo: 'assets/images/avatar-woman-3.jpg',
+            text: 'از اولین جلسه تا تحویل، همه‌چیز شفاف بود. زمان‌بندی را دقیق رعایت کردند و چیزی که تحویل دادند از دموی اولیه هم بهتر بود. تیم داخلی ما بدون هیچ مشکلی توانست ادامه کار را خودش جلو ببرد.'
+          },
+          {
+            name: 'بهزاد نوری',
+            initial: 'ب',
+            role: 'بنیان‌گذار استارتاپ رهنما',
+            bg: 'gradient-thumb-4',
+            photo: 'assets/images/avatar-man-1.jpg',
+            text: 'ما بودجه محدودی داشتیم و صادقانه به ما گفتند کدام بخش‌ها الان ارزش سرمایه‌گذاری دارد و کدام‌ها می‌تواند صبر کند. همین صداقت باعث شد سه پروژه بعدی را هم به آن‌ها بسپاریم.'
+          }
+        ],
+
+        nextTestimonial() {
+          this.activeTestimonial = (this.activeTestimonial + 1) % this.testimonials.length;
+        },
+
+        prevTestimonial() {
+          this.activeTestimonial =
+            this.activeTestimonial === 0
+              ? this.testimonials.length - 1
+              : this.activeTestimonial - 1;
+        },
+
+        init() {
+          this.testimonialTimer = setInterval(() => this.nextTestimonial(), 7000);
+          this.$watch('mobileMenu', open => {
+            document.body.style.overflow = open ? 'hidden' : '';
+          });
+        }
+      };
+    }
+
+    /* Animated counters (Persian digits) */
+    document.addEventListener('alpine:initialized', () => {
+      const targets = document.querySelectorAll('[data-count-to]');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const render = (el, value, suffix) => {
+        el.textContent = toFaDigits(value) + (suffix || '');
+      };
+
+      const run = el => {
+        const to = Number(el.dataset.countTo || 0);
+        const suffix = el.dataset.countSuffix || '';
+
+        if (reduced) return render(el, to, suffix);
+
+        const duration = 1400;
+        const start = performance.now();
+
+        const tick = now => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          render(el, Math.round(to * eased), suffix);
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            run(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      targets.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
