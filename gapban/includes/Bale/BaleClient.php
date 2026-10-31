@@ -131,11 +131,11 @@ final class BaleClient {
 		$body = (string) wp_remote_retrieve_body( $response );
 		$json = json_decode( $body, true );
 
-		if ( ! is_array( $json ) ) {
+		if ( ! is_array( $json ) || ! array_key_exists( 'ok', $json ) ) {
 			if ( $code >= 300 && $code < 400 ) {
 				throw new ProviderException( ProviderException::PERMANENT, 'unexpected_redirect', $code );
 			}
-			$kind = ( $code >= 500 || 0 === $code ) && ! $idempotent ? ProviderException::UNCERTAIN : ProviderException::RETRYABLE;
+			$kind = ! $idempotent && ( $code >= 500 || $code < 300 ) ? ProviderException::UNCERTAIN : ProviderException::RETRYABLE;
 			if ( 401 === $code || 404 === $code ) {
 				$kind = ProviderException::AUTH;
 			}

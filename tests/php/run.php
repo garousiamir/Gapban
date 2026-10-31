@@ -25,6 +25,8 @@ if ( 'wptest' !== DB_NAME ) {
 	exit( 2 );
 }
 
+require_once ABSPATH . 'wp-admin/includes/user.php';
+require_once ABSPATH . 'wp-admin/includes/file.php';
 require __DIR__ . '/FakeBale.php';
 require __DIR__ . '/TestCase.php';
 foreach ( glob( __DIR__ . '/*Test.php' ) as $file ) {
